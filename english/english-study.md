@@ -1,0 +1,739 @@
+# English Study
+
+## Home work
+
+What am I passionate about?
+
+I tried to think what I am passionate about. Learning is the first, and I like the feeling of improving. I like teaching as well. I think teaching is one of the best ways of learning. I still remember several years a go my mom praised me of teaching her how to use her cell phone. In the middle school I didn't put much effort on studyin in school. But I started to learn how to program softwares then. When I entered highschool I studied from 6 in the morning to 11 at night for 3 years. I liked that period of time in my life. I used to help other students solve math problems. In my compnay, all of us took a test called Clifton Strength to see the strength for each person. As a result, one of the main themes of mine was Learner.
+
+## Ringle like tutoring strategy
+
+- build rapport
+- vocabulary review first
+- Focus on communication and fluency, not correctness
+- try many tutors
+
+## online course (perfectly spoken)
+
+- https://perfectlyspoken.com/english-lessons/c1-lesson-03-discourse-markers-2/
+- signpost
+
+## Quiz
+
+- study English everyday
+  - https://www.cambridgeenglish.org/test-your-english/
+  - 2020-04-07,general,17/25
+  - 2020-04-08,school,19/25
+  - 2020-04-09,business,17/25
+  - 2020-04-13,general,24/25
+
+## vocabulary
+
+### new vocabularies
+
+- public persona
+  - a public figure/ how a celebrity behaves in public, typically in accordance with some kind of desired image
+- brand image
+  - how a company is viewed (its style, status) by the public
+- vertical integration
+  - when a company tries to own all the different steps of a production process
+- vacant
+  - empty e.g. a vacant seat
+- unleash
+- birthright
+- at the fore
+- scoundrel
+- vanquished
+- ripped from his grasp
+- extort
+- tits up
+- municipal
+- lately
+- surveyor
+- under better circumstance
+  - under any circumstances
+- negligible
+- specifics
+- chattering
+- trailblazer
+- inflammation
+- vanguard
+- warlord
+- solvent
+  - financially stable, viable
+
+### learning
+
+- Of the discussion topics available, I felt most familiar with this one because of my work.
+- I think that some people got that impression from Tesla.
+- I think that company made that impression on some people.
+- I think that this company has cultivated a certain image.
+- We decided to make a contract with a company in Japan.
+- We decided to contract a company in Japan.
+- We didn't think our company would benefit from having this service in-house.
+- It needs to be very fast so it reduces air resistance as much as possible.
+- I heard that it should be a vacuum.
+- Do you happen to remember the name of that place?
+- Do you by any chance remember what that place was called? The restaurant we went to last month with Kim.
+- I used to have a roommate but he moved out a few months ago. So, at them moment, I'm living by myself.
+- When I'm preparing for a test, I prefer to study by myself. But when I'm learning something, I think it's more fun to learn with other people.
+- Don't you get lonely.
+- Hey, can you ask Jane something for me? You know what? Never mind. I'll ask her myself.
+- He didn't actually tell me that himself. I heard it from his friend.
+- When we're growing up, we had to do everything on our own.
+- We were aware of the rules.
+- I know him well.
+- I know about it well.
+- I'm not very familiar with this topic.
+- Are you familiar with this kind of situation?
+- I can't tell what it says.
+- Can you tell what this is?
+- I understand why shi did that but I don't agree with her decision.
+- I figured out how to use it.
+- I figured out how to get there.
+- I figured out how to set up the alarm.
+- I finally realized what the problem was.
+- I found out about that just yesterday.
+- I saw my friend at school today, and I noticed that she had gotten a haircut.
+- She came out with a new album, and I noticed that her style had changed a little bit.
+- I ran into my friend on the street this morning, I noticed she looked a little different.
+- I notice you were drinking a lot of coffe today, did you have trouble sleeping last night?
+- This morning, someone said hello to me on the street, I didn't recognize him.
+- Do you recognize this author?
+- She looked very familiar, but I couldn't recognize her.
+- If you saw your boyfriend's handwriting, would you recognize it?
+- For "pulverize" around what age would a student include this in their vocabulary?
+- When you are trying to engage in conversation, just try to avoid "I guess", because when you say "I guess" it comes off as you're a little bit hesitant.
+- So, what makes you appeal to psychology?
+- He's an alumnus of my alma mater.
+- How severe is this issue in the United States?
+- How severe do you think this issue is in the United States?
+- Absolutely, but that is a small part of the problem.
+- I didn’t feel good about the offer, so I turned it down.
+- I love this song, turn it up!
+- We usually turn the heat down at night.
+- I think we should put the trip off until we save more money.
+- It is so hot today I might pass out.
+- Go over your receipt to make sure they charged you correctly.
+- Let’s make spaghetti tonight, I’m tired of eating out.
+- I have to do the e-mail over because I sent it to the wrong person.
+- We need to call off the meeting due to the weather.
+- I think I'm kind of pushover for a compliment.
+- You can think about how the work of these researchers applies to situations or habits in your own life.
+- Merriment can sometimes be a heavier burden than battle.
+- I really don't see what all the fuss is about.
+- You'll make the witless oaf king while I rot in chains.
+- I like the way you explain it.
+- So what's the story with you?
+- There really needs to be a point to all this.
+- She needs help.
+- This was so fun.
+- I think you should stop saying see bass and go after your friend.
+- The man later identified as noted astrophysicist.
+- That doesn't seem right.
+- What would you do if you were in my shoes.
+- I haven't given it a lot of thought.
+- He has a big mouth. He loves to gossip too much.
+- My wife gave me the cold-shoulder three days in a row.
+- You can't park here. This is a tow-away sign.
+- Finding a parking space is kind of pain in the neck.
+- The evidence was corroborated by two independent witnesses.
+- Because without fins a shark can not survive, shark defenders decry practice of finning.
+- Just lay off!
+- I'll work something out.
+- You cheeky monkey!
+- In a sense, we are all responsible for the problem of starvation in the world.
+- The government is leery of changing the current law.
+- The issues dealt with in the report are highly pertinent to our own situation.
+- These figures have been gleaned from a number of studies.
+- Some clubs are no-go areas for people over 30.
+- He earned a precarious living as an artist.
+- The polite urbanites of the eighteenth century desired separation; they wanted the street cleared of noisy, humdrum performers.
+- The pain in my back was excruciating.
+- Our town is a place where you can enjoy perennial events.
+- He was dressed in a suit and an impeccable white shirt.
+- Have you no respect?
+- I'm sorry my assignment isn't finished. The thing is, I've had a lot of other work this week.
+- So this book is gonna come in handy.
+- I'm not saying that to be conceited.
+- We are sophisticating all our policies all the time.
+- Does such an activity constitute a criminal offense?
+- I do not exist only to thwart or please you!
+- Her comments still rankled.
+- The cupboards need sorting out.
+- I would prefer to stay at home and relax for a change.
+- To spurn that was a huge deal.
+- Don't squander your money on useless things.
+- There seems to be no way out of the quandary.
+- It's classy, inspirational - a real credit to our firm.
+- George was in a quandary — should he go or shouldn't he?
+- She was surrounded by men all vying for her attention.
+- The company is eager to gain a foothold in Europe.
+- More often than not, we take the bus to work.
+- I irritated people to no end.
+- Make sure you read the contract before parting with any money.
+- The people who inhale the fumes from the fire were advised to get treatment at the hospital.
+- His theories have been debunked by recent research.
+- The friends started the site to help debunk the myth that everyone who worked in the technology sector was a 23-year-old millionaire.
+- Having grown up in a humdrum suburb, Jacob relished life in New York City after moving.
+- Since the police sergeant had to train the pair of new hires, progress in his own case was impeded.
+- A charter is the grant of authority or rights, stating that the granter formally recognizes the prerogative of the recipient to exercise the rights specified.
+- A disaster was narrowly averted.
+- The job entails a lot of hard work.
+- The problem is not that cut and dry.
+- She came across as a very promiscuous girl.
+- Once the plane is in the air, you can unfasten your seat belts if you wish.
+- She negated that the international proposal constitutes an ultimatum to Tehran.
+- Such a decision would entail a huge political risk in the midst of the presidential campaign.
+- He's highly susceptible to flattery.
+- It just shows you are ungodly little creep.
+- I enjoyed the special effects, but the acting was dreadful.
+- I popped in to say hi.
+- It has been confirmed that all matches at Wimbledon have been postponed due to the heavy rain.
+- When people need legal advice, they contact a solicitor.
+- There has to be a post hoc evaluation of what is actually done.
+- I took out a mortgage on new house. The bank gave me 200,000 pounds.
+- It's only five minutes long but it saves the day.
+- I got a fine of 100 pounds for speeding last week. I was doing 110 kph and the speed limit was 80 kph.
+- The formula in Hollywood is simple - money talks.
+- How long are you here for?
+- Being in Spain was great but I was always skint.
+- Do you like throwing money down the drain.
+- If the bank doesn't give me a loan, I can always borrow the money off parents.
+- She raised her stricken face and begged for help.
+- He was accepted into the most popular clique on campus.
+- This apple was up his sleeve.
+- So something about to swoop down on her. But nothing ever does.
+- Jose Mourinho's old way lacked a certain pizazz.
+- He sought asylum in a third country.
+- We can do without sanctimonious lectures on the evils of promiscuous sex from ministers who themselves have fathered illegitimate children.
+- The gang extorted money from over 30 local businesses.
+- The players sat there with glum looks on their faces.
+- This car has an engine replete with the latest technology.
+- From the forthcoming elections, the government will be seeking a fresh mandate from the people.
+- The work to secure their release will be unremitting.
+- He placed no credence in psychics, claiming that they offered no special power beyond the ability to make people part with their money.
+- She is a credit to the school.
+- It's always easier said than done.
+- It wasn't a bad crash and little damage was done to my car.
+- The company is credited with inventing the industrial robot.
+- The cheetah is generally credited as the world's fastest animal.
+- When someone is bitten by a poisonous snake, the Dallas Zoo is ready to save the day.
+- Your honesty does you great credit.
+- He's only 30, and he already has four novels to his credit.
+- To his credit, Jack never told anyone exactly what had happened.
+- He hurled a brick through the window.
+- The company needs to decide once and for all what its position is on this point.
+- No matter what happens, Veronica keeps her composure.
+- They envision an equal society, free of poverty and disease.
+- On the whole, I'm in favor of the idea.
+- There are hopes that the conflict can be resolved without resort to violence.
+- The horse did not like the pesky flies.
+- She's always been completely wrapped up in her children.
+- In the old days, we got a visit from the vet maybe once a year.
+- I love the spontaneity of this situation.
+- The two countries have severed all diplomatic links.
+- The hotel can accommodate up to 500 guests.
+- Our proposal tries to accommodate the special needs of minority groups.
+- Sometimes this is the authentic way to say hello and welcome.
+- If no party has a majority, the parties have to form a coalition that can make a majority.
+- The audience burst into spontaneous applause.
+- The terrorists sent a defiant message to the government.
+- Another thing we need is social cohesion.
+- Wait till I get my hands on him I'll soon sort him out!
+- The students are already acquainted with the work of Shakespeare.
+- The other one of the dyad is my brother's friend.
+- Triangled children often end up in a scapegoat position, and scapegoated children have been shown to exhibit a tendency toward rage.
+- His work is too taxing to do it himself.
+- She smoothed the creases out of her skirt.
+- The company can't expect me to move my home and family at the drop of a hat.
+- These rights are enshrined in the country's constitution.
+- The letter was devoid of warmth and feeling.
+- To keep the peace in your home, parents need a strategy to deal with a teen's defiant behavior.
+- I didn't catch a cold! I have phlegm though.
+- She coaxed the horse into coming a little closer.
+- She is adept at playing the piano.
+- Such decisions are outside the remit of this committee.
+- He's a player who rarely seems to get the credit he deserves.
+- Today it will be dull and overcast.
+- Walls were removed to brighten up what had been lugubrious spaces.
+- I managed to heave the trunk down the stairs.
+- The money was not forthcoming.
+
+### TODO continue from here
+
+- We need to look to ways of improving our marketing.
+- 'Well, just for a little while then.' she said, finally relenting.
+- I hadn't figured on getting home so late.
+- He was nabbed by the police for speeding.
+- The nation impeaches the president for the graft.
+- The senator from New Hampshire set the legislation in motion.
+- The baby doesn't sleep for more than three hours at a stretch.
+- The car drew up with a crunch of gravel.
+- 'Is she dead?' he asked bluntly.
+- The trial was postponed indefinitely.
+- He can be really bad-tempered at times.
+- It was incumbent on them to attend.
+- The chef, with a mere flick of the salt shaker, turned the bland tomato soup into a piquant meal.
+- There is a touch of the deliberately ingenuous in what he says.
+- His presence here today evokes a poignant memory for me.
+- She can't do without a secretary.
+- It's very conceited of you to assume that your work is always the best.
+- After the interview she took me to a coffee-and-cake soiree at a wealthy student's house.
+- Michelle cleaned the house from garret to kitchen.
+- What's all the hullabaloo about in the street?
+- Of course, this isn't Google's first foray into genetics.
+- In the sequel to Batman Begins, Batman tangles with Joker, his arch nemesis, for the first time.
+- Fans were milling around outside the hotel.
+- He did his best to avert suspicion.
+- Shim's company is already having a lucrative year.
+- I can't stand his holier-than-thou attitude.
+- Phone Neil Smith at our showroom for a free quotation, or to arrange a visit from our representative.
+- He got a vicarious thrill out of watching his son score the winning goal.
+- He described the law as anachronistic and ridiculous.
+- This unfortunate man died under torture, which he bore with fortitude.
+- Her offer of help was met with a sharp rebuff.
+- They showed great perseverance in the face of difficulty.
+- In the past central government had a monopoly on television broadcasting.
+- She longed for peace and solitude.
+- The kings of France paid homage to no one.
+- It was only ten days ago that she started her new job.
+- Listlessness and apathy may indicate your child is using certain drugs.
+- She suffered from a feeling of alienation from others.
+- His position had become untenable and he was forced to resign.
+- A good success was the product of unceasing efforts.
+- Morale among teachers is at a low ebb.
+- This drug is not harmful per se, but is dangerous when taken with alcohol.
+- Much of the criticism was totally unwarranted.
+- It was a difficult concept to grasp, but I soon latched on.
+- It's going to wreak havoc on the economy.
+- If it was up to me, grade levels would be based on height, not age.
+- I hope that they were not in any way corrupted by nihilism.
+- The young boy willed himself to remain cheerful.
+- We spent the rest of the evening in mutual recrimination.
+- Months of hard work culminated in success.
+- The man in question looks old enough to be my father.
+- Eventually his anger dissipated.
+- Would you care to partake of some refreshment?
+- At present, Reid is involved in the refurbishment of a major concert hall in London, with particular responsibility for the stage and acoustic panels.
+- His mind is pervious to new ideas.
+- In the modern world, cutlery signifies civilization.
+- Many users unwittingly expose their personal details to strangers online.
+- The dictionary is interleaved with a sheet of blank paper.
+- I reckon she's pulling in over $100,000.
+- There is considerable public disquiet about the safety of the new trains.
+- I'll be there in half a mo.
+- I'm sure I'll get a job with a blue chip company.
+- The sudden rise in share prices has confounded economists.
+- If more money is not forthcoming, the theater will have to close.
+- I'm stuck in traffic.
+- I need to take a rain check. I'm still stuck at work.
+- Let's grab lunch sometime.
+- Do you want some company?
+- I enjoy her company.
+- I need to run some errand.
+- Let's me make it up to you.
+- conceit
+- First, existing customers seem to be abandoning you for the competition almost as fast as you can get new ones.
+- dignity
+- eloquence
+- modesty
+- elegy
+- strife
+- piety
+- This soccer player is out of the box.
+- adolescence
+- faculty
+- commodity
+- I found it interesting.
+- fallacy
+- That can happen.
+- menace
+- livelihood
+- oblivion
+- suffrage
+- It wasn't a bad crash and little damage was done to my car.
+- indignation
+- vigor
+- His blue eyes are haunted by dejection.
+- folly
+- heredity
+- stride
+- In the old days, when someone died people wore ribbons and black armbands to signify they had lost someone.
+- forbear
+- embody
+- grumble
+- We have to decide, once and for all, whether we want to ask Dad for money.
+- assimilate
+- entreat
+- torment
+- diffuse
+- We've fought each other but we finally sorted ourselves out.
+- bewilder
+- Loss of privacy is the flip side of fame.
+- abolish
+- vex
+- I had to stop smoking, so I went cold turkey.
+- attain
+- bestow
+- obscure
+- intricate
+- Don't put your cup on the edge of the table – someone will knock it off.
+- dissolute
+- conspicuous
+- brisk
+- superficial
+- meager
+- I found myself having more fun than I had had in years.
+- sublime
+- Don't be a wuss.
+- Have you got time to discuss your work now or are you about to leave?
+- immemorial
+- crude
+- shrewd
+- earnest
+- incurable
+- tumult
+- posterity
+- Recent research in this field seems to corroborate the conceded theory.
+- nuisance
+- spur
+- thermometer
+- exertion
+- germ
+- sojourn
+- I hope you will partake of our joy.
+- ravage
+- fright
+- negligence
+- bliss
+- controversy
+- standpoint
+- brute
+- The training schedule wasn't very well thought out.
+- assent
+- armament
+- foliage
+- mischief
+- He's drop dead gorgeous in a tuxedo!
+- merchandise
+- trait
+- traitor
+- solace
+- Let's keep this off the record.
+- treachery
+- specimen
+- slumber
+- There was no well-thought-out and practiced evacuation plan for New Orleans.
+- pang
+- mob
+- reverie
+- rapture
+- repose
+- benefactor
+- treason
+- trifle
+- diameter
+- adversity
+- estate
+- orator
+- your company has started to become the butt of bad jokes at conferences and in the press.
+- decree
+- playwright
+- The buck stops here.
+- truce
+- heathen
+- heretic
+- If you ask people what they are unhappy about and then do nothing about it, you will leave them more disillusioned with you than ever.
+- retort
+- haven
+- drudgery
+- That song was on the flip side of their first single.
+- peculiarity
+- vogue
+- pomp
+- antiquity
+- malice
+- Whichever way you choose, the objective is to identify the issues on which customers will form their judgement of your service, so you can frame your questions accordingly.
+- bent
+- providence
+- hygiene
+- I made it clear right from the outset that I disapproved.
+- censure
+- apparatus
+- Journalists have been trying to discover if the senator really is as squeaky-clean as he claims to be.
+- defiance
+- countenance
+- textile
+- I'd rather you explained to her why we can't go.
+- furnish
+- embark
+- ascertain
+- condemn
+- recollect
+- Please try to think out of the box.
+- emancipate
+- seclude
+- enchant
+- incline
+- languish
+- taint
+- usher
+- heed
+- A service level that hits the button today may be considered downright sloppy in six months' time, such is the pace of change.
+- injure
+- disperse
+- throng
+- intoxicate
+- mingle
+- venture
+- We attribute our success to the dedication and expertise of our workforce.
+- degrade
+- stoop
+- profess
+- If you can wait a moment, I'll sort out the problem for you.
+- disregard
+- astound
+- partake
+- exempt
+- induce
+- acquaint
+- dispense
+- rear
+- Anne's house is somewhere in the vicinity of the rail station.
+- contrive
+- subdue
+- transact
+- inflict
+- conform
+- allude
+- console
+- surmount
+- sneer
+- The poor weather may have accounted for the small crowd.
+- befall
+- subside
+- muse
+- presume
+- grudge
+- ponder
+- reckon
+- throb
+- beguile
+- concede
+- lade
+- I love the squeaky-clean feel of my hair after I've washed it.
+- stifle
+- abound
+- reprove
+- renounce
+- vouch
+- Let me give you a heads up.
+- It's going to be mind-blowing.
+- confound
+- beckon
+- mar
+- disdain
+- abide
+- endow
+- We will take your personal aptitudes and abilities into account.
+- stately
+- superfluous
+- feudal
+- staple
+- sceptical
+- scanty
+- extravagant
+- ignoble
+- affirmative
+- hideous
+- ardent
+- inborn
+- The company takes account of environmental issues wherever possible.
+- undaunted
+- lofty
+- pathetic
+- stout
+- exquisite
+- sinister
+- slender
+- strenuous
+- sheer
+- vile
+- indebted
+- gallant
+- haughty
+- astray
+- potent
+- dismal
+- petty
+- prudent
+- sullen
+- sterile
+- quaint
+- sagacious
+- akin
+- cordial
+- His eyes were so bad that he couldn't read the number plate of the car in front.
+- vehement
+- venerable
+- complacent
+- wholesome
+- shabby
+- dreary
+- pensive
+- imprudent
+- frivolous
+- insolent
+- indolent
+- ruthless
+- I figure later on when I'm rich and famous, I'll have better things to do than answer people's stupid questions all day long.
+- wistful
+- toll
+- presently
+- erratic
+- I left my last job because I had no opportunity to travel.
+- scribble
+- In the old days, I'd have worried if the manager wanted to see me.
+- glitter
+
+### done
+
+- There is a danger of overkill if you plan everything too carefully.
+- We took off our shoes so as to avoid scratching the newly finished floors.
+- I shall dispel a myth that has pervaded the debates on this Bill.
+
+### animals
+
+- duckbill
+- platypus
+- opossum
+
+### money related vocabulary
+
+- poverty stricken
+- broke
+- badly-off
+- penny pinching
+- skint
+- impoverished
+- hard up
+- stingy
+- miserly
+- tight fisted
+- well-off
+- comfortable
+- loaded
+- affluent
+- wealthy
+- prosperous
+- easy money
+- pocket money
+- allowance
+- money talks
+- money makes the world go around
+- made of money
+- money is the root of all evil
+- money down the drain
+- earn money
+- win money
+- save money
+- waste money
+- be in the money
+- have some money on you
+- money for old rope
+- money doesn't grow on trees
+- 5 quid = 5 pounds
+- fiver = 5 pounds
+- tenner = 10 pounds
+- 4 grand = 4000 pounds
+- 60K = 60000 pounds
+- loan
+- mortgage
+  - special type of loan to buy a property e.g. house, flat or office
+- interest
+- taxes
+- fees
+- deposit
+- profits
+- salaries
+- pension
+  - money retired people receive from the government
+- inheritance
+- fines
+- fares
+- tip
+
+### U.S. Army
+
+- List of Ranks
+  - enlisted soldier
+    - private
+    - private second class
+    - private first class
+    - specialist
+  - noncommissioned officer
+    - corporal
+    - sergeant
+    - staff sergeant
+    - sergeant first class
+    - master sergeant
+    - first sergeant
+    - sergeant major
+    - command sergeant major
+    - sergeant major of the army
+  - warrant officer
+    - warrant officer 1
+    - chief warrant officer 2
+    - chief warrant officer 3
+    - chief warrant officer 4
+    - chief warrant officer 5
+  - commissioned officer
+    - second lieutenant
+    - first lieutenant
+    - captain
+  - field officer
+    - major
+    - lieutenant colonel
+    - colonel
+  - general officer
+    - brigadier general
+    - major general
+    - lieutenant general
+    - general
+    - general of the army
+
+### greetings
+
+- How is it going?
+
+### pendemic
+
+- How many people are testing positive each day in the US?
+- We have a few hundred new positive cases per day.
+- People are now accustomed to those numbers.
+- I have more free time without a commute.
+- I'd like to go to a restaurant without a mask.
+- Some people get angry when they're asked to wear a mask.
+
+### places
+
+- It's a very densely populated city.
+- It's a packed city. It has a lot of people living in a small space.
+
+### gaming
+
+- I move quickly between games.
+- I move quickly between each game.
+
+### communication
+
+- In the middle of the meeting, I tend to get lost.
+- It's hard to keep up sometimes during a fast flowing meeting.
+- You may have already said but I didn't catch it.
+
+### development
+
+- That's one of the advantages of Unity.
+- That's what sets Unity apart from the competition.
+- They follow this standard.
