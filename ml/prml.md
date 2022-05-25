@@ -1,4 +1,4 @@
-# PRML
+# Pattern Recognition and Machine Learning (PRML)
 
 ## Personal Questions
 
