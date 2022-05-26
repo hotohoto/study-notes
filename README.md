@@ -1,20 +1,35 @@
 # Study notes
 
-As a personal knowledge graph (PKG).
-
 ## WIP
 
 - 50% [Forecasting: Principles and Practice](math/073-forecasting-principles-and-practice.md)
-- 35% [A differential geometry class](4-differential-geometry.md)
+- 35% [A differential geometry class](math/051-differential-geometry.md)
 - 5% [PRML](ml/prml.md)
-- 5% [Convex optimization - read a 2nd level chapter](4-convex-optimization.md)
-- 5% [Probabilistic Graphical Models](drafts/probabilistic-graphical-models.md)
+- 5% [Convex optimization](math/053-convex-optimization.md)
+- 5% [Probabilistic Graphical Models](ml/probabilistic-graphical-models.md)
 
 ## Highlights
 
-TBD 🙏
+- [Graph and recommendation system](ml/graph-and-recommendation-system.md)
+- [Interesting ML papers](ml/interesting-ml-papers.md)
 
-## Notes
+## External links
+
+(notes)
+
+- [Introduction to sampling methods](https://hotohoto.github.io/ai/2019/05/02/introduction-to-sampling-methods/)
+- [Linear algebra](https://hotohoto.github.io/ai/2019/05/20/linear-algebra/)
+
+(slides)
+
+- [Temporal fusion transformers (2021) review](https://docs.google.com/presentation/d/1Ir3vWonKYXJsnp4WeYeUKJH_uFgGOSv9fXgjXME8nzE/edit?usp=sharing)
+- [Fisher information](https://docs.google.com/presentation/d/1__8H1fGqLudQ0KWtEbNPaBu7Mr8R4f8i0Y3Om4OlzdU/edit?usp=sharing)
+- [Neural net basics](https://docs.google.com/presentation/d/1N83WW4YqxC5xOTTGOYgBcEBECRVlsancWExdvVXhxBc/edit?usp=sharing)
+- [Machine learning basics](https://docs.google.com/presentation/d/11kGmnjAMNLbav-Gpm6RFCMtMpKYWhB-h8zYgyy5kOSM/edit?usp=sharing)
+- [Reformer (2020) review](https://docs.google.com/presentation/d/1m4i6fd-bWHKBQiOg01W0la3UZTr9mhdbGjQMhIZeWDc/edit?usp=sharing)
+- [Bias and variance tradeoff](https://docs.google.com/presentation/d/19DAuq_Vs5ds4eTbK5seccQJ0pDSosIGCxdfMsqFkCaU/edit?usp=sharing)
+
+## Remarks
 
 - Some files are just empty and many are almost empty.
   - They are for study plans or wishes.

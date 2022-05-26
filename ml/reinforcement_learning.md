@@ -2,6 +2,7 @@
 
 - Basically, this document extends https://lilianweng.github.io/lil-log/2018/02/19/a-long-peek-into-reinforcement-learning.html.
 - For long content, it's encouraged to put it in a new separate file.
+
 ## TODO
 
 - read and study evolution strategies again

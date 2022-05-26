@@ -1,4 +1,4 @@
-# Graph
+# Graph and recommendation system
 
 [그래프와 추천 시스템](https://www.boostcourse.org/ai211/joinLectures/316864)
 
