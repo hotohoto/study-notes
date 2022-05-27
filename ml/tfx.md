@@ -1,0 +1,65 @@
+- pipeline components
+  - data ingestion
+  - StatisticsGen
+  - SchemaGen
+  - (ExampleValidator)
+  - Transform
+  - Trainer
+  - Evaluator
+  - custom deployer
+
+- other components
+  - CsvExampleGen
+  - Pusher
+
+- tensorflow transform object
+  - TFTransformOutput
+    - reference to
+      - saved transforms
+      - stats
+      - metadata
+    - not including data
+
+example codes
+
+- trainer module file
+  - `run_fn`
+    - _input_fn
+      - (optional - v3)
+        - _apply_preprocessing()
+    - _build_keras_model
+    - fit
+    - signatures = {'serving_default': _get_serve_tf_examples_fn(model, tf_transform_output)}
+    - save(signatures)
+  - (optional - v3)
+    - `preprocessing_fn`
+    - _get_serve_tf_examples_fn(model, tf_transform_output)
+      - (keep tf transform layers as an attribute of the model object and return serve_tf_examples_fn)
+      - serve_tf_examples_fn(serialized_tf_examples)
+        - _apply_preprocessing()
+          - (apply tf_transform_output.transform_features_layer.)
+- (optional - v2)
+  - _create_schema_pipeline
+    - CsvExampleGen()
+    - StatisticsGen()
+    - SchemaGen()
+    - return Pipeline()
+  - tfx.orchestration.LocalDagRunner().run(_create_schema_pipeline,...)
+- _create_pipeline(name, pipeline_root, data_root, module_file, serving_model_dir, metadata, ...)
+  - CsvExampleGen(data_root)
+  - (optional - v3)
+    - StatisticsGen(example_gen.outputs['examples'])
+    - Importer()
+      - imports schema
+    - ExampleValidator(statistics=statistics_gen.outputs['statistics'], schema=schema_importer.outputs['result']))
+      - anomaly detection
+    - Transform(module_file)
+  - Trainer(module_file|transform.outputs['transform_graph'], TrainArgs, EvalArgs)
+  - (optional - v4)
+    - Resolver()
+      - choose the best model
+    - EvalConfig()
+    - Evaluator()
+  - Pusher(trainer.outputs["model"], PushDestination(PUshDestination.FileSystem(serving_model_dir)), model_blessing=evaluator.outputs['blessing'], ...)
+- tfx.orchestration.LocalDagRunner().run(pipeline)
+
