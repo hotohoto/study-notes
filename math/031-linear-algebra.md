@@ -111,8 +111,8 @@ properties of similar matrices
 - orthogonal subspaces
 - orthogonal complement
 - fundamental subspaces theorem
-  - $N(A) = R(A^\top)$
-  - $R(B^\top)^\perp = R(A)^\perp$
+  - $N(A) = R(A^T)$
+  - $R(B^T)^\perp = R(A)^\perp$
 
 ### 5.3 Least squares problems
 ### 5.4 Inner product spaces

@@ -49,7 +49,7 @@ $$
 (matrix notation)
 
 $$
-ds^2 = (dx)^\top \eta (dx)
+ds^2 = (dx)^T \eta (dx)
 $$
 
 ## References

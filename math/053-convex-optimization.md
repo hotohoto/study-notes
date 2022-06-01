@@ -117,7 +117,7 @@ https://convex-optimization-for-all.github.io/contents/chapter02/2021/02/11/02_0
 
 (hyperplanes)
 
-- $\{x\mid a^\top x = b\}$
+- $\{x\mid a^T x = b\}$
   - $a \in \mathbb{R}^n$
   - $a \neq 0$
   - $b \in \mathbb{R}$
@@ -125,14 +125,14 @@ https://convex-optimization-for-all.github.io/contents/chapter02/2021/02/11/02_0
 
 (halfspaces)
 
-- $\left\{x\mid\ a^\top x \ge b\right\}$ or $\left\{x\mid\ a^\top x \le b\right\}$
+- $\left\{x\mid\ a^T x \ge b\right\}$ or $\left\{x\mid\ a^T x \le b\right\}$
   - $a \in \mathbb{R}^n$
   - $a \neq 0$
   - $b \in \mathbb{R}$
 
 (open halfspaces)
 
-- $\left\{x \mid a^\top x \gt b\right\}$ or $\left\{x\mid a^\top x \lt b\right\}$
+- $\left\{x \mid a^T x \gt b\right\}$ or $\left\{x\mid a^T x \lt b\right\}$
 
 (euclidean balls)
 
@@ -140,7 +140,7 @@ https://convex-optimization-for-all.github.io/contents/chapter02/2021/02/11/02_0
 
 (ellipsoids)
 
-- $\mathcal{E}=\left\{x \mid\left(x-x_{c}\right)^\top P^{-1}\left(x-x_{c}\right) \leq 1\right\}$
+- $\mathcal{E}=\left\{x \mid\left(x-x_{c}\right)^T P^{-1}\left(x-x_{c}\right) \leq 1\right\}$
   - $P$
     - positive definite
     - symmetric
@@ -161,8 +161,8 @@ or
 
 (polyhedra)
 
-- $\mathcal{P}=\left\{x \mid a_{i}^\top x \leq b_{i}, i=1, \ldots, m, c_{j}^\top x=d_{j}, j=1, \ldots, p\right\}$
-- or $\mathcal{P}=\left\{x \mid a_{i}^\top x \leq b_{i}, i=1, \ldots, m\right\}$
+- $\mathcal{P}=\left\{x \mid a_{i}^T x \leq b_{i}, i=1, \ldots, m, c_{j}^T x=d_{j}, j=1, \ldots, p\right\}$
+- or $\mathcal{P}=\left\{x \mid a_{i}^T x \leq b_{i}, i=1, \ldots, m\right\}$
 - any affine set (subspaces, hyperplanes, lines) / ray / line segment / halfspace is a polyhedron
 
 (simplexes)

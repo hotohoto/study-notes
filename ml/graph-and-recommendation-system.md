@@ -308,15 +308,15 @@ https://www.boostcourse.org/ai211/lecture/1157099
       - can make use of the attributes of nodes
 - transductive methods
   - adjacency based approach
-    - $\mathcal{L} = \sum\limits_{(u,v) \in V \times V} ||\mathbf{z}_u^\top\mathbf{z}_v - \mathbf{A} _{u,v}||^2$
+    - $\mathcal{L} = \sum\limits_{(u,v) \in V \times V} ||\mathbf{z}_u^T\mathbf{z}_v - \mathbf{A} _{u,v}||^2$
     - SGD can be used
     - cons
       - it doesn't take account of how long the two nodes are far away to each other.
   - distance based approach
   - path base approach
-    - $\mathcal{L} = \sum\limits_{(u,v) \in V \times V} ||\mathbf{z}_u^\top\mathbf{z}_v - \mathbf{A} _{u,v}^k||^2$
+    - $\mathcal{L} = \sum\limits_{(u,v) \in V \times V} ||\mathbf{z}_u^T\mathbf{z}_v - \mathbf{A} _{u,v}^k||^2$
   - overlap based approach
-    - $\mathcal{L} = \sum\limits_{(u,v) \in V \times V} ||\mathbf{z}_u^\top\mathbf{z}_v - \mathbf{S} _{u,v}||^2$
+    - $\mathcal{L} = \sum\limits_{(u,v) \in V \times V} ||\mathbf{z}_u^T\mathbf{z}_v - \mathbf{S} _{u,v}||^2$
       - using common neighborhoods
         - $S_{u, v} = |N(u) \cap N(v)| = \sum\limits_{w \in N(u) \cap N(v)} 1$
       - using Jacard similiarity
@@ -329,9 +329,9 @@ https://www.boostcourse.org/ai211/lecture/1157099
     - $\mathcal{L} = \sum\limits_{u \in V}\sum\limits_{v \in N_R(u)} - \log(P(v|\mathbf{z}_u))$
       - where
         - $N_R(u)$ is the list of nodes approached by random walk from node $u$
-        - $P(v|\mathbf{z}_u) = {\exp(\mathbf{z}_u^\top\mathbf{z}_v) / \sum\limits_{n \in V} \exp(\mathbf{z}_u^\top\mathbf{z}_n)}$
+        - $P(v|\mathbf{z}_u) = {\exp(\mathbf{z}_u^T\mathbf{z}_v) / \sum\limits_{n \in V} \exp(\mathbf{z}_u^T\mathbf{z}_n)}$
       - Note that it takes $O(n^2)$ so we need approximation
-        - $\log({\exp(\mathbf{z}_u^\top\mathbf{z}_v) / \sum\limits_{n \in V} \exp(\mathbf{z}_u^\top\mathbf{z}_n)}) \approx \log(\sigma(\mathbf{z}_u^\top\mathbf{z}_v)) - \sum\limits_{i=1}^k \log(\sigma(\mathbf{z}_u^\top\mathbf{z}_{n_i}))$
+        - $\log({\exp(\mathbf{z}_u^T\mathbf{z}_v) / \sum\limits_{n \in V} \exp(\mathbf{z}_u^T\mathbf{z}_n)}) \approx \log(\sigma(\mathbf{z}_u^T\mathbf{z}_v)) - \sum\limits_{i=1}^k \log(\sigma(\mathbf{z}_u^T\mathbf{z}_{n_i}))$
           - $n_i \sim P_v$
           - $k$: number of negative samples
     - types
@@ -374,10 +374,10 @@ https://www.boostcourse.org/ai211/lecture/1163377
 - learn latent factor
   - rather than using explicit factors e.g. romance, action, ...
 - model:
-  - predicts $r_{xi}$ by $p_x^\top q_i$
+  - predicts $r_{xi}$ by $p_x^T q_i$
 - training:
   - learns $p_x$, and $q_i$
-  - $\mathcal{L} = \sum\limits_{(x, i) \in R} (r_{xi} - p_x^\top q_i)^2 + \lambda_1 \sum\limits_x ||p_x||^2 + \lambda_2 \sum\limits_i ||q_i||^2$
+  - $\mathcal{L} = \sum\limits_{(x, i) \in R} (r_{xi} - p_x^T q_i)^2 + \lambda_1 \sum\limits_x ||p_x||^2 + \lambda_2 \sum\limits_i ||q_i||^2$
     - $R$: training set
     - $r_{xi}$: rating
     - $x$: user index
@@ -387,19 +387,19 @@ https://www.boostcourse.org/ai211/lecture/1163377
 
 (Latent Factor Model - with user/item bias taken into account)
 - model:
-  - predicts $r_{xi}$ by $\mu + b_x + b_i + p_x^\top q_i$
+  - predicts $r_{xi}$ by $\mu + b_x + b_i + p_x^T q_i$
     - $\mu$: the mean of entire ratings
     - $b_x$: the mean of the ratings of the user
     - $b_i$: the mean of the ratings of the item
 - training:
   - learns $b_x$, $b_i$, $p_x$, and $q_i$
-  - $\mathcal{L} = \sum\limits_{(x, i) \in R} (r_{xi} - (\mu + b_x + b_i + p_x^\top q_i))^2 + \lambda_1 \sum\limits_x ||p_x||^2 + \lambda_2 \sum\limits_i ||q_i||^2 + \lambda_3 \sum\limits_x ||b_x||^2 + \lambda_4 \sum\limits_i ||b_i||^2$
+  - $\mathcal{L} = \sum\limits_{(x, i) \in R} (r_{xi} - (\mu + b_x + b_i + p_x^T q_i))^2 + \lambda_1 \sum\limits_x ||p_x||^2 + \lambda_2 \sum\limits_i ||q_i||^2 + \lambda_3 \sum\limits_x ||b_x||^2 + \lambda_4 \sum\limits_i ||b_i||^2$
   - optimizer: (Stochastic) Gradient Descent
 
 (Latent Factor Model - with temporal user/item bias taken into account)
 
 - model:
-  - predicts $r_{xi}$ by $\mu + b_x(t) + b_i(t) + p_x^\top q_i$
+  - predicts $r_{xi}$ by $\mu + b_x(t) + b_i(t) + p_x^T q_i$
     - $\mu$: the mean of entire ratings
     - $b_x(t)$: the mean of the ratings of the user with respect to the days since release
     - $b_i(t)$: the mean of the ratings of the item with respect to the days since release
@@ -474,7 +474,7 @@ https://www.boostcourse.org/ai211/lecture/1163777
     - step 1
       - $\tilde{h}_i = h_i W$
     - step 2
-      - $e_{ij} =  a^\top[\operatorname{concat}(\tilde{h}_i, \tilde{h}_j)]$
+      - $e_{ij} =  a^T[\operatorname{concat}(\tilde{h}_i, \tilde{h}_j)]$
     - step 3
       - $\alpha_{ij} = \operatorname{softmax}_ j(e_{ij}) = {\exp(e_{ij}) \over \sum_{k \in N_i} \exp(e _{ik})}$
 - multi-head attention

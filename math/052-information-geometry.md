@@ -112,7 +112,7 @@ The observed information matrix at $\theta^*$ is defined as
 $
 \mathcal{J}(\theta^*)
 = - \left.
-  \nabla \nabla^{\top}
+  \nabla \nabla^T
   \ell(\theta)
 \right|_{\theta=\theta^*}
 $
