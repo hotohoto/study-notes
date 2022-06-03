@@ -33,15 +33,22 @@
 
 ### 3.4 Basis and dimension
 
+- basis vectors are linearly independent by definition
+
 ### 3.5 Change of basis
 
 ### 3.6 Row space and column space
 
+- N(A)
+  - null space of A
+- R(A)
+  - range of A which is actually the column space
 - rank
   - dimension of row space
 - nullity
   - dimension of null space
 - the rank nullity theorem
+  - rank(A) + nullity(A) = n
 
 ## 4. Linear transformations
 
@@ -111,11 +118,20 @@ properties of similar matrices
 - orthogonal subspaces
 - orthogonal complement
 - fundamental subspaces theorem
-  - $N(A) = R(A^T)$
-  - $R(B^T)^\perp = R(A)^\perp$
+  - $N(A) = R(A^T)^\perp$ and $N(A^T) = R(A)^\perp$
+  - whrer
+    - $R(A)$ is the range of $A$ which is the column space of $A$
 
 ### 5.3 Least squares problems
 ### 5.4 Inner product spaces
+
+- Frobenius norm
+  - $||A||_F = (\langle A, A\rangle)^{1/2} = (\sum\limits_{i=1}^{m} \sum\limits_{j=1}^{n} a_{ij}^2) ^{1/2} = (\sigma_1^2 + \sigma_2^2 + \cdots + \sigma_n^2) ^{1/2}$
+    - where
+      - $A \in R^{m \times n}$
+      - $\sigma_i$ is a singular value
+        - Refer to the lemma 6.5.2
+
 ### 5.5 Orthonormal sets
 ### 5.6 The Gram-Schmidt orthogonalization process
 ### 5.7 Orthogonal polynomials
@@ -325,9 +341,18 @@ $$
 
 #### Complex Inner Products
 
+- $\mathbf{z}^H = \overline{\mathbf{z}}^T$
+- $||\mathbf{z}|| = (\mathbf{z}^H\mathbf{z})^{1/2}$
+
+(definition)
+
 - $\langle\mathbf{z}, \mathbf{z}\rangle \ge 0$
 - $\langle\mathbf{z}, \mathbf{w}\rangle = \overline{\langle\mathbf{w}, \mathbf{z}\rangle}$
 - $\langle\alpha\mathbf{z} + \beta\mathbf{w}, \mathbf{u}\rangle = \alpha\langle \mathbf{z}, \mathbf{u}\rangle + \beta\langle \mathbf{w}, \mathbf{u}\rangle$
+
+(standard inner product on $C^n$)
+
+- $\langle \mathbf{z},\mathbf{w} \rangle = \mathbf{w}^H \mathbf{z}$
 
 #### Hermitian matrices
 
@@ -349,9 +374,13 @@ The eigenvalues of a Hermitian matrix are all real. Futhermore, eigenvectors bel
 
 An $n \times n$ matrix $U$ is said to be **unitary** if its column vectors form an orthonormal set in $C^n$.
 
+- Note that $U^H = U^{-1}$.
+
 (Corollary 6.4.2)
 
-If the igenvalues of a Hermitian matrix $A$ are distinct, then there exists a unitary matrix $U$ that diagonalizes $A$.
+If the eigenvalues of a Hermitian matrix $A$ are distinct, then there exists a unitary matrix $U$ that diagonalizes $A$.
+
+- Note that actually it hold even if the eigenvalues are not distinct. See 6.4.4 spectral theorem.
 
 (Theorem 6.4.3 - Schur's Theorem)
 
@@ -360,6 +389,8 @@ For each $n \times n$ matrix $A$, there exists a unitary matri $U$ such that $U^
 (Theorem 6.4.4 - Spectral Theorem)
 
 If $A$ is Hermitian, then there exists a unitary matrix $U$ that diagonalizes $A$.
+
+- Note that eigenvectors corresponding to the same eigenvalue need not be orthogonal to each other. However, since every subspace has an orthonormal basis, orthonormal bases can be found for each eigenspace, so an orthonormal basis of eigenvectors can be found.
 
 (Corollary 6.4.5)
 
@@ -376,6 +407,97 @@ A matrix $A$ is said to be **normal** if $AA^H = A^H A$.
 A matrix $A$ is normal if and only if $A$ possesses a complete orthonormal set of eigenvectors.
 
 ### 6.5 The singular value decomposition
+
+(Theorem 6.5.1 - The SVD Theorem)
+
+If $A$ is an $m \times n$ matrix, then $A$ has a singular value decomposition.
+
+$$A = U \Sigma V^T$$
+
+(observations)
+
+- The singular values $\sigma_1, ..., \sigma_n$ are unique.
+  - Note that the matrices $U$ and $V$ are not unique
+- $V$ diagonalizes $A^T A$
+- $U$ diagnoalizes $AA^T$
+- $v_j$'s are called right singular vectors
+- $u_j$'s are called left singular vectors
+- $A \mathbf{v}_j = \sigma_j \mathbf{u}_j$
+  - where
+    - $j = 1, ..., n$
+- If $A$ has rank $r$,
+  - then
+    - (i) $\mathbf{v}_1, ..., \mathbf{v}_r$ form an orthonormal basis for $R(A^T)$.
+    - (ii) $\mathbf{v}_{r+1}, ..., \mathbf{v}_n$ form an orthonormal basis for $N(A)$.
+    - (iii) $\mathbf{u}_1, ..., \mathbf{u}_r$ form an orthonormal basis for $R(A)$.
+    - (iv) $\mathbf{u}_{r+1}, ..., \mathbf{u}_m$ form an orthonormal basis for $N(A^T)$.
+  - r = (the number of its nonzero singular values)
+    - Note that it doesn't apply to the number of eigenvalues.
+  - $A = U_1 \Sigma_1 V_1^T$
+    - where
+      - $U_1 = (\mathbf{u}_1, \mathbf{u}_2, ..., \mathbf{u}_r)$
+      - $V_1 = (\mathbf{v}_1, \mathbf{v}_2, ..., \mathbf{v}_r)$
+    - called the compact form of the singular value decomposition of $A$
+
+(Lemma 6.5.2)
+
+If $A$ is an $m \times n$ matrix and $Q$ is an $m \times m$ orthogonal matrix. then,
+$$ ||QA||_F = ||A||_F$$
+.
+
+(Theorem 6.5.3)
+
+Let $A = U\Sigma V^T$ be an $m \times n$ matrix, and let $\mathcal{M}$ denote the set of all $m \times n$ matrices of rank $k$ or less, where $0 \lt k \lt \operatorname{rank}(A)$. If $X$ is a matrix in $M$ satisfying
+
+$$||A - X||_F = \min\limits_{S \in \mathcal{M}} ||A - S ||_F$$
+then
+$$||A - X||_F = (\sigma_{k+1}^2 + \sigma_{k+2}^2 + \cdots + \sigma_n^2) ^{1/2}$$
+In particular, if $A' = U \Sigma'V^T$, where
+
+$$
+\Sigma' =
+\left[
+\begin{array}{c c c|c}
+\sigma_1 & & & \\
+& \ddots & & O \\
+& & \sigma_k & \\
+\hline
+& O & & O
+\end{array}
+\right]
+=
+\left[
+\begin{matrix}{}
+\Sigma_k & O \\
+O & O
+\end{matrix}
+\right]
+$$
+
+then
+$$||A - A'||_F = (\sigma_{k+1}^2 + \sigma_{k+2}^2 + \cdots + \sigma_n^2) ^{1/2} = \min\limits_{S \in \mathcal{M}} ||A - S ||_F$$
+
+#### Application 1: numerical rank
+
+(definition)
+
+The numerical rank of an $m \times n$ matrix is the number of singular values of the matrix that are greater than $\sigma_1 \max(m, n)\epsilon$, where $\sigma_1$ is the largest singular value of $A$ and $\epsilon$ is the machine epsilon.
+
+#### Application 2: digital image processing
+
+$$A = \sigma_1 \mathbf{u}_1\mathbf{v}_1^T + \sigma_2 \mathbf{u}_2\mathbf{v}_2^T + \cdots + \sigma_n \mathbf{u}_n\mathbf{v}_n^T$$
+
+$$A_k = \sigma_1 \mathbf{u}_1\mathbf{v}_1^T + \sigma_2 \mathbf{u}_2\mathbf{v}_2^T + \cdots + \sigma_k \mathbf{u}_k\mathbf{v}_k^T$$
+
+- (The total storage for $A_k$) = $k(2n + 1)$.
+
+#### Application 3: information retrieval - latent semantic indexing
+
+TODO
+
+#### Application 4: psychology - principal component analysis
+
+TODO
 
 ### 6.6 Quadratic forms
 
