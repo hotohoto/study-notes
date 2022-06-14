@@ -1,13 +1,5 @@
 # Study notes
 
-## WIP
-
-- 50% [Forecasting: Principles and Practice](math/073-forecasting-principles-and-practice.md)
-- 35% [A differential geometry class](math/051-differential-geometry.md)
-- 5% [PRML](ml/prml.md)
-- 5% [Convex optimization](math/053-convex-optimization.md)
-- 5% [Probabilistic Graphical Models](ml/probabilistic-graphical-models.md)
-
 ## Highlights
 
 (Internal notes)

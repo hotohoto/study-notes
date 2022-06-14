@@ -2,7 +2,18 @@
 
 - skim/read from Figure 7
 
-## DALL·E 2
+## mini DALL-E 2
+
+## Questions
+
+- How to evaluate CLIP
+- how text is preprocessed
+  - huggingface is used... where is the code it is used? 🤔
+  - where is the language model such as GPT3... is it in the CLIP ?
+- Do we need zenml?
+  - https://colab.research.google.com/github/zenml-io/zenml/blob/main/examples/quickstart/notebooks/quickstart.ipynb
+
+## summary
 
 - Hierarchical Text-Conditional Image Generation with CLIP Latents
   - DALL·E 2, unCLIP
@@ -21,6 +32,20 @@
     - Break Stretch Ratio (BSR)
     - Frechet Inception Distance (FID)
     - Guided Language to Image Diffusion for Generation and Editing (GLIDE)
+
+## structure
+
+TODO internals
+
+- dalle2
+  - clip
+  - diffusion_prior
+    - prior_network
+    - (clip)
+  - decoder
+    - unet1
+    - unet2
+    - (clip)
 
 ## Prerequisite
 
@@ -71,10 +96,4 @@
 
 - Vector Quantized Variational AutoEncoder (VQ-VAE, 2017, NIPS)
   - README
-
-
-## Related papers
-
-
-
 

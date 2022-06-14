@@ -682,7 +682,7 @@
     - https://kazemnejad.com/blog/transformer_architecture_positional_encoding/
   - label smoothing
     - the idea of using labels like `0.7, 0.1, 0.1, 0.1` rather than `1.0, 0.0, 0.0, 0.0`
-    - BLEU was improved but PPL was worsened
+    - BLEU was better but PPL was worse
 - Wide Residual Networks
   - https://arxiv.org/abs/1605.07146
     - when it comes to wide networks, less 50 residual blocks are enough for usual image classification problem

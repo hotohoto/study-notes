@@ -113,6 +113,26 @@ properties of similar matrices
 ## 5. Orthogonality
 
 ### 5.1 The scalar product in $R^n$
+
+#### Application 1: information retrieval revisited
+
+- represent a dataset of documents as a normalized bag of words matrix
+- calculate cosine similarity between each document and the search text
+
+#### Application 2: statistics - correlation and covariance matrices
+
+- where
+  - $X$ is $n \times p$ matrix centered to the mean of each feature
+  - $U$ is $n \times p$ matrix normalized for each feature
+- correlation matrix
+  - $C = U^TU$
+- covariance matrix
+  - $S = {1\over n - 1} X^TX$
+
+#### Application 3: psychology - factor analysis and principal component analysis
+
+(Refer to 6.5 - application 4)
+
 ### 5.2 Orthogonal subspaces
 
 - orthogonal subspaces
@@ -290,8 +310,6 @@ They have the same eigenvalues.
 (Theorem 6.3.2)
 
 - An $n \times n$ matrix $A$ is diagonalizable if and only if $A$ has $n$ linearly independent eigenvectors.
-
-(diagonalizable matrix)
 
 #### The exponential of a matrix
 
@@ -493,13 +511,54 @@ $$A_k = \sigma_1 \mathbf{u}_1\mathbf{v}_1^T + \sigma_2 \mathbf{u}_2\mathbf{v}_2^
 
 #### Application 3: information retrieval - latent semantic indexing
 
-TODO
+- $\argmin\limits_{i} [Q^T x]_i$
+  - the number of scalar multiplication: $mn$
+- $\argmin\limits_{i} [Q_1^T x]_i = \argmin\limits_{i} [V_1 \Sigma_1 U_1^T x]_i$
+  - where
+    - $\sigma_{r+1} = \cdots = \sigma_{n} = 0$
+  - the number of scalar multiplication: $r(m + n + 1)$
 
-#### Application 4: psychology - principal component analysis
+#### Application 4: psychology - principal component analysis (PCA)
 
-TODO
+- Given a $n \times p$ data matrix $X$ centered to each column mean
+- finding orthonormal basis $\mathbf{y}_1, ..., \mathbf{y}_r$  that span $R(X)$ where $r \le p$ as maximize the variance of $\mathbf{y}_i$ one by one from $\mathbf{y}_1$.
+- $\mathbf{y}_i = X\mathbf{v}_i = \sigma_i \mathbf{u}_i$
+- note that
+  - $\operatorname{var}(\mathbf{y}_1) = {1 \over n - 1}(X \mathbf{v}_1)^T X\mathbf{v}_1 = \mathbf{v}_1^T S \mathbf{v}_1$
+  - $S = {1 \over n - 1} X^T X$
+    - covariance matrix
+  - $X = U_1 \Sigma_1 V_1^T = U_1W$
+    - $U_1$: the principle hidden features
+      - $n \times r$
+    - $W$: representation of observed features as linear combinations of the principle hidden features
+      - $r \times p$
 
 ### 6.6 Quadratic forms
+
+- quadratic equation
+  - $ax^2 + 2bxy + cy^2 + dx + ey + f = 0$
+- quadratic form
+  - $\mathbf{x}^TA\mathbf{x}$
+
+#### Conic Sections
+
+- imaginery conic
+- degenerate conic
+- non degenerate conic
+  - standard position
+    - circle
+      - $x^2 + y^2 = r^2$
+    - ellipse
+      - ${x^2 \over \alpha^2} + {y^2 \over \beta^2} = 1$
+    - hyperbola
+      - ${x^2 \over \alpha^2} - {y^2 \over \beta^2} = 1$
+      - ${y^2 \over \alpha^2} - {x^2 \over \beta^2} = 1$
+    - parabola
+      - $x^2 = \alpha y$
+      - $y^2 = \beta x$
+  - non standard position
+
+TODO
 
 ### 6.7 Positive definite matrices
 
