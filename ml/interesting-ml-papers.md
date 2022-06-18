@@ -146,9 +146,9 @@
 - Why AI is Harder Than We Think
   - https://arxiv.org/abs/2104.12871
   - Summary
-    - The process of human inteligence is more complex than we think.
+    - The process of human intelligence is more complex than we think.
       - There are unexpected obstacles between narrow and general intelligence.
-      - Human inteligence is integrated with body, emotions, desires, a strong sense of selfhood and autonomy, and a commonsense understanding of the world.
+      - Human intelligence is integrated with body, emotions, desires, a strong sense of selfhood and autonomy, and a commonsense understanding of the world.
         - Not clear if these can be separated
     - Wishful mnemonics misleads us about our understanding AI
       - "Neural" networks
