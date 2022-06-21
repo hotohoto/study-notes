@@ -1,0 +1,48 @@
+https://fastcampus.co.kr/data_online_mlops/
+
+- 1. intro
+- 2. docker and k8s
+  - k8s
+  - service?
+  - pvc?
+- 3. mlops components
+  - data and model management
+    - dvc?
+    - mlflow
+  - model serving
+    - flask
+    - seldon core
+  - model monitoring
+     - prometheus
+     - grafana
+- 4. mlops with k8s
+  - automation and moredel research
+    - k8s
+    - k8s + Katib
+  - feature store
+    - Feast
+    - Feast server
+    - Store and Minio
+  - CI/CD
+    - github action
+    - DVC CML model metric tracking
+    - jenkins
+      - CI pipeline with jenkinsfile
+  - pipeline monitoring
+    - FastAPI serving API
+    - FastAPI-Prometheus metric gathering
+    - Prometheus + Grafana
+    - create simulation with Locust
+    - ml monitoring with jenkins
+- 5. mlops on various cloud platforms
+  - Amazon SageMaker
+    - AutoPilot
+  - Azure MLOps
+    - GitHub action + FastAPI app
+  - GCP MLOps
+    - Feast Feature Store + GCP
+    - Feast FastAPI App
+  - Private Cloud MLOps
+    - Private Cloud MLOps
+    - Nexus + private docker registry
+- 6. Future works

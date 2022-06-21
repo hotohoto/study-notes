@@ -1,8 +1,11 @@
 ## TODO
 
 - skim/read from Figure 7
+- clear server traking database and artifacts and restart the servers
 
 ## mini DALL-E 2
+
+
 
 ## Questions
 

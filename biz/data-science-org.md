@@ -53,3 +53,28 @@ https://multithreaded.stitchfix.com/blog/2019/03/11/FullStackDS-Generalists/
   - helps use the code locally and in production
 - workflow orchestration
   - Airflow, Argo, Perfect
+
+## data warehouse designing
+
+- data mart
+  - a subject-oriented database
+  - often a partitioned segment of an enterprise data warehouse
+  - aligned with a particular business unit like sales, finance, or marketing
+  - easy to gain actionable insights quickly
+- data warehouse
+  - consists of data marts
+
+- The Kimball methodology
+  - fast to construct
+  - star schema
+- The Inmon methodology
+  - normalized
+    - unified source of truth
+    - low data redundancy
+  - higher complexity
+  - data marts are created after the creation of the data warehouse.
+
+## references
+
+- https://outerbounds.com/blog/the-modern-stack-of-ml-infrastructure
+- https://teamtopologies.com/key-concepts
