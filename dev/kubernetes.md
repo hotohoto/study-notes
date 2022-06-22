@@ -3,7 +3,9 @@
 
 ## TODO
 
-- https://youtube.com/playlist?list=PLApuRlvrZKohaBHvXAOhUD-RxD0uQ3z0c
+- [따라하면서 배우는 쿠버네티스](https://youtube.com/playlist?list=PLApuRlvrZKohaBHvXAOhUD-RxD0uQ3z0c)
+- [CKAD with tests - Udemy](https://www.udemy.com/share/1013BQ3@KyFBRtRu39Zh5jaqPhk_loeVgnTxhUS4N4XNVRFoLVUGHa-6G-eKEUsOikRO3glo/)
+- [CKA with practice tests - Udemy](https://www.udemy.com/share/101WmE3@yCeKwZ6DeUW4PxAP5aO1DloOys0VceW9YF3mQabX5aF5ZI9vMfJqq5SivylJLDId/)
 
 ## Playgrounds
 

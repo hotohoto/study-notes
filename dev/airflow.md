@@ -66,3 +66,4 @@ airflow variables --import /usr/loca/airflow/dags/config/example_variable.json
 ## References
 
 - https://www.talend.com/resources/what-is-data-mart/
+- https://youtube.com/playlist?list=PLYizQ5FvN6pvIOcOd6dFZu3lQqc6zBGp2
