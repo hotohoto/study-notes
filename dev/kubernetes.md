@@ -14,23 +14,27 @@
 
 ## architecture
 
-- master component (control-plane)
-  - etcd
-    - key value storage
-  - kube-apiserver
-    - REST API Server on the 6433 port
-  - kube-scheduler
-    - request
-  - kube-controller-manager
-    - monitoring work nodes
-    - and make sure the configurations
-  - kublet
-    - (only for itself)
-- worker node
-  - kublet
-    - cAdvisor
-  - kube-proxy
-  - docker
+- pod
+- service
+- ingress
+- nodes
+  - master component (control-plane)
+    - etcd
+      - key value storage
+    - kube-apiserver
+      - REST API Server on the 6433 port
+    - kube-scheduler
+      - request
+    - kube-controller-manager
+      - monitoring work nodes
+      - and make sure the configurations
+    - kublet
+      - (only for itself)
+  - worker node
+    - kublet
+      - cAdvisor
+    - kube-proxy
+    - docker
 - docker hub
 - Container Network Interface (CNI)
   - also called VxLAN or pod network
@@ -59,6 +63,109 @@
 
 - k8s namespaces
 
+## Pods
+
+- how to run
+  - `kubectl run myapp --image=myapp:latest`
+  - `kubectl create -f pod-myapp.yaml`
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myweb
+spec:
+  containers:
+  - image: nginx
+    name: nginx-container
+  - image: centos:7
+    name: centos-container
+    command:
+    - sleep
+    - "10000"
+```
+
+- The minimum unit to represeent one or more containers
+  - A pod can contain more than one containers
+  - By default those containers have the same IP and can communicate seemlessly
+    - e.g.
+      - `kubectl exec -it -c centos-container -- /bin/bash`
+      - `curl locahost`
+
+- how to check when there are multiple containers in a pod
+  - `kubectl exec -it -c nginx-container -- /bin/bash`
+  - `kubectl logs -c nginx-container`
+
+### liveness probe for self healing
+
+https://youtu.be/-NeJS7wQu_Q
+
+- can set up on a container and it may restart the container (not the pod)
+
+```yaml
+# check if the status code is 200
+livenessProbe:
+  httpGet:
+    path: /
+    port: 80
+
+# check if it can be connected
+livenessProbe:
+  tcpSocket:
+    port: 22
+
+# check if the exit code is zero
+livenessProbe:
+  exec:
+    command:
+    - ls
+    - /data/file
+```
+
+  - there are more options you can set - to see the default values try to describe the running pod
+    - e.g.
+      - `initialDelaySeconds: 15`
+      - `periodSeconds: 20`
+      - `timeoutSecons: 1`
+      - `successThreshold: 1`
+      - `failureThreshold: 3`
+
+(exec example)
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp
+spec:
+  containers:
+  - image: busybox
+    name: myapp-container
+    args:
+    - sh
+    - -c
+    - touch /tmp/healthy; sleep 30; rm -f touch /tmp/healthy; sleep 10000
+    livenessProbe:
+      exec:
+        command:
+        - ls
+        - /tmp/healthy
+```
+
+### init container
+
+TODO https://youtu.be/ChArV14J6Ek
+
+
+### infra container (pause)
+### static pod
+### patterns
+
+## Services
+
+## Ingresses
+
+
 ## public clouds
 
 - GKE
@@ -79,7 +186,7 @@ kubeadm init --apiserver-advertise-address $(hostname -i) --pod-network-cidr 10.
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/application/nginx-app.yaml
 kubectl get nodes -o wide
 kubectl get nodes --all-namespaces
-kubectl get pod --all-namespaces
+kubectl get pods --all-namespaces
 ```
 
 (worker node - play with k8s)
@@ -171,6 +278,8 @@ kubectl api-resources
 kubectl run webserver --image=nginx:1.14 --port 80
 kubectl get pods
 kubectl get pods -o wide
+watch kubectl get pods -o wide
+watch kubectl get pods -o wide --watch  # open a new terminal and run this to watch what's going on
 kubectl get pods -o yaml
 kubectl get pods -o json
 kubectl describe webserver
@@ -190,8 +299,9 @@ kubectl create deployment mainui --image=httpd --replicas=3
 kubectl get deployments.apps
 kubectl describe deployments.apps mainui
 kubectl get pods
-kubectl edit deployments.apps mainui  # we can change the number of replicas at runtime
+kubectl edit deployments.apps mainui  # we can change the pod settings - e.g the number of replicas - at runtime
 kubectl delete deployments.apps mainui
+kubectl delete pod --all
 kubectl get pods
 
 # install elinks
