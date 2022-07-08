@@ -630,7 +630,35 @@ resources per container
   - if exceeded the container gets killed and restarted
   - if requests are not defined explicitly, requests are also set the same as limits
 
+### Security
+
+- Authentication: "Is that really you?"
+- Authorization: "Do you have the permission?"
+- Admission Control: "Is it fine to do that?"
+- users and groups: accounts for human
+- service accounts: accounts for pods
+
+```bash
+
+```
+
+#### Pod Security Admission
+
+#### Pod Security Policies (deprecated)
+
+(apllied to the entire namespaces)
+
+- ClusterRole
+- ClusterRoleBinding
+
+(applied to a specific namespace)
+
+- Role
+- RoleBinding
+
 ### Scheduling, Preemption and Eviction
+
+#### Assigning Pods to Nodes
 
 (nodeSelector)
 
@@ -658,7 +686,6 @@ spec:
     gpu: "true"
     disk: ssd
 ```
-
 
 (Affinity and anti-affinity)
 
@@ -698,9 +725,59 @@ spec:
 - podAntiAffinity: better
 - toplogyKey
 
+#### Taints and Tolerations
+
+https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/
+
+```bash
+# don't schedule any pods onto node1 unless there a matching toleration in the pod spec for each taint set
+kubectl taint nodes node1 key1=value1:NoSchedule
+kubectl taint nodes node1 key1=value1:NoSchedule-
+```
+
+```yaml
+# pod spec - I can be scheduled onto a node even though the node has one of these taint defined
+tolerations:
+- key: "key1"
+  operator: "Equal"
+  value: "value1"
+  effect: "NoSchedule"
+- key: "key1"
+  operator: "Equal"
+  value: "value1"
+  effect: "NoExecute"
+```
+
+- effects
+  - `NoSchedule`
+    - if the pod doesn't have this toleration, don't schedule it on to the node
+  - `PreferNoSchedule`
+    - if the pod doesn't have this toleration, preferred not to schedule it on to the node
+  - `NoExecute`
+    - if the pod doesn't have this toleration, stop executing the running pod
+
 ## Tasks
 
+### Administer a Cluster
+
+#### Safely Drain a Node
+
+- cordon
+  - prevent pods from being scheduled on to the node
+- uncordon
+  - allow pods to be scheduled on to the node
+- drain
+  - delete pods running on the node
+
+```bash
+kubectl cordon node2
+kubectl drain node2 --ignore-daemonsets --force
+kubectl uncordon node2
+```
+
 ### Configure Pods and Containers
+
+#### Configure Service Accounts for Pods
 
 #### Configure Liveness, Readiness and Startup Probes
 
@@ -769,6 +846,101 @@ spec:
   - defined as a list of maps with name and value
   - it can define a new environment variable
   - it can overwrite an existing environment variable
+
+## References
+
+### API Access Control
+
+#### Certificate Signing Requests
+
+(Normal User)
+
+```bash
+# create myuser.key
+openssl genrsa -out myuser.key 2048
+
+# create myuser.csr which is a request for a certificate
+openssl req -new -key myuser.key -out myuser.csr
+openssl req -new -key myuser.key -out myuser.csr -subj "/CN=myuser"
+
+# make it to be a k8s csr
+cat myuser.csr |base64| tr -d "\n"
+vi csr-myuser.yaml
+```
+
+```yaml
+apiVersion: certificates.k8s.io/v1
+kind: CertificateSigningRequest
+metadata:
+  name: myuser
+spec:
+  request: LS0tL...o= #
+  signerName: kubernetes.io/kube-apiserver-client
+  expirationSeconds: 86400  # one day
+  usages:
+  - client auth
+```
+
+```bash
+kubectl apply -f csr-myuser.yaml
+kubectl get csr
+kubectl certificate approve myuser
+kubectl get csr
+kubectl get csr/myuser -o yaml
+kubectl get csr myuser -o jsonpath='{.status.certificate}'| base64 -d > myuser.crt
+kubectl config set-credentials myuser --client-key=myuser.key --client-certificate=myuser.crt --embed-certs=true
+kubectl config set-context myuser --cluster=kubernetes --user=myuser
+kubectl config use-context myuser
+
+kubectl create role developer --verb=create --verb=get --verb=list --verb=update --verb=delete --resource=pods
+kubectl create rolebinding developer-binding-myuser --role=developer --user=myuser
+```
+
+```yaml
+# kubectl create clusterrole developer --verb=create,list,get,update,delete --resource=deployment,pod,service
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: developer
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - pods
+  - services
+  verbs:
+  - create
+  - list
+  - get
+  - update
+  - delete
+- apiGroups:
+  - apps
+  resources:
+  - deployments
+  verbs:
+  - create
+  - list
+  - get
+  - update
+  - delete
+---
+# kubectl create clusterrolebinding developer-binding-myuser --clusterrole=developer --user=myuser
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  creationTimestamp: null
+  name: developer-binding-myuser
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: developer
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: myuser
+
+```
 
 ## Appendix
 
@@ -885,7 +1057,7 @@ docker run -d \
 docker login myregistrydomain.com:5000
 ```
 
-## References
+## External Links
 
 - [Kubernetes The Hard Way On VirtualBox](https://github.com/mmumshad/kubernetes-the-hard-way)
 - [Debugging kubectl](https://www.shellhacks.com/kubectl-debug-increase-verbosity/)
