@@ -26,3 +26,21 @@ try
 - python에서 API
   - google-cloud 패키지를 설치하면 모든 서비스에 접근 가능하다.
   - 특정 서비스 FOO 에만 접근할 거면 google-cloud-foo 를 설치하면 된다.
+
+## GKE
+
+```bash
+gcloud config set project resolute-tracer-354107  # refer to your projects have already been created
+gcloud config set compute/zone asia-northeast3-c
+gcloud config set compute/region asia-northeast3
+gcloud container clusters create-auto hello-cluster --region=asia-northeast3
+kubectl create deployment hello-server --image=us-docker.pkg.dev/google-samples/containers/gke/hello-app:1.0
+kubectl expose deployment hello-server --type LoadBalancer --port 80 --target-port 8080
+kubectl get service hello-server
+gcloud container clusters delete hello-cluster --region=asia-northeast3
+```
+
+- region
+  - asia-northeast3
+- zone
+  - asia-northeast3-c

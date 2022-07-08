@@ -468,6 +468,10 @@ e.g. https://github.com/237summit/k8s_core_labs/blob/main/8/ingress3.yaml
 
 ### Storage
 
+#### Volumes
+
+
+
 #### Persistent Volumes
 
 Pod -> PVC -> PV -> Host machine
@@ -483,7 +487,7 @@ metadata:
   name: myclaim
 spec:
   accessModes:
-    - ReadWriteMany # ReadWriteOnce or ReadWriteMany
+    - ReadWriteMany # the volume can be mounted as read-write by many nodes.
   volumeMode: Filesystem
   resources:
     requests:
@@ -939,7 +943,6 @@ subjects:
 - apiGroup: rbac.authorization.k8s.io
   kind: User
   name: myuser
-
 ```
 
 ## Appendix
@@ -953,7 +956,7 @@ subjects:
 - AKS
   - Azure
 
-#### kubectl basic commands
+#### basic kubectl commands
 
 ```bash
 # auto completion https://kubernetes.io/docs/tasks/tools/included/optional-kubectl-configs-bash-linux/
