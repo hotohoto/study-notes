@@ -12,6 +12,7 @@
 
 ```bash
 kubeadm init --apiserver-advertise-address $(hostname -i) --pod-network-cidr 10.5.0.0/16
+kubectl apply -f https://raw.githubusercontent.com/cloudnativelabs/kube-router/master/daemonset/kubeadm-kuberouter.yaml
 kubeadm token list
 kubeadm token delete FOO
 kubeadm token create --ttl 1h  # token is deleted in 1h
@@ -163,7 +164,9 @@ we can see kubernetes as an OS.
       - flannel
       - calico
       - waevenet
-- core DNS
+- CoreDNS
+  - running as a pod
+  - `kube-dns` provides the entry address as a service
 - Web UI (Dashboard)
 - Container Resource Monitoring
   - cAdvisor
@@ -453,18 +456,109 @@ curl 10-36-0-1.default.pod.cluster.local
       - IPVS (L4 loadbalancer supported by linux kernel)
   - listening to node ports
 
-```bash
-iptables -t nat -S | grep 80
+##### An example
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-service
+spec:
+  clusterIP: 10.43.0.100  # this is normally not required
+  selector:
+    app: nginx
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 80
 ```
+
+```bash
+kubectl get pods -o wide
+```
+
+```
+NAME                               READY   STATUS    RESTARTS      AGE   IP           NODE         NOMINATED NODE   READINESS GATES
+nginx-deployment-9456bbbf9-kdrlc   1/1     Running   1 (14h ago)   24h   10.42.0.45   k3s-master   <none>           <none>
+nginx-deployment-9456bbbf9-2whfp   1/1     Running   1 (14h ago)   24h   10.42.0.49   k3s-master   <none>           <none>
+nginx-deployment-9456bbbf9-tngkb   1/1     Running   0             14h   10.42.2.16   k3s-node2    <none>           <none>
+```
+
+- nodes
+  - `k3s-master`: 172.29.219.55
+  - `k3s-node1`: 172.29.221.104
+  - `k3s-node2`: 172.29.221.225
+- `kube-dns`: 10.43.0.10 (service)
+  - `CoreDNS`: 10.42.0.47 (pod)
+- `my-service`: 10.43.0.100 (service)
+  - `nginx-deployment-9456bbbf9-kdrlc`: 10.42.0.45 (pod, master)
+  - `nginx-deployment-9456bbbf9-2whfp`: 10.42.0.49 (pod, master)
+  - `nginx-deployment-9456bbbf9-tngkb`: 10.42.2.16 (pod, node2)
+
+```bash
+iptables -t nat -S
+```
+
+```bash
+...
+-N KUBE-SERVICES
+-A PREROUTING -m comment --comment "kubernetes service portals" -j KUBE-SERVICES
+-A OUTPUT -m comment --comment "kubernetes service portals" -j KUBE-SERVICES
+...
+-N KUBE-SEP-GHMRCEVUEFEBIU3U  # nginx pod tngkb
+-N KUBE-SEP-IYQJ2XIYX64WA745  # nginx pod kdrlc
+-N KUBE-SEP-WFIAUFYDSPQC5HJ7  # nginx pod 2whfp
+...
+-N KUBE-SVC-FXIYY6OHUSNBITIX  # my-service
+...
+-A KUBE-SEP-GHMRCEVUEFEBIU3U -s 10.42.2.16/32 -m comment --comment "default/my-service" -j KUBE-MARK-MASQ
+-A KUBE-SEP-GHMRCEVUEFEBIU3U -p tcp -m comment --comment "default/my-service" -m tcp -j DNAT --to-destination 10.42.2.16:80
+-A KUBE-SEP-IYQJ2XIYX64WA745 -s 10.42.0.45/32 -m comment --comment "default/my-service" -j KUBE-MARK-MASQ
+-A KUBE-SEP-IYQJ2XIYX64WA745 -p tcp -m comment --comment "default/my-service" -m tcp -j DNAT --to-destination 10.42.0.45:80
+-A KUBE-SEP-WFIAUFYDSPQC5HJ7 -s 10.42.0.49/32 -m comment --comment "default/my-service" -j KUBE-MARK-MASQ
+-A KUBE-SEP-WFIAUFYDSPQC5HJ7 -p tcp -m comment --comment "default/my-service" -m tcp -j DNAT --to-destination 10.42.0.49:80
+...
+-A KUBE-SERVICES -d 10.43.0.100/32 -p tcp -m comment --comment "default/my-service cluster IP" -m tcp --dport 8080 -j KUBE-SVC-FXIYY6OHUSNBITIX
+-A KUBE-SVC-FXIYY6OHUSNBITIX ! -s 10.42.0.0/16 -d 10.43.0.100/32 -p tcp -m comment --comment "default/my-service cluster IP" -m tcp --dport 8080 -j KUBE-MARK-MASQ
+...
+-A KUBE-SVC-FXIYY6OHUSNBITIX -m comment --comment "default/my-service" -m statistic --mode random --probability 0.33333333349 -j KUBE-SEP-IYQJ2XIYX64WA745
+-A KUBE-SVC-FXIYY6OHUSNBITIX -m comment --comment "default/my-service" -m statistic --mode random --probability 0.50000000000 -j KUBE-SEP-WFIAUFYDSPQC5HJ7
+-A KUBE-SVC-FXIYY6OHUSNBITIX -m comment --comment "default/my-service" -j KUBE-SEP-GHMRCEVUEFEBIU3U
+...
+```
+
+`/etc/resolve.conf` in `nginx-deployment-9456bbbf9-kdrlc`
+
+```conf
+search default.svc.cluster.local svc.cluster.local cluster.local mshome.net
+nameserver 10.43.0.10
+options ndots:5
+```
+
+With in a pod, we can access to the service using a domain name as follows.
+
+```bash
+curl my-service:8080
+curl my-service.default.svc.cluster.local:8080
+```
+
+With in a pod, we can access to a pod as follows
+
+```bash
+curl 10-42-2-16.default.pod.cluster.local
+```
+
 #### Ingress
 
 e.g. https://github.com/237summit/k8s_core_labs/blob/main/8/ingress3.yaml
 
-- One of the open project controllers can be used.
-  - e.g. NGINX Ingress
 - can redirect to a ClusterIP service registered depending on the request path
   - note that ClusterIP provides only an internal entry address
 - also supports virtual hosts
+- One of the open project controllers can be used.
+  - e.g. NGINX Ingress
+
+https://stackoverflow.com/questions/45079988/ingress-vs-load-balancer
 
 ### Storage
 
@@ -956,7 +1050,7 @@ subjects:
 - AKS
   - Azure
 
-#### basic kubectl commands
+### basic kubectl commands
 
 ```bash
 # auto completion https://kubernetes.io/docs/tasks/tools/included/optional-kubectl-configs-bash-linux/
@@ -1032,7 +1126,7 @@ kubectl config set-context orange --cluster=default --user=default --namespace=o
 kubectl config use-context new_context_name
 ```
 
-#### Other commands
+### Other commands
 
 ```bash
 # install elinks
