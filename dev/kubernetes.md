@@ -141,6 +141,7 @@ we can see kubernetes as an OS.
 - etcd
   - distributed key value storage
   - this is important when it comes to multiple masters
+  - `/var/lib/etcd`
 - kube-scheduler
   - request
 - kube-controller-manager
@@ -564,11 +565,9 @@ https://stackoverflow.com/questions/45079988/ingress-vs-load-balancer
 
 #### Volumes
 
-
-
 #### Persistent Volumes
 
-Pod -> PVC -> PV -> Host machine
+Pod -> PVC -> storageclass -> PV (-> Host machine)
 
 ```bash
 kubectl describe storageclass
@@ -658,6 +657,9 @@ spec:
 #### Secrets
 
 ```bash
+echo -n 'mypw' | base64  # bXlwdw==
+echo -n 'bXlwdw==' | base64 --decode  # mypw
+kubectl get secrets
 kubectl create secret tls mysecret --cert=path/to/cert/file --key=path/to/key/file
 kubectl create secret docker-registry mysecret --docker-username=tiger --docker-password=pass --docker-email=tiger@example.com
 kubectl create secret generic mysecret --from-literal=key1=value1 --from-file=path/to/secret/dir  # encoded in base64 but not encrypted
@@ -736,9 +738,36 @@ resources per container
 - users and groups: accounts for human
 - service accounts: accounts for pods
 
-```bash
+#### Pod Security Standards
 
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: web-pod
+specs:
+  containers:
+  - name: ubuntu
+    image: ubuntu
+    command: ["sleep", "3600"]
+    securityContext:
+      runAsUser: 1000
+      capabilities:
+        add: ["MAC_ADMIN"]
 ```
+
+(Docker security)
+
+- The default user for containers is `root` but it's not the same as `root` in the host machine
+- By the `ps aux` command, a container can see only the processes within the container
+- If we want to run a container with it a user can be set by the methods as follow
+  - `docker run --user=1000 ...`
+  - `USER 1000` (in Dockerfile)
+- You can change the capability of `root` within a container
+  - `docker run --privileged ...`
+    - enables all privileges
+  - `docker run --cap-add=MAC_ADMIN ...`
+  - `docker run --cap-drop=KILL ...`
 
 #### Pod Security Admission
 
@@ -873,6 +902,19 @@ kubectl drain node2 --ignore-daemonsets --force
 kubectl uncordon node2
 ```
 
+#### Operating etcd clusters for Kubernetes
+
+(backup)
+
+```bash
+ETCDCTL_API=3 etcdctl \
+  --endpoints=https://127.0.0.1:2379 \
+  --cacert=<trusted-ca-file> \
+  --cert=<cert-file> \
+  --key=<key-file> \
+  snapshot save <backup-file-location>
+```
+
 ### Configure Pods and Containers
 
 #### Configure Service Accounts for Pods
@@ -944,6 +986,47 @@ spec:
   - defined as a list of maps with name and value
   - it can define a new environment variable
   - it can overwrite an existing environment variable
+
+### Run Applications
+
+#### Horizontal Pod Autoscaling
+
+Install metric servers
+
+```bash
+git clone https://github.com/237summit/kubernetes-metrics-server.git
+cd kubernetes-metrics-server
+kubectl apply -f .  # applies all the yaml files in the current folder
+
+kubectl top nodes
+kubectl top pods -A
+```
+
+```yaml
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: hpa-web
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: deploy-web
+  minReplicas: 1
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 50  # with respect to the CPU resource requested by each pod
+```
+
+```bash
+# apply it
+kubectl apply -f hpa-web.yaml
+
+# or equivalently
+kubectl autoscale deployment hpa-web --cpu-percent=50 --min=1 --max=10
+
+# check if it's set
+kubectl get hpa
+```
 
 ## References
 
@@ -1041,6 +1124,21 @@ subjects:
 
 ## Appendix
 
+### Autoscaling
+
+- cluster level
+  - Adds more nodes if there are pending pods due to the lack of resources
+- pod level
+  - Horizontal Pod Autoscaler (HPA)
+    - Adds more pods if resources are in short
+    - Delete pods in 5 min if resources are not in short
+    - scale in/out
+  - Vertical Pod Autoscaler (VPA)
+    - Allows more resources and restarts the pods one by one
+    - scale up/down
+- metric server
+  - monitors how much resources are in use by pods for each node
+
 ### public clouds
 
 - GKE
@@ -1064,6 +1162,8 @@ kubectl api-resources
 
 # show descriptions for a certain resource
 kubectl explain pod
+kubectl explain pod --recursive | grep envFrom -A10
+kubectl explain pod --recursive | less
 kubectl explain namespace
 
 # show node info
@@ -1124,6 +1224,10 @@ kubectl config view --minify
 kubectl config set-context new_context_name --cluster=kubernetes --user=kubernetes-admin --namespace=blue
 kubectl config set-context orange --cluster=default --user=default --namespace=orange
 kubectl config use-context new_context_name
+
+# cp files from/to a pod
+kubectl cp path/to/src pod:/path/to/destination
+kubectl cp pod:/path/to/src ./
 ```
 
 ### Other commands

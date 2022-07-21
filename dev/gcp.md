@@ -30,6 +30,13 @@ try
 ## GKE
 
 ```bash
+gcloud auth list
+gcloud auth login --no-browser
+gcloud config set account hotohoto.biz@gmail.com
+gcloud container clusters get-credentials
+```
+
+```bash
 gcloud config set project resolute-tracer-354107  # refer to your projects have already been created
 gcloud config set compute/zone asia-northeast3-c
 gcloud config set compute/region asia-northeast3
@@ -44,3 +51,7 @@ gcloud container clusters delete hello-cluster --region=asia-northeast3
   - asia-northeast3
 - zone
   - asia-northeast3-c
+
+### How to set up persistent volume
+
+- https://devopscube.com/persistent-volume-google-kubernetes-engine/
