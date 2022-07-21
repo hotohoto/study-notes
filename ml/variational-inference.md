@@ -1,10 +1,28 @@
 # Variational inference
 
-- propose Q approximating posterior
+https://www.jeremyjordan.me/variational-autoencoders
+
+- we want to find the posterior distribution but it's intractable
+- so we propose Q approximating it
 - $\text{log marginal likelihood} = \text{ELBO(variational free energy)} + D_\text{KL}(q(w\mid\theta) \parallel p(w\mid D)))$
 - Minimize KL-divergence
 - maximize ELBO
 - generalization of EM
+
+## mean field approximation
+
+- assumes all the hidden variables are independent to each other
+  - http://www.edwith.org/aiml-adv/lecture/21315
+
+
+## variational autoencoder
+
+- we want to see the characteristics of z
+  - can be used to
+    - produce point or interval estimates
+    - form predictive density of new data
+    - to train a neural net decoder that outputs x from a sample drawn in latent space z
+- so we propose Q approximating it
 
 ## Questions
 

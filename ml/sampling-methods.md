@@ -55,6 +55,11 @@ cons
     - P ~ conditional probability we're finding
     - L ~ unconditional probability we're sampling on
 
+### Annealed Importance Sampling
+
+- https://agustinus.kristia.de/techblog/2017/12/23/annealed-importance-sampling/
+- TODO
+
 ## MCMC(Markov Chain Monte Carlo)
 
 - transit into the other assignment with the transition probability table

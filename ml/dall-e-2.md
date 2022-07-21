@@ -2,6 +2,8 @@
 
 - skim/read from Figure 7
 - clear server traking database and artifacts and restart the servers
+- download more images
+- 모델 사이즈 줄이기?
 
 ## mini DALL-E 2
 
@@ -33,7 +35,7 @@
     - Denoising Diffusion Implicit Model (DDIM)
     - Sharpness-Aware Minimization (SAM)
     - Break Stretch Ratio (BSR)
-    - Frechet Inception Distance (FID)
+    - [Frechet Inception Distance (FID)](./fid.md)
     - Guided Language to Image Diffusion for Generation and Editing (GLIDE)
 
 ## structure
@@ -85,7 +87,26 @@ TODO internals
   - https://openai.com/blog/clip/
   - https://arxiv.org/abs/2103.00020
 
+(2021)
+- Diffusion Models Beat GANs on Image Synthesis
+  - Tried various attention sizes.
+    - e.g. 32×32, 16×16, 8×8
+    - originally only 16×16 was used
+  - Increased number of attention heads
+  - Class Guidance
+
 (2020)
+
+- Denoising Diffusion Probabilistic Models (DDPM)
+  - PixelCNN++
+  - $$
+  - reverse process
+    -
+  - forward process
+    - diffusion process
+    - fixed to a Markov Chain that gradually adds Gaussian noise
+    - with variance schedule
+      - $\beta_1, \beta_2, ..., \beta_T$
 
 - Sharpness-Aware Minimization for Efficiently Improving Generalization
   - SAM
@@ -99,4 +120,8 @@ TODO internals
 
 - Vector Quantized Variational AutoEncoder (VQ-VAE, 2017, NIPS)
   - README
+
+
+## References
+
 

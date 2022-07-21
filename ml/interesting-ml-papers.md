@@ -545,6 +545,19 @@
     - how to deal with unstable data corresponding to fashion trends and customers diversity.
       - cluster data and remove outliers from the perspective of each cluster
 
+- Learning Loss for Active Learning
+  - https://arxiv.org/abs/1905.03677
+  - https://youtu.be/YU_NO7pYObM
+  - CVPR
+  - pick unlabled examples that are most probable to improve the model performance by labeling them
+  - types
+    - entropy based
+    - least confident examples
+    - loss based
+      - marginal loss
+        - we want the loss prediction module to be able to tell which loss would be greater among each pair of examples. and the difference to be larger than xi
+        - can be applied any form of problem settings
+
 ## 2018
 
 - YOLOv3: an Incremental Improvement
@@ -807,6 +820,8 @@
   - https://arxiv.org/abs/1502.01852
   - weight initialization
   - Kaiming He initialization
+
+
 
 ## 2014
 
