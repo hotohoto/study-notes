@@ -229,12 +229,15 @@ multi container pods patterns
   - an application container reports info to an adapter container
   - the adapter container is reposnsible for providing those information to another stakeholder
     - [e.g. Prometheus](https://www.magalix.com/blog/the-adapter-pattern)
+  - e.g. format logs befores sending it to a central server
 - ambassador
   - two containers
     - an application container
+      - e.g. connects to a local database
     - an ambassador container
       - works as a proxy
       - introduced since we don't want to modify the application container
+      - e.g. forward a connection request to a local database to a proper remote server among dev/test/prod databases
 - etc
   - https://docs.microsoft.com/en-us/azure/architecture/patterns/
 
@@ -567,7 +570,8 @@ https://stackoverflow.com/questions/45079988/ingress-vs-load-balancer
 
 #### Persistent Volumes
 
-Pod -> PVC -> storageclass -> PV (-> Host machine)
+- Pod -> PVC -> storageclass -> PV (-> Host machine)
+- a PVC and a PV are going to be bound
 
 ```bash
 kubectl describe storageclass
@@ -585,7 +589,7 @@ spec:
   resources:
     requests:
       storage: 10Mi # storage size
-  storageClassName: "local-path" # the name of storageclass
+  storageClassName: "standard-rwx" # the name of storageclass
 ```
 
 ```bash
@@ -726,8 +730,13 @@ spec:
 resources per container
 - `requests`
   - if the requested resources are not available, the pod is not scheduled and stays as pending
+  - if requests and limits are not defined explicitly, the default requests are used
+    - the default requests can be set by LimitRange object under the namespace
+      - https://kubernetes.io/docs/tasks/administer-cluster/manage-resources/memory-default-namespace/
+      - https://kubernetes.io/docs/tasks/administer-cluster/manage-resources/cpu-default-namespace/
 - `limits`
-  - if exceeded the container gets killed and restarted
+  - if the container exceeds the cpu limit it will get throttled
+  - if the container exceeds the memory limit it will get killed and restarted
   - if requests are not defined explicitly, requests are also set the same as limits
 
 ### Security
@@ -817,39 +826,66 @@ spec:
 (Affinity and anti-affinity)
 
 ```yaml
-  affinity:
-    nodeAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution:  # Choose among only the nodes matches. (Options under this work the same as nodeSelector)
-        nodeSelectorTerms:
-        - matchExpressions:
-          - {key: disk, operator: Exists}
-      preferredDuringSchedulingIgnoredDuringExecution:  # Cchoose the best node
-      - weight: 10  # gives 10 points for each expression matches
-        preference:
-        - matchExpressions:
-          - {key: gpu, operator: In, values: ["true"]}
-          - {key: disk, operator: In, values: ["ssd"]}
-    podAffinity:  # wants to pick a node following the selected pods
-      requiredDuringSchedulingIgnoredDuringExecution:
-      - labelSelector:
-          matchExpressions:
-          - {key: security, operator: In, values: ["S1"]}
-        topologyKey: topology.kubernetes.io/zone  # requires all the selected nodes are in the same zone
-    podAntiAffinity:  # wants to pick a node which is different from the selected pods
-      preferredDuringSchedulingIgnoredDuringExecution:
-      - weight: 100
-        podAffinityTerm:
-          labelSelector:
-            matchExpressions:
-            - key: security
-              operator: In
-              values:
-              - S2
-          topologyKey: topology.kubernetes.io/zone
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myweb
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: blue
+  template:
+    metadata:
+      labels:
+        app: blue
+    spec:
+      containers:
+      - image: nginx
+        name: nginx-container
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:  # Choose among only the nodes matches. (Options under this work the same as nodeSelector)
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: disk
+                operator: Exists
+          preferredDuringSchedulingIgnoredDuringExecution:  # Choose the best node
+          - weight: 10  # gives 10 points for each expression matches
+            preference:
+              matchExpressions:
+              - key: gpu
+                operator: In
+                values:
+                - true
+              - key: disk
+                operator: In
+                values:
+                - ssd
+        podAffinity:  # wants to pick a node following the selected pods
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: security
+                operator: In
+                values:
+                - S1
+            topologyKey: topology.kubernetes.io/zone  # requires all the selected nodes are in the same zone
+        podAntiAffinity:  # wants to pick a node which is different from the selected pods
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: security
+                  operator: In
+                  values:
+                  - S2
+              topologyKey: topology.kubernetes.io/zone
 ```
 
-- podAffinity: better to
-- podAntiAffinity: better
+- podAffinity:
+- podAntiAffiity:
 - toplogyKey
 
 #### Taints and Tolerations
@@ -857,9 +893,26 @@ spec:
 https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/
 
 ```bash
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-app-pod
+spec:
+  containers:
+  - name: nginx-container
+    images: nginx
+  tolerations:
+  - key: "key1"
+    operator: "Equal"
+    value: "value1"
+    effect: "NoSchedule"
+```
+
+```bash
 # don't schedule any pods onto node1 unless there a matching toleration in the pod spec for each taint set
 kubectl taint nodes node1 key1=value1:NoSchedule
 kubectl taint nodes node1 key1=value1:NoSchedule-
+kubectl taint nodes controlplane node-role.kubernetes.io/master:NoSchedule-
 ```
 
 ```yaml
@@ -894,11 +947,13 @@ tolerations:
 - uncordon
   - allow pods to be scheduled on to the node
 - drain
-  - delete pods running on the node
+  - cordon and delete pods running on the node
 
 ```bash
 kubectl cordon node2
+kubectl drain node2 --ignore-daemonsets
 kubectl drain node2 --ignore-daemonsets --force
+kubectl drain node2 --ignore-daemonsets --force --deete-empty-dir
 kubectl uncordon node2
 ```
 
@@ -918,6 +973,34 @@ ETCDCTL_API=3 etcdctl \
 ### Configure Pods and Containers
 
 #### Configure Service Accounts for Pods
+
+```bash
+kubectl create serviceaccount dashboard-sa
+kubectl get serviceaccount
+kubectl describe serviceaccount dashboard-sa
+kubectl describe secret dashboard-sa-token-kbbdm
+curl https://192.168.56.70:6443/api -insecure --header "Authorization Bearer: eyJhbG..."
+```
+
+- In the service account created you can see the token and the secret reference.
+- The secret object refered by it contains actual token.
+- The token is used for an application to access K8S API with
+- A serviceaccount would be mounted at `/var/run/secrets/kubernetes.io/serviceaccount` within the containers of a pod.
+- By default, `default` service account is mounted to a pod.
+  - you can disable that by specifying `automountServiceAccountToken: false` in the pod spec section.
+- To change the serivce account being mounted, specify a different servic account as follows.
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-kubernetes-dashboard
+spec:
+  containers:
+  - name: my-kubernetes-dashboard
+    images: my-kubernetes-dashboard
+  serviceAccountName: dashboard-sa
+```
 
 #### Configure Liveness, Readiness and Startup Probes
 
@@ -1000,6 +1083,7 @@ kubectl apply -f .  # applies all the yaml files in the current folder
 
 kubectl top nodes
 kubectl top pods -A
+kubectl top pods -l foo=bar --sort-by=cpu
 ```
 
 ```yaml
@@ -1256,6 +1340,16 @@ docker run -d \
 
 # log in to the registry
 docker login myregistrydomain.com:5000
+```
+
+### ~/.vimrc
+
+https://dev.to/marcoieni/ckad-2021-tips-vimrc-bashrc-and-cheatsheet-hp3
+
+```
+set nu
+set tabstop=2 shiftwidth=2 expandtab
+set ai
 ```
 
 ## External Links

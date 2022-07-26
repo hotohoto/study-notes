@@ -38,9 +38,10 @@ gcloud container clusters get-credentials
 
 ```bash
 gcloud config set project resolute-tracer-354107  # refer to your projects have already been created
-gcloud config set compute/zone asia-northeast3-c
+gcloud config set compute/zone asia-northeast3
 gcloud config set compute/region asia-northeast3
 gcloud container clusters create-auto hello-cluster --region=asia-northeast3
+
 kubectl create deployment hello-server --image=us-docker.pkg.dev/google-samples/containers/gke/hello-app:1.0
 kubectl expose deployment hello-server --type LoadBalancer --port 80 --target-port 8080
 kubectl get service hello-server
@@ -55,3 +56,7 @@ gcloud container clusters delete hello-cluster --region=asia-northeast3
 ### How to set up persistent volume
 
 - https://devopscube.com/persistent-volume-google-kubernetes-engine/
+
+```bash
+gcloud container clusters update hello-cluster --update-addons=GcpFilestoreCsiDriver=ENABLED
+```
