@@ -8,9 +8,6 @@ try
 - big query
   - browse public tables
 - cloud composer (aiarflow)
-- GKE
-- container registry
-  - https://cloud.google.com/container-registry
 
 ## notes
 
@@ -30,22 +27,29 @@ try
 ## GKE
 
 ```bash
-gcloud auth list
-gcloud auth login --no-browser
-gcloud config set account hotohoto.biz@gmail.com
-gcloud container clusters get-credentials
+gcloud components install kubectl
 ```
 
 ```bash
-gcloud config set project resolute-tracer-354107  # refer to your projects have already been created
-gcloud config set compute/zone asia-northeast3
-gcloud config set compute/region asia-northeast3
-gcloud container clusters create-auto hello-cluster --region=asia-northeast3
+gcloud container clusters create-auto my-cluster --region=asia-northeast3  # create a new cluster
+```
 
+```bash
+gcloud auth list
+gcloud auth login --no-browser
+gcloud config set account hotohoto.biz@gmail.com
+gcloud config set project resolute-tracer-354107  # refer to your projects have already been created
+gcloud config set compute/zone us-central1-a
+gcloud config set compute/region us-central1
+gcloud container clusters get-credentials my-cluster  # update kubectl configurations
+gcloud container clusters resize my-cluster --node-pool=default-pool --num-nodes=10
+```
+
+```bash
 kubectl create deployment hello-server --image=us-docker.pkg.dev/google-samples/containers/gke/hello-app:1.0
 kubectl expose deployment hello-server --type LoadBalancer --port 80 --target-port 8080
 kubectl get service hello-server
-gcloud container clusters delete hello-cluster --region=asia-northeast3
+gcloud container clusters delete my-cluster --region=asia-northeast3
 ```
 
 - region
@@ -58,5 +62,16 @@ gcloud container clusters delete hello-cluster --region=asia-northeast3
 - https://devopscube.com/persistent-volume-google-kubernetes-engine/
 
 ```bash
-gcloud container clusters update hello-cluster --update-addons=GcpFilestoreCsiDriver=ENABLED
+gcloud container clusters update my-cluster --update-addons=GcpFilestoreCsiDriver=ENABLED
 ```
+
+### cluster types
+
+- default
+  - more configurable
+- autopilot
+  - less configurable
+  - not allowed to use the privileged mode
+    - allowed to use only a part of capabilities
+    - seems not possible to set up the pod for a custom nfs server
+  - might be better for production rather than development

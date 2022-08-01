@@ -414,6 +414,13 @@ kubectl delete rs rs-nginx --cascade=false  # delete the replicaset without dele
 
 #### Service
 
+```bash
+
+# https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#expose
+# Create a service for a pod valid-pod, which serves on port 444 with the name "frontend"
+kubectl expose pod valid-pod --port=444 --name=frontend
+```
+
 - You may check if a port is actually open. `netstat -napt | grep 30200`
 
 - types
@@ -1265,6 +1272,7 @@ kubectl get nodes --show-labels
 kubectl get nodes -L disk,gpu  # show only the speified labels in a separate columns which are `disk` and `gpu`
 kubectl get pods --all-namespaces
 
+kubectl run python --image=python:3.7.13 -- tail -f /dev/null
 kubectl run testpod --image=centos:7 --comand sleep 5  # kubernetes restarts this pod after it's completed
 kubectl run webserver --image=nginx:1.14 --port 80
 kubectl get pods
