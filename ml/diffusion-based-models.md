@@ -1,16 +1,62 @@
 # Diffusion based models
 
-## DDPM review
+## Q&A
 
-- questions
-  - the range of pixel values that are to be normally distributed
-    - with zero mean and one standard deviation
-  - meaning of
-    - "multiple noise levels during training and with annealed Langevin dynamics during sampling"
-  - how did they measure log likelihoods?
-  - what kind of likelihoods based models are there?
-  - what's annealed importance sampling
-  - what are annealed Langevin dynamics
+- the range of pixel values that are to be normally distributed
+  - with zero mean and one standard deviation
+- meaning of
+  - "multiple noise levels during training and with annealed Langevin dynamics during sampling"
+- how did they measure log likelihoods?
+- what kind of likelihoods based models are there?
+- what's annealed importance sampling
+- what are annealed Langevin dynamics
+
+## Papers
+
+(2021)
+
+- Diffusion Models Beat GANs on Image Synthesis
+  - https://arxiv.org/abs/2105.05233
+  - Prafulla Dhariwal, Alex Nichol
+  - Tried various attention sizes.
+    - e.g. 32×32, 16×16, 8×8
+    - originally only 16×16 was used
+  - increased number of attention heads
+  - conditional generation
+    - class guidance
+  - utilized well known architectures
+
+- Variational Diffusion Models
+  - https://openreview.net/forum?id=2LdBqxc1Yv
+  - NeurIPS 2021
+  - Diederik P Kingma, Tim Salimans, Ben Poole, Jonathan Ho
+
+- Score-Based Generative Modeling through Stochastic Differential Equations
+  - https://arxiv.org/abs/2011.13456
+  - ICLR 2021, Yang Song, Jascha Sohl-Dickstein, Diederik P. Kingma, Abhishek Kumar, Stefano Ermon, Ben Poole
+
+- Denoising Diffusion Implicit Models (DDIM)
+  - https://arxiv.org/abs/2010.02502
+  - Jiaming Song, Chenlin Meng, Stefano Ermon
+  - speeded up diffusion model sampling
+    - generates high quality samples with much fewer steps
+  - introduced a deterministic generative process
+    - enables meaningful interpolatation in the latent variable
+
+- Improved Denoising Diffusion Probabilistic Models
+  - https://arxiv.org/abs/2102.09672
+  - Alex Nichol, Prafulla Dhariwal
+  - improved DDPM
+  - a cosine-based variance schedule
+  - tried to mix $L_\text{VLB}$ and $L_\text{simple}$ when calculating
+    - $L_\text{VLB}$
+      - original loss function that learns only the diagonal terms of $\Sigma_\theta$
+    - $L_\text{simple}$
+      - only the exponent term is used ignoring the $\Sigma_\theta$ part
+  - suggested a time-averaging smoothed version of $L_\text{VLB}$ with importance sampling
+
+
+(2020)
 
 - Denoising Diffusion Probabilistic Models (DDPM)
   - https://arxiv.org/abs/2006.11239
@@ -27,61 +73,41 @@
       - the majority of the models' lossless codelength are consumed to describe imperceptible image details
   - architecture
     - PixelCNN++
-    - TODO
+    - ...
+  - notations
+    - $\mathbf{x}_0$: observed examples
+    - $\mathbf{x}_{1:T}$: latent variables
+      - $\mathbf{x}_T \sim \mathcal{N}(\mathbf{x}_T; \mathbf{0}, \mathbf{I})$
+    - $p_\theta$
+      - stochastic process described by our model
+    - $q$
+      - stochastic process we want to approximate
+    - $\mathbf{z}, \mathbf{z_t}, ...$
+      - each of them $\sim \mathcal{N}(\mathbf{0}, I)$
+    - $\beta_t = 1 - \alpha_t$
+    - $\bar{\alpha}_t = \prod_{i=1}^t \alpha_i$
   - Diffusion models
     - latent variable models
     - $p_\theta(\mathbf{x}_0) = \int p_\theta (\mathbf{x}_{0:T}) d\mathbf{x}_{1:T}$
-    - $\mathbf{x}_0$: observed examples
-    - $\mathbf{x}_{1:T}$: latent variables
-      - $p(\mathbf{x}_T) = \mathcal{N}(\mathbf{x}_T; \mathbf{0}, \mathbf{I})$
     - forward process
       - diffusion process
       - fixed to a Markov Chain that gradually adds Gaussian noise
       - with variance schedule
         - $\beta_1, \beta_2, ..., \beta_T$
+      - $\mathbf{x_t} = \sqrt{\bar{\alpha}_t} \mathbf{x}_0 + \sqrt{1-\bar{\alpha}_t}\mathbf{z}_t$
     - reverse process
       - starting at $\beta_T$
       - a parameterized Markov chain is assumed
-
-
-## Remarkable Papers
-
-(2021)
-
-- Score-Based Generative Modeling through Stochastic Differential Equations
-  - https://arxiv.org/abs/2011.13456
-  - ICLR 2021, Yang Song, Jascha Sohl-Dickstein, Diederik P. Kingma, Abhishek Kumar, Stefano Ermon, Ben Poole
-
-- Denoising Diffusion Implicit Models (DDIM)
-  - https://arxiv.org/abs/2010.02502
-  - Jiaming Song, Chenlin Meng, Stefano Ermon
-  - reduce number of steps by using non-Markovian deterministic function
-
-- Improved Denoising Diffusion Probabilistic Models
-  - https://arxiv.org/abs/2102.09672
-  - Alex Nichol, Prafulla Dhariwal
-  - improved DDPM
-
-- Diffusion Models Beat GANs on Image Synthesis
-  - https://arxiv.org/abs/2105.05233
-  - Prafulla Dhariwal, Alex Nichol
-  - Tried various attention sizes.
-    - e.g. 32×32, 16×16, 8×8
-    - originally only 16×16 was used
-  - Increased number of attention heads
-  - Class Guidance
-
-- Variational Diffusion Models
-  - https://openreview.net/forum?id=2LdBqxc1Yv
-  - NeurIPS 2021
-  - Diederik P Kingma, Tim Salimans, Ben Poole, Jonathan Ho
-
-(2020)
-
-- DDPM
+      - $q(\mathbf{x}_{t-1} | \mathbf{x}_t, \mathbf{x}_0) = \mathcal{N}(\mathbf{x}_{t-1}; \tilde{\mathbf{\mu}}(\mathbf{x}_t, \mathbf{x}_0), \tilde{\beta}_t I)$
+        - we need to be able to calculate these two terms analytically to calculate the loss
+          - $\tilde{\mathbf{\mu}}(\mathbf{x}_t, \mathbf{x}_0)$
+            - $= \frac{\sqrt{\alpha_{t}}\left(1-\bar{\alpha}_{t-1}\right)}{1-\bar{\alpha}_{t}} \mathbf{x}_{t}+\frac{\sqrt{\bar{\alpha}_{t-1}} \beta_{t}}{1-\bar{\alpha}_{t}} \mathbf{x}_{0}$
+            - $= \frac{1}{\sqrt{\alpha_{t}}}\left(\mathbf{x}_{t}-\frac{\beta_{t}}{\sqrt{1-\bar{\alpha}_{t}}} \mathbf{z}_{t}\right)$
+          - $\tilde{\beta}_t = \frac{1-\bar{\alpha}_{t}-1}{1-\bar{\alpha}_{t}} \beta_{t}$
+      - loss function
+        - $\mathbb{E}_{q}[\underbrace{D_{\mathrm{KL}}\left(q\left(\mathbf{x}_{T} \mid \mathbf{x}_{0}\right) \| p_{\theta}\left(\mathbf{x}_{T}\right)\right)}_{L_{T}}+\sum_{t=2}^{T} \underbrace{D_{\mathrm{KL}}\left(q\left(\mathbf{x}_{t-1} \mid \mathbf{x}_{t}, \mathbf{x}_{0}\right) \| p_{\theta}\left(\mathbf{x}_{t-1} \mid \mathbf{x}_{t}\right)\right)}_{L_{t-1}}-\underbrace{\log p_{\theta}\left(\mathbf{x}_{0} \mid \mathbf{x}_{1}\right)}_{L_{0}}]$
 
 (2019)
-
 
 - Generative Modeling by Estimating Gradients of the Data Distribution
   - NeurIPS 2019, Yang Song, Stefano Ermon
@@ -110,8 +136,6 @@
   - flexible model architectures
   - application
     - image inpainting
-  - TODO
-    - read from 2.1
 
 (2015)
 
@@ -122,9 +146,12 @@
   - thousands of time steps
   - terminologies
     - quasy-static process
-  - TODO Read from 1.2
-
 
 ## Prerequisite
 
 - [FID](./fid.md)
+
+## References
+
+- [What are diffusion models](https://lilianweng.github.io/posts/2021-07-11-diffusion-models/)
+  - DDPM, Improved DDPM, DDIM, ...

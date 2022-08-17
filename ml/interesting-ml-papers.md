@@ -27,7 +27,52 @@
     - 2020 NeuralSparse
       - Zheng et al.
 
+- Triformer: Triangular, Variable-Specific Attentions for Long Sequence Multivariate Time Series Forecasting
+  - IJCAI
+  - goals
+    - Use Transformer for long term forecasting
+    - Reduce computational complexity doing that
+  - How
+    - patch based attention
+      - computational complexity
+        - (vanila method)
+          - $O(N^2)$
+          - $N$: number of embeddings
+        - (patch based attention)
+          - $O(PS^2)$
+          - $P$: the number of patches
+          - $S$: the size of a patch
+        - (patch based attention + downsampling)
+          - $O(PS)$
+          - introducing pseudo time points
+    - triangular stacking
+      - downsampling (as mentioned above)
+      - fully connected layer
+        - inputs: all the layers
+    - variable specific modeling
+      - weight factorization
+        - d x d x N 👉 (d x a) (a x a x N) (a x d)
+        - (similar to 1 by 1 convolution)
+    - takeaways
+      - suggest a decent way to the model complexity of Transformers
+    - https://youtu.be/Z4CWwVxKoU0
+
 ## 2021
+
+- Emerging Properties in Self-Supervised Vision Transformers
+  - DINO, Facebook AI Research
+  - https://arxiv.org/abs/2104.14294
+  - self distillation with no labels
+    - self supervised learning
+    - contrastive representation learning
+  - student
+    - use global and local patches
+  - teacher
+    - use global patches
+    - predictions are to be sharper than those of student
+      - by setting a different temperature in the softmax
+  - https://youtu.be/h3ij3F3cPIk
+  - README
 
 - Temporal Fusion Transformers for Interpretable Multi-horizon Time Series Forecasting
   - [Internal Journal of Forecasting 2021](https://www.sciencedirect.com/science/article/pii/S0169207021000637)
