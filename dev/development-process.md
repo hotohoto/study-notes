@@ -45,6 +45,14 @@
 - Make it everything transparent
 - Make people self motivated
 
+## On-boarding
+
+- Get daily feedbacks from the new members.
+  - Respect them.
+  - Ask what they need.
+- Investigate things they've done before.
+- Provide hospitality.
+
 ## branching workflows
 
 - GitFlow
