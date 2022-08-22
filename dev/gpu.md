@@ -82,3 +82,9 @@ sudo apt-get -y install nvidia-cudnn
 export CUDA_DEVICE_ORDER=PCI_BUS_ID
 export CUDA_VISIBLE_DEVICES=6,7
 ```
+
+(using a container - tentative, not tested)
+
+```bash
+nvidia-docker run -it --rm -v ~/workspace:/workspace -v ~/data/:/data --ipc=host --network=host --name=container_name -gpus '"device=6,7"' pytorch-1.11-11.3-8
+```
