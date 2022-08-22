@@ -13,6 +13,22 @@
   - SSD
   - Retina-Net
 
+- anchor based detectors
+  - regressing from a box
+- anchor free detectors
+  - regressing from a point
+  - types
+    - key point based
+      - CornerNet
+      - Grid-RCNN for two-stage models
+      - RepPoints
+    - center based
+      - YOLO
+      - GA-RPN for Faster R-CNN
+      - FSAF for RetinaNet
+      - FCOS
+      - FoveaBox
+
 - repooling
   - explicit feature localization
 - Region Proposal Network (RPN)
@@ -45,6 +61,8 @@
 
 ## Evaluation
 
+- DICE
+  - TODO
 - IOU
   - https://silhyeonha-git.tistory.com/3
   - GIOU
@@ -53,7 +71,7 @@
 - recall
   - per object given an IOU threshold
 - F1
-  - a single point in a PR curve
+  - corresponds to a single point in a PR curve
   - a function of a threshold
 - AUC
   - area under a PR curve
@@ -63,7 +81,7 @@
     - $P$: Precision
     - $R$: Recall
 - mAP
-  - mean Average Precision (mAP)
+  - mean Average Precision
   - average AP over all classes
   - $\text{mAP} = {1 \over N} \sum\limits_{i=0}^N \text{AP}_i$
   - https://www.v7labs.com/blog/mean-average-precision
@@ -72,6 +90,27 @@
   - step size
     - recall values: 0.01
     - IOU thresholds: 0.05
+- Confusion matrix in bounding box detection
+  - there exist confidence/IOU thresholds
+  - calculate IOU values for the combinations of each true label and each prediction
+  - if there are multiple labels matching for a single predicted object, we take the object of the biggest IOU among them
+  - if there are multiple objects detected for a single label, we take the object of the biggest IOU among them
+  - we don't take a single prediction nor a single true label as multiple occurance, so we filter out less important overlaps correctly
+  - diagonal count:
+    - for each true label object, if we detect it as a correct class we take it into account here
+  - non diagonal count
+    - for each true lable object, if we detect it as a wrong class we take it into account here
+  - background FP
+    - for each true label object, if we don't detect it at all we take it account here
+  - background FN
+    - for each detection occurance, if there is no true label there at all we take it account here
+
+## Tips
+
+- if a big object is not detected
+  - check the receptive field
+- if a small object is not detected
+  - consider using focal loss
 
 ## Papers
 
@@ -126,10 +165,18 @@ detectors
   - no architecture change
   - Flexible control of model size (?)
   - Hardswish activation function (?)
+  - new model configuration file
   - https://github.com/ultralytics/yolov5
   - https://blog.paperspace.com/train-yolov5-custom-data/
+  -
 
 (2020)
+
+- Bridging the Gap Between Anchor-based and Anchor-free Detection via Adaptive Training Sample Selection
+  - CVPR 2020
+  - proposes Adaptive Tranining Sample Selection (ATSS)
+    - automatically select positive and negative samples according to statistical characteristics of object
+
 
 - Deformable DETR: Deformable Transformers for End-to-End Object Detection
   - address issues on DETR
@@ -164,6 +211,37 @@ detectors
     - Mixup
       - [mixup: Beyond Empirical Risk Minimization](https://arxiv.org/abs/1710.09412)
   - Generalized Intersection over Union (GIOU) for loss function
+  - auto learning bounding box
+  - 16bit floating point
+  - Cross Stage Partial (CSP) backbone
+  - PANet is used for the neck
+  - SGD (default), Adam (alternatively)
+  - loss funciton
+    - $
+\begin{aligned}
+\mathcal{L}=& 1-\text{IoU}+\frac{\rho^{2}\left(b, b^\text{gt}\right)}{c^{2}}+\alpha v-\\
+& \sum_{i=0}^{S^{2}} \sum_{j=0}^{B} I_{i j}^{o b j}\left[\hat{C}_{i} \log \left(C_{i}\right)+\left(1-\hat{C}_{i}\right) \log \left(1-C_{i}\right)\right]-\\
+& \lambda_\text{noobj} \sum_{i=0}^{S^{2}} \sum_{j=0}^{B} I_{i j}^\text{noobj}\left[\hat{C}_{i} \log \left(C_{i}\right)+\left(1-\hat{C}_{i}\right) \log \left(1-C_{i}\right)\right]-\\
+& \sum_{i=0}^{S^{2}} I_{ij}^\text{obj} \sum_{c \in \text {classes}}\left[\hat{p}_{i}(c) \log \left(p_{i}(c)\right)+\left(1-\hat{p_{i}}(c)\right) \log \left(1-p_{i}(c)\right)\right]
+\end{aligned}
+$
+    - cross entropy terms
+    - CIoU
+      - $1 - \text{IoU} + \text{DIoU} + \alpha v$
+      - taking aspect ratio into account
+      - DIoU
+        - $\rho^2(b, b^\text{gt}) \over c^2$
+          - $\rho^2$
+            - Euclidean distance
+          - $c$
+            - the minimum length of diagonal enclosing both boxes
+      - $v = {4 \over \pi}(\arctan{w^\text{gt} \over h^\text{gt}} - \arctan{w \over h})^2$
+      - $\alpha = {v \over (1 - \text{IoU}) + v}$
+    - Focal loss (optional)
+  - references:
+    - https://towardsai.net/p/computer-vision/yolo-v5%e2%80%8a-%e2%80%8aexplained-and-demystified
+    - https://blog.roboflow.com/yolov5-improvements-and-evaluation/
+
 
 (2019)
 
@@ -236,6 +314,15 @@ detectors
     - x, y, w, h, confidence,
     - C = number of class
   - For each grid cell, there can be up to 2 bounding boxes
+  - loss function
+    - $
+\begin{aligned}
+\mathcal{L}(\hat{z}, z) &=\lambda_{\text {coord }} \sum_{i=0}^{S^{2}} \sum_{j=0}^{B} \mathbb{1}_{i j}^{\text {obj }}\left[\left(x_{i}-\hat{x}_{i}\right)^{2}+\left(y_{i}-\hat{y}_{i}\right)^{2}\right] \\
+&+\lambda_{\text {coord }} \sum_{i=0}^{S^{2}} \sum_{j=0}^{B} \mathbb{1}_{i j}^{\text {obj }}\left[\left(\sqrt{w_{i}}-\sqrt{\hat{w}_{i}}\right)^{2}+\left(\sqrt{h_{i}}-\sqrt{\hat{h}_{i}}\right)^{2}\right] \\
+&+\sum_{i=0}^{S^{2}} \sum_{j=0}^{B} \mathbb{1}_{i j}^{\text {obj }}\left(C_{i}-\hat{C}_{i}\right)^{2}+\lambda_{\text {noobj }} \sum_{i=0}^{S^{2}} \sum_{j=0}^{B} \mathbb{1}_{i j}^{\text {noobj }}\left(C_{i}-\hat{C}_{i}\right)^{2} \\
+&+\sum_{i=0}^{S^{2}} \mathbb{1}_{i}^{\text {obj }} \sum_{c \in \text { classes }}\left(p_{i}(c)-\hat{p}_{i}(c)\right)^{2}
+\end{aligned}
+$
 
 - SSD
   - single shot detector

@@ -24,7 +24,7 @@
   - increased number of attention heads
   - conditional generation
     - class guidance
-  - utilized well known architectures
+  - found a better architecture by ablations
 
 - Variational Diffusion Models
   - https://openreview.net/forum?id=2LdBqxc1Yv

@@ -28,6 +28,11 @@ https://machinelearningmastery.com/how-to-implement-the-frechet-inception-distan
 ### Inception score
 
 - The inception v3 model is used for image classification
+- measures
+  - the quality of generated images
+  - the diversity of generated images
+- ranges from 1 to the number of classes
+- the higher the better
 
 ### Wasserstein-2 distance
 

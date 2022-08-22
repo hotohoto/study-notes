@@ -396,6 +396,38 @@
 
 ## 2019
 
+- Large Scale GAN Training for High Fidelity Natural Image Synthesis
+  - ICLR 2019
+  - BigGAN/BigGAN-deep
+    - class conditioned GAN
+  - tried to scale up a few conditional GAN models
+  - baseline: SA-GAN
+  - how?
+    - shared embeddings for the generator
+    - skip-z connections from the latent variable
+    - truncation trick
+      - trading off variety and fidelity explicitly
+      - train a model with $z \sim \mathcal{N}(\mathbf{0}, I)$
+      - when sampling resample values if the value went beyond the threshold
+        - threshold = 2
+          - more variety less fidelity
+        - threshold = 0.04
+          - less variety more fidelity
+      - orthogonal regularization
+        - $R_\beta(W) = \beta||W^T W - I||^2_F$
+        - $R_\beta(W) = \beta||W^T W \odot (\mathbf{1} -I)||^2_F$
+          - (empirically this was better)
+    - etc.
+      - smaller learning rate
+      - train D twice and train G once
+      - compute and apply stats for Batch Normalization across all devices
+      - increase batch size
+      - make it wider (use 50% more channels)
+  - observation
+    - The symptoms of mode collapse are sharp and sudden
+    - Mode collapse happens when the singular values in G explode
+    - The performance of D is more important than the performance of G
+
 - MelGAN: Generative Adversarial Networks for Conditional Waveform Synthesis
   - https://arxiv.org/abs/1910.06711
   - generator
