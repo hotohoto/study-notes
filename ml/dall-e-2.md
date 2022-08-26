@@ -13,7 +13,7 @@
 
 - How to evaluate CLIP
 - how text is preprocessed
-  - huggingface is used... where is the code it is used? 🤔
+  - huggingface is used... where is the code? 🤔
   - where is the language model such as GPT3... is it in the CLIP ?
 - Do we need zenml?
   - https://colab.research.google.com/github/zenml-io/zenml/blob/main/examples/quickstart/notebooks/quickstart.ipynb
@@ -21,6 +21,7 @@
 ## summary
 
 - Hierarchical Text-Conditional Image Generation with CLIP Latents
+  - https://openai.com/dall-e-2/
   - DALL·E 2, unCLIP
   - OpenAI
   - architecture
@@ -35,7 +36,6 @@
     - Denoising Diffusion Implicit Model (DDIM)
     - Sharpness-Aware Minimization (SAM)
     - Break Stretch Ratio (BSR)
-    - [Frechet Inception Distance (FID)](./fid.md)
     - Guided Language to Image Diffusion for Generation and Editing (GLIDE)
 
 ## structure

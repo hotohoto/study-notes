@@ -1,30 +1,44 @@
 # Diffusion based models
 
-## Q&A
-
-- the range of pixel values that are to be normally distributed
-  - with zero mean and one standard deviation
-- meaning of
-  - "multiple noise levels during training and with annealed Langevin dynamics during sampling"
-- how did they measure log likelihoods?
-- what kind of likelihoods based models are there?
-- what's annealed importance sampling
-- what are annealed Langevin dynamics
-
 ## Papers
+
+(2022)
+
+- Hierarchical Text-Conditional Image Generation with CLIP Latents
+  - https://openai.com/dall-e-2/
+  - [](./dall-e-2.md)
+
+- Diffusion-Based Representation Learning
+  - https://arxiv.org/abs/2105.14257
+  - TODO
 
 (2021)
 
 - Diffusion Models Beat GANs on Image Synthesis
   - https://arxiv.org/abs/2105.05233
   - Prafulla Dhariwal, Alex Nichol
-  - Tried various attention sizes.
-    - e.g. 32×32, 16×16, 8×8
-    - originally only 16×16 was used
-  - increased number of attention heads
-  - conditional generation
-    - class guidance
   - found a better architecture by ablations
+  - architecture
+    - U-Net
+      - deeper rather than wider
+        - deeper means more residual blocks for each resolution
+      - BigGAN residual blocks
+      - multi-head attention
+        - various attention sizes.
+          - 32×32, 16×16, 8×8
+          - (originally only 16×16 was used)
+        - more number of attention heads
+          - 1 -> 4
+      - AdaGN
+        - $\operatorname{AdaGN}(h, y) = y_s \operatorname{GroupNorm}(h) + y_b$
+          - where
+            - $y = [y_s, y_b] = \operatorname{dense}(\text{(class embedding)}, \text{t})$
+  - class guidance for conditional generation
+    - can trade off diversity for fidelity
+      - but only when it comes to the labled datasets
+  - ADM
+  - ADM-G
+  - ADM-U
 
 - Variational Diffusion Models
   - https://openreview.net/forum?id=2LdBqxc1Yv
@@ -34,6 +48,7 @@
 - Score-Based Generative Modeling through Stochastic Differential Equations
   - https://arxiv.org/abs/2011.13456
   - ICLR 2021, Yang Song, Jascha Sohl-Dickstein, Diederik P. Kingma, Abhishek Kumar, Stefano Ermon, Ben Poole
+  - TODO
 
 - Denoising Diffusion Implicit Models (DDIM)
   - https://arxiv.org/abs/2010.02502
@@ -72,8 +87,11 @@
       - explains relatively poor log likelihoods
       - the majority of the models' lossless codelength are consumed to describe imperceptible image details
   - architecture
-    - PixelCNN++
-    - ...
+    - TODO
+    - PixelCNN++ (?)
+    - U-Net
+    - global attention
+    - timestep embedding
   - notations
     - $\mathbf{x}_0$: observed examples
     - $\mathbf{x}_{1:T}$: latent variables
@@ -147,11 +165,9 @@
   - terminologies
     - quasy-static process
 
-## Prerequisite
-
-- [FID](./fid.md)
 
 ## References
 
+- [Sample quality metrics](./sample-quality-metrics.md)
 - [What are diffusion models](https://lilianweng.github.io/posts/2021-07-11-diffusion-models/)
   - DDPM, Improved DDPM, DDIM, ...

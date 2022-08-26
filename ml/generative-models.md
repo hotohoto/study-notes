@@ -1,4 +1,13 @@
-## TODO
+# An overview of Generative Models
+
+## A comparison of genertive models
+
+|            | density  | fidelity | diversity | inference speed | training stability |
+| ---------- | -------- | -------- | --------- | --------------- | ------------------ |
+| VAE        | explicit | low      | high      | high            | high               |
+| GAN        | implicit | high     | low       | high            | low                |
+| Flow-based | explicit |          |           |                 |                    |
+| Diffusion  | explicit | high     | high      | low             | high               |
 
 ## for Videos
 

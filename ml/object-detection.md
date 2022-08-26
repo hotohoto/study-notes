@@ -177,7 +177,6 @@ detectors
   - proposes Adaptive Tranining Sample Selection (ATSS)
     - automatically select positive and negative samples according to statistical characteristics of object
 
-
 - Deformable DETR: Deformable Transformers for End-to-End Object Detection
   - address issues on DETR
     - faster training
@@ -214,7 +213,7 @@ detectors
   - auto learning bounding box
   - 16bit floating point
   - Cross Stage Partial (CSP) backbone
-  - PANet is used for the neck
+  - Path Aggregation Network (PANet) is used for the neck
   - SGD (default), Adam (alternatively)
   - loss funciton
     - $
@@ -231,7 +230,7 @@ $
       - taking aspect ratio into account
       - DIoU
         - $\rho^2(b, b^\text{gt}) \over c^2$
-          - $\rho^2$
+          - $\rho^2(\cdot, \cdot)$
             - Euclidean distance
           - $c$
             - the minimum length of diagonal enclosing both boxes
@@ -271,6 +270,73 @@ $
   - https://arxiv.org/abs/1804.02767
   - Darknet-53
 
+- An intriguing failing of convolutional neural networks and the CoordConv solution
+  - NeurIPS 2018
+  - vanilla CNNs are not good at coordinates transformation
+  - CoordConv
+    - giving convolution access to its own input coordinates
+      - through the use of extra coordinate channels
+    - good at MNIST, Atari games
+  - TODO
+
+- nnU-Net: Self-adapting Framework for U-Net-Based Medical Image Segmentation
+  - https://arxiv.org/abs/1809.10486
+  - (Revised version)
+    - nnU-Net: a self-configuring method for deep learning-based biomedical image segmentation
+    - Nature Methods 2020
+    - https://www.nature.com/articles/s41592-020-01008-z
+  - the Medical Segmentation Decatholon Challenge
+    - 7 open datasets with 7 holdout sets
+    - 3 hidden datasets
+    - supposed to create an automatic method
+    - the method is evaluated on the 3 hidden datasets
+  - network architectures
+    - 2D U-Net
+      - generates full resolution segmentations
+    - 3D U-Net
+      - generates full resolution segmentations
+      - maybe for patch images
+    - U-Net Cascade
+      - (1st stage) 3D U-Net low resolution
+      - (2nd stage) 3D U-Net high resolution refinement
+    - (modifications)
+      - instance normalization instead of BN
+      - leaky ReLU instead of ReLU
+  - preprocessing
+    - cropping
+    - resampling
+    - normalization
+  - training
+    - 5-fold CV
+    - loss
+      - $L_\text{dice} + L_\text{CE}$
+    - optimizer setting
+      - ADAM
+      - early stopping
+    - data augmentation
+      - (on the fly)
+        - random rotation
+        - random scaling
+        - random slastic defromations
+        - gamma correction
+        - mirroring
+    - patch sampling
+      - make sure that for each batch 1/3 samples have at least one random foreground class
+  - inference
+    - patch-based strategy
+    - ensembling across test-time augmentations and 5 networks
+  - post-processing
+    - enforcing single connected components if applicable
+  - ensemble models and model selection
+    - candidates
+      - 2D
+      - 3D
+      - Cascade
+      - 2D + 3D
+      - 2D + Cascade
+      - 3D + Cascade
+    - based on CV scores on the training set
+
 (2017)
 
 - `Mask-RCNN`
@@ -285,6 +351,11 @@ $
   - An improved version of Non-maximum Suppression (NMS)
 
 (2016)
+
+- 3D U-Net: Learning Dense Volumetric Segmentation from Sparse Annotation
+  - MICCAI 2016
+  - https://arxiv.org/abs/1606.06650
+  - TODO
 
 - YOLO9000: Better, Faster, Stronger
   - https://arxiv.org/abs/1612.08242

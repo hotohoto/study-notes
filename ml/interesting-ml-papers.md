@@ -831,6 +831,7 @@
   - https://arxiv.org/abs/1701.07875
   - Wasserstein distance
     - Earth-Mover distance
+    - https://youtu.be/CDiol4LG2Ao
   - Addressed the vanilla GAN problems
     - vanishing gradients
     - mode collapse
