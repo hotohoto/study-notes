@@ -7,8 +7,6 @@
 
 ## mini DALL-E 2
 
-
-
 ## Questions
 
 - How to evaluate CLIP
@@ -18,7 +16,23 @@
 - Do we need zenml?
   - https://colab.research.google.com/github/zenml-io/zenml/blob/main/examples/quickstart/notebooks/quickstart.ipynb
 
-## summary
+## structure
+
+TODO internals
+
+- dalle2
+  - clip
+  - diffusion_prior
+    - prior_network
+    - (clip)
+  - decoder
+    - unet1
+    - unet2
+    - (clip)
+
+## Papers
+
+(2022)
 
 - Hierarchical Text-Conditional Image Generation with CLIP Latents
   - https://openai.com/dall-e-2/
@@ -37,22 +51,6 @@
     - Sharpness-Aware Minimization (SAM)
     - Break Stretch Ratio (BSR)
     - Guided Language to Image Diffusion for Generation and Editing (GLIDE)
-
-## structure
-
-TODO internals
-
-- dalle2
-  - clip
-  - diffusion_prior
-    - prior_network
-    - (clip)
-  - decoder
-    - unet1
-    - unet2
-    - (clip)
-
-## Prerequisite
 
 (2021)
 
@@ -75,7 +73,10 @@ TODO internals
     - gumble softmax relaxation
       - replacing argmax to be able to calculate gradients
       - only for training
+
 - Learning Transferable Visual Models From Natural Language Supervision
+  - https://openai.com/blog/clip/
+  - https://arxiv.org/abs/2103.00020
   - Contrastive Language–Image Pre-training (CLIP)
   - OpenAI
   - Used natural language supervision so that it may be also scalable to all the images and text on the internet
@@ -83,30 +84,8 @@ TODO internals
   - properties
     - robust to image distribution shift
     - good at zero-shot settings
-    -
-  - https://openai.com/blog/clip/
-  - https://arxiv.org/abs/2103.00020
-
-(2021)
-- Diffusion Models Beat GANs on Image Synthesis
-  - Tried various attention sizes.
-    - e.g. 32×32, 16×16, 8×8
-    - originally only 16×16 was used
-  - Increased number of attention heads
-  - Class Guidance
 
 (2020)
-
-- Denoising Diffusion Probabilistic Models (DDPM)
-  - PixelCNN++
-  - $$
-  - reverse process
-    -
-  - forward process
-    - diffusion process
-    - fixed to a Markov Chain that gradually adds Gaussian noise
-    - with variance schedule
-      - $\beta_1, \beta_2, ..., \beta_T$
 
 - Sharpness-Aware Minimization for Efficiently Improving Generalization
   - SAM

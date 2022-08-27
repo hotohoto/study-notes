@@ -57,7 +57,29 @@
       - suggest a decent way to the model complexity of Transformers
     - https://youtu.be/Z4CWwVxKoU0
 
+- Swin UNETR: Swin Transformers for Semantic Segmentation of Brain Tumors in MRI Images
+  - Nvidia
+  - https://arxiv.org/abs/2201.01266
+  - Swin U-Net Transformer for segmentation tasks
+  - BraTS 2021 segmentation challenge
+
 ## 2021
+
+- Swin Transformer: Hierarchical Vision Transformer using Shifted Windows
+  - ICCV 2021
+  - Microsoft Research Asia
+  - https://arxiv.org/abs/2103.14030
+  - A hierarchical Transformer whose representation is computed with shifted windows
+    - limits self-attention computation to non-overlapping local window
+    - still allows cross-window connection
+
+- An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale
+  - ICLR 2021
+  - Google Research
+  - Vision Transformer (ViT)
+  - https://arxiv.org/abs/2010.11929
+  - Applied transformers to sequence of image patches
+  - Pretraining was helpful to beat SOTA convolutional networks
 
 - Emerging Properties in Self-Supervised Vision Transformers
   - DINO, Facebook AI Research
