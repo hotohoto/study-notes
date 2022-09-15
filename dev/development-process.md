@@ -52,6 +52,8 @@
   - Ask what they need.
 - Investigate things they've done before.
 - Provide hospitality.
+- Listen carefully and more
+  - they would not accept any advices if they don't agree
 
 ## branching workflows
 
