@@ -1,12 +1,31 @@
 # Diffusion based models
 
+## Outlooks on important papers
+
+| Publication        | Year | Title (Alias)                                                        | FID*  | Remark                                                            | Architecture                  |
+| ------------------ | ---- | -------------------------------------------------------------------- | ----- | ----------------------------------------------------------------- | ----------------------------- |
+| JMLR               | 2005 | Estimation of Non-Normalized Statistical Models by Score Matching    |       | Introduce score matching                                          |                               |
+| Neural Computation | 2011 | A Connection Between Score Matching and Denoising Autoencoders       |       | Connect score matching and denoising AEs                          |                               |
+| ICLR               | 2014 | Auto-Encoding Variational Bayes (VAE)                                |       |                                                                   |                               |
+| (PMLR)             | 2015 | Deep Unsupervised Learning using Nonequilibrium Thermodynamics (NET) |       | Introduce probabilistic diffusion models                          | CNN                           |
+| NeurIPS            | 2019 | (SMLD aka NCSN)                                                      | 25.32 | Use score matching with Langevin dynamics                         | RefineNet, CondInstanceNorm++ |
+| NeurIPS            | 2020 | (DDPM)                                                               | 3.17  | Simplify the loss function and investigate the connection to NCSN | UNet, self-attn, GN           |
+| (PMLR)             | 2021 | (Improved DDPM)                                                      | 2.94  | TODO                                                              |                               |
+| ICLR               | 2021 | (NCSN++ / DDPM++ along with SDE)                                           | 2.92  | TODO Connect SMLD and DDPM with SDE                               |                               |
+| ICLR               | 2021 | (DDIM)                                                               |       | TODO Do faster sampling and interpolation without retraining      |                               |
+| NeurIPS            | 2021 | Diffusion Models Beat GANs on Image Synthesis                        |       | Do more experiments and find some insights                        |                               |
+| NeurIPS            | 2021 | Variational Diffusion Models                                         |       | TODO                                                              |                               |
+| ICLR               | 2022 | (Analytic-DPM)                                                       |       | TODO                                                              |                               |
+
+- (*) FID on CIFAR-10
+
 ## Papers
 
 (2022)
 
 - Hierarchical Text-Conditional Image Generation with CLIP Latents
   - https://openai.com/dall-e-2/
-  - [](./dall-e-2.md)
+  - [DALLE2](./dall-e-2.md)
 
 - Diffusion-Based Representation Learning
   - https://arxiv.org/abs/2105.14257
@@ -51,6 +70,7 @@
   - TODO
 
 - Denoising Diffusion Implicit Models (DDIM)
+  - ICLR 2021
   - https://arxiv.org/abs/2010.02502
   - Jiaming Song, Chenlin Meng, Stefano Ermon
   - speeded up diffusion model sampling
@@ -59,6 +79,7 @@
     - enables meaningful interpolatation in the latent variable
 
 - Improved Denoising Diffusion Probabilistic Models
+  - PMLR 2021
   - https://arxiv.org/abs/2102.09672
   - Alex Nichol, Prafulla Dhariwal
   - improved DDPM
@@ -76,22 +97,84 @@
 - Denoising Diffusion Probabilistic Models (DDPM)
   - https://arxiv.org/abs/2006.11239
   - https://lilianweng.github.io/posts/2021-07-11-diffusion-models/
+  - what they did
+    - simplified the loss function of the diffusion models
+      - (mainly from the perspective of the comparison to SMLD)
+      - fix $\beta$ as constants
+      - fix $\Sigma_\theta(\mathbf{x}_t, t)$ as untrained time-dependent constants
+      - replace weights terms with 1 so that focus more on large $t$ when the task is more difficult
   - contributions
     - showed that high quality image generation is possible by DDPM
     - showed connections/equivalence to/with denoising score matching when
       - training with multiple noise levels
       - sampling with annealed Langevin dynamics
         - https://en.wikipedia.org/wiki/Langevin_dynamics
-    - training on a weighted variational bound
+    - training on a "weighted" variational bound
     - seeing DDPM as progressive decoding in the context of lossy decompression
       - explains relatively poor log likelihoods
       - the majority of the models' lossless codelength are consumed to describe imperceptible image details
   - architecture
-    - TODO
-    - PixelCNN++ (?)
-    - U-Net
-    - global attention
-    - timestep embedding
+    - U-Net based on a Wide ResNet (as in PixelCNN++)
+    - group normalization
+    - self-attention block at the 16 x 16 resolution
+  - rao blackwell theorem (? TODO)
+    - https://en.wikipedia.org/wiki/Rao%E2%80%93Blackwell_theorem
+    - https://www.youtube.com/results?search_query=rao+blackwell+theorem+
+    - https://arxiv.org/abs/2101.01011
+
+(2019)
+
+- Generative Modeling by Estimating Gradients of the Data Distribution
+  - NeurIPS 2019, Yang Song, Stefano Ermon
+  - https://arxiv.org/abs/1907.05600
+  - https://youtu.be/m0sehjymZNU
+  - contribution
+    - tried to use score matching along with Langevin dynamics for generative modeling
+  - Noise Conditional Score Network (NCSN)
+    - which is Score Matching with Langevin Dynamics (SMLD)
+  - "annealed" Langevin dynamics
+    - for better data generation
+    - aneal down the noise level
+    - do Langevin dynamics multiple times
+      - using the result samples from the previous step as initial data points
+  - score matching
+    - definition
+      - score of probability density $p(\mathbf{x})$
+        - defined to be $\nabla_\mathbf{x}\log{p(\mathbf{x})}$
+      - score network
+        - a neural network parameterized by $\theta$
+        - $s_\theta(\mathbf{x}): \mathbb{R}^D \to \mathbb{R}^D$
+        - trained to approximate the score of $p_\text{data}(\mathbf{x})$
+      - where
+        - $\mathbf{x} \sim p_\text{data}(\mathbf{x})$
+        - $D$: data dimension
+    - learn the purturbed gradients of the data distribution
+      - purturb the data
+        - because it's hard to learn high dimensinoal gradients while the data resides on low-dimensional manifolds
+    - requires no sampling during training
+  - pros
+    - flexible model architectures
+  - application
+    - image inpainting
+  - architecture
+    - RefineNet (a variant of U-Net)
+
+(2015)
+
+- Deep unsupervised learning using nonequilibrium thermodynamics
+  - PMLR 2015
+  - https://arxiv.org/abs/1503.03585
+  - contributions
+    - Introduced probabilistic diffusion models
+      - pros
+        - flexible model structure
+        - easy sampling
+        - (?) easy multiplication with other distribution in order to compute a posterior
+        - easy to evaluate the model log likelihood
+  - thousands of time steps
+  - terminologies
+    - quasy-static process
+
   - notations
     - $\mathbf{x}_0$: observed examples
     - $\mathbf{x}_{1:T}$: latent variables
@@ -124,47 +207,38 @@
           - $\tilde{\beta}_t = \frac{1-\bar{\alpha}_{t}-1}{1-\bar{\alpha}_{t}} \beta_{t}$
       - loss function
         - $\mathbb{E}_{q}[\underbrace{D_{\mathrm{KL}}\left(q\left(\mathbf{x}_{T} \mid \mathbf{x}_{0}\right) \| p_{\theta}\left(\mathbf{x}_{T}\right)\right)}_{L_{T}}+\sum_{t=2}^{T} \underbrace{D_{\mathrm{KL}}\left(q\left(\mathbf{x}_{t-1} \mid \mathbf{x}_{t}, \mathbf{x}_{0}\right) \| p_{\theta}\left(\mathbf{x}_{t-1} \mid \mathbf{x}_{t}\right)\right)}_{L_{t-1}}-\underbrace{\log p_{\theta}\left(\mathbf{x}_{0} \mid \mathbf{x}_{1}\right)}_{L_{0}}]$
+  - TODO
+      - 2 algorithm
+      - 2.1
+      - 2.2
+      - 2.3
+      - 2.4
+      - 2.5
+      - 2.6
+    - 3 experiments
+      - 3.1
+      - 3.2
+    - 4 conclusion
+    - appendix
+      - A Conditional entropy bounds derivation
+      - B Log likelihood lower bound
+        - B.1
+        - B.2
+        - B.3
+          -
+        - B.4
+      - C Purturbed Gaussian Transition
 
-(2019)
+(2005)
 
-- Generative Modeling by Estimating Gradients of the Data Distribution
-  - NeurIPS 2019, Yang Song, Stefano Ermon
-  - https://arxiv.org/abs/1907.05600
-  - https://youtu.be/m0sehjymZNU
-  - "annealed" Langevin dynamics
-    - for better data generation
-    - aneal down the noise level
-    - do Langevin dynamics multiple times
-      - using the result samples from the previous step as initial data points
-  - score matching
-    - definition
-      - score of probability density $p(\mathbf{x})$
-        - defined to be $\nabla_\mathbf{x}\log{p(\mathbf{x})}$
-      - score network
-        - a neural network parameterized by $\theta$
-        - $s_\theta(\mathbf{x}): \mathbb{R}^D \to \mathbb{R}^D$
-        - trained to approximate the score of $p_\text{data}(\mathbf{x})$
-      - where
-        - $\mathbf{x} \sim p_\text{data}(\mathbf{x})$
-        - $D$: data dimension
-    - learn the purturbed gradients of the data distribution
-      - purturb the data
-        - because it's hard to learn high dimensinoal gradients while the data resides on low-dimensional manifolds
-    - requires no sampling during training
-  - flexible model architectures
-  - application
-    - image inpainting
-
-(2015)
-
-- Deep unsupervised learning using nonequilibrium thermodynamics
-  - https://arxiv.org/abs/1503.03585
-  - DDPM
-  - acheived bot tractability and flexibility
-  - thousands of time steps
-  - terminologies
-    - quasy-static process
-
+- Estimation of Non-Normalized Statistical Models by Score Matching
+  - JMLR 2005
+  - Aapo Hyvärinen
+  - https://www.jmlr.org/papers/v6/hyvarinen05a.html
+  - contributions
+    - Introduced score matching and how to train the score
+  - Note that "score" here is the gradient of the log density with respect to the data vector
+    - not with resepect to the parameters like in statistics usually
 
 ## References
 

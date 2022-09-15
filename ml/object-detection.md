@@ -401,6 +401,11 @@ $
 
 (2015)
 
+- U-Net: Convolutional Networks for Biomedical Image Segmentation
+  - https://arxiv.org/abs/1505.04597
+  - no fully connected layer
+  - elastic deformations
+  - weighted loss for separating objects touch each other
 - Fast R-CNN
   - almost single stage model
   - R-CNN + SPPnet

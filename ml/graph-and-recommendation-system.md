@@ -11,7 +11,7 @@
 (Recommended materials by the lecturer for further study)
 
 - Mining of massive datasets (2nd edition)
-  - Jure Leskovec, et al.
+  - Jure Leskovec et al.
 - Networks crowds and markets
   - David Easley and Jon Kleinberg
 - CS224W: Machine Learning with Graphs

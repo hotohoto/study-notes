@@ -38,22 +38,21 @@ cons
   - rejects too much
   - ...(TODO)
 
-### Importance Sampling (skip)
+### Importance Sampling
 
-- estimating properties of a particular distribution
-- only having samples generated from a different distribution than the distribution of interest.
-- variance reduction technique
-
-- Let X : Ω → R $X:\Omega \to {\mathbb {R}}$ be a random variable in some probability space $(\Omega ,{\mathcal {F}},P)$.
-- assumption
-  - sampling from P is difficult
-  - or we want to lower the variance of the estimation of $E[X;P]$
-- accumulate importance or weight from each sample
-- replace probability function
-- examples
-  - Finding conditional probability in a Bayesian network, reject all the samples that doesn't hold the condition when we samples following the topological order.
-    - P ~ conditional probability we're finding
-    - L ~ unconditional probability we're sampling on
+- an approximation method to calculate expectation of $f(x)$ according to $P$ where $x \sim P$
+  - sample states from a different distribution
+- How?
+  - where $X:\Omega \to {\mathbb {R}}$ be a random variable in some probability space $(\Omega ,{\mathcal {F}},P)$.
+  - $E(f(X); P) = \int f(x)p(x)dx = \int f(x){p(x)\over q(x)}q(x)dx \approx {1 \over n} \sum\limits_i f(x_i){p(x_i)\over q(x_i)}$
+    - where $x_i \sim q$
+- pros
+    - It can lower the variance of the estimation of $E(f(X); P)$
+      - it depends on how we pick $q$
+    - It can sample states even if $P$ is difficult to sample from
+    - It's useful when estimating properties of a particular distribution
+- References
+  - https://towardsdatascience.com/importance-sampling-introduction-e76b2c32e744
 
 ### Annealed Importance Sampling
 

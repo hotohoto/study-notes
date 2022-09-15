@@ -53,11 +53,11 @@ Main Papers
 - [G.E. Hinton, Keeping Neural Network simple by minimizing the description length of weights, 1993.](http://www.cs.toronto.edu/~fritz/absps/colt93.pdf)
 - [Bishop, Ensemble Learning in Bayesian Neural Networks, 1998.](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/bishop-ensemble-nato-98.pdf)
 - [Alex Graves, Practical Variational Inference for Neural Networks, 2011.](https://www.cs.toronto.edu/~graves/nips_2011.pdf)
-- [Charles Blundell et al, Bayes by Backprop, 2015.](https://arxiv.org/abs/1505.05424)
-- [Yarin Gal et al, Dropout as a Bayesian Approximation, 2016](https://arxiv.org/pdf/1506.02142.pdf)
+- [Charles Blundell et al., Bayes by Backprop, 2015.](https://arxiv.org/abs/1505.05424)
+- [Yarin Gal et al., Dropout as a Bayesian Approximation, 2016](https://arxiv.org/pdf/1506.02142.pdf)
 
 Additional Papers
 
 - [Peter Grunwald, A tutorial introduction to the minimum description length principle, 2004](https://arxiv.org/abs/math/0406077)
 - [Viet Hung Tran, Copula Variational Bayes inference via information geometry, 2018](https://arxiv.org/abs/1803.10998)
-- [Vikram Mullachery et al, Bayesian Neural Network, 2018](https://arxiv.org/abs/1801.07710)
+- [Vikram Mullachery et al., Bayesian Neural Network, 2018](https://arxiv.org/abs/1801.07710)

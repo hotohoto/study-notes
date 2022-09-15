@@ -196,7 +196,7 @@
 
 - Intriguing Properties of Contrastive Losses
   - https://arxiv.org/abs/2011.02803
-  - Ting Chen et al (Google Research)
+  - Ting Chen et al. (Google Research)
   - NeurIPS 2021
   - more analysis on contrastive learning like SimCLR
     - generalized contrastive losses
@@ -961,7 +961,7 @@
 
 - Auto-Encoding Variational Bayes
   - https://arxiv.org/abs/1312.6114
-  - Diederik P Kingma et al
+  - Diederik P Kingma et al.
   - object
     - minimizes a reconstruction error
       - in the sense of the KL divergence between the parametric posterior and the true posterior

@@ -1,14 +1,27 @@
+# DALL·E 2
+
 ## TODO
 
-- skim/read from Figure 7
-- clear server traking database and artifacts and restart the servers
+- clear server tracking database and artifacts and restart the servers
 - download more images
-- 모델 사이즈 줄이기?
 
+- High-Resolution Image Synthesis with Latent Diffusion Models
+    - CVPR 2022
+    - stable diffusion
+    - https://arxiv.org/abs/2112.10752
+    - https://github.com/CompVis/stable-diffusion
+    - https://github.com/huggingface/diffusers
 ## mini DALL-E 2
 
 ## Questions
 
+
+- TODO https://www.assemblyai.com/blog/how-dall-e-2-actually-works/
+  - AR or diffusion for prior?
+    - what kind of AR model
+  - only caption or both caption and text embedding?
+  - super resolution??
+    - what is the final image size?
 - How to evaluate CLIP
 - how text is preprocessed
   - huggingface is used... where is the code? 🤔
