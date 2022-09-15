@@ -79,6 +79,22 @@
 
 - if the domains are different their functions are different as well
 
+### Prepositions
+
+$f(A \cup B) = f(A) \cup f(B)$
+
+$f(A \cap B) \subseteq f(A) \cap f(B)$
+
+$f(f^{-1}(B_1)) \subseteq B_1$
+
+- $B_1 \subseteq B$
+- due to codomain which is not range
+
+$f^{-1}(f(A_1)) \supseteq A_1$
+
+- $A_1 \subseteq A$
+- due to elements $a_2 \in A$ s.t. $a2 \notin A_1$ and $f(a_2) \in f(A_1)$
+
 ## size of set
 
 - `equipotent`
