@@ -1,6 +1,6 @@
 # Diffusion based models
 
-## Outlooks on important papers
+## Outlooks on important diffusion papers
 
 | Publication        | Year | Title (Alias)                                                        | FID*  | Remark                                                            | Architecture                  |
 | ------------------ | ---- | -------------------------------------------------------------------- | ----- | ----------------------------------------------------------------- | ----------------------------- |
@@ -11,7 +11,7 @@
 | NeurIPS            | 2019 | (SMLD aka NCSN)                                                      | 25.32 | Use score matching with Langevin dynamics                         | RefineNet, CondInstanceNorm++ |
 | NeurIPS            | 2020 | (DDPM)                                                               | 3.17  | Simplify the loss function and investigate the connection to NCSN | UNet, self-attn, GN           |
 | (PMLR)             | 2021 | (Improved DDPM)                                                      | 2.94  | TODO                                                              |                               |
-| ICLR               | 2021 | (NCSN++ / DDPM++ along with SDE)                                           | 2.92  | TODO Connect SMLD and DDPM with SDE                               |                               |
+| ICLR               | 2021 | (NCSN++ / DDPM++)                                                    | 2.92  | TODO Connect SMLD and DDPM with SDE                               |                               |
 | ICLR               | 2021 | (DDIM)                                                               |       | TODO Do faster sampling and interpolation without retraining      |                               |
 | NeurIPS            | 2021 | Diffusion Models Beat GANs on Image Synthesis                        |       | Do more experiments and find some insights                        |                               |
 | NeurIPS            | 2021 | Variational Diffusion Models                                         |       | TODO                                                              |                               |
@@ -113,6 +113,38 @@
     - seeing DDPM as progressive decoding in the context of lossy decompression
       - explains relatively poor log likelihoods
       - the majority of the models' lossless codelength are consumed to describe imperceptible image details
+  - notations
+    - $\mathbf{x}_0$: observed examples
+    - $\mathbf{x}_{1:T}$: latent variables
+      - $\mathbf{x}_T \sim \mathcal{N}(\mathbf{x}_T; \mathbf{0}, \mathbf{I})$
+    - $p_\theta$
+      - stochastic process described by our model
+    - $q$
+      - stochastic process we want to approximate
+    - $\mathbf{z}, \mathbf{z_t}, ...$
+      - each of them $\sim \mathcal{N}(\mathbf{0}, I)$
+    - $\beta_t = 1 - \alpha_t$
+    - $\bar{\alpha}_t = \prod_{i=1}^t \alpha_i$
+  - Diffusion models
+    - latent variable models
+    - $p_\theta(\mathbf{x}_0) = \int p_\theta (\mathbf{x}_{0:T}) d\mathbf{x}_{1:T}$
+    - forward process
+      - diffusion process
+      - fixed to a Markov Chain that gradually adds Gaussian noise
+      - with variance schedule
+        - $\beta_1, \beta_2, ..., \beta_T$
+      - $\mathbf{x_t} = \sqrt{\bar{\alpha}_t} \mathbf{x}_0 + \sqrt{1-\bar{\alpha}_t}\mathbf{z}_t$
+    - reverse process
+      - starting at $\beta_T$
+      - a parameterized Markov chain is assumed
+      - $q(\mathbf{x}_{t-1} | \mathbf{x}_t, \mathbf{x}_0) = \mathcal{N}(\mathbf{x}_{t-1}; \tilde{\mathbf{\mu}}(\mathbf{x}_t, \mathbf{x}_0), \tilde{\beta}_t I)$
+        - we need to be able to calculate these two terms analytically to calculate the loss
+          - $\tilde{\mathbf{\mu}}(\mathbf{x}_t, \mathbf{x}_0)$
+            - $= \frac{\sqrt{\alpha_{t}}\left(1-\bar{\alpha}_{t-1}\right)}{1-\bar{\alpha}_{t}} \mathbf{x}_{t}+\frac{\sqrt{\bar{\alpha}_{t-1}} \beta_{t}}{1-\bar{\alpha}_{t}} \mathbf{x}_{0}$
+            - $= \frac{1}{\sqrt{\alpha_{t}}}\left(\mathbf{x}_{t}-\frac{\beta_{t}}{\sqrt{1-\bar{\alpha}_{t}}} \mathbf{z}_{t}\right)$
+          - $\tilde{\beta}_t = \frac{1-\bar{\alpha}_{t}-1}{1-\bar{\alpha}_{t}} \beta_{t}$
+      - loss function
+        - $\mathbb{E}_{q}[\underbrace{D_{\mathrm{KL}}\left(q\left(\mathbf{x}_{T} \mid \mathbf{x}_{0}\right) \| p_{\theta}\left(\mathbf{x}_{T}\right)\right)}_{L_{T}}+\sum_{t=2}^{T} \underbrace{D_{\mathrm{KL}}\left(q\left(\mathbf{x}_{t-1} \mid \mathbf{x}_{t}, \mathbf{x}_{0}\right) \| p_{\theta}\left(\mathbf{x}_{t-1} \mid \mathbf{x}_{t}\right)\right)}_{L_{t-1}}-\underbrace{\log p_{\theta}\left(\mathbf{x}_{0} \mid \mathbf{x}_{1}\right)}_{L_{0}}]$
   - architecture
     - U-Net based on a Wide ResNet (as in PixelCNN++)
     - group normalization
@@ -169,65 +201,28 @@
       - pros
         - flexible model structure
         - easy sampling
-        - (?) easy multiplication with other distribution in order to compute a posterior
+        - easy multiplication with other distribution in order to compute a posterior
         - easy to evaluate the model log likelihood
-  - thousands of time steps
-  - terminologies
-    - quasy-static process
-
-  - notations
-    - $\mathbf{x}_0$: observed examples
-    - $\mathbf{x}_{1:T}$: latent variables
-      - $\mathbf{x}_T \sim \mathcal{N}(\mathbf{x}_T; \mathbf{0}, \mathbf{I})$
-    - $p_\theta$
-      - stochastic process described by our model
-    - $q$
-      - stochastic process we want to approximate
-    - $\mathbf{z}, \mathbf{z_t}, ...$
-      - each of them $\sim \mathcal{N}(\mathbf{0}, I)$
-    - $\beta_t = 1 - \alpha_t$
-    - $\bar{\alpha}_t = \prod_{i=1}^t \alpha_i$
   - Diffusion models
-    - latent variable models
-    - $p_\theta(\mathbf{x}_0) = \int p_\theta (\mathbf{x}_{0:T}) d\mathbf{x}_{1:T}$
-    - forward process
-      - diffusion process
-      - fixed to a Markov Chain that gradually adds Gaussian noise
-      - with variance schedule
-        - $\beta_1, \beta_2, ..., \beta_T$
-      - $\mathbf{x_t} = \sqrt{\bar{\alpha}_t} \mathbf{x}_0 + \sqrt{1-\bar{\alpha}_t}\mathbf{z}_t$
-    - reverse process
-      - starting at $\beta_T$
-      - a parameterized Markov chain is assumed
-      - $q(\mathbf{x}_{t-1} | \mathbf{x}_t, \mathbf{x}_0) = \mathcal{N}(\mathbf{x}_{t-1}; \tilde{\mathbf{\mu}}(\mathbf{x}_t, \mathbf{x}_0), \tilde{\beta}_t I)$
-        - we need to be able to calculate these two terms analytically to calculate the loss
-          - $\tilde{\mathbf{\mu}}(\mathbf{x}_t, \mathbf{x}_0)$
-            - $= \frac{\sqrt{\alpha_{t}}\left(1-\bar{\alpha}_{t-1}\right)}{1-\bar{\alpha}_{t}} \mathbf{x}_{t}+\frac{\sqrt{\bar{\alpha}_{t-1}} \beta_{t}}{1-\bar{\alpha}_{t}} \mathbf{x}_{0}$
-            - $= \frac{1}{\sqrt{\alpha_{t}}}\left(\mathbf{x}_{t}-\frac{\beta_{t}}{\sqrt{1-\bar{\alpha}_{t}}} \mathbf{z}_{t}\right)$
-          - $\tilde{\beta}_t = \frac{1-\bar{\alpha}_{t}-1}{1-\bar{\alpha}_{t}} \beta_{t}$
-      - loss function
-        - $\mathbb{E}_{q}[\underbrace{D_{\mathrm{KL}}\left(q\left(\mathbf{x}_{T} \mid \mathbf{x}_{0}\right) \| p_{\theta}\left(\mathbf{x}_{T}\right)\right)}_{L_{T}}+\sum_{t=2}^{T} \underbrace{D_{\mathrm{KL}}\left(q\left(\mathbf{x}_{t-1} \mid \mathbf{x}_{t}, \mathbf{x}_{0}\right) \| p_{\theta}\left(\mathbf{x}_{t-1} \mid \mathbf{x}_{t}\right)\right)}_{L_{t-1}}-\underbrace{\log p_{\theta}\left(\mathbf{x}_{0} \mid \mathbf{x}_{1}\right)}_{L_{0}}]$
-  - TODO
-      - 2 algorithm
-      - 2.1
-      - 2.2
-      - 2.3
-      - 2.4
-      - 2.5
-      - 2.6
-    - 3 experiments
-      - 3.1
-      - 3.2
-    - 4 conclusion
-    - appendix
-      - A Conditional entropy bounds derivation
-      - B Log likelihood lower bound
-        - B.1
-        - B.2
-        - B.3
-          -
-        - B.4
-      - C Purturbed Gaussian Transition
+    - (the same as the model description in DDPM paper's background section)
+    - (but with slightly different notations)
+  - Model probability
+    - we can calculate a probability value for a given data sample according to the trained model
+    - $p(\mathbf{x}^{(0)}) = \int d\mathbf{x}^{1 \cdots T} q(\mathbf{x}^{(1 \cdots T)} \mid \mathbf{x}^{(0)}) p(\mathbf{x}^{(T)})\prod\limits_{t=1}^T {p(\mathbf{x}^{(t-1)}\mid\mathbf{x}^{(t)}) \over q(\mathbf{x}^{(t)}\mid\mathbf{x}^{(t-1)})}$
+      - For infinifestimal $\beta$ the forward and reverse distribution over trajectories can be made identical.
+        - Then only a single sample from $q(\mathbf{x}^{(1 \cdots T)} \mid \mathbf{x}^{(0)})$ is required to evalute the integral above.
+        - This corresponds to the case of a quasy-static process.
+  - Model multiplied by another distribution
+    - useful when we compute posterior probability or represent inpainting with mathematical notations
+    - if we can represent the modified reverse process with respect to the original reverse process, it becomes tractable
+    - $\tilde{p}(\mathbf{x}^{(t)}) = {1 \over \tilde{Z}_t} p(\mathbf{x}^{(t)})r(\mathbf{x}^{(t)})$
+    - $\tilde{p}(\mathbf{x}^{(t)} \mid \mathbf{x}^{(t+1)}) = {1 \over \tilde{Z}_t(\mathbf{x}^{(t+1)})}p(\mathbf{x}^{(t)} \mid \mathbf{x}^{(t+1)})r(\mathbf{x}^{(t)})$
+  - Entropy of reverse process
+    - defines upper/lower bound for each reverse process step in terms of entropy
+    - $H_q(\mathbf{X}^{(t)} \mid \mathbf{X}^{(t-1)}) + H_q(\mathbf{X}^{(t-1)} \mid \mathbf{X}^{(0)}) - H_q(\mathbf{X}^{(t)} \mid \mathbf{X}^{(0)}) \le H_q(\mathbf{X}^{(t-1)} \mid \mathbf{X}^{(t)}) \le H_q(\mathbf{X}^{(t)} \mid \mathbf{X}^{(t-1)})$
+    - note that
+      - they are known distribution assumed
+      - so they can be represented with some parameters in a closed form
 
 (2005)
 

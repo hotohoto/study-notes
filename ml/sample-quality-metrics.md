@@ -44,3 +44,41 @@ https://machinelearningmastery.com/how-to-implement-the-frechet-inception-distan
 - Improved Recall
   - measures diversity
 - TODO
+
+## Codelength
+
+- Or, bits per dimension (pixel)
+- Motivation
+  - "The entropy of a distribution is the expected codelength of an element sampled from that distribution."
+  - "If we encode $X$ with the ideal code for $p$, what is our expected code length?"
+- Where
+  - $\mathbf{x}$
+    - an image of $D$ pixels in logit space
+  - $\mathbf{z}$
+    - an image of $D$ pixels in [0, 256] image space
+  - $p(\mathbf{x})$
+    - the density in logit space returned by the model
+  - $p(\mathbf{z})$
+    - the density in [0, 256] image space
+  - $\sigma(\cdot)$
+    - the logistic sigmoid function
+  - $\lambda$
+    - $\lambda_\text{CIFAR10} = 10^{-6}$
+    - $\lambda_\text{MNIST} = 0.05$
+- transformation from $\mathbf{z}$ to $\mathbf{x}$
+  - $\mathbf{x} = \operatorname{logit}(\lambda + (1 - 2 \lambda){\mathbf{z} \over 256})$
+- $p_z(\mathbf{z}) = p(\mathbf{x}) \left({1 - 2\lambda \over 256}\right)^D \left(\prod\limits_i \sigma(x_i)(1 - \sigma(x_i))\right)^{-1}$
+- $b(\mathbf{x})$
+  - the bits per pixel of image $\mathbf{x}$
+
+$$
+{\begin{aligned}
+b(\mathbf{x}) &= - {\log_2p_z(\mathbf{z}) \over D} \\
+&= - {\log p(\mathbf{x}) \over D \log 2} - \log_2(1 - 2 \lambda) + 8 + {1 \over D} \sum\limits_i(\log_2 \sigma(x_i) + \log_2(1 - \sigma(x_i)))
+\end{aligned}}
+$$
+
+- References
+  - [Masked Autoregressive Flow for Density Estimation, p12](https://arxiv.org/abs/1705.07057)
+  - https://en.wikipedia.org/wiki/Entropy_(information_theory)
+  - https://mlvu.github.io/lectures/31.ProbabilisticModels1.annotated.pdf

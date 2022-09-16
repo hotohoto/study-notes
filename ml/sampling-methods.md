@@ -42,6 +42,7 @@ cons
 
 - an approximation method to calculate expectation of $f(x)$ according to $P$ where $x \sim P$
   - sample states from a different distribution
+  - "importance" seems to mean "weights" for summing up values
 - How?
   - where $X:\Omega \to {\mathbb {R}}$ be a random variable in some probability space $(\Omega ,{\mathcal {F}},P)$.
   - $E(f(X); P) = \int f(x)p(x)dx = \int f(x){p(x)\over q(x)}q(x)dx \approx {1 \over n} \sum\limits_i f(x_i){p(x_i)\over q(x_i)}$
@@ -54,10 +55,19 @@ cons
 - References
   - https://towardsdatascience.com/importance-sampling-introduction-e76b2c32e744
 
-### Annealed Importance Sampling
+### Annealed Importance Sampling (AIS)
 
-- https://agustinus.kristia.de/techblog/2017/12/23/annealed-importance-sampling/
-- TODO
+- Motivation
+  - The importance sampling is good when the proposal distribution approximates the target distribution well.
+  - It's difficult to pick a good proposal distribution.
+- Key idea
+  - move from a tractable distribution to a distribution of interest via sequence of intermediate distributions
+  - alternate between MCMC transitions and importance sampling updates
+  - average the final samples with weights
+    - weight is accumulated during the process above for each sample
+- References
+  - [Annealed Importance Sampling](https://arxiv.org/abs/physics/9803008)
+  - [Introduction to Annealed Importance Sampling](https://agustinus.kristia.de/techblog/2017/12/23/annealed-importance-sampling/)
 
 ## MCMC(Markov Chain Monte Carlo)
 
