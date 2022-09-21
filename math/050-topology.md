@@ -149,3 +149,4 @@ following James R. Munkres
 
 - https://en.wikipedia.org/wiki/Base_(topology)
 - https://en.wikipedia.org/wiki/Subbase
+- [수학의즐거움 위상수학](https://youtube.com/playlist?list=PL4m4z_pFWq2o4vYP5vqpwqhftOtbzF4lh)

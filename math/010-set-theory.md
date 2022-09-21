@@ -1,6 +1,11 @@
 # set theory
 
-- https://www.youtube.com/playlist?list=PL127T2Zu76FveA8TGXZU-PSSt7GTMhKp6
+- [이상엽Math 집합론](https://www.youtube.com/playlist?list=PL127T2Zu76FveA8TGXZU-PSSt7GTMhKp6)
+- [수학의즐거움 집합론 기초](https://youtube.com/playlist?list=PL4m4z_pFWq2rboSAR7cvRLcCI36Fb8ruF)
+
+## TODO
+
+- 수학의 즐거움 2번 비디오 보기
 
 ## Propositional Calculus and logics
 
