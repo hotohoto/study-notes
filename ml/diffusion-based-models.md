@@ -2,26 +2,56 @@
 
 ## Outlooks on important diffusion papers
 
-| Publication        | Year | Title (Alias)                                                        | FID*  | Remark                                                            | Architecture                  |
-| ------------------ | ---- | -------------------------------------------------------------------- | ----- | ----------------------------------------------------------------- | ----------------------------- |
-| JMLR               | 2005 | Estimation of Non-Normalized Statistical Models by Score Matching    |       | Introduce score matching                                          |                               |
-| Neural Computation | 2011 | A Connection Between Score Matching and Denoising Autoencoders       |       | Connect score matching and denoising AEs                          |                               |
-| ICLR               | 2014 | Auto-Encoding Variational Bayes (VAE)                                |       |                                                                   |                               |
-| (PMLR)             | 2015 | Deep Unsupervised Learning using Nonequilibrium Thermodynamics (NET) |       | Introduce probabilistic diffusion models                          | CNN                           |
-| NeurIPS            | 2019 | (SMLD aka NCSN)                                                      | 25.32 | Use score matching with Langevin dynamics                         | RefineNet, CondInstanceNorm++ |
-| NeurIPS            | 2020 | (DDPM)                                                               | 3.17  | Simplify the loss function and investigate the connection to NCSN | UNet, self-attn, GN           |
-| (PMLR)             | 2021 | (Improved DDPM)                                                      | 2.94  | TODO                                                              |                               |
-| ICLR               | 2021 | (NCSN++ / DDPM++)                                                    | 2.92  | TODO Connect SMLD and DDPM with SDE                               |                               |
-| ICLR               | 2021 | (DDIM)                                                               |       | TODO Do faster sampling and interpolation without retraining      |                               |
-| NeurIPS            | 2021 | Diffusion Models Beat GANs on Image Synthesis                        |       | Do more experiments and find some insights                        |                               |
-| NeurIPS            | 2021 | Variational Diffusion Models                                         |       | TODO                                                              |                               |
-| ICLR               | 2022 | (Analytic-DPM)                                                       |       | TODO                                                              |                               |
+| Publication        | Year | Title (Alias)                                                        | FID*  | FID** | Remark                                                                             | Architecture                  |
+| ------------------ | ---- | -------------------------------------------------------------------- | ----- | ----- | ---------------------------------------------------------------------------------- | ----------------------------- |
+| JMLR               | 2005 | Estimation of Non-Normalized Statistical Models by Score Matching    |       |       | Introduce score matching                                                           |                               |
+| Neural Computation | 2011 | A Connection Between Score Matching and Denoising Autoencoders       |       |       | Connect score matching and denoising AEs                                           |                               |
+| ICLR               | 2014 | Auto-Encoding Variational Bayes (VAE)                                |       |       |                                                                                    |                               |
+| (PMLR)             | 2015 | Deep Unsupervised Learning using Nonequilibrium Thermodynamics (NET) |       |       | Introduce probabilistic diffusion models                                           | CNN                           |
+| NeurIPS            | 2019 | (SMLD aka NCSN)                                                      | 25.32 |       | Use score matching with Langevin dynamics                                          | RefineNet, CondInstanceNorm++ |
+| NeurIPS            | 2020 | (DDPM)                                                               | 3.17  |       | Simplify the loss function and investigate the connection to NCSN                  | UNet, self-attn, GN           |
+| (PMLR)             | 2021 | (Improved DDPM)                                                      | 2.94  |       | TODO                                                                               |                               |
+| ICLR               | 2021 | (NCSN++ / DDPM++)                                                    | 2.2   |       | TODO Connect SMLD and DDPM with SDE                                                |                               |
+| ICLR               | 2021 | (DDIM)                                                               |       |       | TODO Faster deterministic sampling within non-Markovian diffusion process          |                               |
+| NeurIPS            | 2021 | Diffusion Models Beat GANs on Image Synthesis                        |       |       | Do more experiments and find some insights                                         |                               |
+| NeurIPS            | 2021 | Variational Diffusion Models                                         |       |       | TODO                                                                               |                               |
+| ICLR               | 2022 | (Analytic-DPM)                                                       |       |       | TODO                                                                               |                               |
+|                    | 2022 | Elucidating the Design Space of Diffusion-Based Generative Models    | 1.97  | 1.79  | Simplify diffusion model frameworks for heuristic but better sampling and training |                               |
+|                    | 2022 | Improving Diffusion Model Efficiency Through Patching                |       |       |                                                                                    | PatchedUNet                   |
 
-- (*) FID on CIFAR-10
+- (*) Unconditional FID on CIFAR-10
+- (**) Conditional FID on CIFAR-10
 
 ## Papers
 
 (2022)
+
+- Elucidating the Design Space of Diffusion-Based Generative Models
+  - NVIDIA
+  - https://arxiv.org/abs/2206.00364
+  - SOTA but a bit heuristic
+  - contents
+    - 2 Expressing diffusion models in a common framework
+      - ODE formulation
+      - denoising score matching
+      - time-dependent signal scaling
+      - solution by descretization
+      - putting it together
+    - 3 Improvements to deterministic sampling
+      - Descretizaiton and higher-order integrators
+        - Deterministic sampling using Heun's 2nd order method with arbitrary $\sigma(t)$ and $s(t)$
+      - Trajectory curvature and noise schedule
+      - Discussion
+    - 4 Stochastic sampling (no big improvement)
+      - Background
+      - Our stochastic sampler
+      - Practical consideration
+      - Evaluation
+    - 5 Preconditioning and training
+      - Loss weighting and sampling
+      - Augmentation regularization
+  - analysis on sampling and an alternative stocahstic sampler
+  - TODO readme
 
 - Hierarchical Text-Conditional Image Generation with CLIP Latents
   - https://openai.com/dall-e-2/
@@ -30,6 +60,11 @@
 - Diffusion-Based Representation Learning
   - https://arxiv.org/abs/2105.14257
   - TODO
+
+- Gotta Go Fast When Generating Data with Score-Based Models
+  - https://arxiv.org/abs/2105.14080
+  - ICLR 2022
+  - TODO readme
 
 (2021)
 
@@ -64,10 +99,45 @@
   - NeurIPS 2021
   - Diederik P Kingma, Tim Salimans, Ben Poole, Jonathan Ho
 
+- ILVR: Conditioning Method for Denoising Diffusion Probabilistic Models
+  - ICCV 2021
+  - https://arxiv.org/abs/2108.02938
+  - Iterative Latent Variable Refinement (ILVR)
+
 - Score-Based Generative Modeling through Stochastic Differential Equations
   - https://arxiv.org/abs/2011.13456
   - ICLR 2021, Yang Song, Jascha Sohl-Dickstein, Diederik P. Kingma, Abhishek Kumar, Stefano Ermon, Ben Poole
+  - both SMLD and DDPM can be seen in the perspective of SDE
+  - https://lilianweng.github.io/posts/2021-07-11-diffusion-models/#connection-with-noise-conditioned-score-networks-ncsn
+  - contents
+    - 3 Score-based generative modeling with SDEs
+      - 3.1 Perturbing data with SDEs
+      - 3.2 Generating samples by reversing the SDE
+      - 3.3 Estimating scores for the SDE
+      - 3.4 Examples: VE, VP SDEs and beyond
+        - NCSN
+          - can be considered as a Variance Exploding (VE) SDE
+        - DDPM
+          - can be considered as a Variance Preserving (VP) SDE
+    - 4 Solving the reverse SDE
+      - 4.1 General-purpose numerical SDE solvers
+      - 4.2 Predictor-corrector samplers
+      - 4.3 Probability flow and connection to neural ODEs
+        - Exact likelihood computation
+          - Now we can calculate likelihood in a deterministic way
+        - Manipulating latent representations
+        - Uniquely identifiable encoding
+        - Efficient sampling
+      - 4.4 Architecture improvements
+    - 5 Controllable generation
+  - Etc.
+    - sub VP-SDE
+      - seems
+        - not useful according to https://youtu.be/yqF1IkdCQ4Y?t=3459
+        - good at low resolution scale
   - TODO
+    - check out NCSN++ architecuture
+      - It's said that worth looking at
 
 - Denoising Diffusion Implicit Models (DDIM)
   - ICLR 2021
@@ -111,8 +181,6 @@
         - https://en.wikipedia.org/wiki/Langevin_dynamics
     - training on a "weighted" variational bound
     - seeing DDPM as progressive decoding in the context of lossy decompression
-      - explains relatively poor log likelihoods
-      - the majority of the models' lossless codelength are consumed to describe imperceptible image details
   - notations
     - $\mathbf{x}_0$: observed examples
     - $\mathbf{x}_{1:T}$: latent variables
@@ -149,17 +217,23 @@
     - U-Net based on a Wide ResNet (as in PixelCNN++)
     - group normalization
     - self-attention block at the 16 x 16 resolution
-  - rao blackwell theorem (? TODO)
-    - https://en.wikipedia.org/wiki/Rao%E2%80%93Blackwell_theorem
-    - https://www.youtube.com/results?search_query=rao+blackwell+theorem+
-    - https://arxiv.org/abs/2101.01011
+  - etc
+    - they've got relatively poor log likelihoods in spite of high quality of generated samples
+      - the majority of the models' lossless codelength are consumed to describe imperceptible image details
+        - for the best sample from CIFAR-10, $L_1 + L_2 + \cdots + L_T < L_0$ was found.
+        - they considered $L_1 + L_2 + \cdots + L_T$ as rate and $L_0$ as distortion.
+    - lossy compression
+      - [rate-distortion theory](information-theory.md#rate-distortion-theory)
+    - rao blackwell theorem (? TODO)
+      - https://en.wikipedia.org/wiki/Rao%E2%80%93Blackwell_theorem
+      - https://www.youtube.com/results?search_query=rao+blackwell+theorem+
+      - https://arxiv.org/abs/2101.01011
 
 (2019)
 
 - Generative Modeling by Estimating Gradients of the Data Distribution
   - NeurIPS 2019, Yang Song, Stefano Ermon
   - https://arxiv.org/abs/1907.05600
-  - https://youtu.be/m0sehjymZNU
   - contribution
     - tried to use score matching along with Langevin dynamics for generative modeling
   - Noise Conditional Score Network (NCSN)
@@ -190,6 +264,21 @@
     - image inpainting
   - architecture
     - RefineNet (a variant of U-Net)
+
+- Sliced Score Matching: A Scalable Approach to Density and Score Estimation
+  - Song et al.
+  - https://arxiv.org/abs/1905.07088
+  - cons
+    - requires four times more computations than denoising score matching
+  - code
+    - https://github.com/ermongroup/ncsn/blob/7f27f4a16471d20a0af3be8b8b4c2ec57c8a0bc1/losses/sliced_sm.py#L121
+    - $\mathbf{v}^T \nabla_\mathbf{x}(s_\theta) \mathbf{v} = \mathbf{v} \cdot \nabla_\mathbf{x}(s_\theta \cdot \mathbf{v})$
+    - sums values from the current batch
+
+- Minimal Random Code Learning: Getting Bits Back from Compressed Model Parameters
+  - ICLR 2019
+  - https://arxiv.org/abs/1810.00440
+  - TODO readme
 
 (2015)
 
@@ -223,6 +312,21 @@
     - note that
       - they are known distribution assumed
       - so they can be represented with some parameters in a closed form
+
+(2011)
+
+- A Connection Between Score Matching and Denoising Autoencoders
+  - Neural Computation 2011
+  - https://ieeexplore.ieee.org/abstract/document/6795935
+  - Connected score matching and denoising AEs
+  - Introduced a scalable loss function called denoising score matching
+    - $L_\text{DSM} = \mathbb{E}_{q_\sigma(\tilde{\mathbf{x}}\mid \mathbf{x})p_\text{data}(\mathbf{x})}[\Vert \mathbf{s}_\mathbf{\theta}(\tilde{\mathbf{x}}) - \nabla_{\tilde{\mathbf{x}}}\log q_\sigma(\tilde{\mathbf{x}}\mid \mathbf{x}) \Vert_2^2]$
+
+(2007)
+
+- The Communication Complexity of Correlation
+  - IEEE 2007
+  - TODO
 
 (2005)
 

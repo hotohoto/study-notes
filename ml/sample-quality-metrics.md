@@ -67,6 +67,7 @@ https://machinelearningmastery.com/how-to-implement-the-frechet-inception-distan
     - $\lambda_\text{MNIST} = 0.05$
 - transformation from $\mathbf{z}$ to $\mathbf{x}$
   - $\mathbf{x} = \operatorname{logit}(\lambda + (1 - 2 \lambda){\mathbf{z} \over 256})$
+      - $\operatorname{logit}(p) = \ln {p \over 1 - p}$
 - $p_z(\mathbf{z}) = p(\mathbf{x}) \left({1 - 2\lambda \over 256}\right)^D \left(\prod\limits_i \sigma(x_i)(1 - \sigma(x_i))\right)^{-1}$
 - $b(\mathbf{x})$
   - the bits per pixel of image $\mathbf{x}$

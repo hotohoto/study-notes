@@ -83,7 +83,22 @@ domains where sampling methods like MCMC is popular:
 - bioinformatics
 - statistical mechanics
 
-### Gibbs sampling (basic version) (Skip)
+Questions
+
+- Do we assume states are discrete and finite?
+
+### Metropolis algorithm
+
+- only symmetric proposal distribution is allowed
+- terms
+  - proposal probability
+  - transition probability
+
+### Metropolis-Hastings algorithm
+
+- both symmetric and assymetric proposal distribution are allowed
+
+### Gibbs sampling (basic version)
 
 - special case of MH algorithm
 - sample a feature $x_{t,i}$ one by one rather than sampling all the features $x_t$ together
@@ -103,6 +118,14 @@ domains where sampling methods like MCMC is popular:
   - cons
     - takes more time to train usually
       - that's why this is not that popular
+
+### Metropolis-adjusted Langevin algorithm
+
+- use gradient based proposal distribution along with acceptance step
+
+### Hamiltonian Monte Carlo
+
+- FIXME use gradient based proposal distribution...
 
 ## Another example (TODO)
 
