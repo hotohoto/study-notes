@@ -54,8 +54,10 @@
   - general Brownian motion with drift
     - has the Markov property
     - but not a martingale
-- `<x>` quadratic variation
-- `<x, y>` cross quadratic variation
+- `[x]` quadratic variation
+  - e.g.
+    - $[W_t][W_t] = t$
+- `[x, y]` cross quadratic variation
 - diffusion process
   - a solution to a stochastic differential equation
     - continuous time Markov process with almost sulrely continuous sample paths

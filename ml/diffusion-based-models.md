@@ -94,6 +94,20 @@
   - ADM-G
   - ADM-U
 
+- Image Super-Resolution via Iterative Refinement
+  - Called SR3
+  - https://arxiv.org/abs/2104.07636
+  - Enlarge an image by bicubic interpolation and anti-aliasing
+  - and use it as a condition which is an extra input chnannel for a diffusion model
+  - metrics used
+    - Peak Signal-to-Noise Ratio (PSNR)
+    - Structural Similarity Index Map (SSIM)
+    - Mean Opinion Score (MOS) (?)
+    - 2-alternative forced-choice (?)
+    - fool rate (?)
+  - References
+    - https://m.blog.naver.com/mincheol9166/221771426327
+
 - Variational Diffusion Models
   - https://openreview.net/forum?id=2LdBqxc1Yv
   - NeurIPS 2021
@@ -109,27 +123,112 @@
   - ICLR 2021, Yang Song, Jascha Sohl-Dickstein, Diederik P. Kingma, Abhishek Kumar, Stefano Ermon, Ben Poole
   - both SMLD and DDPM can be seen in the perspective of SDE
   - https://lilianweng.github.io/posts/2021-07-11-diffusion-models/#connection-with-noise-conditioned-score-networks-ncsn
+  - contributions
+    - flexible sampling
+      - general-purpose SDE solvers
+      - predictor-corrector samplers
+      - deterministic samplers
+        - fast adaptive sampling via ODE solvers
+        - flexible data manipulation via latent codes
+        - exact likelihood computation
+    - controllerble generation without retraining
+      - class-conditional generation
+      - inpainting
+      - colorization
+    - unified framework generalizing NCSNs and DDPMs
   - contents
     - 3 Score-based generative modeling with SDEs
       - 3.1 Perturbing data with SDEs
+        - $d\mathbf{x}=\mathbf{f}(\mathbf{x}, t) dt+g(t) d\mathbf{w}$
+          - $\mathbf{w}$
+            - the standard wiener process
+          - $\mathbf{f}(\cdot, t): \mathbb{R}^d \to \mathbb{R}^d$
+            - the drift coefficient of $\mathbf{x}(t)$
+          - $g: \mathbb{R} \to \mathbb{R}$
+            - the diffusion coefficient of $\mathbf{x}(t)$
+          - This SDE has a unique solution as long as the coefficients are globally Lipschitz in both state and time.
+        - $p_{st}(\mathbf{x}(t) \vert \mathbf{x}(s))$
+          - transition kernel from $\mathbf{x}(s)$ to $\mathbf{x}(t)$
       - 3.2 Generating samples by reversing the SDE
+        - $d\mathbf{x}=\left[\mathbf{f}(\mathbf{x}, t)-g(t)^2 \nabla_{\mathbf{x}} \log p_t(\mathbf{x})\right] dt+g(t) d\bar{\mathbf{w}}$
+          - $\bar{\mathbf{w}}$
+            - a standard Wiener process when time flows backwards fro $T$ to $0$
+          - $dt$
+            - an infinifestimal negative timestep
       - 3.3 Estimating scores for the SDE
+        - $\boldsymbol{\theta}^*=\underset{\boldsymbol{\theta}}{\arg \min } \mathbb{E}_t\left\{\lambda(t) \mathbb{E}_{\mathbf{x}(0)} \mathbb{E}_{\mathbf{x}(t) \mid \mathbf{x}(0)}\left[\left\|\mathbf{s}_{\boldsymbol{\theta}}(\mathbf{x}(t), t)-\nabla_{\mathbf{x}(t)} \log p_{0 t}(\mathbf{x}(t) \mid \mathbf{x}(0))\right\|_2^2\right]\right\}$
       - 3.4 Examples: VE, VP SDEs and beyond
-        - NCSN
-          - can be considered as a Variance Exploding (VE) SDE
-        - DDPM
-          - can be considered as a Variance Preserving (VP) SDE
+        - VE SDE
+          - $d\mathbf{x}=\sqrt{\frac{\mathrm{d}\left[\sigma^2(t)\right]}{dt}} \mathrm{~d} \mathbf{w}$
+          - Variance exploding SDE
+          - A continuous generalizaiton of NCSN
+          - e.g.
+            - NCSN++
+        - VP SDE
+          - $d\mathbf{x}=-\frac{1}{2} \beta(t) \mathbf{x} dt+\sqrt{\beta(t)} d\mathbf{w}$
+          - Variance preserving SDE
+          - A continuous generalization of DDPM
+          - e.g.
+            - DDPM++
+        - Sub-VP SDE
+          - $d\mathbf{x}=-\frac{1}{2} \beta(t) \mathbf{x} dt+\sqrt{\beta(t)\left(1-e^{-2 \int_0^t \beta(s) ds}\right)} d\mathbf{w}$
+          - The variance is always bounded by the VP SDE at every intermediate time step
     - 4 Solving the reverse SDE
       - 4.1 General-purpose numerical SDE solvers
+        - Euler-Maruyama method
+        - stochastic Runge-Kutta method
+        - ancestral sampling
+          - the same as the DDPM sampler
+          - just a special discretization of the reverse-time VP SDE
+        - reverse diffusion samplers
+          - discretize the reverse-time SDE in the same way as the forward one
       - 4.2 Predictor-corrector samplers
+        - TODO
       - 4.3 Probability flow and connection to neural ODEs
+        - Probability flow
+          - $d\mathbf{x}=\left[\mathbf{f}(\mathbf{x}, t)-\frac{1}{2} g(t)^2 \nabla_{\mathbf{x}} \log p_t(\mathbf{x})\right] dt$
         - Exact likelihood computation
           - Now we can calculate likelihood in a deterministic way
+          - TODO
         - Manipulating latent representations
+          - TODO
         - Uniquely identifiable encoding
+          - TODO
         - Efficient sampling
+          - TODO
       - 4.4 Architecture improvements
+        - TODO
     - 5 Controllable generation
+      - TODO
+    - Appendix
+      - A The framework for more general SDEs
+      - B VE, VP and sub-VP SDEs
+      - C SDEs in the wild
+        - TODO
+      - D Probability flow ODE
+        - TODO
+        - D.1 Derivation
+        - D.2 Likelihood computation
+        - D.3 Probability flow sampling
+        - D.4 Sampling with black-box ODE solvers
+        - D.5 Uniquely identifiable encoding
+      - E Reverse diffusion sampling
+        - TODO
+      - F Ancestral sampling for SMLD models
+        - TODO
+      - G Predictor-Corrector samplers
+        - TODO
+      - H Architecture improvements
+        - TODO
+        - H.1 Settings for architecture exploration
+        - H.2 Results on CIFAR-10
+        - H.3 High resolution images
+      - I Controllable generation
+        - TODO
+        - I.1 Class-conditional sampling
+        - I.2 Imputation
+        - I.3 Colorization
+        - I.4 Solving general inverse problems
   - Etc.
     - sub VP-SDE
       - seems
@@ -138,6 +237,8 @@
   - TODO
     - check out NCSN++ architecuture
       - It's said that worth looking at
+  - resources
+    - https://www.math.snu.ac.kr/~syha/Lecture-4.pdf
 
 - Denoising Diffusion Implicit Models (DDIM)
   - ICLR 2021
@@ -154,12 +255,18 @@
   - Alex Nichol, Prafulla Dhariwal
   - improved DDPM
   - a cosine-based variance schedule
-  - tried to mix $L_\text{VLB}$ and $L_\text{simple}$ when calculating
-    - $L_\text{VLB}$
-      - original loss function that learns only the diagonal terms of $\Sigma_\theta$
-    - $L_\text{simple}$
-      - only the exponent term is used ignoring the $\Sigma_\theta$ part
-  - suggested a time-averaging smoothed version of $L_\text{VLB}$ with importance sampling
+    - a heuristic suggestion
+  - learn $\sigma_t$ by interpolating between the upper bound and the lower bound
+    - mix $L_\text{VLB}$ and $L_\text{simple}$ when calculating
+      - $L_\text{VLB}$
+        - original loss function from which $L_\text{simple}$ has been originated
+        - use the learnt $\sigma_t$
+      - $L_\text{simple}$
+        - only the exponent term is used ignoring the $\Sigma_\theta$ part
+  - give more weights on the time component of the loss
+    - used importance sampling
+      - sample some t values more where the loss component of which is bigger
+    - observed $L_\text{VLB}$ getting smoothed
 
 
 (2020)

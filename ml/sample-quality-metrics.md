@@ -83,3 +83,40 @@ $$
   - [Masked Autoregressive Flow for Density Estimation, p12](https://arxiv.org/abs/1705.07057)
   - https://en.wikipedia.org/wiki/Entropy_(information_theory)
   - https://mlvu.github.io/lectures/31.ProbabilisticModels1.annotated.pdf
+
+
+## Peak Signal-to-Noise Ratio (PSNR)
+
+- may be used for super resolution task
+
+$$
+\text{MSE} = {1 \over MN} \sum\limits_{M, N} [I_1(m, n), I_2(m, n)]^2
+$$
+
+$$
+\text{PSNR} = 10 \log_{10}{R^2 \over \text{MSE}}
+$$
+
+- $R$
+  - the maximum color value 255 or 1
+- https://m.blog.naver.com/mincheol9166/221771426327
+
+## Structural Similarity Index Map (SSIM)
+
+- e.g. may be used for super resolution task
+
+$$
+\text{SSIM}(x,y) = {(2\mu_x \mu_y + C_1)(2\sigma_{xy} + C_2) \over (\mu_x^2 + \mu_y^2 + C1)(\sigma_x^2 + \sigma_y^2 + C2)}
+$$
+
+- $x$
+  - an image
+- $y$
+  - an image
+- $C_1 = {0.01 * L}^2$
+- $C_2 = {0.03 * L}^2$
+- $C_3 = {C_2 / 2}$
+- $L$
+  - 255 (0~255)
+  - 1 (0~1)
+- https://m.blog.naver.com/mincheol9166/221771426327

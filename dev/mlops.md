@@ -159,6 +159,12 @@ https://rigorous-firefly-d50.notion.site/1-YAML-bdf97d4b9f814acd9b5d3e55ae30ba9f
 ## extra notes
 
 - hydra: configuration management
+  - https://hydra.cc/
+  - pros
+    - ?
+  - cons
+    - manipulate output folder
+    - supposed to use values over multiple files at the same time
 
 ### tips
 
