@@ -26,6 +26,19 @@
 
 (2022)
 
+- Retrieval-Augmented Diffusion Models
+  - https://arxiv.org/abs/2204.11824
+  - stable diffusion is based on this
+
+- High-Resolution Image Synthesis with Latent Diffusion Models
+  - CVPR 2022
+  - https://arxiv.org/abs/2112.10752
+  - stable diffusion is based on this
+  - References
+    - https://github.com/CompVis/latent-diffusion
+    - https://github.com/huggingface/diffusers
+    - https://github.com/CompVis/stable-diffusion
+
 - Elucidating the Design Space of Diffusion-Based Generative Models
   - NVIDIA
   - https://arxiv.org/abs/2206.00364
@@ -124,18 +137,12 @@
   - both SMLD and DDPM can be seen in the perspective of SDE
   - https://lilianweng.github.io/posts/2021-07-11-diffusion-models/#connection-with-noise-conditioned-score-networks-ncsn
   - contributions
+    - unified framework generalizing NCSNs and DDPMs
     - flexible sampling
       - general-purpose SDE solvers
       - predictor-corrector samplers
       - deterministic samplers
-        - fast adaptive sampling via ODE solvers
-        - flexible data manipulation via latent codes
-        - exact likelihood computation
     - controllerble generation without retraining
-      - class-conditional generation
-      - inpainting
-      - colorization
-    - unified framework generalizing NCSNs and DDPMs
   - contents
     - 3 Score-based generative modeling with SDEs
       - 3.1 Perturbing data with SDEs
@@ -147,6 +154,8 @@
           - $g: \mathbb{R} \to \mathbb{R}$
             - the diffusion coefficient of $\mathbf{x}(t)$
           - This SDE has a unique solution as long as the coefficients are globally Lipschitz in both state and time.
+        - $d\mathbf{x}=\mathbf{f}(\mathbf{x}, t) dt + \mathbf{G}(\mathbf{x}, t) d\mathbf{w}$
+          - (for more general coefficients)
         - $p_{st}(\mathbf{x}(t) \vert \mathbf{x}(s))$
           - transition kernel from $\mathbf{x}(s)$ to $\mathbf{x}(t)$
       - 3.2 Generating samples by reversing the SDE
@@ -155,24 +164,36 @@
             - a standard Wiener process when time flows backwards fro $T$ to $0$
           - $dt$
             - an infinifestimal negative timestep
+        - $d\mathbf{x}=\left\{\mathbf{f}(\mathbf{x}, t)-\nabla \cdot\left[\mathbf{G}(\mathbf{x}, t) \mathbf{G}(\mathbf{x}, t)^{\top}\right]-\mathbf{G}(\mathbf{x}, t) \mathbf{G}(\mathbf{x}, t)^{\top} \nabla_{\mathbf{x}} \log p_t(\mathbf{x})\right\} dt+\mathbf{G}(\mathbf{x}, t) d\overline{\mathbf{w}}$
       - 3.3 Estimating scores for the SDE
         - $\boldsymbol{\theta}^*=\underset{\boldsymbol{\theta}}{\arg \min } \mathbb{E}_t\left\{\lambda(t) \mathbb{E}_{\mathbf{x}(0)} \mathbb{E}_{\mathbf{x}(t) \mid \mathbf{x}(0)}\left[\left\|\mathbf{s}_{\boldsymbol{\theta}}(\mathbf{x}(t), t)-\nabla_{\mathbf{x}(t)} \log p_{0 t}(\mathbf{x}(t) \mid \mathbf{x}(0))\right\|_2^2\right]\right\}$
+          - Assumes the drift and diffusion coefficient of an SDE are affine
+        - $\boldsymbol{\theta}^*=\underset{\boldsymbol{\theta}}{\arg \min } \mathbb{E}_t\left\{\lambda(t) \mathbb{E}_{\mathbf{x}(0)} \mathbb{E}_{\mathbf{x}(t)} \mathbb{E}_{\mathbf{v} \sim p_{\mathbf{v}}}\left[\frac{1}{2}\left\|\mathbf{s}_{\boldsymbol{\theta}}(\mathbf{x}(t), t)\right\|_2^2+\mathbf{v}^{\top} \mathbf{s}_{\boldsymbol{\theta}}(\mathbf{x}(t), t) \mathbf{v}\right]\right\}$
       - 3.4 Examples: VE, VP SDEs and beyond
         - VE SDE
-          - $d\mathbf{x}=\sqrt{\frac{\mathrm{d}\left[\sigma^2(t)\right]}{dt}} \mathrm{~d} \mathbf{w}$
+          - $d\mathbf{x}=\sqrt{\frac{d\left[\sigma^2(t)\right]}{dt}} ~d\mathbf{w}$
           - Variance exploding SDE
-          - A continuous generalizaiton of NCSN
+          - A continuous generalization of SMLD
           - e.g.
+            - SMLD
+              - $d\mathbf{x}=\sigma_{\min }\left(\frac{\sigma_{\max }}{\sigma_{\min }}\right)^t \sqrt{2 \log \frac{\sigma_{\max }}{\sigma_{\min }}} d\mathbf{w}, \quad t \in(0,1]$
+              - $p_{0 t}(\mathbf{x}(t) \mid \mathbf{x}(0))=\mathcal{N}\left(\mathbf{x}(t) ; \mathbf{x}(0), \sigma_{\min }^2\left(\frac{\sigma_{\max }}{\sigma_{\min }}\right)^{2 t} \mathbf{I}\right), \quad t \in(0,1]$
             - NCSN++
         - VP SDE
           - $d\mathbf{x}=-\frac{1}{2} \beta(t) \mathbf{x} dt+\sqrt{\beta(t)} d\mathbf{w}$
           - Variance preserving SDE
           - A continuous generalization of DDPM
           - e.g.
+            - DDPM
+              - $d\mathbf{x}= -\frac{1}{2} (\bar{\beta}_{\min } + t (\bar{\beta}_{\max } - \bar{\beta}_{\min })) \mathbf{x} dt + \sqrt{\bar{\beta}_{\min } + t (\bar{\beta}_{\max } - \bar{\beta}_{\min })}d\mathbf{w}, \quad t \in(0,1]$
+              - $p_{0 t}(\mathbf{x}(t) \mid \mathbf{x}(0)) =\mathcal{N}\left(\mathbf{x}(t) ; e^{-\frac{1}{4} t^2\left(\bar{\beta}_{\max }-\bar{\beta}_{\min }\right)-\frac{1}{2} t \bar{\beta}_{\min }} \mathbf{x}(0), \mathbf{I}-\mathbf{I} e^{-\frac{1}{2} t^2\left(\bar{\beta}_{\max }-\bar{\beta}_{\min }\right)-t \bar{\beta}_{\min }}\right), \quad t \in[0,1]$
             - DDPM++
         - Sub-VP SDE
           - $d\mathbf{x}=-\frac{1}{2} \beta(t) \mathbf{x} dt+\sqrt{\beta(t)\left(1-e^{-2 \int_0^t \beta(s) ds}\right)} d\mathbf{w}$
+          - $p_{0 t}(\mathbf{x}(t) \mid \mathbf{x}(0)) =\mathcal{N}\left(\mathbf{x}(t) ; e^{-\frac{1}{4} t^2\left(\bar{\beta}_{\max }-\bar{\beta}_{\min }\right)-\frac{1}{2} t \bar{\beta}_{\min }} \mathbf{x}(0), \left[1 - e^{-\frac{1}{2} t^2\left(\bar{\beta}_{\max }-\bar{\beta}_{\min }\right)-t \bar{\beta}_{\min }}\right]^2\mathbf{I}\right), \quad t \in[0,1]$
           - The variance is always bounded by the VP SDE at every intermediate time step
+          - seems better in terms of likelihoods
+          - especially for low resolution images
     - 4 Solving the reverse SDE
       - 4.1 General-purpose numerical SDE solvers
         - Euler-Maruyama method
@@ -182,36 +203,60 @@
           - just a special discretization of the reverse-time VP SDE
         - reverse diffusion samplers
           - discretize the reverse-time SDE in the same way as the forward one
+          - TODO read Appendix E/F
       - 4.2 Predictor-corrector samplers
         - TODO
+        - read Appendix G
       - 4.3 Probability flow and connection to neural ODEs
         - Probability flow
           - $d\mathbf{x}=\left[\mathbf{f}(\mathbf{x}, t)-\frac{1}{2} g(t)^2 \nabla_{\mathbf{x}} \log p_t(\mathbf{x})\right] dt$
+          - $d\mathbf{x}=\left\{\mathbf{f}(\mathbf{x}, t)-\frac{1}{2} \nabla \cdot\left[\mathbf{G}(\mathbf{x}, t) \mathbf{G}(\mathbf{x}, t)^{\boldsymbol{\top}}\right]-\frac{1}{2} \mathbf{G}(\mathbf{x}, t) \mathbf{G}(\mathbf{x}, t)^{\top} \nabla_{\mathbf{x}} \log p_t(\mathbf{x})\right\} dt$
+          - Its trajactories shares the same marginal probability densities $\{p_t(\mathbf{x})\}_{t=0}^T$ as the SDE
+          - Derived via Fokker-Planck equations
+          - The Fokker-Planck equation can be derived from a general SDE
+            - using Itô's lemma and integration by parts
+            - references
+              - [Fokker Planck Equation Derivation](https://youtu.be/MmcgT6-lBoY)
+              - [Ito's calculus](https://en.wikipedia.org/wiki/It%C3%B4_calculus)
         - Exact likelihood computation
           - Now we can calculate likelihood in a deterministic way
-          - TODO
+          - how?
+            - 1 sample $\mathbf{x}(T)$
+            - 2 obtain $\mathbf{x}(t)$ by solving the probability flow ODE
+            - 3 calculate the log likelihood
+              - $\log p_0(\mathbf{x}(0))=\log p_T(\mathbf{x}(T))+\int_0^T \nabla \cdot \tilde{\mathbf{f}}_{\boldsymbol{\theta}}(\mathbf{x}(t), t) dt$
+          - $Computing $\nabla \cdot \tilde{\mathbf{f}}_{\boldsymbol{\theta}}$ is expensive
+            - estimate it with Skilling-Hutchinson trace estimator
+              - $\nabla \cdot \tilde{\mathbf{f}}_{\boldsymbol{\theta}}(\mathbf{x}, t)=\mathbb{E}_{p(\boldsymbol{\epsilon})}\left[\boldsymbol{\epsilon}^{\top} \nabla \tilde{\mathbf{f}}_\theta(\mathbf{x}, t) \boldsymbol{\epsilon}\right]$
         - Manipulating latent representations
-          - TODO
+          - interpolation
+          - temperature rescaling (by modifying norm of embedding)
         - Uniquely identifiable encoding
-          - TODO
+          - How?
+            - Given a outcome from the dataset
+            - Obtain $\mathbf{x}(T)$ using the probability flow ODE
+          - For the same inputs, Model A and Model B provide encodings that are close in every dimension
+            - despite having different model architectures and training runs
         - Efficient sampling
-          - TODO
+          - How?
+            - Given
+              - $d\mathbf{x}=\mathbf{f}(\mathbf{x}, t) dt+\mathbf{G}(t) d\mathbf{w}$
+            - Discretize it and we get
+              - $\mathbf{x}_{i+1}=\mathbf{x}_i+\mathbf{f}_i\left(\mathbf{x}_i\right)+\mathbf{G}_i \mathbf{z}_i, \quad i=0,1, \cdots, N-1$
+            - Plug the coefficients to the probability flow ODE
+              - $\mathbf{x}_i=\mathbf{x}_{i+1}-\mathbf{f}_{i+1}\left(\mathbf{x}_{i+1}\right)+\frac{1}{2} \mathbf{G}_{i+1} \mathbf{G}_{i+1}^{\top} \mathbf{s}_{\theta^*}\left(\mathbf{x}_{i+1}, i+1\right), \quad i=0,1, \cdots, N-1$
+          - examples
+            - SMLD
+              - $\mathbf{x}_i=\mathbf{x}_{i+1}+\frac{1}{2}\left(\sigma_{i+1}^2-\sigma_i^2\right) \mathbf{s}_{\theta^*}\left(\mathbf{x}_{i+1}, \sigma_{i+1}\right), \quad i=0,1, \cdots, N-1$
+            - DDPM
+              - $\mathbf{x}_i=\left(2-\sqrt{1-\beta_{i+1}}\right) \mathbf{x}_{i+1}+\frac{1}{2} \beta_{i+1} \mathbf{s}_{\theta^*}\left(\mathbf{x}_{i+1}, i+1\right), \quad i=0,1, \cdots, N-1$
       - 4.4 Architecture improvements
         - TODO
     - 5 Controllable generation
       - TODO
     - Appendix
-      - A The framework for more general SDEs
-      - B VE, VP and sub-VP SDEs
-      - C SDEs in the wild
-        - TODO
-      - D Probability flow ODE
-        - TODO
-        - D.1 Derivation
-        - D.2 Likelihood computation
-        - D.3 Probability flow sampling
-        - D.4 Sampling with black-box ODE solvers
-        - D.5 Uniquely identifiable encoding
+      - D.2
+        - TODO check out Chen et al 2020 and understand eq 39
       - E Reverse diffusion sampling
         - TODO
       - F Ancestral sampling for SMLD models
@@ -229,16 +274,13 @@
         - I.2 Imputation
         - I.3 Colorization
         - I.4 Solving general inverse problems
-  - Etc.
-    - sub VP-SDE
-      - seems
-        - not useful according to https://youtu.be/yqF1IkdCQ4Y?t=3459
-        - good at low resolution scale
   - TODO
     - check out NCSN++ architecuture
       - It's said that worth looking at
   - resources
     - https://www.math.snu.ac.kr/~syha/Lecture-4.pdf
+    - https://youtu.be/yqF1IkdCQ4Y?t=3459
+
 
 - Denoising Diffusion Implicit Models (DDIM)
   - ICLR 2021

@@ -5,17 +5,6 @@
 - clear server tracking database and artifacts and restart the servers
 - download more images
 
-- Retrieval-Augmented Diffusion Models
-  - https://arxiv.org/abs/2204.11824
-  - stable diffusion (2/2)
-
-- High-Resolution Image Synthesis with Latent Diffusion Models
-  - CVPR 2022
-  - stable diffusion (1/2)
-  - https://arxiv.org/abs/2112.10752
-  - https://github.com/CompVis/stable-diffusion
-  - https://github.com/huggingface/diffusers
-
 - Photorealistic Text-to-Image Diffusion Models with Deep Language Understanding
   - Imagen
   - https://arxiv.org/abs/2205.11487
