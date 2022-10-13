@@ -27,17 +27,42 @@
 (2022)
 
 - Retrieval-Augmented Diffusion Models
+  - RDM
   - https://arxiv.org/abs/2204.11824
-  - stable diffusion is based on this
+  - method
+    - keep explicit memory/database for known data samples
+    - retrieve visually similar samples to the training instance and encode them using CLIP
+    - use those embedding when generating a sample
 
 - High-Resolution Image Synthesis with Latent Diffusion Models
   - CVPR 2022
+  - LDM
   - https://arxiv.org/abs/2112.10752
-  - stable diffusion is based on this
+  - (stable diffusion is based on this)
+  - auto-encoder
+    - training
+      - perceptual loss
+      - a patch-based adversarial object
+      - latent space
+        - 2D
+          - the same as the original number of dimensions
+          - U-Net can be used by the following latent diffusion model
+        - regularization
+          - KL-reg
+          - VQ-reg
+            - was better than KL-reg
+            - embedded in the decoder
+    - fixed when training the latent diffusion model
+  - latent diffusion model
+  - cross-attention layers
+    - enables multi-modal training
   - References
     - https://github.com/CompVis/latent-diffusion
     - https://github.com/huggingface/diffusers
     - https://github.com/CompVis/stable-diffusion
+  - TODO
+    - how to do inpainting/super resolution?
+    - what is the actual shape of latent values
 
 - Elucidating the Design Space of Diffusion-Based Generative Models
   - NVIDIA
@@ -78,6 +103,10 @@
   - https://arxiv.org/abs/2105.14080
   - ICLR 2022
   - TODO readme
+
+- Subspace Diffusion Generative Models
+  - MIT
+  - https://arxiv.org/abs/2205.01490
 
 (2021)
 
@@ -306,9 +335,9 @@
       - $L_\text{simple}$
         - only the exponent term is used ignoring the $\Sigma_\theta$ part
   - give more weights on the time component of the loss
-    - used importance sampling
+    - use importance sampling
       - sample some t values more where the loss component of which is bigger
-    - observed $L_\text{VLB}$ getting smoothed
+      - $L_\text{VLB}$ decreases in a smoothed curve
 
 
 (2020)
