@@ -31,7 +31,7 @@ $$
 ## joint entropy
 
 $$
-H(X,Y)
+{\displaystyle \mathrm {H} (X,Y)=-\sum _{x\in {\mathcal {X}}}\sum _{y\in {\mathcal {Y}}}P(x,y)\log _{2}[P(x,y)]}
 $$
 
 - a measure of the uncertainty associated with a set of variables.
@@ -39,7 +39,7 @@ $$
 ## conditional entropy
 
 $$
-H(Y\mid X)
+{\displaystyle \mathrm {H} (Y|X)\ =-\sum _{x\in {\mathcal {X}},y\in {\mathcal {Y}}}p(x,y)\log {\frac {p(x,y)}{p(x)}}}
 $$
 
 - the amount of information needed to describe the outcome of a random variable $Y$ given that the value of another random variable $X$ is known.
@@ -84,7 +84,7 @@ $$
 D_{\text{KL}}(P\parallel Q)=\int _{-\infty }^{\infty }p(x)\log \left({\frac {p(x)}{q(x)}}\right)\,dx
 $$
 
-- Not distance metric
+- Not a distance metric
 - non-commutative
 - find how much it is losing information on average
 - left term: target distribution $P$

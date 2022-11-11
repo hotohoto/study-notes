@@ -243,6 +243,51 @@
 
 ## 2020
 
+- Training Generative Adversarial Networks with Limited Data
+  - Karras, NVIDIA
+  - NIPS2020
+  - https://arxiv.org/abs/2006.06676
+  - Overfitting in GAN
+    - discriminator outputs for the real training images and fake images diverge 
+    - discriminator accuracy on the validation images decreases
+  
+  - The correct way to calculate FID
+    - calculate it between the full training set and 50k generated images
+
+  - Augmentation that do not leak
+    - any augmentation is non-leaking as long as the corruption process is represented by an invertible transformation of probability distributions over the data space.
+  
+  - we can make almost any augmentation non-leaking by only applying it at a probability $p < 1$.
+  - Adaptive discriminator augmentation (ADA)
+    - overfitting heuristics for GAN
+      - $r_v = {\mathbb{E}[D_\text{train}] - \mathbb{E}[D_\text{validation}] \over \mathbb{E}[D_\text{train}] - \mathbb{E}[D_\text{generated}]}$
+      - $r_t = \mathbb{E}[\operatorname{sign}(D_\text{train})]$
+        - they found this was better than $r_v$
+  
+    - starts from $p = 0$
+    - increase $p$ a little if it looks overfitting and vice versa
+  
+  - augmentation methods
+    - useful 
+      - pixel blitting
+      - geometric transformation
+  
+    - moderate
+    - not useful
+  
+  - number of images
+    - 2k
+      - augmentations was useful
+  
+    - 10k
+      - less helpful
+  
+    - 140k
+      - harmful
+  
+
+
+
 - HiFi-GAN: Generative Adversarial Networks for Efficient and High Fidelity Speech Synthesis
   - https://arxiv.org/abs/2010.05646
   - 카카오엔터프라이즈 AI Lab

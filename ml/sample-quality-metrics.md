@@ -1,5 +1,7 @@
 # Sample Quality Metrics
 
+
+
 ## Inception Score (IS)
 
 $$
@@ -10,8 +12,10 @@ $$
 - an Inception-v3 network pretrained on ImageNet is used as its discriminator
 - ranges from 1 to the number of classes
 - the higher the better
-- (drawback) not capturing diersity within a class
+- (drawback) not capturing diversity within a class
 - https://en.wikipedia.org/wiki/Inception_score
+
+
 
 ## Fréchet Inception Distance (FID)
 
@@ -19,6 +23,7 @@ https://machinelearningmastery.com/how-to-implement-the-frechet-inception-distan
 
 - [GANs Trained by a Two Time-Scale Update Rule Converge to a Local Nash Equilibrium, NIPS, 2017](https://arxiv.org/abs/1706.08500)
 - The 2-Wasserstein distance between 2 multivariate normal distributions fit to the sets of feature maps calculated for real and generated images
+- They calculated this between all the training images  and the 50k generated images
 - The inception v3 model is used to get those feature maps
 - calculation
   - load a pretrained Inception V3 model
@@ -35,15 +40,88 @@ https://machinelearningmastery.com/how-to-implement-the-frechet-inception-distan
     - NOTE: The formula looks a bit different from the wikipedia 🤔
       - https://en.wikipedia.org/wiki/Fr%C3%A9chet_inception_distance
 
+
+
 ## Improved Precision and Recall
 
 - NeurIPS 2019
 - https://arxiv.org/abs/1904.06991
-- Improved Precision
-  - measures fidelity
-- Improved Recall
-  - measures diversity
-- TODO
+- definition
+  - Precision
+    - measures fidelity
+
+  - Recall
+    - measures coverage/diversity
+
+- improvement
+  - how?
+    - embed images into a high-dimensional feature space (the same as before)
+      - using a pretrained VGG-16 classifier
+        - was better than InceptionV3 in appearance
+
+      - extracting the corresponding activation vectors after the scond fully connected layer
+
+    - take an 50,000 of samples
+      - they should be the same number of samples
+
+    - calculate pairwise l2 distances between all feature vectors
+    - form a hypersphere for each feature vector
+      - with radius equal to its kth nearest neighbor
+        - k=3
+
+    - estimate precision
+      - by calculating how much percentage of the generated feature vectors belongs to the approximated manifold of the real feature vectors.
+
+    - estimate recall
+      - by calculating how much percentage of the real feature vectors belongs to the approximated manifold of the generated feature vectors.
+
+
+$$
+f(\phi, \Phi) =
+\begin{cases}
+1, & \text{if } \Vert \phi - \phi^\prime \Vert _2 \le \Vert \phi^\prime - \operatorname{NN}_k(\phi^\prime, \Phi)\Vert_2 \text{ for at least one } \phi^\prime \in \Phi \\
+0, & \text{otherwise,}
+\end{cases}
+$$
+
+$$
+\operatorname{precision}(\Phi_r, \Phi_g) = {1 \over \vert \Phi_g\vert} \sum\limits_{\phi_g \in \Phi_g} f(\phi_g, \Phi_r)
+$$
+
+$$
+\operatorname{recall}(\Phi_r, \Phi_g) = {1 \over \vert \Phi_r\vert} \sum\limits_{\phi_r \in \Phi_r} f(\phi_r, \Phi_g)
+$$
+
+
+
+- Resources
+
+  - https://github.com/kynkaat/improved-precision-and-recall-metric
+
+  - https://github.com/youngjung/improved-precision-and-recall-metric-pytorch
+
+
+
+### Realism score R
+
+- evaluates individual samples
+- The max operator takes $\phi_r$ after discarding half of the hyperspheres with the largest radii. 
+  - when training samples are sparse the hyperspheres may be large, and it may make the score unstable
+
+
+$$
+R(\phi_g, \Phi_r) =
+\max\limits_{\phi_r}
+\left\{
+{
+\Vert\phi_r - \operatorname{NN}_k(\phi_r, \Phi_r)\Vert_2
+\over
+\Vert\phi_g - \phi_r\Vert_2
+}
+\right\}
+$$
+
+
 
 ## Codelength
 
@@ -85,6 +163,8 @@ $$
   - https://mlvu.github.io/lectures/31.ProbabilisticModels1.annotated.pdf
 
 
+
+
 ## Peak Signal-to-Noise Ratio (PSNR)
 
 - may be used for super resolution task
@@ -100,6 +180,8 @@ $$
 - $R$
   - the maximum color value 255 or 1
 - https://m.blog.naver.com/mincheol9166/221771426327
+
+
 
 ## Structural Similarity Index Map (SSIM)
 
@@ -120,3 +202,13 @@ $$
   - 255 (0~255)
   - 1 (0~1)
 - https://m.blog.naver.com/mincheol9166/221771426327
+
+
+
+## Learned Perceptual Image Patch Similarity (LPIPS)
+
+- https://arxiv.org/abs/1801.03924
+- measures the perceptual similarity between two images
+
+
+
