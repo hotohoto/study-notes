@@ -99,8 +99,8 @@ Can be used as prior distribution of multi-dimensional parameter $\theta$ for ot
 - results of many runs of the Pólya urn process seems to be flat
   - https://mathenchant.wordpress.com/2015/10/16/polyas-urn/
 
-![Pólya histogram](./images/histogram-polya-ver-1.jpg)
-![non-Pólya histogram](./images/histogram-gauss-ver-1.jpg)
+![Pólya histogram](./assets/histogram-polya-ver-1.jpg)
+![non-Pólya histogram](./assets/histogram-gauss-ver-1.jpg)
 
 ### Plain DPMM
 
