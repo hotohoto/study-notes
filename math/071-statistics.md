@@ -484,3 +484,17 @@ $$
       - 상관관계 분석을 사용할 수 있음.
 
 조사연구(Survey)
+
+
+
+## References
+
+(수리통계학 강의)
+
+- 부산대 수리통계학
+  - (강의)
+    - [2014-2 수리통계학 II (김충락 교수)](https://oer.pusan.ac.kr/2014-2-%EC%88%98%EB%A6%AC%ED%86%B5%EA%B3%84%ED%95%99-II-%EA%B9%80%EC%B6%A9%EB%9D%BD-%EA%B5%90%EC%88%98)
+    - [2014-1 수리통계학 I (김충락 교수)](https://oer.pusan.ac.kr/2014-1-%ec%88%98%eb%a6%ac%ed%86%b5%ea%b3%84%ed%95%99-I-%ea%b9%80%ec%b6%a9%eb%9d%bd-%ea%b5%90%ec%88%98)
+  - (강의노트)
+    - https://crkim.pusan.ac.kr/crkim/24914/subview.do?enc=Zm5jdDF8QEB8JTJGYmJzJTJGY3JraW0lMkY0OTc4JTJGODE4NjA4JTJGYXJ0Y2xWaWV3LmRvJTNG
+    - https://crkim.pusan.ac.kr/crkim/24914/subview.do?enc=Zm5jdDF8QEB8JTJGYmJzJTJGY3JraW0lMkY0OTc4JTJGNzI1NTM0JTJGYXJ0Y2xWaWV3LmRvJTNG
