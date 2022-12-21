@@ -49,6 +49,20 @@
 - degree
   - 2 for y^2, xy, x^2
 
+## Gradient
+
+- Given a level surface with respect to level $w$, which is  $f(x,y,z) = w$
+
+  - $\nabla f$ is the normal direction to the surface
+    - it's also the steepest direction to increase $w$
+  - Note that the tangent plane at $(x_0, y_0, z_0)$ can be found by $(\nabla f)(x_0, y_0, z_0) \cdot (x-x_0,y - y_0,z - z_0) = 0$
+
+  
+
+![image-20221216194821683](./assets/image-20221216194821683.png)
+
+
+
 ## Leibniz integral rule
 
 - https://en.wikipedia.org/wiki/Leibniz_integral_rule

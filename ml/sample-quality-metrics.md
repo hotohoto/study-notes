@@ -48,7 +48,7 @@ https://machinelearningmastery.com/how-to-implement-the-frechet-inception-distan
 - https://arxiv.org/abs/1904.06991
 - definition
   - Precision
-    - measures fidelity
+    - measures quality/fidelity
 
   - Recall
     - measures coverage/diversity
@@ -99,6 +99,13 @@ $$
   - https://github.com/kynkaat/improved-precision-and-recall-metric
 
   - https://github.com/youngjung/improved-precision-and-recall-metric-pytorch
+
+
+
+### Classification Accuracy Score (CAS)
+
+- [Classification Accuracy Score for Conditional Generative Models (2019)](https://arxiv.org/abs/1905.10887)
+- train a classifier on conditionally generated samples, and evaluate the classifier accuracy on the real test set
 
 
 
