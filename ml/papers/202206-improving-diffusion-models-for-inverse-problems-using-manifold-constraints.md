@@ -1,4 +1,4 @@
-### Improving Diffusion Models for Inverse Problems using Manifold Constraints
+# Improving Diffusion Models for Inverse Problems using Manifold Constraints
 
 - https://arxiv.org/abs/2206.00941
 

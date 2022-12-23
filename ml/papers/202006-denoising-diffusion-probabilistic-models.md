@@ -96,13 +96,14 @@
 - distortion
 
   - $\sqrt{\Vert \mathbf{x}_0 - \hat{\mathbf{x}}_0\Vert^2/D}$
-    - where
-
+  
 - $\hat{\mathbf{x}}_{0}$ is the predicted $\mathbf{x}_{0}$ at time $t$ as below.
 
 $$
 \mathbf{x}_0 \approx \hat{\mathbf{x}}_0 = (\mathbf{x}_t - \sqrt{1 - \bar\alpha_t}\boldsymbol{\epsilon}_\theta(\mathbf{x}_t)) / \sqrt{\bar{\alpha}_t}\tag{15}
 $$
+
+- The latent diffusion models paper which is well known for Stable Diffusion tries to separate the generative model training process into two phases - semantic compression and perceptual compression. So they leave a diffusion model to learn semantics and an autoencoder model to learn the perceptual details ignoring imperceptible details. Note that diffusion models can learn perceptual details very well ignoring imperceptible details but its not efficient enough in terms of computational resources required.
 
 #### Progressive generation
 

@@ -29,56 +29,14 @@
 
 ## Papers
 
-Retrieval-Augmented Diffusion Models
+### Retrieval-Augmented Diffusion Models
+
 - RDM
 - https://arxiv.org/abs/2204.11824
 - method
   - keep explicit memory/database for known data samples
   - retrieve visually similar samples to the training instance and encode them using CLIP
   - use those embedding when generating a sample
-
-### High-Resolution Image Synthesis with Latent Diffusion Models
-
-- CVPR 2022
-- LDM
-- https://arxiv.org/abs/2112.10752
-- (stable diffusion is based on this)
-- latent space
-  - 2D
-    - the same as the original number of dimensions
-    - So U-Net can be used by LDM
-- encoder/decoder
-  - auto-encoder based perceptual compression
-  - fixed when training the latent diffusion model
-  - training
-    - perceptual loss
-    - architecture
-      - VAE
-          - KL-reg
-            - give a little ($10^{-6}$) KL-penalty toward standard normal on learned latent
-          - VQ-reg
-            - vector quantization
-            - was better than KL-reg
-            - embedded in the decoder
-      - VQ-GAN
-        - stage1
-            - VQ-VAE based encoder/decoder/codebook training
-        - stage2
-            - training an autoregressive transformer model
-                - to translate the latent vector using the code book as vocabulary
-            - trained separately with the encoder/decoder/code-book freezed
-            - a patch-based adversarial object
-- latent diffusion model
-- cross-attention layers
-  - enables multi-modal training
-  - Not only decoder but also encoder of U-Net has attention
-- References
-  - https://github.com/CompVis/latent-diffusion
-  - https://github.com/huggingface/diffusers
-  - https://github.com/CompVis/stable-diffusion
-- TODO
-  - how to do inpainting?
-  - how to do super resolution?
 
 
 
