@@ -147,18 +147,23 @@ $$
   - $\tau_\theta: y \mapsto \tau_\theta(y) \in \mathbb{R}^{M \times d_\tau}$
     - domain specific encoder
 
+- Concatenation
+  - as extra input channels
+
+- Cross attention layer:
+
+  - $\varphi_i(z_t) \in \mathbb{R}^{N \times d_\epsilon^i}$
+    - intermediate representation of the UNet
 
 
+  - $\operatorname{Attention}(Q,K,V) = \operatorname{softmax}\left( {QK^T \over \sqrt{d}} \right) \cdot V$
 
-Cross attention layer:
+  - $Q = W_Q^{(i)} \cdot \varphi_i(z_t)$
 
-- $\varphi_i(z_t) \in \mathbb{R}^{N \times d_\epsilon^i}$
-  - intermediate representation of the UNet
+  - $K = W_K^{(i)} \cdot \tau_\theta(y)$
 
-- $\operatorname{Attention}(Q,K,V) = \operatorname{softmax}\left( {QK^T \over \sqrt{d}} \right) \cdot V$
-- $Q = W_Q^{(i)} \cdot \varphi_i(z_t)$
-- $K = W_K^{(i)} \cdot \tau_\theta(y)$
-- $V = W_V^{(i)} \cdot \tau_\theta(y)$
+  - $V = W_V^{(i)} \cdot \tau_\theta(y)$
+
 
 
 
@@ -166,17 +171,52 @@ Cross attention layer:
 
 ### 4.1 On perceptual compression tradeoffs
 
+- comparison to pixel based diffusion model which is `LDM-1`
+- FID comparison for class-conditional models trained on ImageNet  
+  - LDM-{1,2} look bad
+  - LDM-{4-16} look good
+- sampling speed test for ImageNet and CelebA-HQ
+  - LDM-{4-8} look good
+
 ### 4.2 Image generation with latent diffusion
+
+- performs decent despite of using much less computational resources
+- compared to the other SOTA models
 
 ### 4.3 Conditional latent diffusion
 
 #### 4.3.1 Transformer encoders for LDMs
 
+- text conditioned image synthesis
+  - performs decent despite of using much less computational resources
+  - applying classifier free guidance greatly boosts the sample quality
+- semantic layouts conditioned image synthesis
+- class-conditional image synthesis on ImageNet 
+  - $f \in \{4, 8\}$ was the best
+  - SOTA despite of using much less computational resources
+
 #### 4.3.2 Convolutional sampling beyond $256^2$
+
+- conditioning on spatially aligned conditioning information via concatenation
+- signal-to-noise ratio induced by the scale of the latent space significantly affects the results
 
 ### 4.4 Super-resolution with latent diffusion
 
+- conditioning on low-resolution images via concatenation
+- x4 upscaling
+- better FID than SR3
+- worse IS than SR3
+- PSR and SSIM can be pushed by using a post-hoc guiding mechanism.
+  - implemented a image-based guider via a perceptual loss
+- models
+  - LDM-SR
+  - LDM-BSR
+    - using more diverse degradation
+      - the bicubic degradation process does not generalize well to images which do not follow this pre-processing
+
 ### 4.5 Inpainting with latent diffusion
+
+- conditioning on masked images and the mask itself via concatenation
 
 ## 5 Limitations & societal impact
 
@@ -188,18 +228,96 @@ Cross attention layer:
 
 ## References
 
-- [15] guided diffusion
+- [15] ADM or guided diffusion
 - [23] VQGAN
 - [30] DDPM
 - [32] Classifier-free diffusion guidance
+- [45] Variational diffusion models
 - [66] Zero-shot text-to-image generation
 - [67] VQ-VAE-2
 - [72] SR3
+- [76] projected GAN
 - [82] NET
-- [93] Score-based generative modeling in latent space
+- [93] Score-based generative modeling in latent space (LSGM)
 - [96] VQ-VAE
 
+## A Changelog
 
+## B Detailed information on denoising diffusion models
 
+## C Image guiding mechanisms
 
+## D Additional results
 
+### D.1 Choosing the signal-to-noise ratio for high-resolution synthesis
+
+### D.2 Full list of all first stage models
+
+### D.3 Layout-to-image synthesis
+
+### D.4 Class-conditional image synthesis on ImageNet
+
+### D.5 Sample quality vs. V100 days (continued from sec. 4.1)
+
+### D.6 Super-resolution
+
+#### D.6.1 LDM-BSR: general purpose SR model via diverse image degradation
+
+## E Implementation details and hyperparameters
+
+### E.1 Hyperparameters
+
+TODO
+
+### E.2 Implementation details
+
+#### E.2.1 Implementations of $\tau_\theta$ for conditional LDMs
+
+TODO
+
+#### E.2.2 Inpainting
+
+### E.3 Evaluation details
+
+#### E.3.1 Quantitative results in unconditional and class-conditional image synthesis
+
+#### E.3.2 Text-to-image synthesis
+
+#### E.3.3 Layout-toimage syntehsis
+
+#### E.3.4 Super resolution
+
+#### E.3.5 Efficiency analysis
+
+#### E.3.6 User study
+
+## F Computational requirements
+
+TODO
+
+## G Details on autoencoder models
+
+(When training autoencoder)
+
+The full objective to train the autoencoding model $(\mathcal{E}, \mathcal{D})$:
+$$
+L_\text{Autoencoder} = \min\limits_{\mathcal{E}, \mathcal{D}} \max_\limits{\psi} \left( L_\text{rec}(x, \mathcal{D}(\mathcal{E}(x))) - L_\text{adv}(\mathcal{D}(\mathcal{E}(x))) + \log D_\psi (x) + L_\text{reg}(x; \mathcal{E}, \mathcal{D}) \right)\tag{25}
+$$
+(where)
+
+- $D_\psi$ 
+  - a patch based discriminator
+- $L_\text{reg}$
+  - we may minimize $D_\text{KL}(q_\mathcal{E}(z|x) \Vert \mathcal{N}(z; 0, 1))$ but with a small weight like $10^{-6}$
+    - for training the diffusion model
+      - $z = {\mathcal{E}(x) \over \hat{\sigma}}$
+        - $\mathcal{E}(x) = \mathcal{E}_\mu(x) + \varepsilon \, \mathcal{E}_\sigma(x)$
+          - $\varepsilon \sim \mathcal{N}(0, 1)$
+        - $\hat{\sigma}^2 = {1 \over bchw} \sum\limits_{b,c,h,w} (z^{b,c,h,w} - \hat{\mu})^2$
+          - $\hat{\mu} = {1\over bchw} \sum\limits_{b,c,h,w} z^{b,c,h,w}$
+  - we may use vector quantization layer but we choose a high codebook dimensionality $|Z|$.
+    - for training the diffusion model
+    - $z = \mathcal{E}(x)$
+        - quantization is included in the decoder so it's not applied to $z$
+
+## H Additional qualitative results

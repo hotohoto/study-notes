@@ -620,7 +620,7 @@ Answer:
       N_\alpha \\
       B_\alpha
       \end{array}\right)
-    $
+      $
     - $
       \left(\begin{array}{c}
       {T_\beta}^{\prime} \\
@@ -635,7 +635,7 @@ Answer:
       N_\beta \\
       B_\beta
       \end{array}\right)
-    $
+      $
   - Observe
     - ${1\over2}(|T_\alpha - T_\beta|^2 + |N_\alpha - N_\beta|^2 + |B_\alpha - B_\beta|^2)^\prime$
     - $=<T_\alpha - T_\beta, {T_\alpha}^\prime - {T_\beta}^\prime> + <N_\alpha - N_\beta, {N_\alpha}^\prime - {N_\beta}^\prime> + <B_\alpha - B_\beta, {B_\alpha}^\prime - {B_\beta}^\prime>$
@@ -753,7 +753,8 @@ The theorem is that Gaussian curvature can be determined entirely by measuring a
   - (0,1) tensor
   - linear map
     - W: V ➜ R
-  - also known as dual vectors
+  - also known as linear form, linear functional, dual vectors or one-form
+    - https://en.wikipedia.org/wiki/Linear_form
   - dual space of dual space is the original space
   - notation can be either `w(v)` or `<w, v>`
     - note that this is not a inner product since they are defined in different vector spaces
