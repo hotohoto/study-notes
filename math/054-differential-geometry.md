@@ -767,16 +767,16 @@ The theorem is that Gaussian curvature can be determined entirely by measuring a
   - antisymmetric
     - T(u,v) = - T(v,u)
   - inner product
-    - $$g_ij = g_ji$$
-    - det(g_ij) ≠ 0
-    - g(v,v) ≥ 0
-    - g(v,v) = 0 iif v = 0
+    - $g_{ij} = g_{ji}$
+    - $\det(g_{ij}) \neq 0$
+    - $g(v,v) \ge 0$
+    - $g(v,v) = 0$ iif $v = 0$
       - the last one is not necessary for Einstein's general relativity
   - "partial insertion"
-    - T(∙, v) ∊ V*
-      - T: V ➜ V*
+    - $T(\cdot, v) \in V^*$
+      - $T: V \to V^*$
 - (q,r) tensor
-  - T^(q,r): (V*)^q × (V)^r ➜ R
+  - $T^{(q,r)}: (V^*)^q × (V)^r \to R$
 - tangent space
   - $T_pM$
   - the dimension is the same as of the manifold
@@ -831,7 +831,7 @@ The theorem is that Gaussian curvature can be determined entirely by measuring a
   - A manifold equipped with a positive-definite metric tensor.
 - Affine connection
   - a gemetric object that connects nearby tangent spaces
-  - it's also to define how to defferentiate scalars, vectors, even tensors
+  - it's also to define how to differentiate scalars, vectors, even tensors
   - defines a covariant derivative
     - a way of specifying a derivative along tangent vectors of a manifold
     - a generalization of the directional derivative
@@ -866,11 +866,11 @@ The theorem is that Gaussian curvature can be determined entirely by measuring a
     - For a Riemannian manifold (curved space with a metric), there is a unique connection (=covariant derivative) that is torsion-free and has metric compatibility. And this connection is called the Levi-Civita connection.
 - Christoffel symbol
   - an array of numbers describing an affine connection
-  - sometimes called the affine connection coefficients or Levi-Civita connection coefficients
+  - sometimes called the (affine/Levi-Civita) connection coefficients
   - ${\frac {\partial \mathbf {e} _{i}}{\partial x^{j}}}={\Gamma ^{k}}_{ij}\mathbf {e} _{k}=\Gamma _{kij}\mathbf {e} ^{k}$
     -  When the point moves along with the direction of $x^j$, how the basis vector $e_i$ changes in terms of all the current basis.
    - depends on how we define the inner product
-- Parallel transport (along a cruve)
+- Parallel transport (along a curve)
   - a way of transporting geometrical data along smooth curves in a manifold
   - keeps vectors as constant as possible
     - but note that it could be impossible to keep vectors constant on a surface like a sphere
@@ -885,7 +885,7 @@ The theorem is that Gaussian curvature can be determined entirely by measuring a
 - Torsion Tensor
 - Torsion Free Tensor
 
-- Rieman curvature tensor
+- Riemann curvature tensor
 
 - Ricci Tensor
   - keeps track of how volume change along geodesics.

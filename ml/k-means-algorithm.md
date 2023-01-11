@@ -17,7 +17,7 @@
 
 ## Other sub-topics
 
-- pick k with non-parametric bayesian methods
+- pick k with non-parametric Bayesian methods
   - http://stat.columbia.edu/~porbanz/npb-tutorial.html
   - https://blog.statsbot.co/bayesian-nonparametrics-9f2ce7074b97
   - https://www.stats.ox.ac.uk/~teh/research/npbayes/OrbTeh2010a.pdf
