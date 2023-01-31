@@ -227,7 +227,7 @@ https://youtu.be/UzMRb4JxQRs
 - $\text{(curvature of s)} = \kappa(s) = k(s) = |T'(s)| = |\theta'(s)|$
 - $\Rightarrow$ The curvature of a plane curve is the rate of the change of the angle which the tangent vector field makes with the x-axis or any fixed direction.
 
-### Orthonomality of {T, N, B}
+### Orthonormality of {T, N, B}
 (Lemma)
 
 - $\alpha(s)$: parameterized by arc length
@@ -532,7 +532,7 @@ Answer:
           - $P_{ij}(s) := <u_i(s), u_j(s)>$
           - $P_{ij}(s)^\prime := <u_i(s)^\prime, u_j(s)> + <u_i(s), u_j(s)^\prime>$
           - $P_{ij}(s)^\prime=<a^k_i u_k, u_j> + <u_i, a^k_j u_k>$
-            - Einsten summation convention
+            - Einstein summation convention
           - $P_{ij}(s)^\prime=a^k_i P_{kj} + a^k_j P_{ik}$
           - We can see this as a system of differential equation again
             - with initial values:
@@ -663,6 +663,12 @@ Answer:
 https://youtu.be/y3C8sxGFTuc
 ...
 
+TODO
+
+
+
+
+
 ## Misc.
 
 - cross ratio
@@ -683,9 +689,11 @@ https://youtu.be/y3C8sxGFTuc
   - $K=\kappa_{1}\kappa_{2}$
   - $\kappa_{1}$ and $\kappa_{2}$ are principal curvatures.
     - pick a point P
-    - there eixsts tangent space $T_{p}M$ which is
-      - R^2 space but it may not be an Euclidean space
-        - the inner product can be different from the dot product
+    - there exists tangent space $T_{p}M$ which is $\mathbb{R}^2$ space
+    - but it may not be an Euclidean space
+      
+      - the inner product can be different from the dot product
+      
       - P corresponds to the origin in the tagent space
     - consider normal vector N on the P
     - slice the surface with a hyperplane containing the normal vector N
@@ -696,7 +704,7 @@ https://youtu.be/y3C8sxGFTuc
     - Sphere $K \gt 0$
     - Euclidean space $K = 0$
     - Half plane $K \lt 0$
-- flatness of $R^n$ space
+- flatness of $\mathbb{R}^n$ space
   - inner product can be calculated by an identity matrix
 - convex
   - the second derivative is positive
@@ -735,9 +743,11 @@ The theorem is that Gaussian curvature can be determined entirely by measuring a
 - Thanks to "multiplication" of two principal curvatures when calculating Gaussian curvature
 - So Gaussian curvature is "intrinsic".
 
-###
 
-- second dimensional surfaces can be classified by the number of genera
+
+(notes)
+
+- many second dimensional surfaces can be classified by the number of genera
   - https://en.wikipedia.org/wiki/Genus_(mathematics)
 - thrid dimensional surfaces can be classified/decomposed as 8 elementary types.
   - Geometrization Conjecture
@@ -745,7 +755,7 @@ The theorem is that Gaussian curvature can be determined entirely by measuring a
 
 ## Tensor
 
-- covariant
+- covariant derivative
 - contravariant
 - vector
   - (1,0) tensor
@@ -828,9 +838,13 @@ The theorem is that Gaussian curvature can be determined entirely by measuring a
   - defines length and angle
   - A metric tensor is called positive-definite if it assigns a positive value $g(v, v) > 0$ to every nonzero vector $v$.
 - Riemannian manifold
+  - Also called a Riemannian space
   - A manifold equipped with a positive-definite metric tensor.
+- Connection
+  - https://en.wikipedia.org/wiki/Connection_(mathematics)
+
 - Affine connection
-  - a gemetric object that connects nearby tangent spaces
+  - a geometric object that connects nearby tangent spaces
   - it's also to define how to differentiate scalars, vectors, even tensors
   - defines a covariant derivative
     - a way of specifying a derivative along tangent vectors of a manifold
@@ -881,9 +895,13 @@ The theorem is that Gaussian curvature can be determined entirely by measuring a
 
 - Geodesic
 
-- Lie Bracket
-- Torsion Tensor
-- Torsion Free Tensor
+- Lie bracket
+  - https://en.wikipedia.org/wiki/Lie_bracket_of_vector_fields
+  - a vector field can be seen as a derivative operator
+  - given two vector fields Lie Bracket generates another vector field indicating that the tow vector fields as operators can be commutative
+
+- Torsion tensor
+- Torsion free tensor
 
 - Riemann curvature tensor
 

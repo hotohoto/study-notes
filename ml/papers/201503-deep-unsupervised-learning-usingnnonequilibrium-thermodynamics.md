@@ -1,0 +1,53 @@
+# Deep unsupervised learning using nonequilibrium thermodynamics
+
+- PMLR 2015
+- aka NET
+- https://arxiv.org/abs/1503.03585
+- contributions
+  - Introduced probabilistic diffusion models
+    - pros
+      - flexible model structure
+      - easy sampling
+      - easy multiplication with other distribution in order to compute a posterior
+      - easy to evaluate the model log likelihood
+- Diffusion models
+  - (the same as the model description in DDPM paper's background section)
+  - (but with slightly different notations)
+- Model probability
+  - we can calculate a probability value for a given data sample according to the trained model
+    - $p(\mathbf{x}^{(0)}) = \int d\mathbf{x}^{1 \cdots T} q(\mathbf{x}^{(1 \cdots T)} \mid \mathbf{x}^{(0)}) p(\mathbf{x}^{(T)})\prod\limits_{t=1}^T {p(\mathbf{x}^{(t-1)}\mid\mathbf{x}^{(t)}) \over q(\mathbf{x}^{(t)}\mid\mathbf{x}^{(t-1)})}$
+      - For infinifestimal $\beta$ the forward and reverse distribution over trajectories can be made identical.
+        - Then only a single sample from $q(\mathbf{x}^{(1 \cdots T)} \mid \mathbf{x}^{(0)})$ is required to evalute the integral above.
+          - we put the sampled $\mathbf{x}^{(t)}$ into the model to get $p(\mathbf{x}^{(t-1)}\mid\mathbf{x}^{(t)})$.
+        - This corresponds to the case of a quasy-static process.
+      - But this is still a heavy operation in that we need to calculate the output of the neural net T times.
+        - There seems no code within the official GitHub repository but they calculate the lower bound of the log likelihood at uniformly sampled t values.
+    - code analysis
+      - LogLikelihood.do()
+        - do()
+          - print_stats([model.cost(batch) for batch in dataloader])
+        - print_stats()
+          - mean
+          - std
+          - stderr
+      - model.cost()
+        - model.cost_single_t(X_noiseless)
+          - X_noisy, t, mu_posterior, sigma_posterior = generate_forward_diffusion_sample(X_noiseless)
+          - mu, sigma = get_mu_sigma(X_noisy, t)
+            - (go through one reverse step from $x^(t)$ to get the mu and the sigma of $x^{(t-1)}$)
+            - Z = mlp.apply(X_noisy)
+            - temporal_readout(Z, t)
+          - negL_bound = get_negL_bound(mu, sigma, mu_posterior, sigma_posterior)
+            - 
+          - return negL_bound
+- Model multiplied by another distribution
+  - useful when we compute posterior probability or represent inpainting with mathematical notations
+  - if we can represent the modified reverse process with respect to the original reverse process, it becomes tractable
+  - $\tilde{p}(\mathbf{x}^{(t)}) = {1 \over \tilde{Z}_t} p(\mathbf{x}^{(t)})r(\mathbf{x}^{(t)})$
+  - $\tilde{p}(\mathbf{x}^{(t)} \mid \mathbf{x}^{(t+1)}) = {1 \over \tilde{Z}_t(\mathbf{x}^{(t+1)})}p(\mathbf{x}^{(t)} \mid \mathbf{x}^{(t+1)})r(\mathbf{x}^{(t)})$
+- Entropy of reverse process
+  - defines upper/lower bound for each reverse process step in terms of entropy
+  - $H_q(\mathbf{X}^{(t)} \mid \mathbf{X}^{(t-1)}) + H_q(\mathbf{X}^{(t-1)} \mid \mathbf{X}^{(0)}) - H_q(\mathbf{X}^{(t)} \mid \mathbf{X}^{(0)}) \le H_q(\mathbf{X}^{(t-1)} \mid \mathbf{X}^{(t)}) \le H_q(\mathbf{X}^{(t)} \mid \mathbf{X}^{(t-1)})$
+  - note that
+    - they are known distribution assumed
+    - so they can be represented with some parameters in a closed form

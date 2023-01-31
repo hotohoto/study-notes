@@ -357,12 +357,11 @@ $$
 
 ### 6.4 Hermitian matrices
 
-#### Complex Inner Products
+(conjugate transpose or Hermitian transpose)
 
 - $\mathbf{z}^H = \overline{\mathbf{z}}^T$
-- $||\mathbf{z}|| = (\mathbf{z}^H\mathbf{z})^{1/2}$
 
-(definition)
+(complex inner products)
 
 - $\langle\mathbf{z}, \mathbf{z}\rangle \ge 0$
 - $\langle\mathbf{z}, \mathbf{w}\rangle = \overline{\langle\mathbf{w}, \mathbf{z}\rangle}$
@@ -371,22 +370,21 @@ $$
 (standard inner product on $C^n$)
 
 - $\langle \mathbf{z},\mathbf{w} \rangle = \mathbf{w}^H \mathbf{z}$
+- $||\mathbf{z}|| = (\mathbf{z}^H\mathbf{z})^{1/2}$
 
-#### Hermitian matrices
+(Hermitian matrices)
 
-(some rules)
+A matrix $M$ is said to be **Hermitian** if $M = M^H$.
+
+(Some rules)
 
 - $(A^H)^H = A$
 - $(\alpha A + \beta B)^H = \overline\alpha A^H + \overline\beta B^H$
 - $(AC)^H = C^H A^H$
 
-(definition)
-
-A matrix $M$ is said to be **Hermitian** if $M = M^H$.
-
 (Theorem 6.4.1)
 
-The eigenvalues of a Hermitian matrix are all real. Futhermore, eigenvectors belonging to distinct eigenvalues are orthogonal.
+The eigenvalues of a Hermitian matrix are all real. Furthermore, eigenvectors belonging to distinct eigenvalues are orthogonal.
 
 (definition)
 
@@ -511,9 +509,9 @@ $$A_k = \sigma_1 \mathbf{u}_1\mathbf{v}_1^T + \sigma_2 \mathbf{u}_2\mathbf{v}_2^
 
 #### Application 3: information retrieval - latent semantic indexing
 
-- $\argmin\limits_{i} [Q^T x]_i$
+- $\operatorname{argmin}\limits_{i} [Q^T x]_i$
   - the number of scalar multiplication: $mn$
-- $\argmin\limits_{i} [Q_1^T x]_i = \argmin\limits_{i} [V_1 \Sigma_1 U_1^T x]_i$
+- $\operatorname{argmin}\limits_{i} [Q_1^T x]_i = \operatorname{argmin}\limits_{i} [V_1 \Sigma_1 U_1^T x]_i$
   - where
     - $\sigma_{r+1} = \cdots = \sigma_{n} = 0$
   - the number of scalar multiplication: $r(m + n + 1)$
@@ -569,5 +567,4 @@ TODO
 ## 8. Iterative methods
 
 ## 9. Jordan canonical form
-
 

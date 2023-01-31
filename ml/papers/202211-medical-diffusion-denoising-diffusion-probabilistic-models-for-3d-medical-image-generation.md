@@ -15,6 +15,9 @@
 ### 2.2 Data preprocessing
 
 - histogram based intensity normalization
+  - seems to have been devised for MRI images
+  - not sure how much this is important 🤔
+
 
 ### 2.3 Architecture
 
@@ -29,7 +32,7 @@
 #### Diffusion model
 
 - DDPM
-- basic composition (in order)
+- basic composition (in order) ⭐
   - 2D conv
     - 3x3x1 kernel
   - a spatial attention block
@@ -70,3 +73,5 @@
 - [22] [On standardizing the MR image intensity scale (Nyúl and Udupa, 1999)](https://pubmed.ncbi.nlm.nih.gov/10571928/)
 - [26] [Long Video Generation With Time-Agnostic VQGAN and Time-Sensitive Transformer (Ge et al, 2022)](https://arxiv.org/abs/2204.03638) 
 - [28] [Video Diffusion Models (Ho et al, 2022)](https://arxiv.org/abs/2204.03458)
+- [30] [Self-Supervised Pre-Training of Swin Transformers for 3D Medical Image Analysis (Tang et al, CVPR 2022)](https://arxiv.org/abs/2111.14791)
+

@@ -158,11 +158,11 @@ dataset
 | core model type             | diffusion                                                    | non-diffusion (but it looks like just a discrete diffusion probabilistic model) |
 | task scope                  | general diffusion models                                     | text-to-image model and its applications                     |
 | latent space                | continuous                                                   | discrete                                                     |
-| image tokens                | patches on latent space                                      | pixels on latent space                                       |
+| image tokens                | patches on its latent space                                  | pixels on its latent space                                   |
 | architecture                | transformers with DiT blocks                                 | 2 transformer models                                         |
 | transformer type            | non-autoregressive                                           | non-autoregressive                                           |
 | predicts                    | noise (mean and covariance)                                  | masked tokens                                                |
-| initial state for inference | random noise sampled from $N(0, I)$                          | latent image of masks                                        |
+| initial state for inference | random noise sampled from $N(0, I)$                          | a latent image of masks                                      |
 | classifier free guidance    | used when needed                                             | used                                                         |
 | nice ideas                  | initialize residual blocks to be identical operations        | two-staged latent space                                      |
 |                             |                                                              | fine tune decoders                                           |

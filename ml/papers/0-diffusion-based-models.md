@@ -23,8 +23,6 @@
 - (*) Unconditional FID on CIFAR-10
 - (**) Conditional FID on CIFAR-10
 
-## TODO
-
 
 
 ## Papers
@@ -40,84 +38,19 @@
 
 
 
-### Come-Closer-Diffuse-Faster: Accelerating Conditional Diffusion Models for Inverse Problems through Stochastic Contraction
-
-- https://arxiv.org/abs/2112.05146
-- [2022 CVPR](https://openaccess.thecvf.com/content/CVPR2022/html/Chung_Come-Closer-Diffuse-Faster_Accelerating_Conditional_Diffusion_Models_for_Inverse_Problems_Through_Stochastic_CVPR_2022_paper.html)
-
-#### Notations
-
-- $0 \le t_0 \le 1$
-- $N' = N t_0 \lt N$
-  - the time step where we want to start the reverse phase from
-- $\tilde{\boldsymbol{x}}_0$
-  - a ground truth sample
-- $\boldsymbol{x}_0$
-  - initial estimate
-- $\mathcal{E}_0 = \Vert \boldsymbol{x}_0 - \tilde{\boldsymbol{x}}_0\Vert^2$
-  - estimation error between the initial estimate and the real sample
-- $\bar{\mathcal{E}}_{N'} = \mathbb{E}\Vert \boldsymbol{x}_{N'} - \tilde{\boldsymbol{x}}_{N'}\Vert^2$
-  - expected estimate error between the generated samples and the ground truth at the step $N'$ 
-- $\bar{\mathcal{E}}_{j, r}$
-  - expected estimate error between the generated samples following the reverse trajectory and the ground truth at the step j 
-
-####  Definition
-
-- contraction mapping $\boldsymbol{f}$
-  - $: \mathbb{R}^n \to \mathbb{R}^n$ is defined as $\Vert\boldsymbol{f}(\boldsymbol{x}) - \boldsymbol{f}(\boldsymbol{x})\Vert \le \lambda \Vert \boldsymbol{x} - \boldsymbol{y} \Vert$
-    - where $0 \le \lambda \lt 1$
-
-
-####  Reverse diffusion
-
-- (13): standard reverse diffusion step
-- (14): alternating step
-
-$$
-\boldsymbol{x}'_{i-1} = \boldsymbol{f}(\boldsymbol{x}_i, i) + g(\boldsymbol{x}_i, i)\boldsymbol{z}_i\tag{13}
-$$
-
-$$
-\boldsymbol{x}_{i-1} = \boldsymbol{A}\boldsymbol{x}'_{i-1} + \boldsymbol{b}\tag{14}
-$$
-
-####  Key ideas
-
-- $\boldsymbol{x}_i$ converges to $\tilde{\boldsymbol{x}}_i$ exponentially where (13), (14) altogether is a contraction mapping.
-  - The estimation error at the final step has exponentially contracting upper bound. (Theorem 1.)
-    - $\bar{\mathcal{E}}_{0, r} \le {2C\tau \over 1 - \lambda^2} + \lambda^{2N'}\bar{\mathcal{E}}_{N'}$
-    - where
-      - $\tau = {\operatorname{Tr}({\boldsymbol{A}^T\boldsymbol{A}}) \over n}$
-      - $\lambda$
-        - constant depending on the standard diffusion
-      - $C$
-        - constant depending on the standard diffusion
-- There exist a minimum $N'$ which is a shortcut path. (Theorem 2.)
-  - such that
-    - $\bar{\mathcal{E}}_{0, r} \le \mu\mathcal{E}_0$
-    - For any $0 \lt \mu \le 1$
-
-####  Aapplications
-
-$\boldsymbol{A} = (I - \boldsymbol{P})$
-
-$b = \hat{\boldsymbol{x}}$
-
-- super resolution
-  - $\boldsymbol{P}$: Gaussian blur
-- image inpainting
-  - $\boldsymbol{P}$: measurement mask
-- ...
-
 ### Hierarchical Text-Conditional Image Generation with CLIP Latents
 
 - https://openai.com/dall-e-2/
 - [DALLE2](./dall-e-2.md)
 
+
+
 ### Diffusion-Based Representation Learning
 
 - https://arxiv.org/abs/2105.14257
 - TODO
+
+
 
 ### Gotta Go Fast When Generating Data with Score-Based Models
 
@@ -126,14 +59,19 @@ $b = \hat{\boldsymbol{x}}$
 - high-order methods were significantly slower (6-8 times)
 - TODO readme
 
+
+
 ### Subspace Diffusion Generative Models
 
 - MIT
 - https://arxiv.org/abs/2205.01490
 
+
+
 ### Diffusion Models Beat GANs on Image Synthesis
 
 - https://arxiv.org/abs/2105.05233
+- aka  guided-diffusion
 - Prafulla Dhariwal, Alex Nichol
 - found a better architecture by ablations
 - architecture
@@ -158,6 +96,8 @@ $b = \hat{\boldsymbol{x}}$
 - ADM-G
 - ADM-U
 
+
+
 ### SRDiff: Single Image Super-Resolution with Diffusion Probabilistic Models
 
 https://arxiv.org/abs/2104.14951
@@ -171,6 +111,8 @@ https://arxiv.org/abs/2104.14951
 - limitations
   - no codes
   - no ablation study
+
+
 
 ### Image Super-Resolution via Iterative Refinement
 
@@ -203,11 +145,7 @@ https://arxiv.org/abs/2104.14951
 - References
   - https://m.blog.naver.com/mincheol9166/221771426327
 
-### Variational Diffusion Models
 
-- https://openreview.net/forum?id=2LdBqxc1Yv
-- NeurIPS 2021
-- Diederik P Kingma, Tim Salimans, Ben Poole, Jonathan Ho
 
 ### ILVR: Conditioning Method for Denoising Diffusion Probabilistic Models
 
@@ -224,16 +162,7 @@ https://arxiv.org/abs/2104.14951
   - cats to dogs
   - scribbles to modify an image
 
-### Denoising Diffusion Implicit Models (DDIM)
 
-- ICLR 2021
-- https://arxiv.org/abs/2010.02502
-- Jiaming Song, Chenlin Meng, Stefano Ermon
-- speeded up diffusion model sampling
-  - generates high quality samples with much fewer steps
-- introduced a deterministic generative process
-  - enables meaningful interpolatation in the latent variable
-- TODO
 
 ### Improved Denoising Diffusion Probabilistic Models
 
@@ -254,6 +183,8 @@ https://arxiv.org/abs/2104.14951
   - use importance sampling
     - sample some t values more where the loss component of which is bigger
     - $L_\text{VLB}$ decreases in a smoothed curve
+
+
 
 ### Generative Modeling by Estimating Gradients of the Data Distribution
 
@@ -290,6 +221,8 @@ https://arxiv.org/abs/2104.14951
 - architecture
   - RefineNet (a variant of U-Net)
 
+
+
 ### Sliced Score Matching: A Scalable Approach to Density and Score Estimation
 
 - Song et al.
@@ -306,59 +239,7 @@ Minimal Random Code Learning: Getting Bits Back from Compressed Model Parameters
 - https://arxiv.org/abs/1810.00440
 - TODO readme
 
-### Deep unsupervised learning using nonequilibrium thermodynamics
 
-- PMLR 2015
-- aka NET
-- https://arxiv.org/abs/1503.03585
-- contributions
-  - Introduced probabilistic diffusion models
-    - pros
-      - flexible model structure
-      - easy sampling
-      - easy multiplication with other distribution in order to compute a posterior
-      - easy to evaluate the model log likelihood
-- Diffusion models
-  - (the same as the model description in DDPM paper's background section)
-  - (but with slightly different notations)
-- Model probability
-  - we can calculate a probability value for a given data sample according to the trained model
-    - $p(\mathbf{x}^{(0)}) = \int d\mathbf{x}^{1 \cdots T} q(\mathbf{x}^{(1 \cdots T)} \mid \mathbf{x}^{(0)}) p(\mathbf{x}^{(T)})\prod\limits_{t=1}^T {p(\mathbf{x}^{(t-1)}\mid\mathbf{x}^{(t)}) \over q(\mathbf{x}^{(t)}\mid\mathbf{x}^{(t-1)})}$
-        - For infinifestimal $\beta$ the forward and reverse distribution over trajectories can be made identical.
-          - Then only a single sample from $q(\mathbf{x}^{(1 \cdots T)} \mid \mathbf{x}^{(0)})$ is required to evalute the integral above.
-            - we put the sampled $\mathbf{x}^{(t)}$ into the model to get $p(\mathbf{x}^{(t-1)}\mid\mathbf{x}^{(t)})$.
-          - This corresponds to the case of a quasy-static process.
-        - But this is still a heavy operation in that we need to calculate the output of the neural net T times.
-          - There seems no code within the official GitHub repository but they calculate the lower bound of the log likelihood at uniformly sampled t values.
-    - code analysis
-      - LogLikelihood.do()
-        - do()
-          - print_stats([model.cost(batch) for batch in dataloader])
-        - print_stats()
-          - mean
-          - std
-          - stderr
-      - model.cost()
-        - model.cost_single_t(X_noiseless)
-          - X_noisy, t, mu_posterior, sigma_posterior = generate_forward_diffusion_sample(X_noiseless)
-          - mu, sigma = get_mu_sigma(X_noisy, t)
-            - (go through one reverse step from $x^(t)$ to get the mu and the sigma of $x^{(t-1)}$)
-            - Z = mlp.apply(X_noisy)
-            - temporal_readout(Z, t)
-          - negL_bound = get_negL_bound(mu, sigma, mu_posterior, sigma_posterior)
-            - 
-          - return negL_bound
-- Model multiplied by another distribution
-  - useful when we compute posterior probability or represent inpainting with mathematical notations
-  - if we can represent the modified reverse process with respect to the original reverse process, it becomes tractable
-  - $\tilde{p}(\mathbf{x}^{(t)}) = {1 \over \tilde{Z}_t} p(\mathbf{x}^{(t)})r(\mathbf{x}^{(t)})$
-  - $\tilde{p}(\mathbf{x}^{(t)} \mid \mathbf{x}^{(t+1)}) = {1 \over \tilde{Z}_t(\mathbf{x}^{(t+1)})}p(\mathbf{x}^{(t)} \mid \mathbf{x}^{(t+1)})r(\mathbf{x}^{(t)})$
-- Entropy of reverse process
-  - defines upper/lower bound for each reverse process step in terms of entropy
-  - $H_q(\mathbf{X}^{(t)} \mid \mathbf{X}^{(t-1)}) + H_q(\mathbf{X}^{(t-1)} \mid \mathbf{X}^{(0)}) - H_q(\mathbf{X}^{(t)} \mid \mathbf{X}^{(0)}) \le H_q(\mathbf{X}^{(t-1)} \mid \mathbf{X}^{(t)}) \le H_q(\mathbf{X}^{(t)} \mid \mathbf{X}^{(t-1)})$
-  - note that
-    - they are known distribution assumed
-    - so they can be represented with some parameters in a closed form
 
 ### A Connection Between Score Matching and Denoising Autoencoders
 
@@ -368,10 +249,14 @@ Minimal Random Code Learning: Getting Bits Back from Compressed Model Parameters
 - Introduced a scalable loss function called denoising score matching
   - $L_\text{DSM} = \mathbb{E}_{q_\sigma(\tilde{\mathbf{x}}\mid \mathbf{x})p_\text{data}(\mathbf{x})}[\Vert \mathbf{s}_\mathbf{\theta}(\tilde{\mathbf{x}}) - \nabla_{\tilde{\mathbf{x}}}\log q_\sigma(\tilde{\mathbf{x}}\mid \mathbf{x}) \Vert_2^2]$
 
+
+
 ### The Communication Complexity of Correlation
 
 - IEEE 2007
 - TODO
+
+
 
 ### Estimation of Non-Normalized Statistical Models by Score Matching
 
@@ -383,7 +268,9 @@ Minimal Random Code Learning: Getting Bits Back from Compressed Model Parameters
 - Note that "score" here is the gradient of the log density with respect to the data vector
   - not with resepect to the parameters like in statistics usually
 
-### References
+
+
+## References
 
 - [Sample quality metrics](./sample-quality-metrics.md)
 - [What are diffusion models](https://lilianweng.github.io/posts/2021-07-11-diffusion-models/)

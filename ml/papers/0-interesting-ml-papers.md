@@ -289,8 +289,6 @@
       - harmful
   
 
-
-
 - HiFi-GAN: Generative Adversarial Networks for Efficient and High Fidelity Speech Synthesis
   - https://arxiv.org/abs/2010.05646
   - 카카오엔터프라이즈 AI Lab
@@ -707,10 +705,17 @@
 
 ## 2018
 
+- Self-Attention with Relative Position Representations
+  - https://arxiv.org/abs/1803.02155
+  - extend self-attention by taking account of relative positional embeddings
+    - add a learnt relative positional embedding into K/V
+    - relative position is clipped as (-k, k) so there can be 2k + 1 position values
+    - weights are shared across multi heads
+    - so 2(2k+1) positional embeddings needed
+  
 - YOLOv3: an Incremental Improvement
   - https://arxiv.org/abs/1804.02767
   - README
-
 - BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding
   - https://arxiv.org/abs/1810.04805
   - [Review in Korean](https://reniew.github.io/47/)
@@ -722,20 +727,16 @@
   - SQuAD(Stanford Question Answering Dataset)
     - https://rajpurkar.github.io/SQuAD-explorer/
   - NLP
-
 - Universal Language Model Fine-tuning for Text Classification
   - https://arxiv.org/abs/1801.06146
   - ULMFiT
   - NLP
-
 - Understanding Batch Normalization
   - https://arxiv.org/abs/1806.02375
   - BN, batch normalization
-
 - How Does Batch Normalization Help Optimization?
   - https://arxiv.org/abs/1805.11604
   - BN, batch normalization
-
 - A Tutorial on Deep Learning for Music Information Retrieval
   - https://arxiv.org/abs/1709.04396
   - spectrograms

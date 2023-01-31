@@ -52,14 +52,13 @@ $$
 - $\pi$
   - a path on the forward backward algorithm table
 
-## expressions
+## Expressions
 
 ### (2)
 $$
-p(\pi|x) = \prod_{t=1}^{x}{y_{\pi_t}^k},\quad \forall \pi \in L'^{T}$$
-
-### (4)
-
+p(\pi|x) = \prod_{t=1}^{x}{y_{\pi_t}^k},\quad \forall \pi \in L'^{T} \tag{4}
+$$
 $$
 h(\mathcal{x}) = \mathop{\arg\,\max}\limits_{\pi\in\mathcal{B}^{-1}(l)}{p(\pi|\mathcal{x})}
 $$
+

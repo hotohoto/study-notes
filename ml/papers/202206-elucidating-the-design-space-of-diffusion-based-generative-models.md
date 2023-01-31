@@ -8,7 +8,7 @@
   - Analysis on the freedom of design space and heuristic improvement
   - Higher order Runge-Kutta method for the deterministic sampling
   - Found non-leaking augmentation was helpful
-- taken together achieved SOTA
+- taken together it achieved SOTA
 
 
 

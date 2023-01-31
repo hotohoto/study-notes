@@ -32,7 +32,7 @@
 - symmetric group
   - https://en.wikipedia.org/wiki/Symmetric_group
   - n-th symmetric group
-  - $S_n = \{f: S \to S\| f is bijective function}$
+  - $S_n = \{f: S \to S | f \text{ is a bijective function}\}$
 - abelian group
   - commutative group
 
