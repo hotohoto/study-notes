@@ -30,7 +30,7 @@
 - $\lambda_t = \log [\alpha_t^2 / \sigma_t ^2]$
   - log signal-to-noise-ratio
   - decreases with $t$
-- $q(\mathbf{z}_t|\mathbf{z}_s) = \mathcal{N}(\mathbf{z}_t; (\alpha_t/\alpha_s)\mathbf{z}_s, \sigma_{t|s}^2 \mathbf{I})$
+- $q(\mathbf{z}_t|\mathbf{z}_s) = \mathcal{N}(\mathbf{z}_t; (\alpha_t/\alpha_s)\mathbf{z}_s, \sigma _{t|s}^2 \mathbf{I})$
   - where
     - $0 \le s \lt t \le 1$
     - $\sigma_{t|s}^2 = (1 - e^{\lambda_t - \lambda_s})\sigma_t^2$
@@ -39,7 +39,7 @@
 
 #### Training
 
-- $\hat{\mathbf{x}}_\theta := \hat{\mathbf{x}}_\theta(\mathbf{z_t}) := \hat{\mathbf{x}}_\theta(\mathbf{z}_t, \lambda_t)$
+- $\hat{\mathbf{x}}_\theta := \hat{\mathbf{x}} _\theta(\mathbf{z_t}) := \hat{\mathbf{x}} _\theta(\mathbf{z} _t, \lambda _t)$
   - denoising model
 - $p(\mathbf{z}_t)$
   - a marginal distribution
@@ -58,8 +58,8 @@ $$
 
 - $t$ is sampled according to a cosine schedule
 - $\boldsymbol{\epsilon}$-prediction
-  - $\hat{\mathbf{x}}_\theta(\mathbf{z}_t) = (\mathbf{z}_t - \sigma_t \boldsymbol{\epsilon}_\theta(\mathbf{z}_t))$
-  - $\boldsymbol{\epsilon}_\theta(\mathbf{z}_t) \approx - \sigma_t \nabla_{\mathbf{z}_t} \log p(\mathbf{z}_t)$
+  - $\hat{\mathbf{x}} _\theta(\mathbf{z} _t) = (\mathbf{z} _t - \sigma _t \boldsymbol{\epsilon} _\theta(\mathbf{z} _t))$
+  - $\boldsymbol{\epsilon} _\theta(\mathbf{z} _t) \approx - \sigma _t \nabla _{\mathbf{z} _t} \log p(\mathbf{z} _t)$
 - $\mathbf{v}$-prediction
   - $\mathbf{v}_t := \alpha_t \boldsymbol{\epsilon} - \sigma_t\mathbf{x}$
     - velocity of $\mathbf{z}_t$ with respect to $\phi_t = \arctan(\sigma_t / \alpha_t)$
@@ -67,7 +67,7 @@ $$
 
 #### Sampling
 
-- $q(\mathbf{z}_s|\mathbf{z}_t, \mathbf{x}) = \mathcal{N}(\mathbf{z}_s; \tilde{\mathbf{\mu}}_{s|t}(\mathbf{z}_t, \mathbf{x}), \tilde{\sigma}_{s|t}^2 \mathbf{I})$
+- $q(\mathbf{z}_s|\mathbf{z}_t, \mathbf{x}) = \mathcal{N}(\mathbf{z} _s; \tilde{\mathbf{\mu}} _{s|t}(\mathbf{z} _t, \mathbf{x}), \tilde{\sigma} _{s|t}^2 \mathbf{I})$
   - the forward process described in reverse
   - $ s \lt t$
 
@@ -165,14 +165,14 @@ $$
 - assuming
   - $\mathbf{x}_\theta^b \approx \mathbb{E}_q[\mathbf{x}^b | \mathbf{z}_t, \mathbf{x}^a] \approx \mathbb{E}_q[\mathbf{x}^b | \mathbf{z}_t]$
 - but
-  - $\mathbb{E}_q[\mathbf{x}^b | \mathbf{z}_t, \mathbf{x}^a] = \mathbb{E}_q[\mathbf{x}^b | \mathbf{z}_t] + (\sigma_t / \alpha_t) \nabla_{\mathbf{z}_t^b} \log q(\mathbf{x}_a | \mathbf{z}_t)$
+  - $\mathbb{E} _q[\mathbf{x}^b | \mathbf{z} _t, \mathbf{x}^a] = \mathbb{E} _q[\mathbf{x}^b | \mathbf{z} _t] + (\sigma _t / \alpha _t) \nabla _{\mathbf{z} _t^b} \log q(\mathbf{x} _a | \mathbf{z} _t)$
     - looks reasonable in that we need to fix the value with a score term
     - (but not sure how the equality holds...🤔)
 
 (reconstruction guided sampling in the case of temporal interpolation)
 
 - a temporal/spatial inpainting/super-resolution method
-- $q(\mathbf{x}^a|\mathbf{z}_t) \approx \mathcal{N}(\hat{\mathbf{x}}_\theta^a(\mathbf{z}_t), (\sigma_t^2/\alpha_t^2)\mathbf{I})$
+- $q(\mathbf{x}^a|\mathbf{z} _t) \approx \mathcal{N}(\hat{\mathbf{x}} _\theta^a(\mathbf{z} _t), (\sigma _t^2/\alpha _t^2)\mathbf{I})$
   - a heuristic(?) approximation but empirically looks good
 
 
@@ -188,6 +188,7 @@ $$
 - we may extend a video auto-regressively for long video generation
 
 (reconstruction guided sampling in the case of spatial interpolation)
+
 $$
 \tilde{\mathbf{x}}_\theta (\mathbf{z}_t) = \hat{\mathbf{x}}_\theta(\mathbf{z}_t) - {w_r \alpha_t \over 2} \nabla_{\mathbf{z}_t^b} {\Vert \mathbf{x}^a - \hat{\mathbf{x}}_\theta^a(\mathbf{z}_t) \Vert}_2^2
 \tag{8}
