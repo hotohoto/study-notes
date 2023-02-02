@@ -4,7 +4,7 @@
 
 - https://video-diffusion.github.io/
 - https://arxiv.org/abs/2204.03458
-- Jonathan Ho et al.
+- Jonathan Ho, Tim Salimans et al
 - Google
 
 
@@ -47,6 +47,7 @@
 
 
 (theoretical training object)
+
 $$
 \mathbb{E}_{\boldsymbol{\epsilon}, t} \left[w(\lambda_t) \Vert \hat{\mathbf{x}}_\theta (\mathbf{z}_t) - \mathbf{x} \Vert_2^2 \right] \tag{2}
 $$
@@ -88,7 +89,7 @@ $$
 
 - starting at $\mathbf{z}_1 \sim \mathcal{N}(\mathbf{0}, \mathbf{I})$
 - $\boldsymbol{\epsilon} \sim \mathcal{N}(\mathbf{0}, \mathbf{I})$
-- note that $\hat{\mathbf{x}}_\theta(\mathbf{z}_t)$ is used unlikely to DDPM
+- note that $\hat{\mathbf{x}}_\theta(\mathbf{z}_t)$ is used which different from DDPM
 - $\gamma$ 
   - a hyperparameter that controls the stochasticity of the sampler inspired by `iDDPM`
 
@@ -184,12 +185,15 @@ $$
   - a weighting factor
   - improves the sample quality when $w_r \gt 1$
     - especially when combined with predictor-corrector samplers using Langevin diffusion
+- we may extend a video auto-regressively for long video generation
 
 (reconstruction guided sampling in the case of spatial interpolation)
 $$
 \tilde{\mathbf{x}}_\theta (\mathbf{z}_t) = \hat{\mathbf{x}}_\theta(\mathbf{z}_t) - {w_r \alpha_t \over 2} \nabla_{\mathbf{z}_t^b} {\Vert \mathbf{x}^a - \hat{\mathbf{x}}_\theta^a(\mathbf{z}_t) \Vert}_2^2
 \tag{8}
 $$
+
+- for super resolution when we have LR and SR models
 
 ## 4 Experiments
 
@@ -205,7 +209,6 @@ $$
       - spatial dimension: 112x112
       - available within https://github.com/pfnet-research/tgan2
     - I3D
-      - spatial dimension: ?
 
 ### 4.1 Unconditional video modeling
 

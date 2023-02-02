@@ -17,6 +17,7 @@
     - it's just the time direction of the reverse diffusion processes as always even though $\boldsymbol{x}_0$ is given as an exceptional condition
 
 
+
 ## 1 Introduction
 
 
@@ -25,10 +26,19 @@
 
 
 
-<img src="./assets/image-20230128104156200.png" alt="image-20230128104156200" style="zoom:67%;" />
-
-
-
+- Big picture
+  - we want to speed up the sampling process
+    - May be the question would have been this - why do we add noise in DDPM?
+  - so we redefine the forward process
+    - define a bunch of non-Markovian processes which use the estimated $\hat{x}_0$ given $x_t$
+  - the forward process determines loss function
+    - but DDPM can be flexible
+    - $L_\boldsymbol{1} = L_\text{simple}$ can be used as a surrogate objective
+    - so we can use pretrained DDPMs
+  - the forward process determines the reverse process
+    - (meaning sampling depends on the forward process)
+    - it's what this paper is for
+  
 - DDIM
   - non-Markovian forward diffusion process
   - reverse generative Markovian process 
@@ -60,10 +70,6 @@ $$
 \tag{2}
 $$
 
-- (it doesn't look very intuitive to me 🤔)
-
-
-
 (DDPM - forward process)
 $$
 q\left(\boldsymbol{x}_{1: T} \mid \boldsymbol{x}_0\right):=\prod_{t=1}^T q\left(\boldsymbol{x}_t \mid \boldsymbol{x}_{t-1}\right), \text { where } q\left(\boldsymbol{x}_t \mid \boldsymbol{x}_{t-1}\right):=\mathcal{N}\left(\sqrt{\frac{\alpha_t}{\alpha_{t-1}}} \boldsymbol{x}_{t-1},\left(1-\frac{\alpha_t}{\alpha_{t-1}}\right) \boldsymbol{I}\right)
@@ -86,6 +92,12 @@ $$
 - variational objective
 - $\gamma_t = 1$ for the DDPM's simplest loss function
 
+
+
+The reverse step of DDPM is defined as below.
+$$
+p_\theta(\boldsymbol{x}_{t-1}| \boldsymbol{x}_t) = \mathcal{N}(\boldsymbol{x}_{t-1}; ...)
+$$
 
 
 ## 3 Variational inference for non-Markovian forward processes
@@ -155,12 +167,12 @@ $$
 \tag{11}
 $$
 
-- But analytically it's equivalent to the objective $L_\boldsymbol{1}$ of DDPM by Theorem 1
+- But analytically it can be equivalent to the objective of DDPM by Theorem 1
 
 **Theorem 1.** For all $\sigma \gt \boldsymbol{0}$, there exists $\gamma \in \mathbb{R}_{>0}^T$ and $C \in \mathbb{R}$, such that $J_\sigma = L_\gamma + C$
 
 - Note
-  - if parameters $\theta$ are not shared across different t, then the optimal solution for $\epsilon_\theta$ will not depend on the weights $\gamma$
+  - if parameters $\theta$ are not shared across different $t$, then the optimal solution for $\epsilon_\theta$ will not depend on the weights $\gamma$
   - then $L_1$ objective used by DDPM can be used as a surrogate objective
 
 ## 4 Sampling from generalized generative processes
@@ -169,7 +181,7 @@ Now it's clear that we can use any pretrained DDPM network with the generative p
 ### 4.1 Denoising diffusion implicit models
 
 $$
-\boldsymbol{x}_{t-1}=\sqrt{\alpha_{t-1}} \underbrace{\left(\frac{\boldsymbol{x}_t-\sqrt{1-\alpha_t} \epsilon_\theta^{(t)}\left(\boldsymbol{x}_t\right)}{\sqrt{\alpha_t}}\right)}_{\text {"predicted } \boldsymbol{x}_0 "}+\underbrace{\sqrt{1-\alpha_{t-1}-\sigma_t^2} \cdot \epsilon_\theta^{(t)}\left(\boldsymbol{x}_t\right)}_{\text {"direction pointing to } \boldsymbol{x}_t "}+\underbrace{\sigma_t \epsilon_t}_{\text {random noise }}
+\boldsymbol{x}_{t-1}=\sqrt{\alpha_{t-1}} \underbrace{\left(\frac{\boldsymbol{x}_t-\sqrt{1-\alpha_t} \epsilon_\theta^{(t)}\left(\boldsymbol{x}_t\right)}{\sqrt{\alpha_t}}\right)}_{\text { predicted } \boldsymbol{x}_0}+\underbrace{\sqrt{1-\alpha_{t-1}-\sigma_t^2} \cdot \epsilon_\theta^{(t)}\left(\boldsymbol{x}_t\right)}_{\text {direction pointing to } \boldsymbol{x}_t }+\underbrace{\sigma_t \epsilon_t}_{\text {random noise }}
 \tag{12}
 $$
 
@@ -177,15 +189,22 @@ $$
 - when $\sigma_t = \sqrt{1 - \alpha_{t-1} \over 1 - \alpha_t}\sqrt{1-{\alpha_t \over \alpha_{t-1}}}$ for all $t$,
   - the forward process becomes Markovian
   - the generative process becomes a DDPM
+  - note that
+    - in the Non-equilibrium thermodynamics (NET)  paper,
+    - the variance of reverse step has upper and lower bound
+    - and this $\sigma_t$ value corresponds to the lower bound
 - when $\sigma_t = 0$ for all $t$,
   - we call the resulting model the denoising diffusion implicit model (DDIM)
 
 ### 4.2 Accelerated generation processes
 
+<img src="./assets/image-20230128104156200.png" alt="image-20230128104156200" style="zoom:67%;" />
+
 - $L_1$ doesn't depend on the specific forward procedure
 - we can train a model with an arbitrary number of forward steps but only sample from some of them in the generative process
 - slight modification is needed though
   - see Appendix C.1 for more details
+- we pick S timepoints among all T timepoints
 
 ### 4.3 Relevance to neural ODEs
 
@@ -194,19 +213,27 @@ $$
 \tag{13}
 $$
 
-- derived from (12) when it is the DDIM case ($\sigma_t = 0$)
+- derived from Eq. (12) but with the noise term dropped for it is the DDIM case ($\sigma_t = 0$)
+- reparameterize
+  - $\bar{\boldsymbol{x}}_t = {\boldsymbol{x}_t \over \sqrt{\alpha_t}}$
+  - $\sigma(t) = \sqrt{1 - \alpha_t \over \alpha_t}$
 
-TODO
+- Then Eq. (13) can be derived into Eq. (14)
+
 $$
 \mathrm{d}\bar{\boldsymbol{x}}_t = \epsilon_\theta^{(t)} \left( {\bar{\boldsymbol{x}}(t) \over\sqrt{\sigma^2 + 1}} \right) \mathrm{d}\sigma{(t)}
 \tag{14}
 $$
+
+- Note that this is parameterized by $\mathrm{d}(t)$ not by $\mathrm{d}t$ as in Score-SDE
+- And Eq. (14) is equivalent to a probability flow ODE for VE-SDE as below
 
 $$
 \frac{\boldsymbol{x}_{t-\Delta t}}{\sqrt{\alpha_{t-\Delta t}}}=\frac{\boldsymbol{x}_t}{\sqrt{\alpha_t}}+\frac{1}{2}\left(\frac{1-\alpha_{t-\Delta t}}{\alpha_{t-\Delta t}}-\frac{1-\alpha_t}{\alpha_t}\right) \cdot \sqrt{\frac{\alpha_t}{1-\alpha_t}} \cdot \epsilon_\theta^{(t)}\left(\boldsymbol{x}_t\right)
 \tag{15}
 $$
 
+- see Appendix  B. proofs - proposition 1. for more details
 
 ## 5 Experiments
 
@@ -219,7 +246,13 @@ $$
 $$
 
 ### 5.1 Sample quality and efficiency
+
+- it's not always the best but best when the number of steps is small
+
 ### 5.2 Sample consistency in DDIMs
+
+- deterministic sampling is possible
+
 ### 5.3 Interpolation in deterministic generative processes
 ### 5.4 Reconstruction from latent space
 ## 6 Related work
@@ -231,7 +264,25 @@ TODO
 
 ## B Proofs
 
-TODO
+##### Lemma 1.
+
+$$
+q_\sigma(\boldsymbol{x_t}|\boldsymbol{x}_0) = \mathcal{N}(\sqrt{\alpha_t} \boldsymbol{x}_0 | (1 - \alpha_t)I) \tag{22}
+$$
+
+- Our non-Markovian forward process also has the same property as in DDPM.
+
+##### Theorem 1.
+
+For all $\sigma > \boldsymbol{0}$, there exists $\gamma \in \mathbb{R}_{\gt 0}^T$ and $C \in \mathbb{R}$, such that $J_\sigma = L_\gamma + C$
+
+- We can find an equivalent loss function in DDPM for each loss function of our newly defined process.
+
+##### Proposition 1.
+
+The ODE in Eq. (14) with the optimal model $\epsilon_\theta^{(t)}$ has an equivalent probability flow ODE corresponding to the "Variance-Exploding" SDE in Score-SDE (Song et al., 2020).
+
+
 
 ## C Additional derivations
 ### C.1 Accelerated sampling processes
@@ -239,8 +290,6 @@ TODO
 TODO
 
 ### C.2 Derivation of denoising objectives from DDPMs
-
-TODO
 
 ## D Experimental details
 ### D.1 Datasets and architectures
