@@ -27,18 +27,16 @@
 
 
 - Big picture
-  - we want to speed up the sampling process
-    - May be the question would have been this - why do we add noise in DDPM?
-  - so we redefine the forward process
-    - define a bunch of non-Markovian processes which use the estimated $\hat{x}_0$ given $x_t$
-  - the forward process determines loss function
-    - but DDPM can be flexible
-    - $L_\boldsymbol{1} = L_\text{simple}$ can be used as a surrogate objective
-    - so we can use pretrained DDPMs
-  - the forward process determines the reverse process
-    - (meaning sampling depends on the forward process)
-    - it's what this paper is for
-  
+  - The sampling speed of DDPM is too slow. How about skip some steps?
+  - The reverse step distribution contains $\alpha _t$ and $\beta _t$ that are for moving just a single step.
+  - So we replace them with $\bar{\alpha}$ which is not relative to the previous step but to the original image.
+  - Then, it's possible to skip steps.
+  - Oh, now it seems possible to make it deterministic by setting $\sigma_t = 0$?
+  - Yes, it's possible, but then we modify the diffusion process itself and we need to define the forward process more generally in the first place.
+  - Still we want to keep the generative process the same and also the marginal distribution $p_t(\boldsymbol{x} _t| \boldsymbol{x} _0)$ the same.
+  - It was a family of non-Markovian processes.
+  - (Refer to https://lilianweng.github.io/posts/2021-07-11-diffusion-models/#speed-up-diffusion-model-sampling for more details.)
+
 - DDIM
   - non-Markovian forward diffusion process
   - reverse generative Markovian process 
@@ -58,11 +56,12 @@
 
 
 
-(DDPM - reverse process)
+(DDPM - generative process)
 $$
 p_\theta(\boldsymbol{x}_0) = \int p_\theta(\boldsymbol{x}_{0:T}) \mathrm{d} \boldsymbol{x}_{1:T}, \quad \text{where} \quad p_\theta(\boldsymbol{x}_{0:T}) := p_\theta(\boldsymbol{x}_T)\prod\limits_{t=1}^T p_\theta^{(t)}(\boldsymbol{x}_{t-1} | \boldsymbol{x}_t) \tag{1}
 $$
 
+- It approximates the reverse process $q(\boldsymbol{x} _{t-1}|\boldsymbol{x} _t)$.
 
 (DDPM - variational lower bound)
 $$
@@ -94,10 +93,25 @@ $$
 
 
 
-The reverse step of DDPM is defined as below.
+The generative process of DDPM can be specified in terms of $\sigma_t$ and $\alpha _t$.
+
+
 $$
-p_\theta(\boldsymbol{x}_{t-1}| \boldsymbol{x}_t) = \mathcal{N}(\boldsymbol{x}_{t-1}; ...)
+\begin{aligned}
+\mathbf{x}_{t-1} 
+&= \sqrt{\alpha_{t-1}}\mathbf{x}_0 +  \sqrt{1 - \alpha_{t-1}}\boldsymbol{\epsilon}_{t-1} \\
+&= \sqrt{\alpha_{t-1}}\mathbf{x}_0 + \sqrt{1 - \alpha_{t-1} - \sigma_t^2} \boldsymbol{\epsilon}_t + \sigma_t\boldsymbol{\epsilon} \\
+&= \sqrt{\alpha_{t-1}}\mathbf{x}_0 + \sqrt{1 - \alpha_{t-1} - \sigma_t^2} \frac{\mathbf{x}_t - \sqrt{\alpha_t}\mathbf{x}_0}{\sqrt{1 - \alpha_t}} + \sigma_t\boldsymbol{\epsilon} \\
+q_\sigma(\mathbf{x}_{t-1} \vert \mathbf{x}_t, \mathbf{x}_0)
+&= \mathcal{N}(\mathbf{x}_{t-1}; \sqrt{\alpha_{t-1}}\mathbf{x}_0 + \sqrt{1 - \alpha_{t-1} - \sigma_t^2} \frac{\mathbf{x}_t - \sqrt{\alpha_t}\mathbf{x}_0}{\sqrt{1 - \alpha_t}}, \sigma_t^2 \mathbf{I})
+\end{aligned}
 $$
+
+$$
+\tilde{\beta}_t = \sigma_t^2 = {{1 - \alpha_{t-1}} \over {1 - \alpha_t}}\left({1 - {\alpha_t \over \alpha_{t-1}}}\right)
+$$
+
+
 
 
 ## 3 Variational inference for non-Markovian forward processes
@@ -260,8 +274,6 @@ $$
 ## References
 ## A Non-Markovian forward process for a discrete case
 
-TODO
-
 ## B Proofs
 
 ##### Lemma 1.
@@ -286,8 +298,6 @@ The ODE in Eq. (14) with the optimal model $\epsilon_\theta^{(t)}$ has an equiva
 
 ## C Additional derivations
 ### C.1 Accelerated sampling processes
-
-TODO
 
 ### C.2 Derivation of denoising objectives from DDPMs
 

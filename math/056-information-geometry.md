@@ -78,7 +78,7 @@ Fay-Herriot model approach
 - 1979 Estimates of income for small places: an application of James–Stein procedures to census data
 - [Multivariate Fay–Herriot models for small area estimation](https://doi.org/10.1016/j.csda.2015.07.013)
 
-### fisher information matrix
+### Fisher information matrix
 
 (likelihood definition)
 
@@ -171,6 +171,16 @@ $$
 (Reference)
 
 - https://en.wikipedia.org/wiki/Bregman_divergence
+
+## Resources
+
+resources for information geometry:
+
+- Video tutorial (45"): [https://youtube.com/watch?v=w6r_jsEBlgU…](https://t.co/ONvjDsH8Ag) 
+- Tutorial (60 p.): [https://tinyurl.com/ElementaryIG/](https://t.co/cIA6FAsF4p) 
+- Overview (10 p.): [https://tinyurl.com/FacesIG/](https://t.co/kvzw9awIOe) 
+- Hands-on coding  with [@geomstats](https://twitter.com/geomstats) : [http://tinyurl.com/PythonIG](https://t.co/ITfDzdyo5h)
+- Portal: [https://franknielsen.github.io/IG/](https://t.co/PoYOpl4OMC)
 
 ## References
 
