@@ -184,7 +184,7 @@ $$
 $$
 
 - where
-  - $w$
+  - $w \ge 0$
     - guidance strength
   - $\boldsymbol{\epsilon}_\theta (\mathbf{z}_t)$
     - an unconditional prediction

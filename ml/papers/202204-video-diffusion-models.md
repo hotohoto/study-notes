@@ -35,7 +35,8 @@
     - $0 \le s \lt t \le 1$
     - $\sigma_{t|s}^2 = (1 - e^{\lambda_t - \lambda_s})\sigma_t^2$
 - $q(\mathbf{z}_1) \approx \mathcal{N}(\mathbf{0}, \mathbf{I})$
-  - note that $1$ is the biggest $t$ value when defining $\mathbf{z}$
+  - Note that $1$ is the biggest $t$ value when defining $\mathbf{z}$.
+  - This might be quite different if we train $\lambda _1$ as in variational diffusion models (VDM).
 
 #### Training
 

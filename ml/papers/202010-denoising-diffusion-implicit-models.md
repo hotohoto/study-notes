@@ -33,10 +33,10 @@
   - Then, it's possible to skip steps.
   - Oh, now it seems possible to make it deterministic by setting $\sigma_t = 0$?
   - Yes, it's possible, but then we modify the diffusion process itself and we need to define the forward process more generally in the first place.
-  - Still we want to keep the generative process the same and also the marginal distribution $p_t(\boldsymbol{x} _t| \boldsymbol{x} _0)$ the same.
-  - It was a family of non-Markovian processes.
+  - Still we want to keep the generative process the same and also the marginal distribution $p_t(\boldsymbol{x} _t| \boldsymbol{x} _0)$ the same
+    - and it seems to be important to keep the loss function equivalent hopefully.
+  - Anyway the resulting processes are a family of non-Markovian processes.
   - (Refer to https://lilianweng.github.io/posts/2021-07-11-diffusion-models/#speed-up-diffusion-model-sampling for more details.)
-
 - DDIM
   - non-Markovian forward diffusion process
   - reverse generative Markovian process 

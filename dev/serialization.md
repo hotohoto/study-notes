@@ -49,7 +49,7 @@ Sorted by personal preference
 
 - how it works
   - there is a schema and it is embedded in the data
-
+  - serializes data into a compact binary format
 
 
 
