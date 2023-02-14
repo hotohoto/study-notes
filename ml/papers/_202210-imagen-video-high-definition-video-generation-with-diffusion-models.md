@@ -50,6 +50,7 @@
   - where
     - $0 \le s \lt t \le 1$
     - $\sigma_{t|s}^2 = (1 - e^{\lambda_t - \lambda_s})\sigma_t^2$
+      - for the derivation refer to https://ai.stackexchange.com/a/39152/68132
 - $q(\mathbf{z}_1) \approx \mathcal{N}(\mathbf{0}, \mathbf{I})$
   - note that $1$ is the biggest $t$ value when defining $\mathbf{z}$
 
@@ -163,43 +164,82 @@ $$
 
 ### 2.5 Conditioning augmentation
 
-- for super resolution models augment the conditional low resolution inputs
-- it reduces the sensitivity to domain gap between the cascade stages
+- Gaussian noise augmentation applied to the conditional image.
+- It reduces the sensitivity to domain gap between the cascade stages. ⭐
 - how?
-  - train with Gaussian noise augmentation applied to the conditional image
+  - at training time
     - use a randomly sampled SNR ratio
-    - TODO
-      - which method is this among - blurring, truncated, non truncated, ...?
-  - for inference use a fixed SNR ratio such as 3 or 5
+  - at sampling time
+    - use a fixed SNR ratio such as 3 or 5
+  - and the SNR ratio is provided to the model
+- originated from Imagen
 
 ### 2.6 Video-image joint training
 
-TODO
+- image datasets are bigger than video-text datasets
+- how?
+  - bypass the temporal convolutional residual blocks
+    - by masking out their computation path
+  - disable cross-frame temporal attention
+    - by masking out the temporal attention maps
+- observations
+  - increases video quality
+  - the knowledge transfer from images to videos
+    - e.g. image styles (such as sketch, painting, etc)
 
 #### 2.6.1 Classifier free guidance
 
-TODO
 $$
-\tilde{\boldsymbol{\epsilon}}_\theta (\mathbf{z}_t, \mathbf{c}) = (1 + w) \boldsymbol{\epsilon}_\theta(\mathbf{z}_t, \mathbf{c}) - w \boldsymbol{\epsilon}_\theta(\mathbf{z}_t)
+\tilde{\mathbf{x}}_\theta (\mathbf{z}_t, \mathbf{c}) = (1 + w) \hat{\mathbf{x}}_\theta(\mathbf{z}_t, \mathbf{c}) - w \hat{\mathbf{x}}_\theta(\mathbf{z}_t)
+\tag{5}
+$$
+where
+
+- $w \ge 0$
+  - guidance strength or guidance weight
+- $\hat{\mathbf{x}}_\theta (\mathbf{z}_t)$
+  - an unconditional prediction
+- $\hat{\mathbf{x}}_\theta (\mathbf{z}_t, \mathbf{c})$
+  - a conditional prediction
+- $\tilde{\mathbf{x}}_\theta (\mathbf{z}_t, \mathbf{c})$
+  - a conditional prediction with $\mathbf{c}$ over-emphasized
+
+equivalently
+$$
+\tilde{\mathbf{v}}_\theta (\mathbf{z}_t, \mathbf{c}) = (1 + w) \hat{\mathbf{v}}_\theta(\mathbf{z}_t, \mathbf{c}) - w \hat{\mathbf{v}}_\theta(\mathbf{z}_t)
+\tag{5}
 $$
 
-- where
-  - $w \ge 0$
-    - guidance strength
-  - $\boldsymbol{\epsilon}_\theta (\mathbf{z}_t)$
-    - an unconditional prediction
-  - $\boldsymbol{\epsilon}_\theta (\mathbf{z}_t, \mathbf{c})$
-    - a regular conditional prediction
-  - $\tilde{\boldsymbol{\epsilon}}_\theta (\mathbf{z}_t, \mathbf{c})$
-    - a conditional prediction with $\mathbf{c}$ over-emphasized
+
+or
+$$
+\tilde{\boldsymbol{\epsilon}}_\theta (\mathbf{z}_t, \mathbf{c}) = (1 + w) \hat{\boldsymbol{\epsilon}}_\theta(\mathbf{z}_t, \mathbf{c}) - w \hat{\boldsymbol{\epsilon}}_\theta(\mathbf{z}_t)
+$$
+
+Note that a large guidance weight $w$ may generate unexpected artifacts. See 2.6.2.
 
 #### 2.6.2 Large guidance weights
 
-TODO
+- static thresholding
+  - `np.clip(x, -1, 1)`
+  - generates artifacts
+- dynamic thresholding
+  - `np.clip(x, -s, s)/s`
+  - `s`
+    - dynamically chosen threshold (?)
+- oscillating guidance
+  - high guidance weight $w$ at first a certain number of steps
+  - oscillate $w$ between a high and a low guidance weight
+    - e.g.  such as between $15$ and $1$
+  - applied to the base and the first two SR models
 
 ### 2.7 Progressive distillation with guidance and stochastic samplers
 
-TODO
+- $N$-step DDIM sampler (which is the original diffusion model) is distilled to a new model with $N/2$ steps.
+- $N$-step stochastic sampler inspired by `k-diffusion`
+  - go two DDIM steps forward
+  - go one stochastic step backward
+- each of all 7 video diffusion models was distilled to use 8 sampling steps
 
 ## 3 Experiments
 

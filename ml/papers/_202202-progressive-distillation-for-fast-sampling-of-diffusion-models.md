@@ -13,13 +13,56 @@
 
 ## 2 Background on diffusion models
 
-
+(skipped)
 
 ## 3 Progressive distillation
 
+- distill a slow teacher diffusion model into a faster student model by leveraging DDIM
+- a student diffusion model is twice faster than the teacher diffusion model
+- training
+  - use discrete time points when it comes to distillation
+    - whereas the original model is trained with continuous time
+  - $z_1 \sim \mathcal{N}(\mathbf{0}, \mathbf{I})$
+    - whereas DDPMs are not "trained" with $\mathcal{N}(\mathbf{0}, \mathbf{I})$
+
+
+
 <img src="./assets/image-20230125112138151.png" alt="image-20230125112138151" style="zoom:67%;" />
 
+
+
+<img src="./assets/image-20230214222819643.png" alt="image-20230214222819643" style="zoom:67%;" />
+
+- Refer to appendix G for the derivation of $\tilde{\mathbf{x}}$
+
 ## 4 Diffusion model parameterization and training loss
+
+$$
+L_\theta=\left\|\epsilon-\hat{\epsilon}_\theta\left(\mathbf{z}_t\right)\right\|_2^2=\left\|\frac{1}{\sigma_t}\left(\mathbf{z}_t-\alpha_t \mathbf{x}\right)-\frac{1}{\sigma_t}\left(\mathbf{z}_t-\alpha_t \hat{\mathbf{x}}_\theta\left(\mathbf{z}_t\right)\right)\right\|_2^2=\frac{\alpha_t^2}{\sigma_t^2}\left\|\mathbf{x}-\hat{\mathbf{x}}_\theta\left(\mathbf{z}_t\right)\right\|_2^2
+\tag{9}
+$$
+
+- the simple DDPM loss is equivalent to the denoising loss where $\exp({\lambda_t})$ is used as its weights.
+- this is not well suited for distillation
+  - note that $\exp(\lambda_t) \to 0$ when $t=1$
+
+There are two alternatives described as below
+
+- both were good empirically.
+- They were tested with
+  - $\alpha_t = \cos(0.5 \pi t)$
+  - $t \sim \mathcal{U}(0, 1)$
+
+(truncated SNR weighting)
+$$
+L_\theta = \max(\Vert \mathbf{x} - \hat{\mathbf{x}}\Vert_2^2, \Vert \mathbf{\epsilon} - \hat{\mathbf{\epsilon}}_t\Vert_2^2) = \max({\alpha_t^2 \over \sigma_t^2}, 1)\Vert \mathbf{x} - \hat{\mathbf{x}}\Vert_2^2
+$$
+(SNR + 1 weighting)
+$$
+L_\theta = \Vert \mathbf{v}_t - \hat{\mathbf{v}}_t \Vert_2^2 = (1 + {\alpha_t^2 \over \sigma_t^2}) \Vert \mathbf{x} - \hat{\mathbf{x}}\Vert_2^2
+$$
+
+- Refer to appendix D for v-parameterization details.
 
 ## 5 Experiments
 
@@ -29,13 +72,15 @@
 
 ## References
 
-
-
 ## A probability flow ODE in terms of log-SNR
+
+TODO
 
 ## B DDIM is an integrator of the probability flow ODE
 
+TODO
 
+## C Evaluation of integrators of the probability flow ODE
 
 ## D Expression of DDIM in angular parameterization
 
@@ -58,3 +103,13 @@
 (Rewriting the DDIM update rule)
 
 TODO
+
+
+
+## E Settings used in experiments
+
+## F Stochastic sampling with distilled models
+
+TODO
+
+## G Derivation of the distillation target

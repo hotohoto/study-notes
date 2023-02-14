@@ -47,6 +47,37 @@ $$
 
 **We assume the variance-preserving diffusion process case in this paper!**
 
+#### (an extra derivation)
+
+Many papers referring to this work express SNR as $\lambda_t = \log (\alpha_t^2 / \sigma_t^2)$ and $\sigma_{t|s}^2$ as below.
+$$
+\sigma_{t|s}^2 = (1 - e^{\lambda_t - \lambda_s})\sigma_t^2
+$$
+And here is the derivation.
+$$
+{\begin{aligned}
+\sigma_{t|s}^2 &= 1 - \alpha_{t|s}^2 \\
+&= 1 - {\alpha_t^2 \over \alpha_s^2} \\
+&= {\alpha_s^2 - \alpha_t^2 \over \alpha_s^2} \\
+&= {(1 - \sigma_s^2)-(1-\sigma_t^2) \over \alpha_s^2} \\
+&= {\sigma_t^2 - \sigma_s^2 \over \alpha_s^2} \\
+&= {\sigma_t^2 (\alpha_s^2 + \sigma_s^2) - \sigma_s^2 (\alpha_t^2 + \sigma_t^2) \over \alpha_s^2} \\
+&= {\sigma_t^2 \alpha_s^2 - \sigma_s^2 \alpha_t^2 \over \alpha_s^2} \\
+&= \left(1 -{\sigma_s^2 \alpha_t^2 \over \alpha_s^2 \sigma_t^2}\right) \sigma_t^2 \\
+&= \left(1 -{1 \over e^{\lambda_s}}\cdot e^{\lambda_t}\right) \sigma_t^2 \\
+&= \left(1 - e^{\lambda_t - \lambda_s}\right) \sigma_t^2 \\
+\end{aligned}}
+$$
+given
+$$
+\alpha_t^2 + \sigma_t^2 = 1 \\
+\alpha_{t|s}^2 + \sigma_{t|s}^2 = 1 \\
+e^{\lambda_t} = {\alpha_t^2 \over \sigma_t^2}
+$$
+.
+
+
+
 ### 3.2 Noise schedule
 
 $$
@@ -121,7 +152,7 @@ $$
 
 - $\hat{\mathbf{x}} _{\boldsymbol{\theta}}(\mathbf{z} _t; t)$
   - the denoising model
-- $\hat{\boldsymbol{\epsilon}}_\boldsymbol{\theta(\mathbf{z}_t; t)})$
+- $\hat{\boldsymbol{\epsilon}}_\boldsymbol{\theta}(\mathbf{z}_t; t)$
   - the noise prediction model
 
 (Fourier features)

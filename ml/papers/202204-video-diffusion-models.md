@@ -30,10 +30,12 @@
 - $\lambda_t = \log [\alpha_t^2 / \sigma_t ^2]$
   - log signal-to-noise-ratio
   - decreases with $t$
+  - $e^{\lambda_t} = \alpha_t^2 / \sigma_t ^2$
 - $q(\mathbf{z}_t|\mathbf{z}_s) = \mathcal{N}(\mathbf{z}_t; (\alpha_t/\alpha_s)\mathbf{z}_s, \sigma _{t|s}^2 \mathbf{I})$
   - where
     - $0 \le s \lt t \le 1$
     - $\sigma_{t|s}^2 = (1 - e^{\lambda_t - \lambda_s})\sigma_t^2$
+      - this is the upper bound
 - $q(\mathbf{z}_1) \approx \mathcal{N}(\mathbf{0}, \mathbf{I})$
   - Note that $1$ is the biggest $t$ value when defining $\mathbf{z}$.
   - This might be quite different if we train $\lambda _1$ as in variational diffusion models (VDM).
@@ -82,6 +84,8 @@ $$
 \tilde{\sigma}_{s|t}^2 \tag{3b} = (1 - e^{\lambda_t - \lambda_s})\sigma_s^2
 $$
 
+Note that Eq. (3b) is the lower bound of the variance which is $\tilde{\beta}$ in DDPM.
+
 ##### Ancestral sampler
 
 $$
@@ -119,7 +123,7 @@ $$
   - $\boldsymbol{\epsilon}_\theta (\mathbf{z}_t)$
     - an unconditional prediction
   - $\boldsymbol{\epsilon}_\theta (\mathbf{z}_t, \mathbf{c})$
-    - a regular conditional prediction
+    - a conditional prediction
   - $\tilde{\boldsymbol{\epsilon}}_\theta (\mathbf{z}_t, \mathbf{c})$
     - a conditional prediction with $\mathbf{c}$ over-emphasized
 

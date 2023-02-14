@@ -253,41 +253,40 @@
   - Overfitting in GAN
     - discriminator outputs for the real training images and fake images diverge 
     - discriminator accuracy on the validation images decreases
-  
+
   - The correct way to calculate FID
     - calculate it between the full training set and 50k generated images
 
   - Augmentation that do not leak
     - any augmentation is non-leaking as long as the corruption process is represented by an invertible transformation of probability distributions over the data space.
-  
+
   - we can make almost any augmentation non-leaking by only applying it at a probability $p < 1$.
   - Adaptive discriminator augmentation (ADA)
     - overfitting heuristics for GAN
       - $r_v = {\mathbb{E}[D_\text{train}] - \mathbb{E}[D_\text{validation}] \over \mathbb{E}[D_\text{train}] - \mathbb{E}[D_\text{generated}]}$
       - $r_t = \mathbb{E}[\operatorname{sign}(D_\text{train})]$
         - they found this was better than $r_v$
-  
+
     - starts from $p = 0$
     - increase $p$ a little if it looks overfitting and vice versa
-  
+
   - augmentation methods
     - useful 
       - pixel blitting
       - geometric transformation
-  
+
     - moderate
     - not useful
-  
+
   - number of images
     - 2k
       - augmentations was useful
-  
+
     - 10k
       - less helpful
-  
+
     - 140k
       - harmful
-  
 
 - HiFi-GAN: Generative Adversarial Networks for Efficient and High Fidelity Speech Synthesis
   - https://arxiv.org/abs/2010.05646
@@ -461,6 +460,21 @@
       - https://www.kaggle.com/c/tourism1
       - https://www.kaggle.com/c/tourism2
   - time series
+- InterFaceGAN: Interpreting the Disentangled Face Representation Learned by GANs
+  - https://arxiv.org/abs/2005.09635
+  - propose a way to edit a latent vector to modify the resulting image
+  - process
+    - given a training set of image-and-label pairs
+
+    - train a StyleGAN or any other GAN using the images in the training set
+
+    - find a latent vector $w$ for each training set pair
+
+    - train a SVM predicting the label given $w$
+
+    - modify $w$ with respect to the normal vector direction of the separating hyperplane found by SVM 
+
+    - with the modified $w^\prime$, you can generate a modified image
 
 ## 2019
 
@@ -495,7 +509,6 @@
     - The symptoms of mode collapse are sharp and sudden
     - Mode collapse happens when the singular values in G explode
     - The performance of D is more important than the performance of G
-
 - MelGAN: Generative Adversarial Networks for Conditional Waveform Synthesis
   - https://arxiv.org/abs/1910.06711
   - generator
@@ -517,19 +530,16 @@
     - the hinge loss version of the GAN objective
     - use feature matching objective to train the generator
   - spectrogram to wave
-
 - Loss Landscape Sightseeing with Multi-Point Optimization
   - https://arxiv.org/abs/1910.03867
   - Loss surface is surprisingly diverse and intricate in terms of landscape patterns it contains.
   - Adding batch normalization makes it more smooth.
   - README
-
 - YOLACT++: Better Real-time Instance Segmentation
   - https://arxiv.org/abs/1912.06218v1
     - this paper includes [the original YOLACT paper](https://arxiv.org/abs/1904.02689v2)
   - official implementation
     - https://github.com/dbolya/yolact
-
 - HarDNet: A Low Memory Traffic Network
   - https://arxiv.org/abs/1909.00948v1
   - state of the art realtime semantic segmentation
@@ -569,18 +579,15 @@
       - https://github.com/PingoLH/Pytorch-HarDNet
       - https://github.com/PingoLH/FCHarDNet
       - https://github.com/PingoLH/PytorchSSD-HarDNet
-
 - MuZero: Mastering Atari, Go, Chess and Shogi by Planning with a Learned Model
   - https://arxiv.org/abs/1911.08265
   - RL, README
-
 - U-GAT-IT: Unsupervised Generative Attentional Networks with Adaptive Layer-Instance Normalization for Image-to-Image Translation
   - https://arxiv.org/abs/1905.01164
   - GAN, README
 - SinGAN: Learning a Generative Model from a Single Natural Image
   - https://arxiv.org/abs/1905.01164
   - GAN
-
 - Single Headed Attention RNN: Stop Thinking With Your Head
   - https://arxiv.org/abs/1911.11423
   - https://smerity.com/articles/2017/baselines_need_love.html (shared by Yury)
@@ -629,11 +636,9 @@
 - Zero-Shot Word Sense Disambiguation Using Sense Definition Embeddings via IISc Bangalore & CMU
   - https://www.aclweb.org/anthology/P19-1568/
   - README
-
 - A Geometric Perspective on Optimal Representations for Reinforcement Learning
   - https://arxiv.org/abs/1901.11530
   - README
-
 - Weight Agnostic Neural Networks
   - https://arxiv.org/abs/1906.04358
   - README
@@ -654,12 +659,10 @@
     - adding an dimension
       - make ODE function simpler with less evaluations
       - may end up with overfitting
-
 - When Gaussian Process Meets Big Data: A Review of Scalable GPs
   - https://arxiv.org/abs/1807.01065
   - https://exoplanet.dfm.io/en/stable/tutorials/gp/
   - README
-
 - Encoding high-cardinality string categorical variables
   - https://arxiv.org/abs/1907.01860
   - Gamma Poisson Factorization on substring counts
@@ -673,12 +676,10 @@
   - README, time series
 - Temporal Fusion Transformers for Interpretable Multi-horizon Time Series Forecasting
   - https://arxiv.org/abs/1912.09363
-
 - Generalized Sliced Wasserstein Distances
   - https://arxiv.org/abs/1902.00434
   - Soheil Kolouri et al.
   - SW, SWD, GSW
-
 - An Entity Embeddings Deep Learning Approach for Demand Forecast of Highly Differentiated Products
   - https://www.sciencedirect.com/science/article/pii/S2351978920303243
   - they tried to solve these questions
@@ -689,7 +690,6 @@
             - generate pseudo time series using it.
     - how to deal with unstable data corresponding to fashion trends and customers diversity.
       - cluster data and remove outliers from the perspective of each cluster
-
 - Learning Loss for Active Learning
   - https://arxiv.org/abs/1905.03677
   - https://youtu.be/YU_NO7pYObM
