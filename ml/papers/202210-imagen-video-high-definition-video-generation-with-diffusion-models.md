@@ -13,17 +13,17 @@
 
 (comparison table)
 
-|                                      | Imagen Video                    | Video Diffusion Models              | Make-A-Video                         | Flexible Diffusion Modeling of Long Videos |
-| ------------------------------------ | ------------------------------- | ----------------------------------- | ------------------------------------ | ------------------------------------------ |
-| summary                              | cascaded video diffusion models |                                     | use a pretrained text-to-image model |                                            |
-| spatial resolution                   | 1280x768                        | 128x128                             | medium                               | low                                        |
-| temporal length                      | 128 frames                      | 64 frames                           | short                                | 25 mins                                    |
-| training set                         | (text, video)                   | (text, video)                       | (text, image), (video)               |                                            |
-| text embeddings                      | T5-XXL                          | BERT-large                          |                                      |                                            |
-| parameterization                     | v-prediction                    | $\epsilon$-prediction, v-prediction |                                      |                                            |
-| progressive distillation             | O                               | X                                   |                                      |                                            |
-| classifier free guidance             | O                               | O                                   |                                      |                                            |
-| encoder/decoder to/from latent space | ?                               | X                                   | ?                                    | ?                                          |
+|                                                       | Imagen Video                    | Video Diffusion Models              | Make-A-Video                         | Flexible Diffusion Modeling of Long Videos |
+| ----------------------------------------------------- | ------------------------------- | ----------------------------------- | ------------------------------------ | ------------------------------------------ |
+| summary                                               | cascaded video diffusion models |                                     | use a pretrained text-to-image model |                                            |
+| spatial resolution                                    | 1280x768                        | 128x128                             | medium                               | low                                        |
+| temporal length                                       | 128 frames                      | 64 frames                           | short                                | 25 mins                                    |
+| training set                                          | (text, video)                   | (text, video)                       | (text, image), (video)               |                                            |
+| text embeddings                                       | T5-XXL                          | BERT-large                          |                                      |                                            |
+| parameterization                                      | v-prediction                    | $\epsilon$-prediction, v-prediction |                                      |                                            |
+| progressive distillation                              | O                               | X                                   |                                      |                                            |
+| classifier free guidance                              | O                               | O                                   |                                      |                                            |
+| model composition (single or latent space or cascade) | 1 base model + 3 SSR models     | single                              | ?                                    | ?                                          |
 
 
 
@@ -236,6 +236,9 @@ Note that a large guidance weight $w$ may generate unexpected artifacts. See 2.6
 ### 2.7 Progressive distillation with guidance and stochastic samplers
 
 - $N$-step DDIM sampler (which is the original diffusion model) is distilled to a new model with $N/2$ steps.
+- Can distill the effect of classifier free guidance into a single model
+  - we don't need to evaluate the network outputs twice for a single step
+
 - $N$-step stochastic sampler inspired by `k-diffusion`
   - go two DDIM steps forward
   - go one stochastic step backward
@@ -243,16 +246,50 @@ Note that a large guidance weight $w$ may generate unexpected artifacts. See 2.6
 
 ## 3 Experiments
 
+- datasets
+  - 14M video-text pairs
+  - 60M image-text pairs
+  - LAION-400M image-text dataset
+- evaluation metrics
+  - FID on individual frames
+  - FVD
+    - for temporal consistency
+  - frame-wise CLIP scores
+    - for video-text alignment
+  - CLIP-R precision
+    - https://openreview.net/forum?id=bKBhQhPeKaF
+    - https://github.com/Seth-Park/comp-t2i-dataset
+
 ### 3.1 Unique video generation capabilities
+
+- style generation
+- 3d consistency
+- graphical text generation
 
 ### 3.2 Scaling
 
+- the base model is scalable with respect to the generative quality ⭐
+
 ### 3.3 Comparing prediction parameterizations
 
+- v-parameterization
+  - converged faster
+  - performed better than $\epsilon$-parameterization especially at high-resolutions
+
 ### 3.4 Perceptual quality and distillation
+
+- To sample one batch of videos
+  - it takes 618 seconds with the original model 
+  - it takes 35 seconds with the distilled model
+    - (around 18 times faster)
 
 ## 4 Limitations and societal impact
 
 ## 5 Conclusion
 
 ## References
+
+- [Progressive Distillation for Fast Sampling of Diffusion Models](https://arxiv.org/abs/2202.00512)
+- [On Distillation of Guided Diffusion Models](https://arxiv.org/abs/2210.03142)
+- [Photorealistic Text-to-Image Diffusion Models with Deep Language Understanding](https://arxiv.org/abs/2205.11487)
+  - called Imagen
