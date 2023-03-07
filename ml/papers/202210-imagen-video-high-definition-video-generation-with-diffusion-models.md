@@ -13,17 +13,17 @@
 
 (comparison table)
 
-|                                                       | Imagen Video                    | Video Diffusion Models              | Make-A-Video                         | Flexible Diffusion Modeling of Long Videos |
-| ----------------------------------------------------- | ------------------------------- | ----------------------------------- | ------------------------------------ | ------------------------------------------ |
-| summary                                               | cascaded video diffusion models |                                     | use a pretrained text-to-image model |                                            |
-| spatial resolution                                    | 1280x768                        | 128x128                             | medium                               | low                                        |
-| temporal length                                       | 128 frames                      | 64 frames                           | short                                | 25 mins                                    |
-| training set                                          | (text, video)                   | (text, video)                       | (text, image), (video)               |                                            |
-| text embeddings                                       | T5-XXL                          | BERT-large                          |                                      |                                            |
-| parameterization                                      | v-prediction                    | $\epsilon$-prediction, v-prediction |                                      |                                            |
-| progressive distillation                              | O                               | X                                   |                                      |                                            |
-| classifier free guidance                              | O                               | O                                   |                                      |                                            |
-| model composition (single or latent space or cascade) | 1 base model + 3 SSR models     | single                              | ?                                    | ?                                          |
+|                                                       | Video Diffusion Models                | Make-A-Video                         | Imagen Video                    | Flexible Diffusion Modeling of Long Videos |
+| ----------------------------------------------------- | ------------------------------------- | ------------------------------------ | ------------------------------- | ------------------------------------------ |
+| summary                                               |                                       | use a pretrained text-to-image model | cascaded video diffusion models |                                            |
+| spatial resolution                                    | 128x128                               | 768x768                              | 1280x768                        | low                                        |
+| temporal length                                       | 64 frames                             | 76 frames                            | 128 frames                      | 25 mins                                    |
+| training set                                          | (text, video)                         | (text, image), (video)               | (text, video)                   |                                            |
+| text conditions                                       | BERT-large                            | CLIP text encoder + 1 prior network  | T5-XXL                          |                                            |
+| parameterization                                      | $\epsilon$-prediction, $v$-prediction | -                                    | $v$-prediction                  |                                            |
+| progressive distillation                              | X                                     | X                                    | O                               |                                            |
+| classifier free guidance                              | O                                     | X                                    | O                               |                                            |
+| model composition (single or latent space or cascade) | single                                | decoder-TSR-(T)SSR-SSR               | base-TSR-SSR-TSR-TSR-SSR-SSR    | ?                                          |
 
 
 

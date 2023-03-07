@@ -63,12 +63,14 @@
   - injective function
     -  (단사함수)
     -  one-to-one
-    -  f is an injective function if and only if there exists g such that g∘f is an identity function
+    -  $f: A \to B$ is an injective function if and only if there exists $g: B \to A$ such that $g \circ f$ is an identity function $i _A$ on $A$
   - surjective function (전사함수)
     - range = codomain
     - onto
-    - f is an surjective function if (and only if??) there exists g such that f∘g is an identity function
-      - if we assume the axiom of choice that's true even for the infinite set
+    - $f: A \to B$ is an surjective function if there exists $g: B \to A$ such that $f\circ g$ is an identity function $i _B$ on $B$
+      - for the reverse
+        - since $\forall b \in B$ we need to choose a unique $a \in A$ such that $f(a) = b$. But this is not trivial (especially when $A$ is an infinite set) since $f$ can be non injective.
+        - it holds if we assume the axiom of choice (even for the infinite set).
   - bijective function (전단사함수)
     - injective and surjective
   - identity function (항등합수)
@@ -81,7 +83,6 @@
     - https://en.wikipedia.org/wiki/Indicator_function
   - choice function
     - mapping to an element of the given set
-
 - if the domains are different their functions are different as well
 
 ### Prepositions
