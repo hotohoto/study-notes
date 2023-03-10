@@ -5,6 +5,18 @@
 
 ## 2022
 
+- GALA: Toward Geometry-and-Lighting-Aware Object Search for Compositing
+  - https://arxiv.org/abs/2204.00125
+  
+  - contrastive learning
+    - of a foreground encoder and a background encoder
+  
+    - between original images and the images the foreground of which are transformed
+  
+  - can find the foreground objects that is best matching  in terms of geometry and lightning
+  
+  - alternate training
+  
 - Dynamic Relation Discovery and Utilization in Multi-Entity Time Series Forecasting
   - https://arxiv.org/abs/2202.10586
   - Microsoft Research Asia, Beijing
