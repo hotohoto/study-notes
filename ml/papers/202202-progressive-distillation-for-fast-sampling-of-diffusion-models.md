@@ -4,6 +4,9 @@
 - https://github.com/google-research/google-research/tree/master/diffusion_distillation
 - Tim Salimans, Jonathan Ho
 - Google Research
+- TODO
+  - read in detail
+
 
 
 

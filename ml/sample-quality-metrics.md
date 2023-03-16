@@ -171,6 +171,23 @@ $$
 
 
 
+## Mean Opinion Score (MOS)
+
+Human evaluation
+
+- 1 Bad
+  - Very annoying
+- 2 Poor
+  - Annoying
+- 3 Fair
+  - Slightly annoying
+- 4 Good
+  - Perceptible but not annoying
+- 5 Excellent
+  - Imperceptible
+
+
+
 
 ## Peak Signal-to-Noise Ratio (PSNR)
 

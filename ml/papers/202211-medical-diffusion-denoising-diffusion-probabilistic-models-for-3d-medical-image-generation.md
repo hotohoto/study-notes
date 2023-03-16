@@ -15,8 +15,7 @@
 ### 2.2 Data preprocessing
 
 - histogram based intensity normalization
-  - seems to have been devised for MRI images
-  - not sure how much this is important 🤔
+  - basically for MRI images
 
 
 ### 2.3 Architecture
