@@ -4,7 +4,7 @@
 
 ## 1 Introduction
 
-## 2 Related Work
+## 2 Related work
 
 ## 3 Method
 
