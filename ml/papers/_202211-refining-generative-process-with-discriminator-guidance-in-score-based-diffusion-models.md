@@ -76,7 +76,7 @@ $$
 
 ##### Theorem 1
 
-If $\mathbf{s} _{\mathbf{\theta} _\infty} = \nabla \log \pi(\mathbf{x})$, where $\pi$ is the prior distribution, and log-likelihood $\log p _{\mathbf{\theta} _\infty}$ equals its evidence lower bound $\mathcal{L} _{\mathbf{\theta} _\infty}$, then the reverse time SDE $\mathrm{d}\mathbf{x} _t = \left[\mathbf{f}(\mathbf{x} _t, t) - g^2(t)\nabla \log p _r^t (\mathbf{x} _t)\right] \mathrm{d}\bar{t} + g(t)\mathrm{d}\bar{\mathbf{w}} _t$, coincides with a diffusion process with adjusted score, $\mathrm{d}\mathbf{x} _t = \left[\mathbf{f}(\mathbf{x} _t, t) - g^2(t)(\mathbf{s} _{\mathbf{\theta} _\infty} + \mathbf{c} _{\mathbf{\theta} _\infty}) (\mathbf{x} _t, t)\right] \mathrm{d}\bar{t} + g(t)\mathrm{d}\bar{\mathbf{w}} _t$, for $\mathbf{c}_{\mathbf{\theta}_\infty}(\mathbf{x}_t, t) := \nabla \log {p_r^t(\mathbf{x}_t) \over p_{\mathbf{\theta}_\infty}^t (\mathbf{x}_t)}$.
+If $\mathbf{s} _{\mathbf{\theta} _\infty} = \nabla \log \pi(\mathbf{x})$, where $\pi$ is the prior distribution, and log-likelihood $\log p _{\mathbf{\theta} _\infty}$ equals its evidence lower bound $\mathcal{L} _{\mathbf{\theta} _\infty}$, then the reverse time SDE $\mathrm{d}\mathbf{x} _t = \left[\mathbf{f}(\mathbf{x} _t, t) - g^2(t)\nabla \log p _r^t (\mathbf{x} _t)\right] \mathrm{d}\bar{t} + g(t)\mathrm{d}\bar{\mathbf{w}} _t$, coincides with a diffusion process with adjusted score, $\mathrm{d}\mathbf{x} _t = \left[\mathbf{f}(\mathbf{x} _t, t) - g^2(t)(\mathbf{s} _{\mathbf{\theta} _\infty} + \mathbf{c} _{\mathbf{\theta} _\infty}) (\mathbf{x} _t, t)\right] \mathrm{d}\bar{t} + g(t)\mathrm{d}\bar{\mathbf{w}} _t$, for $\mathbf{c} _{\mathbf{\theta} _\infty}(\mathbf{x} _t, t) := \nabla \log {p _r^t(\mathbf{x} _t) \over p _{\mathbf{\theta} _\infty}^t (\mathbf{x} _t)}$.
 
 
 
