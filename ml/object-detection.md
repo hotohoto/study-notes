@@ -150,7 +150,7 @@
     - Object365
 
 - YOLOv7: Trainable bag-of-freebies sets new state-of-the-art for real-time object
-detectors
+  detectors
   - https://arxiv.org/abs/2207.02696v1
 
 
@@ -217,13 +217,13 @@ detectors
   - SGD (default), Adam (alternatively)
   - loss funciton
     - $
-\begin{aligned}
-\mathcal{L}=& 1-\text{IoU}+\frac{\rho^{2}\left(b, b^\text{gt}\right)}{c^{2}}+\alpha v-\\
-& \sum_{i=0}^{S^{2}} \sum_{j=0}^{B} I_{i j}^{o b j}\left[\hat{C}_{i} \log \left(C_{i}\right)+\left(1-\hat{C}_{i}\right) \log \left(1-C_{i}\right)\right]-\\
-& \lambda_\text{noobj} \sum_{i=0}^{S^{2}} \sum_{j=0}^{B} I_{i j}^\text{noobj}\left[\hat{C}_{i} \log \left(C_{i}\right)+\left(1-\hat{C}_{i}\right) \log \left(1-C_{i}\right)\right]-\\
-& \sum_{i=0}^{S^{2}} I_{ij}^\text{obj} \sum_{c \in \text {classes}}\left[\hat{p}_{i}(c) \log \left(p_{i}(c)\right)+\left(1-\hat{p_{i}}(c)\right) \log \left(1-p_{i}(c)\right)\right]
-\end{aligned}
-$
+    \begin{aligned}
+    \mathcal{L}=& 1-\text{IoU}+\frac{\rho^{2}\left(b, b^\text{gt}\right)}{c^{2}}+\alpha v-\\
+    & \sum_{i=0}^{S^{2}} \sum_{j=0}^{B} I_{i j}^{o b j}\left[\hat{C}_{i} \log \left(C_{i}\right)+\left(1-\hat{C}_{i}\right) \log \left(1-C_{i}\right)\right]-\\
+    & \lambda_\text{noobj} \sum_{i=0}^{S^{2}} \sum_{j=0}^{B} I_{i j}^\text{noobj}\left[\hat{C}_{i} \log \left(C_{i}\right)+\left(1-\hat{C}_{i}\right) \log \left(1-C_{i}\right)\right]-\\
+    & \sum_{i=0}^{S^{2}} I_{ij}^\text{obj} \sum_{c \in \text {classes}}\left[\hat{p}_{i}(c) \log \left(p_{i}(c)\right)+\left(1-\hat{p_{i}}(c)\right) \log \left(1-p_{i}(c)\right)\right]
+    \end{aligned}
+    $
     - cross entropy terms
     - CIoU
       - $1 - \text{IoU} + \text{DIoU} + \alpha v$
@@ -237,6 +237,8 @@ $
       - $v = {4 \over \pi}(\arctan{w^\text{gt} \over h^\text{gt}} - \arctan{w \over h})^2$
       - $\alpha = {v \over (1 - \text{IoU}) + v}$
     - Focal loss (optional)
+      - Takes account of more difficult things more than the cross entropy loss
+      - https://gaussian37.github.io/dl-concept-focal_loss/
   - references:
     - https://towardsai.net/p/computer-vision/yolo-v5%e2%80%8a-%e2%80%8aexplained-and-demystified
     - https://blog.roboflow.com/yolov5-improvements-and-evaluation/
@@ -387,13 +389,13 @@ $
   - For each grid cell, there can be up to 2 bounding boxes
   - loss function
     - $
-\begin{aligned}
-\mathcal{L}(\hat{z}, z) &=\lambda_{\text {coord }} \sum_{i=0}^{S^{2}} \sum_{j=0}^{B} \mathbb{1}_{i j}^{\text {obj }}\left[\left(x_{i}-\hat{x}_{i}\right)^{2}+\left(y_{i}-\hat{y}_{i}\right)^{2}\right] \\
-&+\lambda_{\text {coord }} \sum_{i=0}^{S^{2}} \sum_{j=0}^{B} \mathbb{1}_{i j}^{\text {obj }}\left[\left(\sqrt{w_{i}}-\sqrt{\hat{w}_{i}}\right)^{2}+\left(\sqrt{h_{i}}-\sqrt{\hat{h}_{i}}\right)^{2}\right] \\
-&+\sum_{i=0}^{S^{2}} \sum_{j=0}^{B} \mathbb{1}_{i j}^{\text {obj }}\left(C_{i}-\hat{C}_{i}\right)^{2}+\lambda_{\text {noobj }} \sum_{i=0}^{S^{2}} \sum_{j=0}^{B} \mathbb{1}_{i j}^{\text {noobj }}\left(C_{i}-\hat{C}_{i}\right)^{2} \\
-&+\sum_{i=0}^{S^{2}} \mathbb{1}_{i}^{\text {obj }} \sum_{c \in \text { classes }}\left(p_{i}(c)-\hat{p}_{i}(c)\right)^{2}
-\end{aligned}
-$
+    \begin{aligned}
+    \mathcal{L}(\hat{z}, z) &=\lambda_{\text {coord }} \sum_{i=0}^{S^{2}} \sum_{j=0}^{B} \mathbb{1}_{i j}^{\text {obj }}\left[\left(x_{i}-\hat{x}_{i}\right)^{2}+\left(y_{i}-\hat{y}_{i}\right)^{2}\right] \\
+    &+\lambda_{\text {coord }} \sum_{i=0}^{S^{2}} \sum_{j=0}^{B} \mathbb{1}_{i j}^{\text {obj }}\left[\left(\sqrt{w_{i}}-\sqrt{\hat{w}_{i}}\right)^{2}+\left(\sqrt{h_{i}}-\sqrt{\hat{h}_{i}}\right)^{2}\right] \\
+    &+\sum_{i=0}^{S^{2}} \sum_{j=0}^{B} \mathbb{1}_{i j}^{\text {obj }}\left(C_{i}-\hat{C}_{i}\right)^{2}+\lambda_{\text {noobj }} \sum_{i=0}^{S^{2}} \sum_{j=0}^{B} \mathbb{1}_{i j}^{\text {noobj }}\left(C_{i}-\hat{C}_{i}\right)^{2} \\
+    &+\sum_{i=0}^{S^{2}} \mathbb{1}_{i}^{\text {obj }} \sum_{c \in \text { classes }}\left(p_{i}(c)-\hat{p}_{i}(c)\right)^{2}
+    \end{aligned}
+    $
 
 - SSD
   - single shot detector

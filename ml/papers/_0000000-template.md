@@ -14,3 +14,6 @@
 
 ## References
 
+## A Proof of formula 1
+
+## B Proof of formula 2
