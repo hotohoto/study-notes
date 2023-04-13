@@ -8,11 +8,11 @@
 - https://huggingface.co/docs/diffusers/main/en/api/pipelines/stable_diffusion/controlnet
 - https://github.com/yftzeng/stable-diffusion-webui-docker
 
+
+
 ## TODO
 
-- copy this into confluence
 - add experiments into their corresponding section
-- check stable diffusion 1.5 configurations?
 - What is BLIP which was used as for automatic prompt
   - https://youtu.be/X2k7n4FuI7c
   - https://youtu.be/Z3knUzwuIgo
@@ -34,7 +34,7 @@ ln ...
 
 
 
-- How stable diffusion condition UNet on text?
+- How stable diffusion conditions UNet on text?
   - cross attention
 
 
