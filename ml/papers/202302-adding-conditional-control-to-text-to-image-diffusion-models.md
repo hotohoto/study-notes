@@ -177,8 +177,11 @@ $$
 - 
 
 $$
- \\
-\frac{\partial \mathcal{Z}\left(\boldsymbol{I} ;\left\{\boldsymbol{W}^*, \boldsymbol{B}\right\}\right)_{p, i}}{\partial \boldsymbol{I}_{p, i}}=\sum_j^c \boldsymbol{W}_{i, j}^* \neq \mathbf{0}
+\\
+\frac
+{\partial \mathcal{Z} (\boldsymbol{I} ;\{\boldsymbol{W}^*, \boldsymbol{B}\})_{p, i}}
+{\partial \boldsymbol{I}_{p, i}}
+=\sum_j^c \boldsymbol{W}_{i, j}^* \neq \mathbf{0}
 \tag{8}
 $$
 

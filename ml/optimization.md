@@ -73,7 +73,7 @@ Refer to [KKT conditions at Wikipedia](https://en.wikipedia.org/wiki/Karush%E2%8
 
 - one way of solving TV minimization
 
-####
+
 
 ## Other notes
 

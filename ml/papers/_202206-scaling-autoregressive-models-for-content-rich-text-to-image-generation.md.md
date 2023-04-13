@@ -1,6 +1,8 @@
-# Title
+# Scaling Autoregressive Models for Content-Rich Text-to-Image Generation
 
-
+- https://arxiv.org/abs/2206.10789
+- Parti
+- an image-to-text model with 20B parameters
 
 ## 1 Introduction
 

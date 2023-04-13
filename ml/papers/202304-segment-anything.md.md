@@ -6,7 +6,16 @@
 
 - Tried to train a foundation model for any segmentation tasks
 
+- SAM
+
+  - model
   
+- SA-1B
+
+  - dataset
+
+  
+
 
 ## 1 Introduction
 
@@ -80,7 +89,13 @@
 ## 5 Segment anything dataset
 
 - SA-1B dataset
-  - TODO
+  - 11M images
+    - resized images for shortest side to be 1500 px
+    - faces and vehicle license plates have been blurred
+  - more than 1B masks
+    - all masks are automatically generated
+    - compared to manual masks 94% of pairs have greater than 90% IoU
+    - the center of masks are more spread out than the other major segmentation datasets
 
 ## 6 Segment anything RAI analysis
 
@@ -88,14 +103,16 @@
 
 ## 8 Discussion
 
-- TODO
+##### Foundation models
+
+- Foundation models are trained on broad data at scale and are adaptable to a wide range of downstream tasks.
+- Limitations
+  - quality would not better than dedicated interactive segmentation methods
+  - text-to-mask is not robust yet
 
 ## References
 
 - [10] GPT3
+- [47] MAE ⭐
 - [82] CLIP
 - [83] DALL·E
-
-## A Proof of formula 1
-
-## B Proof of formula 2
