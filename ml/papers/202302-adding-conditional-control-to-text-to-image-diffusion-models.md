@@ -90,9 +90,9 @@ ln ...
 - sketch guided diffusion ⭐
   - https://sketch-guided-diffusion.github.io/
 
+
+
 ## 3 Method
-
-
 
 ### 3.1 ControlNet
 
@@ -317,6 +317,8 @@ $$
 
 - See also Fig. 15.
 
+
+
 ## 4 Experiments
 
 ### 4.1 Experimental settings
@@ -359,9 +361,13 @@ $$
 - When users don't want their input shape to be preserved in the images, replace the last 50% diffusion iterations with standard stable diffusion without ControlNet. 💡
   - See Fig. 27
 
+
+
 ## 5 Limitations
 
 - See Fig. 28.
+
+
 
 ## References
 

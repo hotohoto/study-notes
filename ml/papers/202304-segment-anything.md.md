@@ -44,19 +44,22 @@
 
 - Image encoder
   - with a pretrained ViT adapted to high resolution inputs
+  - encodes 1024x1024x3 into 64x64x256
 - Prompt encoder
   - (sparse)
     - points
-      - positional encoding
-      - summed with own embedding for points
+      - encoded into 256x1 token
+      - positional encoding + foreground embedding
+      - positional encoding + background embedding
     - boxes
-      - positional encoding
-      - summed with own embedding for boxes
+      - encoded into two 256x1 tokens
+      - left top positional encoding + left top embedding
+      - right bottom positional encoding + right bottom embedding
     - text
-      - CLIP
+      - encoded via CLIP
   - (dense)
-    - masks embedded using convolutions
-      - summed element-wise with image embedding
+    - 256x256x1 mask is encoded into 64x64x256 via a few conv layers
+      - element-wisely added into the image embedding
 - Mask decoder
 
 <img src="./assets/image-20230408223106804.png" alt="image-20230408223106804" style="zoom:67%;" />
