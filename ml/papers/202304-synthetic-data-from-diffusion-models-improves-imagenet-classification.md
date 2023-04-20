@@ -1,0 +1,45 @@
+# Synthetic Data from Diffusion Models Improves ImageNet Classification
+
+- https://arxiv.org/abs/2304.08466
+- finetune the pretrained `Imagen`  to ImageNet ILSVRC 2012 dataset
+  - `Imagen`
+    - 64x64 text-to-image base model (2B parameters)
+      - conditioned on the text embeddings
+    - 64 to 256 super resolution model (600M parameters)
+      - conditioned on the text embeddings
+    - 256 to 1024 super resolution model (400M parameters)
+      - conditioned on the text embeddings
+  - finetuning
+    - set conditional text to be one or two words describing the class
+    - use `Adafactor` for 64x64 text-to-image base model
+      - it has a smaller memory footprint compared to Adam
+- sampling
+  - having swept hyperparameters, values below were chosen
+  -  for 64x64 base model
+    - log variance mixing coefficient
+      - 0
+      - (Refer to Eq. 15 in iDDPM)
+    - denoising steps
+      - DDPM 1000
+    - guidance weight
+      - 1.25
+  - super resolution models
+    - log variance mixing coefficient
+      - 0.1 🤔
+    - noise conditioning augmentation
+      - 0
+    - denoising steps
+      - (64 to 256 model)
+        - DDPM 1000 steps
+      - (256 to 1000 model)
+        - DDIM 250 steps
+- generation protocol
+  - build many datasets
+    - 1.2M (1x) to 12M (10x) images
+    - keeping the same class balance
+- results
+  - ImageNet 256 FID look like SOTA
+  - 1024x1024 synthesized images were better at improving classification accuracy score (CAS) than 64x64 or 256x256 synthesized images
+  - Together with real images,
+    - the more 64x64 synthesized images we have the better CAS we get up to around 10x samples or maybe more samples.
+    - but it applies to 256x256 or 1024x1024 images only around 3x samples
