@@ -44,6 +44,9 @@
   - so we have $K$ embedding vectors in the table
   - ☝️ Note:
     - a single random variable $z$ is used for the simplicity. To describe an image, for example, we need 2D - which means $N = w \times h$ - latent feature "spaces".
+    - e.g.
+      - 32x32 for ImageNet
+      - 8x8x10 for CIFAR10
 - $e_i \in R^D$
   - an embedding vector
 - $z_e(x)$

@@ -5,7 +5,12 @@
 ```bash
 nvidia-smi -L
 nvcc --version
-cat /usr/local/cuda/include/cudnn.h | grep CUDNN_MAJOR -A 2  # check the cuDNN version
+
+# check the cuDNN version
+cat /usr/local/cuda/include/cudnn.h | grep CUDNN_MAJOR -A 2
+
+# when nvidia-smi don't know which process is using GPU0
+sudo fuser -v /dev/nvidia0
 ```
 
 ## install a proper CUDA version
