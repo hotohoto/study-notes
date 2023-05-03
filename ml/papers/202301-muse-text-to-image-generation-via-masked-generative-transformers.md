@@ -72,7 +72,7 @@
   - encoder
   - codebook
 - fine-tune
-  - decoder (with more layers appended)
+  - decoder (with more layers and channels)
 
 ### 2.6 Variable masking rate
 

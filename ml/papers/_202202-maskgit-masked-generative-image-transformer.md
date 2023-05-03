@@ -1,6 +1,6 @@
-# Masked Diffusion Transformer is a Strong Image Synthesizer
+# MaskGIT: Masked Generative Image Transformer
 
-- https://arxiv.org/abs/2303.14389v1
+- https://arxiv.org/abs/2202.04200
 
 ## 1 Introduction
 
