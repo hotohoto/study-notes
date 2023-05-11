@@ -1,7 +1,7 @@
 - xavier
   - Understanding the difficulty of training deep feedforward neural networks (Xavier Glorot, Yoshua Bengio, 2010)
 - kaiming
-  - Delving Deep into Rectifiers: Surpassing Human-Level Performance on ImageNet Classification (Kaiming He et al., 2015)
+  - Delving Deep into Rectifiers: Surpassing Human-Level Performance on ImageNet Classification (Kaiming He et al, 2015)
 
 - batch normalization
   - https://arxiv.org/abs/1502.03167
