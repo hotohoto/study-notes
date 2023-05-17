@@ -124,7 +124,33 @@ $$
 
 ### 3.2 Multiscale training loss
 
-TODO
+- useful when the resolution is greater than 256 x 256
+
+$$
+L_\theta^{d \times d} (\boldsymbol{x}) =
+{1 \over d} \mathbb{E}_{\boldsymbol{\epsilon}, t}
+\Vert
+\mathrm{D}^{d \times d} \left[\boldsymbol{\epsilon}\right]
+-
+\mathrm{D}^{d \times d}
+\left[
+\hat{\boldsymbol{\epsilon}}_\theta(\alpha_t \boldsymbol{x} + \sigma_t \boldsymbol{\epsilon}, t)
+\right]
+\Vert_2^2
+$$
+
+- $\mathrm{D}^{d \times d}$
+  - a linear operation downsampling to the d x d resolution
+
+$$
+\tilde{L}_\theta^{d \times d} (\boldsymbol{x}) =
+\sum_{s \in \{ 32,64, 128, ..., d \}}
+{1 \over s}
+L_\theta^{d \times d} (\boldsymbol{x})
+$$
+
+- ${1 / s}$
+  - losses for higher resolution are noisier on average due to high frequency details
 
 ### 3.3 Scaling the architecture
 

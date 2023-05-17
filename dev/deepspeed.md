@@ -29,6 +29,15 @@ sudo apt install cuda
 
 
 
+List and select CUDA
+
+```shell
+sudo update-alternatives --display cuda
+sudo update-alternatives --config cuda
+```
+
+
+
 Install dependencies
 
 ```shell
@@ -39,7 +48,7 @@ pip install deepspeed
 
 check further prerequisites required
 
-```
+```shell
 ds_report
 ```
 
@@ -47,7 +56,7 @@ ds_report
 
 install further dependencies following the directions in the report e.g.
 
-```
+```shell
 sudo apt install libaio-dev
 ```
 

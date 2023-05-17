@@ -77,6 +77,7 @@
   - https://arxiv.org/abs/2201.01266
   - Swin U-Net Transformer for segmentation tasks
   - BraTS 2021 segmentation challenge
+  - 3D
 
 ## 2021
 
@@ -87,6 +88,16 @@
   - A hierarchical Transformer whose representation is computed with shifted windows
     - limits self-attention computation to non-overlapping local window
     - still allows cross-window connection
+  - 2D
+
+| title                                                        | url                              | target dimension | journal or conference |      |
+| ------------------------------------------------------------ | -------------------------------- | ---------------- | --------------------- | ---- |
+| Swin Transformer: Hierarchical Vision Transformer using Shifted Windows | https://arxiv.org/abs/2103.14030 | 2D               | ICCV 2021             |      |
+| UNETR: Transformers for 3D Medical Image Segmentation        | https://arxiv.org/abs/2103.10504 | 3D               | WACV 2022             |      |
+| Swin-Unet: Unet-like Pure Transformer for Medical Image Segmentation | https://arxiv.org/abs/2105.05537 | 2D               | ECCV 2022 workshops   |      |
+| Swin UNETR: Swin Transformers for Semantic Segmentation of Brain Tumors in MRI Images | https://arxiv.org/abs/2201.01266 | 3D               | MICCAI 2021 workshop  |      |
+
+
 
 - An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale
   - ICLR 2021
