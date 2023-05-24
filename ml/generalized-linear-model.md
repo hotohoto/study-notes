@@ -1,1 +1,0 @@
-# Generalized Linear Model

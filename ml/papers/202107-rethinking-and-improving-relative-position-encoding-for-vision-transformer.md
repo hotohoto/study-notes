@@ -120,12 +120,70 @@ In terms of classification accuracy improvement
 
 ## References
 
+- [18] Self-Attention with Relative Position Representations
+  - https://arxiv.org/abs/1803.02155v2
+
 ## A Proof of formula 1
 
 ## B Proof of formula 2
 
 ## Notes
 
-### Self-Attention with Relative Position Representations
+### Code analysis
 
-- https://arxiv.org/abs/1803.02155v2
+- piecewise_index(relative_position, alpha, beta, gamma, ...)
+  - the shape of relative_position: L, L
+
+- quantize_values()
+  - (not in use)
+
+- METHOD
+- _METHOD_FUNC
+  - _rp_2d_euclidean()
+  - _rp_2d_quant()
+  - _rp_2d_product()
+  - _rp_2d_cross_rows()
+  - _rp_2d_cross_cols()
+- get_num_buckets()
+- iRPE
+  - \__init__(..., rpe_config: single rpe config)
+    - self.reset_parameters()
+      - if self.transposed:
+        - if self.mode == "contextual":
+          - self.lookup_table_weight = nn.Parameter(torch.zeros(self.num_heads, self.head_dim, self.num_buckets))
+      - else:
+        - if self.mode == "contextual":
+          - self.lookup_table_weight = nn.Parameter(torch.zeros(self.num_heads, self.num_buckets, self.head_dim))
+  - forward()
+    - self._get_rp_bucket()
+      - (doesn't depend on batch or heads but on the width and height)
+      - get_bucket_ids_2d()
+        - get_bucket_ids_2d_without_skip()
+          - pos = get_absolute_positions()
+            - prepare ingredient to build coordinates
+          - pos1 = pos.view((max_L, 1, 2))
+            - all the coordinates
+          - pos2 = pos.view((1, max_L, 2))
+            - all the coordinates
+          - diff = pos1 - pos2
+            - build all the combinations of the per-axis distance between coordinates by broadcasting
+          - bucket_ids = func(diff, alpha, beta, gamma=gamma)
+          - cache bucket ids
+    - (we can mask combinations here ⭐)
+      - only if it's okay to mask the same combinations over all the batches
+      - implementing it here might be a bit redundant if you also want to support masking without iRPE
+    - self.forward_rpe_transpose()
+      - usually for queries and keys
+    - self.forward_rpe_no_transpose()
+      - usually for values
+- iRPE_Cross
+  - \__init__()
+    - self.rp_rows = iRPE(\**kwargs, method=METHOD.CROSS_ROWS)
+    - self.rp_cols = iRPE(\**kwargs, method=METHOD.CROSS_COLS)
+
+  - forward()
+    - sekf.rp_rows(...) + self.rp_cols(...)
+
+- get_single_rpe_config()
+- get_rpe_config()
+- build_rpe()

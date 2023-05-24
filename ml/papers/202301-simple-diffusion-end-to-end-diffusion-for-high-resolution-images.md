@@ -154,19 +154,42 @@ $$
 
 ### 3.3 Scaling the architecture
 
-TODO
+- for their consideration the best resolution and channels for scaling is 16x16x1024
+  - typically,
+    - 16x16 was used for scaling in many literature
+    - scaling 16x16 resolution requires more parameters but less feature maps
+      - sharding only the weights might be required
 
 ##### Avoiding high resolution feature maps
 
-TODO
+- many accelerators (GPUs) provide enough computation power but with the limited memory
+
+- so it would be good go with memory efficient scaling
+
+- downsample earlier and upsample later
+
+  - actually this was also better in terms of the model performance
+
+  - approaches
+    - use the invertible and linear 5/3 wavelet (5/3 DTW transform)
+    - use patching
+
+<img src="./assets/image-20230525025415436.png" alt="image-20230525025415436" style="zoom:67%;" />
+
+
 
 ### 3.4 Dropout
 
-TODO
+- regularization is important
+  - e.g. dropout, augmentation, ...
+- applying dropout to the entire layers is not a good idea
+- apply it to lower resolutions than, for example, 64x64
 
 ### 3.5 The U-ViT architecture
 
-TODO
+- the transformer block
+  - consist of self-attention and MLP block
+  - efficient to be used by accelerators
 
 ### 3.6 Text to image generation
 
