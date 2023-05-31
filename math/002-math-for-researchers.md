@@ -52,12 +52,12 @@ https://youtu.be/zKQ5Fcfs2Gg
 
 - $l = \infty$에서의 열방정식의 해는 normal distribution 이 된다.
 - topology 소개
-- openset = 찰흙덩어리
-- openset 은 topology 의 원소
+- open set = 찰흙덩어리
+- open set 은 topology 의 원소
 - 미분 다양체 or smooth manifold
   - locally Euclidian
     - chart 함수를 사용해 P 점 근방을 유클리드 공간으로 옮겨줄 수 있다.
-- Riemanian metric
+- Riemannian metric
 
 # 5. Radon-Nikodym theorem and the definition of conditional expectation
 

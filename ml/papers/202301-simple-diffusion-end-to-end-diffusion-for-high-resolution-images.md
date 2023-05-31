@@ -170,13 +170,14 @@ $$
 
   - actually this was also better in terms of the model performance
 
-  - approaches
-    - use the invertible and linear 5/3 wavelet (5/3 DTW transform)
-    - use patching
+
+(approaches)
+- use the invertible and linear 5/3 wavelet (5/3 DTW transform)
 
 <img src="./assets/image-20230525025415436.png" alt="image-20230525025415436" style="zoom:67%;" />
 
-
+- use patching
+  - conv with the d by d kernel and the stride of d
 
 ### 3.4 Dropout
 
