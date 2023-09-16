@@ -16,12 +16,20 @@
 - base diffusion model
   - resolution
     - 64x64
-  - composition
-    - encoder
-    - decoder
+  - conditioned on text
+  - model configurations
+    - parameters
+      - (small) 300M
+      - (big) 3.5B
 - upsampler: diffusion upsampling model
   - resolution
     - 64x64 to 256x256
+  - conditioned on text
+  - model configurations
+    - parameters
+      - (big) 1.5B
+- data
+  - people are filtered out for the 300M model to be released
 
 
 

@@ -2,7 +2,7 @@
 
 - https://arxiv.org/abs/2302.12469
 - Yong-Hyun Park, Mingi Kwon, Junghyo Jo, Youngjung Uh
-- Yonsei Univ.
+- SNU, Yonsei Univ.
 
 ## 1 Introduction
 

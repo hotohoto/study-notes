@@ -2,8 +2,9 @@
 
 
 
-- NVIDIA
 - https://arxiv.org/abs/2206.00364
+- NeurIPS 2022
+- NVIDIA
 - contributions
   - Analysis on the freedom of design space and heuristic improvement
   - Higher order Runge-Kutta method for the deterministic sampling

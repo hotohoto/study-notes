@@ -1,7 +1,7 @@
-# Masked Autoencoders Are Scalable Vision Learners
+# Diffusion Schrödinger Bridge with Applications to Score-Based Generative Modeling
 
-- https://arxiv.org/abs/2111.06377
-- Facebook AI Research (FAIR)
+- https://arxiv.org/abs/2106.01357
+- NeurIPS 2021 (spotlight)
 
 ## 1 Introduction
 

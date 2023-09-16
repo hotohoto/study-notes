@@ -1,5 +1,18 @@
 # postgres cli
 
+## run as a docker container
+
+- https://hub.docker.com/_/postgres
+
+```bash
+# docker run --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword -d postgres
+docker run --name postgres -e POSTGRES_PASSWORD=pass -d postgres -p 5432:5432
+```
+
+
+
+
+
 ## basic commands
 
 ```bash

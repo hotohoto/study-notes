@@ -1,29 +1,23 @@
-# Differential geometry
+# Differential geometry - elementary
 
 ## TODO
 
 - make kappa and k clear in the notes
 
 - 숙명여대 서검교 교수님
+  
   - 1학기 - 미분기하학
     - https://youtube.com/playlist?list=PL85AYQZ4ks4JIO8pUgNAOXDDb7upeA0Et
+  
+  
   - 2학기 - 현대기하학
     - https://youtube.com/playlist?list=PL85AYQZ4ks4JFInW_Zcs5M8PFkI72BAkY
+  
 - Elementary Differential Geometry
   - https://play.google.com/books/reader?id=9nT1fOwATf0C&pg=GBS.PA12
   - ex 1.2.4
+
 - [수학아빠sk... 어디교수님?](https://youtube.com/playlist?list=PL0ApUgH_3J1X3HTC9CX3r1dgJCgFy2V4W)
-- inclusion map
-  - https://en.wikipedia.org/wiki/Inclusion_map
-- embedded hypersurface
-  - https://en.wikipedia.org/wiki/Hypersurface
-- pullback metric
-  - https://en.wikipedia.org/wiki/Pullback_(differential_geometry)
-- 엔지니어를 위한 미분기하 5/5
-  - (geodesic 공부하거나 영상 보고 나서 보기)
-    - [14 Tensor Calculus 15: Geodesics and Christoffel Symbols (extrinsic geometry)](https://youtu.be/1CuTNveXJRc)
-    - [Tensor Calculus 16: Geodesic Examples on Plane and Sphere](https://youtu.be/8sVDceI70HM)
-  - https://youtu.be/9Nc4sRj7L9g?t=2080
 
 
 ## Parameterized differentiable curve
@@ -660,12 +654,267 @@ Answer:
 
 ### An explicit representation of a helix
 
-https://youtu.be/y3C8sxGFTuc
-...
+https://youtu.be/y3C8sxGFTuc?si=JZuXeM6ya2hs8R3t
+
+(e.g.)
+
+- Let $\alpha(s)$ be a helix with $k \gt 0$ $(\tau = ck)$ for some constant $c$
+- Find $\alpha(s)$ explicitly
+
+
+
+(sol.)
+
+- Reparametrize $\alpha$ given by a parameter $t$
+
+$$
+t(s) = \int_0^s k(\sigma)\mathrm{d}\sigma
+$$
+
+(This is a nice idea! 👍)
+$$
+t^\prime = {\mathrm{d}t \over \mathrm{d}s} = k(s) \gt 0
+$$
+
+$$
+\Longrightarrow t: \text{1-1}
+$$
+
+$$
+\left(\begin{array}{c}
+T^{\prime} \\
+N^{\prime} \\
+B^{\prime}
+\end{array}\right)
+=\left(\begin{array}{ccc}
+0 & k & 0 \\
+-k & 0 & -\tau \\
+0 & \tau & 0
+\end{array}\right)
+\left(\begin{array}{l}
+T \\N \\B
+\end{array}\right)
+$$
+
+$$
+=\left(\begin{array}{ccc}0 & k & 0 \\-k & 0 & -ck \\0 & ck & 0\end{array}\right)\left(\begin{array}{l}T \\N \\B\end{array}\right)
+$$
+
+(so far derivations are w.r.t. $s$, and $t$ is just a variable yet.)
+
+1️⃣
+$$
+T^\prime
+= {\mathrm{d}T \over \mathrm{d}s}
+= {\mathrm{d}T \over \mathrm{d}t}{\mathrm{d}t \over \mathrm{d}s}
+= {\mathrm{d}T \over \mathrm{d}t}k
+$$
+
+$$
+\Longrightarrow {dT \over \mathrm{d}t} = N
+$$
+
+2️⃣
+$$
+N^\prime = {\mathrm{d}N \over \mathrm{d}s} = {\mathrm{d}N \over \mathrm{d}t}{\mathrm{d}t \over \mathrm{d}s} = {\mathrm{d}N \over \mathrm{d}t}k
+$$
+
+$$
+\Longrightarrow {\mathrm{d}N \over \mathrm{d} t} = -T -cB \\
+$$
+
+3️⃣
+$$
+B^\prime = {\mathrm{d}B \over \mathrm{d}s} = {\mathrm{d}B \over \mathrm{d}t}k
+$$
+
+$$
+\Longrightarrow {\mathrm{d}B \over \mathrm{d}t} = cN
+$$
+
+Thus, 
+$$
+{\mathrm{d}^2N \over \mathrm{d} t^2} = {\mathrm{d} \over \mathrm{d}t}(-T - cB) = -N -c^2N = - (1 + c^2)N 
+$$
+Let
+$$
+\omega ^2 = (1 + c^2)
+$$
+Then,
+$$
+N = \cos(\omega t)C_1 + \sin(\omega t) C_2
+$$
+for some fixed "vectors": $C_1$, $C_2$, $C_3$, and $C_4$.
+$$
+{\mathrm{d}T \over \mathrm{d}t} = N \\
+
+\Longrightarrow 
+T = {1\over \omega}
+\left(
+\sin(\omega t)C_1 - \cos(\omega t)C_2 + C_3
+\right)
+= \alpha^\prime(s) \\
+
+\Longrightarrow
+\alpha(s) = {1\over \omega} 
+\left(
+\int_0^s \sin(\omega t(\sigma)) \mathrm{d}\sigma \cdot C_1
+- \int_0^s \cos(\omega t(\sigma)) \mathrm{d}\sigma \cdot C_2
++ C_3 s + C_4
+\right)
+$$
+We've found the curve except the constant vectors.
+
+Let's determine them.
+$$
+{\mathrm{d}N \over \mathrm{d}t}
+= {\mathrm{d}^2T \over \mathrm{d}t^2}
+= - \omega \sin(\omega t)C_1 + \omega\cos(\omega t)C_2
+$$
+Also,
+$$
+\begin{align}
+0 \equiv & \langle N, {\mathrm{d}N \over \mathrm{d}t}\rangle \\
+= & \langle
+\cos(\omega t) C_1 + \sin(\omega t) C_2, 
+- \omega \sin(\omega t)C_1 + \omega\cos(\omega t)C_2
+\rangle \\
+= & \omega( - \Vert C_1 \Vert ^2 + \Vert C_2\Vert^2)\cos(\omega t)\sin(\omega t)
++ \omega \langle C_1, C_2 \rangle (\cos^2(\omega t) - \sin^2 (\omega t))
+\end{align}
+$$
+(At $t=0$, $\langle C_1, C_2 \rangle = 0$)
+$$
+\therefore
+0 = ( - \Vert C_1 \Vert ^2 + \Vert C_2\Vert^2) \\
+\Longrightarrow
+\Vert C_1 \Vert = \Vert C_2 \Vert
+$$
+
+$$
+\begin{align}
+1 \equiv & \Vert N \Vert ^2 \\
+= & \langle N, N \rangle \\
+= & \langle \cos(\omega t) C_1 + \sin(\omega t) C_2, \cos(\omega t) C_1 + \sin(\omega t) C_2 \rangle \\
+= & \cos^2(\omega t)\Vert C_1 \Vert ^2 + \sin^2(\omega t)\Vert C_2 \Vert ^2 \\
+= & \Vert C_1 \Vert ^2
+\end{align}
+$$
+
+$$
+\therefore \Vert C_1 \Vert = \Vert C_2 \Vert = 1
+$$
+
+Similarly,
+$$
+\begin{align}
+0 \equiv & \langle T, N \rangle \\
+= & {1\over \omega} \langle
+\sin(\omega t)C_1 - \cos(\omega t) C_2 + C_3,
+\cos(\omega t) C_1 + \sin(\omega t) C_2
+\rangle \\
+\end{align}
+$$
+(At $t = 0$, $\langle C_3, C_1 \rangle = 0$)
+$$
+0 \equiv \langle C_3, sin(\omega t) C_2 \rangle \\
+\therefore \langle C_3, C_2 \rangle = 0
+$$
+And then,
+$$
+\begin{align}
+1 = &\Vert T \Vert ^2 \\
+ = &{1 \over \omega^2 } (1 + \Vert C_3 \Vert^2)
+\end{align}
+$$
+
+$$
+\omega^2 = 1 + c^2 = 1 + \Vert C_3 \Vert^2 \\
+\therefore \Vert C_3 \Vert = \vert c \vert
+$$
+
+$$
+\Longrightarrow C_3 = \pm c (C_1 \times C_2 )
+$$
+
+Let's decide the sign.
+$$
+\begin{align}
+cT = & c (N \times B) \\
+= & N \times cB \\
+= & N \times -({\mathrm{d}N \over \mathrm{d}t} + T) \\
+= & \left( \cos(\omega t)C_1 + \sin(\omega t) C_2 \right)
+\times
+-\left(
+- \omega \sin(\omega t)C_1 + \omega\cos(\omega t)C_2 + {1\over \omega}
+\left(
+\sin(\omega t)C_1 - \cos(\omega t)C_2 + C_3
+\right)
+\right) \\
+
+= & \left( \cos(\omega t)C_1 + \sin(\omega t) C_2 \right)
+\times
+\left(
+\left(\omega - {1\over\omega} \right)
+\sin(\omega t)C_1
+- \left(\omega - {1\over\omega} \right)
+\cos(\omega t)C_2
+- {1 \over \omega} C_3
+\right) \\
+
+\end{align}
+$$
+Also,
+$$
+cT = {c\over \omega}
+\left(
+\sin(\omega t)C_1 - \cos(\omega t)C_2 + C_3
+\right)
+$$
+To decide the sign of $C_3$ we only need to compare the coefficients of $C_3$ and $C_1 \times C_2$.
+$$
+- \left(\omega - {1\over\omega} \right) (C_1 \times C_2) = {c \over \omega} C_3 \\
+(- \omega ^2 + 1)(C_1 \times C_2) = c C_3 \\ 
+- c ^2(C_1 \times C_2) = c C_3 \\ 
+- c(C_1 \times C_2) = C_3 \\ 
+$$
+And, we observe
+$$
+\alpha(0) = {1 \over \omega} C_4
+$$
+.
+
+Therefore, with respect to an orthonormal basis $\left\{ A, B, A\times B \right\}$, 
+$$
+\alpha(s) = {1 \over \omega}
+\left(
+\int_0^s \sin(\omega t(\sigma)) \mathrm{d}\sigma,
+- \int_0^s \cos(\omega t(\sigma)) \mathrm{d}\sigma,
+-cs
+\right)
++ \alpha(0)
+$$
+where
+$$
+t(\sigma) = \int_0^\sigma k(y)\mathrm{d}y
+$$
+and
+$$
+\omega^2 = 1 + c^2
+$$
+.
+
+Q.E.D.
+
+
+
+### Local canonical form of a curve
+
+- https://youtu.be/ol5oYW--UTc?si=NAyu23iznwz9zSxY
+
+
 
 TODO
-
-
 
 
 
@@ -694,10 +943,10 @@ TODO
       
       - the inner product can be different from the dot product
       
-      - P corresponds to the origin in the tagent space
+      - P corresponds to the origin in the tangent space
     - consider normal vector N on the P
     - slice the surface with a hyperplane containing the normal vector N
-      - there are going to infintely many curves
+      - there are going to infinitely many curves
     - $\kappa_{1}$ and $\kappa_{2}$ going to be the max and min curvature of those curves
       - these can be found by using the spectral theorem.
   - when Gaussian curvature is a constant over the space
@@ -749,207 +998,23 @@ The theorem is that Gaussian curvature can be determined entirely by measuring a
 
 - many second dimensional surfaces can be classified by the number of genera
   - https://en.wikipedia.org/wiki/Genus_(mathematics)
-- thrid dimensional surfaces can be classified/decomposed as 8 elementary types.
+- third dimensional surfaces can be classified/decomposed as 8 elementary types.
   - Geometrization Conjecture
   - related to Poincaré conjecture
 
-## Tensor
 
-- covariant derivative
-- contravariant
-- vector
-  - (1,0) tensor
-- covectors
-  - (0,1) tensor
-  - linear map
-    - W: V ➜ R
-  - also known as linear form, linear functional, dual vectors or one-form
-    - https://en.wikipedia.org/wiki/Linear_form
-  - dual space of dual space is the original space
-  - notation can be either `w(v)` or `<w, v>`
-    - note that this is not a inner product since they are defined in different vector spaces
-- (0,2) tensor
-  - map
-    - T: V × V ➜ R s.t. bilinear
-    - T(u,v) = r ∊ R
-  - symmetric tensor
-    - T(u,v) = T(v,u)
-  - antisymmetric
-    - T(u,v) = - T(v,u)
-  - inner product
-    - $g_{ij} = g_{ji}$
-    - $\det(g_{ij}) \neq 0$
-    - $g(v,v) \ge 0$
-    - $g(v,v) = 0$ iif $v = 0$
-      - the last one is not necessary for Einstein's general relativity
-  - "partial insertion"
-    - $T(\cdot, v) \in V^*$
-      - $T: V \to V^*$
-- (q,r) tensor
-  - $T^{(q,r)}: (V^*)^q × (V)^r \to R$
-- tangent space
-  - $T_pM$
-  - the dimension is the same as of the manifold
-- tangent bundle
-  - $TM$
-  - disjoint union of all tangent spaces
-  - The tangent bundle is also a manifold.
-- cotangent space
-  - the dual space of the tangent space
-- dual space
-- tensor
-  - an algebraic object that describes a multilinear relationship between sets of algebraic objects related to a vector space
-  - describes a multilinear relationship between sets of algebraic objects related to a vector space
-    - not to fix points
-- linear map
-- bilinear map
-- multilinear map
-- tensor contraction
-- lowering of tensors
-- raising of tensors
-- scalar product
-- vector product
-  - defined only in $R^3$
-- tensor product
-- dyadic product
-  - a type of tensor product
-  - takes 2 vectors
-  - returns dyadic
-    - a second order tensor
-- triad of vector tangent
-  - $\vec{g}_i = {\partial \vec{r} \over \partial x^i}$
-  - 그레디언트는 이와 비슷하나 x 의 아래 첨자를 씀
-- permutation/parity
-- Levi-Civita symbol
-  - $\varepsilon _{i_{1}i_{2}\dots i_{n}}$
-- volume tensor
-- pseudotensosr
-- Tensor Fields
-  - assigns a tensor to each point of a mathematical space (typically a Euclidean space or manifold).
-  - generalizes scalar fields or vector fields
-- Gradient operator
-- Curvilinear coordinates
-- Metric tensor
-  - a type of function
-  - input is a pair of tangent vectors at a point of surface (or higher dimensional manifold)
-    - $v$, $w$
-  - produces a real number scalar $g(v, w)$
-  - generalizes many properties of the dot product of vectors in Euclidean space
-  - defines length and angle
-  - A metric tensor is called positive-definite if it assigns a positive value $g(v, v) > 0$ to every nonzero vector $v$.
-- Riemannian manifold
-  - Also called a Riemannian space
-  - A manifold equipped with a positive-definite metric tensor.
-- Connection
-  - https://en.wikipedia.org/wiki/Connection_(mathematics)
-
-- Affine connection
-  - a geometric object that connects nearby tangent spaces
-  - it's also to define how to differentiate scalars, vectors, even tensors
-  - defines a covariant derivative
-    - a way of specifying a derivative along tangent vectors of a manifold
-    - a generalization of the directional derivative
-    - (when it comes to an extrinsic view the covariant derivative is)
-      - just the ordinary derivative with the normal component substracted
-        - in flat space, it's just the ordinary derivative
-  - required for defining directional derivative without fixing a point
-  - can be specified by defining Christoffel symbol
-  - A pretty wide definition so there exist infinitely many affine connections
-  - Christoffel symbols specify a corresponding affine connection
-    - In Euclidean space Chrisotffel symbols are all zero
-  - So what are reasonable connections? How can we define them?
-    - 👉 Levi-Civita connection
-  - defining affine connection is equivalent to
-    - defining a Christoffel symbol
-    - defining geodesic
-    - defining how to do parallel transport
-    - defining how to differentiate
-  - an affine connection is not a tensor
-- Levi-Civita connection
-  - a kind of affine connection given a metric tensor
-  - satisfies
-    - linearity and Leibniz rule
-    - torsion free
-      - $\Gamma^k_{ij} = \Gamma^k_{ji}$
-      - two parallel transport paths makes a parallelogram when they are done with switched orders
-    - metric compatibility
-      - ${\partial}_k g_{ij} = \Gamma^l_{ik} g_{jl} + \Gamma^l_{jk} g_{il}$
-      - meaning it preserves the metric
-  - $\Gamma^m_{jk} = {1 \over 2} g^{im} ({\partial}_k g_{ij} + {\partial}_j g_{ki} + {\partial}_i g_{jk})$
-  - Fundamental theorem of Riemannian geometry
-    - For a Riemannian manifold (curved space with a metric), there is a unique connection (=covariant derivative) that is torsion-free and has metric compatibility. And this connection is called the Levi-Civita connection.
-- Christoffel symbol
-  - an array of numbers describing an affine connection
-  - sometimes called the (affine/Levi-Civita) connection coefficients
-  - ${\frac {\partial \mathbf {e} _{i}}{\partial x^{j}}}={\Gamma ^{k}}_{ij}\mathbf {e} _{k}=\Gamma _{kij}\mathbf {e} ^{k}$
-    -  When the point moves along with the direction of $x^j$, how the basis vector $e_i$ changes in terms of all the current basis.
-   - depends on how we define the inner product
-- Parallel transport (along a curve)
-  - a way of transporting geometrical data along smooth curves in a manifold
-  - keeps vectors as constant as possible
-    - but note that it could be impossible to keep vectors constant on a surface like a sphere
-    - in another word, it's impossible to define a constant vector field on a curved surface
-  - keeps the length of a vector constant
-- Differentiation in Tensor Field
-- Second covariant derivative
-
-- Geodesic
-
-- Lie bracket
-  - https://en.wikipedia.org/wiki/Lie_bracket_of_vector_fields
-  - a vector field can be seen as a derivative operator
-  - given two vector fields Lie Bracket generates another vector field indicating that the tow vector fields as operators can be commutative
-
-- Torsion tensor
-- Torsion free tensor
-
-- Riemann curvature tensor
-
-- Ricci Tensor
-  - keeps track of how volume change along geodesics.
-  - approaches
-    - sectional curvature
-      - orthonormal basis only
-    - volume element derivative
-      - any basis
-  - properties
-    - contractions of Riemann tensor
-    - symmetric
-    - second Bianchi identity
-    - contracted Bianchi identity
-    - Einstein's field equations
-- Ricci Scalar
-  - keeps track of how the size of a ball deviates from standard flat-space size.
-  - In a curved space, we can fit a large area in a small boundary.
-
-- Isometry
-
-- First fundamental form
-- Second fundamental form
-- Gauss' theorema egregium (Gauss' remarkable theorem)
-
-- Weingartenm map or shape operator
 
 ## References
 
 (main)
 
 - [Elementary Differential Geometry](https://play.google.com/books/reader?id=9nT1fOwATf0C)
-- [Tensor Calculus by eigenchris](https://youtube.com/playlist?list=PLJHszsWbB6hpk5h8lSfBkVrpjsqvUGTCx)
 
 
 (extra)
 
-- http://www.kocw.net/home/cview.do?mty=p&kemId=1197788&ar=relateCourse
-
-- https://en.wikipedia.org/wiki/Metric_tensor
-- https://en.wikipedia.org/wiki/Affine_connection
-- https://en.wikipedia.org/wiki/Tensor_product
-- https://en.wikipedia.org/wiki/Leibniz_integral_rule
-- https://en.wikipedia.org/wiki/Lie_bracket_of_vector_fields
+- [세종대학교 오장헌 미분기하학 1](http://www.kocw.net/home/cview.do?mty=p&kemId=1197788&ar=relateCourse)
 
 
-- http://www.math.uchicago.edu/~may/VIGRE/VIGRE2008/REUPapers/Halper.pdf
-- https://www.mathematik.hu-berlin.de/~wendl/pub/connections_chapter6.pdf
-- [A Gentle Introduction to Tensors](https://www.ese.wustl.edu/~nehorai/Porat_A_Gentle_Introduction_to_Tensors_2014.pdf)
+- [Proof of the Gauss-Bonnet theorem](http://www.math.uchicago.edu/~may/VIGRE/VIGRE2008/REUPapers/Halper.pdf)
 

@@ -57,6 +57,14 @@
 
 ## References
 
+- clip
+  - Radford et al., 2021
+    - Learning Transferable Visual Models From Natural Language Supervision
+  - Patashnik et al., 2021
+    - StyleCLIP: Text-Driven Manipulation of StyleGAN Imagery
+  - Gal et al., 2021
+    - StyleGAN-NADA: CLIP-Guided Domain Adaptation of Image Generators
+
 ## A Related work
 
 ## B More discussion
@@ -67,7 +75,7 @@
 
 ### D.1 Random perturbation on $\epsilon$-space without Asyrp
 
-### D.2 Robustness and smantics in h-space and $\epsilon$-space with Asyrp
+### D.2 Robustness and semantics in h-space and $\epsilon$-space with Asyrp
 
 ### D.3 Choice of h-space in U-Net
 
@@ -87,7 +95,7 @@
 
 ## J Training details
 
-### J.1 Loss oefficients
+### J.1 Loss coefficients
 
 ### J.2 Training with random sampling instead of the training datasets
 
