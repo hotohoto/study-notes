@@ -23,56 +23,22 @@
   - structure-preserving image-to-image synthesis
   - shape-conditional image synthesis
 
-### 1.0
+### 1.x
 
+- OpenAI CLIP
 - support for inpainting
 - environment
   - under 10GB VRAM
   - default resolution
     - 512x512
+- 1.4
+  - https://huggingface.co/CompVis/stable-diffusion-v1-4
+
+- 1.5
+  - https://huggingface.co/runwayml/stable-diffusion-v1-5
+
 
 ## Source codes
-
-
-
-### Stable diffusion web UI
-
-https://github.com/AUTOMATIC1111/stable-diffusion-webui
-
-- features
-  - https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Features
-  - styles can be applied as weighted conditions
-  - high-resolution fix
-    - txt2img generates an LR image
-    - img2img  generates an HR image from the LR image 
-  
-- ui
-  - modules.ui
-  - based on gradio
-- api
-  - modules.api
-  - based on FastAPI
-- (Generate clicked)
-  - modules.txt2img
-    - p = modules.processing.StableDiffusionProcessingTxt2Img
-    - modules.processing.process_images(p)
-      - modules.processing.process_images_inner(p)
-        - samples_ddim = p.sample()
-          - p.sampler = sd_samplers.create_sampler(...)
-            - module.sd_samplers.KDiffusionSampler(...)
-              - (model_wrap_cfg): CFGDenoiser
-                - (inner_model): CompVisVDenoiser
-                  - (inner_model): LatentDiffusion
-          - p.sampler.sample(...)
-        - ...
-        - p.sd_model.decode_first_stage(x)
-          - ldm.models.diffusion.ddpm.LatentDiffusion.decode_first_stage()
-            - self.first_stage_model.decode(z)
-
-```sh
-CUDA_VISIBLE_DEVICES=9 python launch.py --no-half --no-half-vae
-```
-
 
 
 ### Stable diffusion v2

@@ -1,6 +1,7 @@
 # Adding Conditional Control to Text-to-Image Diffusion Models
 
 - Stanford Univ.
+- ICCV 2023
 - https://arxiv.org/abs/2302.05543
 - control the pretrained stable diffusion models with extra layers
 - based on Stable diffusion 1.5 and 2.1

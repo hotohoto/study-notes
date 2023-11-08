@@ -2,6 +2,7 @@
 
 ## TODO
 
+- section
 - inclusion map
   - https://en.wikipedia.org/wiki/Inclusion_map
 - embedded hypersurface
@@ -202,7 +203,7 @@
 
 - second fundamental form
 - Gauss' theorema egregium (Gauss' remarkable theorem)
-- Weingartenm map or shape operator
+- Weingarten map or shape operator
 
 ## References
 

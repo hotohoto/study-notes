@@ -17,6 +17,27 @@
 
 
 
+## LoRA and LyCORIS
+
+- LoRA
+  - https://huggingface.co/blog/lora
+  - for stable diffusion it seems to be applied to cross attention layers
+- Lora beYond Conventional methods, Other Rank adaptation Implementations for Stable diffusion (LyCORIS)
+  - https://stable-diffusion-art.com/lycoris/
+  - https://github.com/KohakuBlueleaf/LyCORIS
+  - https://github.com/huggingface/diffusers/issues/3087
+  - methods
+    - LoCon
+      - modifies convolution layers
+    - LoHa
+      - LoRA with Hadamard Product representation
+    - LoKR (LyCORIS)
+      - LoRA with Kronecker product representation
+    - DyLoRA (LyCORIS)
+      - https://arxiv.org/abs/2210.07558
+
+
+
 ## Optimization/special hardware
 
 - AttnProcessor
