@@ -61,6 +61,8 @@ docker compose --profile download up --build
 # wait until its done, then:
 docker compose --profile [ui] up --build
 # where [ui] is one of: invoke | auto | auto-cpu | comfy | comfy-cpu
+#e.g.
+docker compose --profile auto up --build
 ```
 
 

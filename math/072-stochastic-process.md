@@ -88,9 +88,9 @@
     - the empty set $\emptyset$ belongs to $\mathcal{F}$
     - if $A$ belongs to $\mathcal{F}$, then so does the complement $\Omega \setminus A$
     - if $A_1, A_2, ...$ is a sequence of sets in $\mathcal{F}$ then their union $A_1 \cup A_2 \cup ...$ also belongs to $\mathcal{F}$
-- borel sets $\mathcal{F}$
+- Borel sets $\mathcal{F}$
   - the smallest σ-field containing all intervals in $\mathbb{R}$
-- Lebesques measure
+- Lebesgue measure
 - random variable
 - integrable random variable
 
@@ -125,7 +125,7 @@
   - the number of rounds played before quitting the game
 - first hitting time
 
-## 4. Maringale inequality and convergence
+## 4. Martingale inequality and convergence
 
 ## 5. Markov Chain
 
@@ -135,7 +135,11 @@
 - Brownian motion
 - Wiener process
 
-## 7. Itô stchastic calculus
+## 7. Itô stochastic calculus
+
+- the random variable depending on $t$ cannot be integrated by Riemann integral
+  - since it's discontinuous almost everywhere
+  - https://youtu.be/H60ha8ypWaU?si=o0vLRo_9g25bVBVC&t=255
 
 ## Personal Notes
 

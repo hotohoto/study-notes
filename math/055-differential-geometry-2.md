@@ -95,6 +95,7 @@
 - gradient operator
 - curvilinear coordinates
 - metric tensor
+  - rank-2 tensor
   - a type of function
   - input is a pair of tangent vectors at a point of surface (or higher dimensional manifold)
     - $v$, $w$
@@ -141,6 +142,11 @@
       - meaning it preserves the metric
       - Leibniz rule
   - $\Gamma^m_{jk} = {1 \over 2} g^{im} ({\partial}_k g_{ij} + {\partial}_j g_{ki} + {\partial}_i g_{jk})$
+    - note that $g^{im}$ is an element of the inverse metric tensor.
+    - If you have $\Gamma_{12}^{3}$, it means you are looking at
+      - how the third component of a vector changes
+      - with respect to ...
+      - TODO
   - Fundamental theorem of Riemannian geometry
     - For a Riemannian manifold (curved space with a metric), there is a unique connection (=covariant derivative) that is torsion-free and has metric compatibility. And this connection is called the Levi-Civita connection.
 - Christoffel symbol
@@ -163,6 +169,8 @@
 
   - a generalization of the notion of a "straight line" 
 
+  - geodesic equation
+    - ${\frac {d^{2}x^{\lambda }}{dt^{2}}}+\Gamma _{\mu \nu }^{\lambda }{\frac {dx^{\mu }}{dt}}{\frac {dx^{\nu }}{dt}}=0$
 - Lie bracket
   - https://en.wikipedia.org/wiki/Lie_bracket_of_vector_fields
   - a vector field can be seen as a derivative operator
@@ -170,15 +178,21 @@
 - torsion tensor
   - $T(X, Y) := \nabla_X Y - \nabla_Y X - [X, Y]$
   - where $X$ and $Y$ are vector fields
-
 - torsion tensor free
   - $T(X,Y) = 0$
-
 - Riemann curvature tensor
   - $R^d_{abc}$
   - (1 contra, 3 co) - Tensor
-
+  - $a$, $b$
+    - differentiation directions on the manifold
+  - $c$
+    - direction of the vector being transported
+  - $d$
+    - output component index
 - Ricci Tensor
+  - The Ricci curvature tensor is the contraction of the first and third indices of the Riemann tensor.
+    - ${\displaystyle \underbrace {R_{ab}} _{\text{Ricci}}\equiv \underbrace {R^{c}{}_{acb}} _{\text{Riemann}}=g^{cd}\underbrace {R_{cadb}} _{\text{Riemann}}}$
+
   - keeps track of how volume change along geodesics.
   - approaches
     - sectional curvature
@@ -198,10 +212,20 @@
 - geodesic deviation
 - isometry
 - first fundamental form
+  - intrinsic
+  - consist of inner product values
+    - ${\displaystyle \mathrm {I} (x,y)=x^{\mathsf {T}}{\begin{bmatrix}E&F\\F&G\end{bmatrix}}y}$
+    - ${\displaystyle \left(g_{ij}\right)={\begin{pmatrix}g_{11}&g_{12}\\g_{21}&g_{22}\end{pmatrix}}={\begin{pmatrix}E&F\\F&G\end{pmatrix}}}$
+    - ${\displaystyle g_{ij}=\langle X_{i},X_{j}\rangle }$
+  - positive definite
+    - $g_\text{ii} \gt 0$
+    - $\det(g_\text{ij}) \gt 0$
   - the inner product on the tangent space of a surface
-  - induced canonically from the dot product of $R^3$
-
+  - for the two dimensional surfaces defined in $\mathbb{R}^3$ ambient space.
+    - so it's not applicable to the general relativity in physics which requires four dimensional space
+  - induced canonically from the dot product of $\mathbb{R}^3$
 - second fundamental form
+  - extrinsic
 - Gauss' theorema egregium (Gauss' remarkable theorem)
 - Weingarten map or shape operator
 

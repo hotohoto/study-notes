@@ -286,7 +286,7 @@ $\iff$
     - $\Rightarrow <N', B> = - <N, B'> = - <N, \tau N> = -\tau$
 - $B' \triangleq \tau N$
 
-### A characterization of a plane curve
+## A characterization of a plane curve
 
 https://youtu.be/A8C6G-VI5nI
 
@@ -309,7 +309,7 @@ $\alpha(s)$ is a plane curve $k \neq 0$
   - containing $T$, $N$
   - $\perp N$
 
-### A characterizaiton of a helix
+## A characterization of a helix
 
 https://youtu.be/A40S18IAF_Y
 
@@ -334,7 +334,7 @@ Any regular plane curve is a helix
 - $\alpha$ is a helix $\iff \exist$ constant $c$ s.t. $\tau = ck$
   - $c = -\cot{\theta}$ where $\theta$ is the pitch of the helix
 
-### Property of a spherical curve
+## Property of a spherical curve
 
 https://youtu.be/5goF_kbBUfE
 
@@ -463,7 +463,7 @@ https://youtu.be/5goF_kbBUfE?t=2934
   - Rotation
   - Translation
 
-### Fundamental theorem of the local theory of curves
+## Fundamental theorem of the local theory of curves
 
 https://youtu.be/5pyegExDAss
 https://youtu.be/zY0-L3mzJUY
@@ -652,7 +652,7 @@ Answer:
 - But, in $\mathbb{R}^3$ there are infitely many choices of $N$.
 
 
-### An explicit representation of a helix
+## An explicit representation of a helix
 
 https://youtu.be/y3C8sxGFTuc?si=JZuXeM6ya2hs8R3t
 
@@ -908,13 +908,108 @@ Q.E.D.
 
 
 
-### Local canonical form of a curve
+## Local canonical form of a curve
 
 - https://youtu.be/ol5oYW--UTc?si=NAyu23iznwz9zSxY
 
 
 
 TODO
+
+
+
+## $C^k$ coordinate patch (simple surface)
+
+https://youtu.be/1_s15Tm_Y1s
+
+- open set
+- $C^k$ coordinate patch (simple surface) $\mathbf{X}$
+  - $C^k$
+    - k-differentiable
+  - 1-1
+  - regularity condition
+    - $\mathbf{X}_1 \times \mathbf{X}_2 \neq \mathbf{0}$
+- Monge patch
+  - f(u,v) = (u, v, f(u, v))
+
+
+
+## $C^k$ coordinate transformation
+
+https://youtu.be/TNvLQppA9Nw?si=7qNUfeJcF1Kd93GF
+
+- $C^k$ coordinate transformation $f$
+  - $C^k$
+    - k-differentiable
+  - 1-1
+  - onto
+
+
+
+## Tangent spaces
+
+https://youtu.be/megKbySasIQ?si=jPo6mcgDtCBS_d8Y
+
+- Inverse function theorem
+- notations
+  - $\mathbf{X}_1 = {\partial{X} \over \partial u_1}$ 
+  - $\mathbf{X}_2 = {\partial{X} \over \partial u_2}$ 
+- tangent plane
+  - the plane through $P \in \mathbb{R}^3$ perpendicular to $\mathbf{X}_1 \times \mathbf{X}_2$
+
+
+
+## Definition of surfaces
+
+https://youtu.be/otAbq3K50V4?si=29lylN6IN43X_1W-
+
+
+
+- $\epsilon$-neighborhood of $p \in M$
+  - $M \in \mathbb{R}^3$
+  - $\epsilon \gt 0$
+  - $:= \{q \in M \vert d(p, q) \lt \epsilon\} = M \cap B_p(\epsilon)$ 
+
+- $g: M \to \mathbb{R}^2$ is continuous at $P \in M$
+
+  - $M \in \mathbb{R}^3$
+  - $:=$
+    - for every open set $U \subset \mathbb{R}^2$ with $g(p) \in U$
+    - there exists $\epsilon$-neighborhood $V$ of $p$ with $g(V) \subset U$
+
+-  simple surface $\mathbf{X}$ is proper
+
+  - $:=$
+    - $\mathbf{X}^{-1}: \mathbf{X}(U) \to U$  is continuous at each point of $\mathbf{X}(U)$
+      - where
+        - $\mathbf{X}(U) \subset \mathbb{R}^3$
+        - $U \subset \mathbb{R}^2$
+
+- $M \in \mathbb{R}^3$ is a $C^k$ surface in $\mathbb{R}^3$
+
+  - $:=$
+    - $\forall p \in M$
+    - $\exists$ proper $C^k$ coordinate patch
+      - whose image is in $M$
+      - and which contains an $\epsilon$-neighborhood of $p$ for some $\epsilon \gt 0$
+
+    - moreover,
+      - if $\mathbf{X}: U \to \mathbb{R}^3$ and $\mathbf{Y}: V \to \mathbb{R}^3$ are $C^k$ coordinate patches,
+      - then $\mathbf{Y}^{-1} \cdot \mathbf{X}: \mathbf{X}^{-1}(U^\prime \cap V^\prime) \to \mathbf{Y}^{-1}(U^\prime \cap V^\prime)$ is a $C^k$ coordinate transformation
+        - where
+          - $U^\prime = \mathbf{X}(U)$
+          - $V^\prime = \mathbf{Y}(V)$
+
+
+  
+
+## Examples of surfaces
+
+https://youtu.be/HoGf3eE2gPo?si=Szj85X90rEzeBTN9
+
+
+
+---
 
 
 
