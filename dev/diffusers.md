@@ -89,7 +89,7 @@ make_image_grid(images, 2, 2)
 
 
 
-convert a local `.safetensors` file trained by webui
+Convert a local `.safetensors` file trained by webui
 
 ```py
 from safetensors import safe_open
@@ -176,6 +176,78 @@ images = pipeline(
 ).images
 
 make_image_grid(images, rows=2, cols=6)
+```
+
+
+
+Use StableDiffusionPipeline's internal components directly
+
+```py
+import torch
+from diffusers import AutoPipelineForText2Image, DDIMScheduler
+
+
+device = "cuda"
+pipeline = AutoPipelineForText2Image.from_pretrained(
+    "runwayml/stable-diffusion-v1-5",
+    use_safetensors=True,
+).to(device)
+
+generator = torch.Generator(device).manual_seed(1024)
+positive_prompt = ["a painting of a super cute cat"]
+negative_prompt = [""] * len(positive_prompt)
+num_inference_steps = 25
+guidance_scale = 6.5
+
+model = pipeline.unet
+tokenizer = pipeline.tokenizer
+text_encoder = pipeline.text_encoder
+image_processor = pipeline.image_processor
+vae = pipeline.vae
+
+scheduler = DDIMScheduler.from_config(pipeline.scheduler.config)
+scheduler.set_timesteps(num_inference_steps)
+
+positive_text_input = tokenizer(
+    positive_prompt,
+    padding="max_length",
+    max_length=tokenizer.model_max_length,
+    truncation=True,
+    return_tensors="pt",
+)
+positive_text_embeddings = text_encoder(positive_text_input.input_ids.to(device))[0]
+
+negative_text_input = tokenizer(
+    negative_prompt,
+    padding="max_length",
+    max_length=tokenizer.model_max_length,
+    truncation=True,
+    return_tensors="pt",
+)
+negative_text_embeddings = text_encoder(negative_text_input.input_ids.to(device))[0]
+
+text_embeddings = torch.cat([positive_text_embeddings, negative_text_embeddings])
+
+latent = torch.randn((1, 4, 64, 64), generator=generator, device=device)
+
+for i, t in enumerate(scheduler.timesteps):
+    with torch.no_grad():
+        noisy_residual_cond, noisy_residual_uncond = model(
+            torch.cat([latent, latent]),
+            t,
+            encoder_hidden_states=text_embeddings,
+        ).sample.chunk(2)
+    noisy_residual = noisy_residual_cond + guidance_scale * (
+        noisy_residual_cond - noisy_residual_uncond
+    )
+    sched_output = scheduler.step(noisy_residual, t, latent)
+    latent = sched_output.prev_sample
+
+with torch.no_grad():
+    image = vae.decode(latent / vae.config.scaling_factor).sample
+
+image = image_processor.postprocess(image, output_type="pil", do_denormalize=[True])[0]
+image
 ```
 
 

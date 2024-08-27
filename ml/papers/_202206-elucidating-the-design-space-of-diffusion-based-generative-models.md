@@ -11,7 +11,32 @@
   - Found non-leaking augmentation was helpful
 - taken together it achieved SOTA
 
+## Possible motivation
 
+- Can we make a practically better diffusion process than VP-SDE, VE-SDE, and etc.
+  - but let's stick to the design space of the Score SDE paper and the some previous popular papers.
+    - the Score SDE paper used $f(x, t)=f(t)x$ and $g(t)$ for SDE
+- So what's their design space and what can we change?
+  - We want to change $f$ and $g$ in SDE
+  - But practically we need a noise schedule $\sigma(t)$ and a scaling schedule $s(t)$
+    - with that we can get $f$ and $g$​ and a perturbation kernel
+    - actually three main models in Score SDE all have their perturbation kernel that can be expressed with $\sigma(t)$ and $s(t)$
+- what we cannot change
+  - once $\sigma(t)$ and $s(t)$ chosen it should be fixed during training and inference
+    - meaning there are compatible schedulers in diffusers depending on each model
+- what else can we change during inference
+  - time steps to use
+  - ODE/SDE solver
+    - ODE vs SDE?
+  - network
+    - model architecture $F_\theta$
+    - skip scaling $c_\text{skip}(\sigma)$
+    - input scaling $c_\text{in}(\sigma)$
+    - output scaling $c_\text{out}(\sigma)$
+    - noise condition scaling $c_\text{noise}(\sigma)$
+  - training
+    - noise distribution to sample $\sigma$ from 
+    - loss weighting $\lambda(\sigma)$
 
 ## 1 Introduction
 
@@ -42,12 +67,12 @@
       - how much noise we want to add depending on $t$
     - $s(t)$
       - how much fast we want to move the mean to the final mean
-  - (related to real images) 🖼️
+  - (at the data distribution) 🖼️
     - $i=N$
     - $t_N=0$
     - $\boldsymbol{x}_N$
     - $\sigma_N = 0$
-  - (related to noisy images) 🌫️
+  - (at the Gaussian distribution practically) 🌫️
     - $i=0$
     - $\boldsymbol{x}_0 \sim p(\boldsymbol{0}, \sigma_\text{max} \mathrm{I})$
     - $\sigma_0 = \sigma_\text{max}$
@@ -74,12 +99,12 @@
     - $\boldsymbol{x} = s(t) \hat{\boldsymbol{x}}$
   - $\mathrm{d} \boldsymbol{x}=\left[\dot{s}(t) \boldsymbol{x} / s(t)-s(t)^2 \dot{\sigma}(t) \sigma(t) \nabla_{\boldsymbol{x}} \log p(\boldsymbol{x} / s(t) ; \sigma(t))\right] \mathrm{d} t$
   - appendix B.2
-- solution by descretization
+- solution by discretization
 - putting it together
 
 ## 3 Improvements to deterministic sampling
 
-- Descretizaiton and higher-order integrators
+- Descretization and higher-order integrators
   - Deterministic sampling using Heun's 2nd order method with arbitrary $\sigma(t)$ and $s(t)$
 - Trajectory curvature and noise schedule
 - Discussion

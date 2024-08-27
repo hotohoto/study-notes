@@ -911,10 +911,29 @@ Q.E.D.
 ## Local canonical form of a curve
 
 - https://youtu.be/ol5oYW--UTc?si=NAyu23iznwz9zSxY
+- (canonical can mean kind of natural)
+
+$\alpha(s): I \to \mathbb{R}^3$
+
+- parameterized by arc length s.t. $k(s) \gt 0$
+
+By Taylor expansion,
+
+$\alpha(s) = \alpha(0) + s\alpha^\prime(0) + {s^2 \over2!}\alpha^{\prime\prime}(0) + {s^2 \over2!}\alpha^{\prime\prime\prime}(0) + R(s)$
+
+where $\lim \limits_{s \to 0} {R\over s^3} = 0$.
+
+Note that,
+
+- $\alpha^\prime = T$
+
+- $\alpha^{\prime\prime} = kN$
+
+- $\alpha^{\prime\prime\prime} = k^\prime N + kN^\prime = k^\prime N -k^2T - k\tau B$
 
 
 
-TODO
+TODO https://youtu.be/ol5oYW--UTc?si=R9oosH9Vde9Vwxi_&t=2429
 
 
 
@@ -1001,7 +1020,7 @@ https://youtu.be/otAbq3K50V4?si=29lylN6IN43X_1W-
           - $V^\prime = \mathbf{Y}(V)$
 
 
-  
+
 
 ## Examples of surfaces
 

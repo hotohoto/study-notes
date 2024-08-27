@@ -157,6 +157,7 @@ $$
 
 ### 2.4 v-prediction
 
+- can be formulated from DDPM/VP-SDE like signal/noise schedule 
 - better numerical stability
   - enables progressive distillation
 - less color shifting artifacts over time

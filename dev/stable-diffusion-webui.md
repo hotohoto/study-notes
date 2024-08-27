@@ -22,7 +22,7 @@ https://github.com/AUTOMATIC1111/stable-diffusion-webui
 
 
 ```sh
-CUDA_VISIBLE_DEVICES=9 python launch.py --no-half --no-half-vae
+CUDA_VISIBLE_DEVICES=1 python launch.py --no-half --no-half-vae
 ```
 
 
@@ -57,12 +57,18 @@ CUDA_VISIBLE_DEVICES=9 python launch.py --no-half --no-half-vae
 git clone git@github.com:AbdBarho/stable-diffusion-webui-docker.git
 cd stable-diffusion-webui-docker
 
+# setting up
 docker compose --profile download up --build
-# wait until its done, then:
-docker compose --profile [ui] up --build
+
+# run
+# docker compose --profile [ui] up --build
 # where [ui] is one of: invoke | auto | auto-cpu | comfy | comfy-cpu
 #e.g.
-docker compose --profile auto up --build
+WEBUI_PORT=7888 docker compose --profile auto up --build
+
+# download SD2.1
+cd data/models/Stable-diffusion
+sudo wget https://huggingface.co/stabilityai/stable-diffusion-2-1-base/resolve/main/v2-1_512-ema-pruned.ckpt
 ```
 
 
@@ -74,6 +80,9 @@ docker compose --profile auto up --build
 
 ### Install ControlNet
 
+- Install `sd-webui-controlnet` in the extension menu of the UI.
+- Download the models via the commands below.
+
 ```shell
 curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
 sudo apt-get install git-lfs
@@ -84,7 +93,7 @@ sudo mv ControlNet-v1-1/* data/config/auto/extensions/sd-webui-controlnet/models
 sudo chown root:root data/config/auto/extensions/sd-webui-controlnet/models/*
 ```
 
-
+- Click `Apply and Quit` in the extension menu.
 
 
 

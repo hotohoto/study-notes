@@ -2,8 +2,14 @@
 
 ## Terminology
 
-- probability 1
-  - almost surely
+- almost surely
+  - probability of 1
+
+- convergence of random variables
+  - convergence in probability
+  - convergence in distribution
+  - almost sure convergence
+
 - Banach space
   - a complete normed vector space
   - has a metric
@@ -15,9 +21,9 @@
   - definition
     - given
       - $(\Omega, \mathcal{F}, P)$
-        - a probability space
+        - a probability space which is a measure space
       - $I$
-        - an index set with a total order $le$
+        - an index set with a total order...?
       - $\mathbb{F} = (\mathcal{F}_i)_{i \in I}$
         - a filtration of the sigma σ-algebra $\mathcal{F}$
       - $(S, \Sigma)$
@@ -54,10 +60,20 @@
   - general Brownian motion with drift
     - has the Markov property
     - but not a martingale
-- `[x]` quadratic variation
-  - e.g.
-    - $[W_t][W_t] = t$
-- `[x, y]` cross quadratic variation
+- mesh
+  - the norm of the partition
+  - $\Vert P \Vert =\max\{\vert x_i - x_{i-1}\vert:i=1,\dots,n\}$
+    - the length of the longest subinterval of the partition
+- quadratic variation
+  - https://en.wikipedia.org/wiki/Quadratic_variation
+  - a process (which is not stochastic)
+  - $[X]_t = \lim\limits_{\Vert P \Vert \to 0} \sum\limits_{k=1}^n (X_{t_k} - X_{t_{k-1}})^2$​
+    - $P$
+      - a partition of the interval $[0, t]$
+
+    - $X_t$​
+      - a real-valued stochastic process
+  - if exists defined using "convergence in probability"
 - diffusion process
   - a solution to a stochastic differential equation
     - continuous time Markov process with almost sulrely continuous sample paths

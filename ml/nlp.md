@@ -8,6 +8,60 @@
 - https://hackernoon.com/chars2vec-character-based-language-model-for-handling-real-world-texts-with-spelling-errors-and-a3e4053a147d
 - https://docs.google.com/spreadsheets/d/1pwkvIwf3T1bo2y7aXmSYPN6otlPKJl9kCJHaze0H3KY/edit#gid=697987516
 
+## LLM papers
+
+
+
+- Language Models are Few-Shot Learners
+
+  - https://arxiv.org/abs/2005.14165
+  - GPT-3
+  - 175B parameters
+  - 10000 GPUs
+  - TODO
+
+- The Power of Scale for Parameter-Efficient Prompt Tuning
+
+  - https://arxiv.org/abs/2104.08691
+  - "prompt tuning" to learn "soft prompts"
+
+- LoRA: Low-Rank Adaptation of Large Language Models
+
+  - https://arxiv.org/abs/2106.09685
+
+- Finetuned Language Models Are Zero-Shot Learners
+
+  - https://arxiv.org/abs/2109.01652
+  - instruction tuning
+  - more useful for larger models
+  - make use of pre-existing NLP datasets
+
+- (ChatGPT 3.5)
+
+  - 202203
+  - https://en.wikipedia.org/wiki/GPT-3#GPT-3.5
+
+- Training language models to follow instructions with human feedback
+
+  - https://arxiv.org/abs/2203.02155
+  - RLHF
+  - the term InstructGPT is coined
+    - but InstructGPT refers to fine tuned GPT3.5 models (?) 🤔
+  - TODO
+
+- Visual Instruction Tuning
+
+  - https://arxiv.org/abs/2304.08485
+  - LLaVA
+  - their original models are based on LLaMA1
+  - but new models based on Llama2 have been released in September 2023.
+
+- Llama 2: Open Foundation and Fine-Tuned Chat Models
+
+  - https://arxiv.org/abs/2307.09288
+
+  
+
 ## word-level embeddings
 
 NPLM
@@ -482,10 +536,6 @@ Big bird
 - https://huggingface.co/blog/big-bird
 
 (2021)
-
-GPT-3
-- 175B parameters
-- 10000 GPU
 
 gMLP
 

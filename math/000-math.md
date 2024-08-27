@@ -67,28 +67,48 @@
 - invertible
 
 
-## curriculum
+## 방구석 수학과 curriculum
 
 대학이공계수학
 - 미적분학
 - 선형대수
 - 확률통계
 
--- 푸리에 --
-
 대학전공수학
 - 집합론
-- 해석학개론 - 계산 없는 미적분
+  - [이상엽Math 집합론](https://youtube.com/playlist?list=PL127T2Zu76FveA8TGXZU-PSSt7GTMhKp6&si=bGKlQO1W6H2AHKmZ) ✅
+
+- 해석학개론 - 계산 없는 엄밀한 미적분
+  - [경희수학 해석학1](https://youtube.com/playlist?list=PLbFCr77oqDkEGdjgF9hUZ7Ms-1PmzVvKP&si=X_07P3AhAB0x53Kw) 🏃
 - 추상대수학
+- 선형대수
+  - [이상엽Math 선형대수학](https://youtube.com/playlist?list=PL127T2Zu76FuVMq1UQnZv9SG-GFIdZfLg&si=sDgWuuprzGC2Or3y) ✅
+
 - 위상수학
+  - [이상엽Math 위상수학](https://youtube.com/playlist?list=PL127T2Zu76FuP8qBmdBH3ERKZAKnYKTeH&si=NgMlkHYqaJsrRQx0) ✅
+
 - 다변수해석학 - Stokes' 정리까지..
+  - 
+
 - 기초미분기하학 🏃
+  - [서검교 미분기하학](https://youtube.com/playlist?list=PL85AYQZ4ks4JIO8pUgNAOXDDb7upeA0Et&si=ts9jOVXy-vODOQI0)
+  - [서검교 현대기하학](https://youtube.com/playlist?list=PL85AYQZ4ks4JFInW_Zcs5M8PFkI72BAkY&si=OiTScG3cfqhB1uoa)
+
 - 정수론 ⭐
+  - [경희수학 정수론](https://youtube.com/playlist?list=PLbFCr77oqDkEp6oLQvzom7F7jgRGMeIyr&si=815WDXZyU2T9PwIl)
+
 - 편미분방정식 ⭐
+  - 
+
 - 실해석학 ⭐
+  - 
+
 - 복소해석학 ⭐
+  - 
+
 - 추상대수학 ⭐
 - SDE 🏃
+- 편미분방정식
 
 대학원수학
 

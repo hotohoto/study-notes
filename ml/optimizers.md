@@ -26,11 +26,13 @@
     - PyTorch default: 0.999
 - for each parameter its own learning rate is applied
 - weight decay depends on the learning rate
+- requires warming up
 
 ### AdamW
 
 - weight decay doesn't depend on the learning rate
 - https://arxiv.org/abs/1711.05101
+- requires warming up
 
 ### AdamWR
 
@@ -41,7 +43,7 @@
 
 ## Schedulers
 
-
+- the final number of iterations/epochs might be fixed, and it can be a downside
 
 
 

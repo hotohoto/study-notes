@@ -1,13 +1,9 @@
 # Score-Based Generative Modeling through Stochastic Differential Equations
 
 - https://arxiv.org/abs/2011.13456
-
 - ICLR 2021, Yang Song, Jascha Sohl-Dickstein, Diederik P. Kingma, Abhishek Kumar, Stefano Ermon, Ben Poole
-
 - both SMLD and DDPM can be seen in the perspective of SDE
-
 - https://lilianweng.github.io/posts/2021-07-11-diffusion-models/#connection-with-noise-conditioned-score-networks-ncsn
-
 - contributions
 
   - unified framework generalizing NCSNs and DDPMs
@@ -16,6 +12,10 @@
     - predictor-corrector samplers
     - deterministic samplers
   - controllerble generation without retraining
+
+# TODO
+
+- Eq. 29. derivation.. 
 
 
 ## 3 Score-based generative modeling with SDEs
@@ -117,6 +117,7 @@
     - references
       - [Fokker Planck Equation Derivation](https://youtu.be/MmcgT6-lBoY)
       - [Ito's calculus](https://en.wikipedia.org/wiki/It%C3%B4_calculus)
+      - [Ito's lemma](https://en.wikipedia.org/wiki/It%C3%B4%27s_lemma)
   
 - Exact likelihood computation
   - Now we can calculate likelihood in a deterministic way

@@ -1,0 +1,67 @@
+# V2X
+
+- protocols
+  - types
+    - V2X
+      - 5.9GHz
+        - 5.850~5.925
+      - intelligent transportation system (ITS) Band
+      - ITS-Korea (ITSK)
+      - C-ITS
+    - dedicated short-range communication (DSRC)
+      - It's stable but might be outdated
+      - called WAVE in Korea, states, ...
+        - wireless access in vehicular environment
+      - called ITS-G5 in Europe
+      - 802.11p
+        - a kind of Wi-Fi protocol
+    - C-V2X
+      - cellular v2x
+      - types
+        - uplink/downlink
+          - 3GPP release-14,15,16,17,...
+          - lte-v2x
+          - 5G-v2x (NR v2x)
+        - sidelink
+          - direct communication which is device to device
+  - defined by Society of automotive engineering (SAE)
+- message
+
+  - basic safety message (BSM)
+  - signal phase and timing (SPaT)
+    - real-time traffic sign info
+  - map data (MAP)
+  - emergency vehicle alert (EVA)
+  - road side alert (RSA)
+  - traveler information message (TIM)
+- units or devices
+
+  - Road-side unit (RSU)  or road side equipment (RSE)
+    - traffic sign infra
+  - On-board unit (OBU)
+    - smart vehicles
+    - drone
+    - other vehicles
+  - Vulnerable road user (VRU)
+    - pedestrians
+    - motorbike users
+    - bike users
+- scenario (or service)
+
+  - Left turn assist
+  - intersection movement assist
+  - Emergency electronic brake lights
+  - Queue warning
+  - Speed harmonization
+  - Real time situational awareness
+  - ...
+
+  - - 
+- vocabulary
+  - V2X
+    - vehicle to infrastructure (V2I)
+    - vehicle to device (V2D)
+    - vehicle-to-pedestrian (V2P)
+    - vehicle to vehicle (V2V)
+    - vehicle to network (V2N)
+      - includes current navigation services

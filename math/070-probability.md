@@ -6,10 +6,11 @@
     - Sample space
   - $\mathcal{F}$
     - Set of events (or Event space)
+    - $\sigma$-field
   - $P$
     - $\mathcal{F} \to [0, 1]$
   - Family of Borel sets $\mathcal{F} = \mathcal{B}(\mathbb{R})$ is a σ-field on $\mathbb{R}$
-
+  
 - $A$, $B$, $C$, ...
   - events
 - $\xi$ (or $X$)

@@ -76,20 +76,37 @@
 - AUC
   - area under a PR curve
 - AP
+  - average precision
   - the sum of precisions over the equally gapped recall values regarding a PR curve
   - $\int P(R) dR$
     - $P$: Precision
     - $R$: Recall
-- mAP
-  - mean Average Precision
-  - average AP over all classes
-  - $\text{mAP} = {1 \over N} \sum\limits_{i=0}^N \text{AP}_i$
-  - https://www.v7labs.com/blog/mean-average-precision
-- COCO mAP
-  - average mAP over a range of IOU thresholds
-  - step size
-    - recall values: 0.01
-    - IOU thresholds: 0.05
+  - there can be confusion among AP and all the variants
+    - $\text{AP}_S$, $\text{AP}_M$, $\text{AP}_L$​ 
+      - $S: (0, 32^2)$ in area
+      - $M: (32^2, 96^2)$ in area
+      - $L: (96^2, \infty)$ in area
+      - https://cocodataset.org/#detection-eval
+    - mAP
+      - mean Average Precision
+      - average AP over all classes
+      - $\text{mAP} = {1 \over K} \sum\limits_{k=0}^K \text{AP}_k$
+        - $\text{AP}_k$
+        - AP of class $k$
+      - https://www.v7labs.com/blog/mean-average-precision
+      - https://cocodataset.org/#detection-eval
+      - https://ctkim.tistory.com/79
+    - COCO mAP
+      - average mAP over a range of IOU thresholds
+      - step size
+        - recall values: 0.01 (?)
+        - IOU thresholds: 0.05
+    - $\text{AP} = {1 \over N} \sum\limits_{i}^N \text{AP}_{\text{IOU}=i}$​
+      - (I guess this one and COCO mAP can be the same one 🤔)
+      - $i \in I = \{.50, .55, .60, ..., .95\}$​
+      - $N = |I|$​
+      - https://cocodataset.org/#detection-eval
+  
 - Confusion matrix in bounding box detection
   - there exist confidence/IOU thresholds
   - calculate IOU values for the combinations of each true label and each prediction

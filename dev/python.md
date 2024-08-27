@@ -1,5 +1,20 @@
 # Python
 
+## Packaging
+
+- https://packaging.python.org/en/latest/overview/
+- https://packaging.python.org/en/latest/guides/writing-pyproject-toml/
+- distribution package vs import package
+  - https://packaging.python.org/en/latest/discussions/distribution-package-vs-import-package/#distribution-package-vs-import-package
+  - distribution package
+    - can be installed via pip
+  - import package
+    - can be a directory containing python files
+- applying `src` layout
+  - https://gist.github.com/hotohoto/4c2e34d62528cdf495df8044bfd48f39
+
+
+
 ## module, package, import
 
 - module

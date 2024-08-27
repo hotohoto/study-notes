@@ -1,6 +1,6 @@
 # Guides to use CUDA and Nvidia drivers
 
-
+[TOC]
 
 ## How Docker works with CUDA
 
@@ -10,7 +10,7 @@
 
 
 
-##### Files mounted on docker containers when `--gpus` is used:
+Files mounted on docker containers when `--gpus` is used:
 
 - `/dev/nvidia0`, ...
 - `/usr/lib/x86_64-linux-gnu/libcuda.so`, ...
@@ -96,6 +96,16 @@ cat /usr/local/cuda/include/cudnn.h | grep CUDNN_MAJOR -A 2
 # when nvidia-smi don't know which process is using GPU0
 sudo fuser -v /dev/nvidia0
 ```
+
+
+
+### Driver Persistence for running `nvidia-smi` faster
+
+```bash
+sudo nvidia-persistenced
+```
+
+
 
 
 
@@ -188,6 +198,27 @@ export CUDA_VISIBLE_DEVICES=6,7
 
 ```bash
 nvidia-docker run -it --rm -v ~/workspace:/workspace -v ~/data/:/data --ipc=host --network=host --name=container_name -gpus '"device=6,7"' pytorch-1.11-11.3-8
+```
+
+
+
+## Upgrade nvidia-driver
+
+```
+sudo apt update
+
+ubuntu-drivers devices  # list available drivers
+
+sudo apt purge nvidia-driver-535 nvidia-fabricmanager-535
+sudo apt autoremove
+sudo apt install nvidia-driver-550-server nvidia-fabricmanager-550 nvidia-container-toolkit
+sudo reboot
+sudo nvidia-persistenced
+
+python3 -m venv venv
+. venv/bin/activate
+pip install torch --index-url https://download.pytorch.org/whl/cu118
+python -c "import torch; print(torch.cuda.is_available())"
 ```
 
 
