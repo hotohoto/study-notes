@@ -49,9 +49,39 @@ $$
   - working distance
   - the distance between an object plane and a camera
 
+## Intrinsic parameters
+
+- $f_x$:
+  - focal length w.r.t x
+- $f_y$:
+  - focal length w.r.t y
+- $c_x$:
+  - mapped x coordinate of (0,0,1)
+- $c_y$:
+  - mapped y coordinate of (0,0,1)
 
 
 
+## Distortion
+
+- In OpenCV, $x$,$y$,$r$ seems to be normalized into [0, 1] first before applying distortion
+  - meaning scaling an image doesn't affect to the distortion coefficients
+
+- If it was not normalized into [0, 1]
+  - when an image was enlarged $m$ times for both axes
+  - meaning
+    - $x^\prime = mx$
+    - $y^\prime = my$
+    - $r^\prime = mr = m\sqrt{x^2 + y^2}$
+  - then the distortion coefficients could have been
+    - $k_1^\prime = {k_1 \over m^2}$
+    - $k_2^\prime = {k_2 \over m^4}$
+    - $k_3^\prime = {k_3 \over m^6}$
+    - $p_1^\prime = {p_1 \over m}$
+    - $p_2^\prime = {p_2 \over m^2}$
+  - (but this does not apply!!)
+- the bigger $k_1, k_2, k_3$ the more round image we get (barrel distortion)
+- the smaller $k_1, k_2, k_3$ the more sharp corners we get (Pincushion distortion) 
 
 ## Notes
 

@@ -111,6 +111,14 @@ blender scene.blend --background --python script.py --python-use-system-env -- 1
     - https://exoside.com/
   - (etc.)
     - https://www.open3d.org/docs/latest/tutorial/Advanced/surface_reconstruction.html
+- bake rendered materials as vertex color attribute
+  - `Data` > `Color Attributes` 
+    - Add color attribute and select it
+
+  - `Render` > `Render Engine` > `Cycles`
+  - `Render` > `Bake` > `Output` > `Target` > `Active Color Attribute`
+  - `Render` > `Bake`  > `Bake`
+
 
 ## Color management
 
@@ -267,8 +275,10 @@ https://docs.blender.org/manual/en/latest/advanced/appendices/rotations.html
   - defines an axis in (X, Y, Z)
   - rotate around that axis by a rotation angle (W)
 - Quaternion mode
-  - XYZW
+  - WXYZ
   - good for interpolation, multiplication, division
+  - w defines the amount of rotation
+    - xyz defines the direction to rotate around
 
 
 
@@ -329,13 +339,16 @@ obj_eval.to_mesh_clear()
   - choose another time point
   - change the animation properties
   - add key frame
-- object
+- object / armature
   - animation_data
+    - nla_tracks
+      - track
+        - strips
+          - strip
     - action
       - fcurves
-        - data_path
-        - array_index
-    - 
+        - fcurve
+          - key_frame_points
 
 
 
