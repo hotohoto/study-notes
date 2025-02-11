@@ -83,6 +83,43 @@ $$
 - the bigger $k_1, k_2, k_3$ the more round image we get (barrel distortion)
 - the smaller $k_1, k_2, k_3$ the more sharp corners we get (Pincushion distortion) 
 
+
+
+## Fisheye mapping functions
+
+https://en.wikipedia.org/wiki/Fisheye_lens#Mapping_function
+
+- $f$
+  - focal length
+- $\theta$
+  - the angle from [the optical axis](https://en.wikipedia.org/wiki/Optical_axis) in radians
+- $r$
+  - the position of the object from the center of image
+
+## Rectlinear
+
+- $r = f \tan \theta$
+
+## Streographic
+
+- $r = 2f \tan {\theta \over 2}$
+- refer to [little planet photographs](https://paulbourke.net/panorama/littleplanet/) when it looks down at the ground
+
+## Equidistant
+
+- $r = f\theta$
+
+## Equisolid
+
+- $r = 2f \sin {\theta \over 2}$
+- equal area for each pixel
+
+## Orthographic
+
+- $r = f \sin \theta$
+
+
+
 ## Notes
 
 - ISO

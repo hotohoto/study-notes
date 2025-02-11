@@ -120,6 +120,8 @@ from some.deep.module.inside.a.module import (
     a_nice_function, another_nice_function, yet_another_nice_function)
 ```
 
+
+
 ## Cautions
 
 - avoid mutable default argument, or it will be reused.
@@ -135,6 +137,8 @@ print(my_list) # [12]
 my_other_list = append_to(42)
 print(my_other_list) # [12][42]
 ```
+
+
 
 ## Pandas
 
@@ -158,6 +162,14 @@ print(my_other_list) # [12][42]
   - `df.ix[0:3, 1:3]`
     - get 3 rows from 0 to 2
     - get 2 columns from 1 to 2
+
+
+
+## Pydantic
+
+https://youtu.be/ok8bF8M7gjk?si=KEQrU4O6MQPF6-ZN
+
+
 
 ## Flyweight pattern
 
@@ -217,6 +229,8 @@ assert shop1.total_income() == 3.75 * 3
 assert shop2.total_units_sold() == 8
 assert shop2.total_income() == 3.75 * 8
 ```
+
+
 
 ## CPython specific details
 

@@ -80,7 +80,7 @@ blender scene.blend --background --python script.py --python-use-system-env -- 1
     - `Object` > `Relations` > `Pass Index`
   - (for material indices)
     - `View Layer` > `Data` > `Indexes` > `Material Index` ✅
-    - `Material` > `Viewport Display` > `Pass Index`
+    - `Material` > `Settings` > `Pass Index`
   - setup compositing nodes
     - `Use Nodes` ✅
     - Add `File Output`
@@ -165,6 +165,27 @@ Let's do rigging for the default cube 🙃
   - Go to the pose mode
   - Click a bone
   - Modify the bone
+
+## Constraint
+
+
+
+### Copy location/rotation
+
+e.g. how to make an animating soldier hold a gun 
+
+- copy location
+  - target: armature
+    - bone: the corresponding hand
+  - target: world
+  - owner: world
+- copy rotation
+  - target: armature
+    - bone: the corresponding hand
+  - replace
+  - target: world
+  - owner: world
+- place gun in the edit mode
 
 
 
@@ -306,13 +327,16 @@ https://docs.blender.org/api/current/bpy.types.Object.html
 - rotation_euler
   - in radian
 - matrix_world
-  - TODO
+  - local to world
 
 - matrix_local
   - TODO
 
 - matrix_basis
   - TODO
+- dimensions
+  - contains axis aligned height / width / length
+
 
 
 

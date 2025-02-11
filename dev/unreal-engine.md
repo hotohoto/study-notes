@@ -24,6 +24,15 @@
   - https://docs.unrealengine.com/4.26/en-US/API/Runtime/Engine/Engine/UAssetManager/AddDynamicAsset/
     - ??
 
+## Class naming
+
+Prefixes
+
+- `A`: Objects that inherit `AActor` e.g. `ACharacter`, `APlayerController`
+- `U`: Objects that don't inherit `AActor` but `UObject`. e.g.  `UActorComponent`, `UUserWidget`
+- `F`: general class or struct  that doesn't inherit `UObject`. e.g.: `FVector`, `FRotator`
+- `I`: Interface classes. e.g. `IInterface`
+- `T`: Template classes. e.g. `TArray`, `TMap`
 
 ## Tips
 
