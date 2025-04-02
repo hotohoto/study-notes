@@ -130,6 +130,30 @@ https://docs.godotengine.org/en/stable/tutorials/best_practices/logic_preference
 
 https://docs.godotengine.org/en/stable/tutorials/3d/introduction_to_3d.html
 
+#### Optimization
+
+##### Using MultiMeshInstance3D
+
+https://docs.godotengine.org/en/latest/tutorials/3d/using_multi_mesh_instance.html
+
+- instances GeometryInstance3Ds
+  - based on MultiMesh
+- faster than MeshInstance3D
+- target - the landscape
+- source - tree
+
+
+
+##### Mesh level of detail (LOD)
+
+##### Visibility ranges (HLOD)
+
+##### Occlusion Culling
+
+##### Resolution scaling
+
+##### Variable rate shading
+
 
 
 ### Asset pipeline
@@ -170,6 +194,35 @@ https://docs.godotengine.org/en/stable/tutorials/scripting/scene_tree.html
 
 ## Class Reference
 
+### Nodes
+
+#### GeometryInstance3D
+
+- https://docs.godotengine.org/en/stable/classes/class_geometryinstance3d.html
+
+#### MeshInstance3D(GeometryInstance3D)
+
+- https://docs.godotengine.org/en/stable/classes/class_meshinstance3d.html
+- takes a Mesh
+
+#### MultiMeshInstance3D(GeometryInstance3D)
+
+- https://docs.godotengine.org/en/stable/classes/class_multimeshinstance3d.html
+- instances a MultiMesh
+
+### Resources
+
+#### Mesh
+
+- contains surfaces
+- a surface represents a single material
+- https://docs.godotengine.org/en/stable/classes/class_mesh.html
+
+#### MultiMesh
+
+- Provides high-performance drawing of a mesh multiple times using GPU instancing
+- https://docs.godotengine.org/en/stable/classes/class_multimesh.html
+
 ### Other objects
 
 #### Object
@@ -200,6 +253,14 @@ https://docs.godotengine.org/en/stable/classes/class_os.html
 #### SceneTree(MainLoop)
 
 https://docs.godotengine.org/en/stable/classes/class_scenetree.html
+
+
+
+### Variant types
+
+#### AABB
+
+- A 3D axis-aligned bounding box.
 
 
 

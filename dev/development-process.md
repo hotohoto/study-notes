@@ -57,36 +57,53 @@
 
 ## branching workflows
 
-- GitFlow
-  - The `main` branch refers to a clean release tag.
-    - reset with `--hard` after a new release tag of the latest version is made
-    - don't merge `develop` into `main`.
-  - The `develop` branch is for continuuous development.
-  - A `release` branches is a temporary branch for preparing release.
-  - A `support` branch is for supporting old stable versions when `main` cannot refer to it anymore.
-  - hotfix
-    - made from `main` or `support` and merged back to `develop`
-    - this might be difficult when
-      - there are frequent hotfixes made
-      - there has been big refactoring in `develop`
-      - but this is unavoidable
+### Trunk based development
 
-- trunk based developement
-  - Known as used by Google
-  - The `trunk` branch is for continuous development
-  - A `release` branch is for the release tags of a single release.
-  - Hotfixes are made in the development branch and cherry-picked to a `release` branch
+- Required for the continuous integration
+- Known as used by Google
+- References
+  - https://trunkbaseddevelopment.com/
+
+#### Branch types
+
+-  `main`
+  - supposed to be release-ready
+  - it's the trunk branch
+- development branches
+  - merged into `main` always instead of any release branch
+  - supposed to be short-lived
+    - merged within 2-3 days at most
+  - hotfixes are also made in a development branch
+    - merged into `main` as always
+    - cherry-picked to a release branch
     - this might be difficult when
-      - there are frequent hotfixes made
-      - there has been big refactoring in `develop`
-    - hotfixed are never merged back to the development branch
-  - personal ideas
-    - Optionally, we could have `main` for referring to the lateset clean release tag.
-      - Then, it would be more similar to `GitFlow`
-    - I don't see the big improvements of using the turnk based workflow than GitFlow.
-      - In GitFlow, we don't work on `release` that much except for fixing bugs.
-      - Maybe because we have less developers??
-      - TODO read https://trunkbaseddevelopment.com/ carefully
+      - there has been big refactoring in `main`
+- release branches
+  - not mandatory
+
+#### Tips for making short-lived development branch
+
+- use feature flags
+  - but avoid technical depts by removing useless ones later
+- change with an abstraction layer
+  - to make it procedural
+
+
+
+### GitFlow
+
+- The `main` branch refers to a clean release tag.
+  - reset with `--hard` after a new release tag of the latest version is made
+  - don't merge `develop` into `main`.
+- The `develop` branch is for continuous development.
+- A `release` branches is a temporary branch for preparing release.
+- A `support` branch is for supporting old stable versions when `main` cannot refer to it anymore.
+- hotfix
+  - made from `main` or `support` and merged back to `develop`
+  - this might be difficult when
+    - there are frequent hotfixes made
+    - there has been big refactoring in `develop`
+    - but this is unavoidable
 
 ## Release cycle
 

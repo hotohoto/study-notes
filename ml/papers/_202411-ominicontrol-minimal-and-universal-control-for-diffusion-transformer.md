@@ -1,0 +1,19 @@
+# OminiControl: Minimal and Universal Control for Diffusion Transformer
+
+
+
+## 1 Introduction
+
+## 2 Related work
+
+## 3 Method
+
+## 4 Experiments
+
+## 5 Discussion
+
+## References
+
+## A Proof of formula 1
+
+## B Proof of formula 2

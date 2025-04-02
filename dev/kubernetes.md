@@ -1,10 +1,14 @@
+[TOC]
+
+
+
 # Kubernetes
 
 [Official Kubernetes Documentation](https://kubernetes.io/docs/home/)
 
 ## Getting started
 
-### play with k8s
+### Play with k8s
 
 [Online K8S playground](https://labs.play-with-k8s.com/)
 
@@ -26,7 +30,52 @@ kubeadm join 192.168.0.8:6443 --token l12mpj.dbf0df8bewxukysx \
     --discovery-token-ca-cert-hash sha256:2c72286b137951dcc8fec3f49521e2b8f2256b9182bd28c060804ac3cfc743f7
 ```
 
-### setup k8s on premise
+### Install kubectl
+
+- Refer to https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/
+
+
+```bash
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+kubectl version --client
+
+# set up auto-completion
+echo 'source <(kubectl completion bash)' >>~/.bashrc
+```
+
+
+
+### Setup Kubernetes in Docker (kind)
+
+- Install docker desktop first.
+- Install kubectl
+- Install kind
+  - https://kind.sigs.k8s.io/docs/user/quick-start/
+
+
+```bash
+[ $(uname -m) = x86_64 ] && curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.27.0/kind-linux-amd64
+chmod +x ./kind
+sudo mv ./kind /usr/local/bin/kind
+```
+
+**usage:**
+
+```bash
+kind create cluster
+kind create cluster --name=my-cluster
+kubectl cluster-info
+
+kind get clusters
+
+kind delete cluster
+kind delete cluster --nmae=my-cluster
+```
+
+
+
+### Setup Kubernetes on premise
 
 https://github.com/237summit/k8s_core_labs
 
@@ -46,7 +95,7 @@ https://github.com/237summit/k8s_core_labs
 - setup woker nodes
 - check-up
 
-### setup k3s locally with multipass
+### Setup k3s locally with multipass
 
 https://andreipope.github.io/tutorials/create-a-cluster-with-multipass-and-k3s
 
@@ -191,7 +240,7 @@ we can see kubernetes as an OS.
   - `kubectl create -f pod-myapp.yaml`
 
 - The minimum unit to represeent one or more containers
-  - A pod can contain more than one containers
+  - A pod can contain more than one containers 
   - By default those containers have the same IP and can communicate seemlessly
     - e.g.
       - `kubectl exec -it -c centos-container -- /bin/bash`
@@ -430,7 +479,7 @@ kubectl expose pod valid-pod --port=444 --name=frontend
     - but the virtual IP is accessible only from inside the cluster
   - `NodePort`
     - each node opens a port and redirects requests to a random pod among the pods selected by labels
-    - Other than that, it's the same as CluterIP
+    - Other than that, it's the same as ClusterIP
   - `LoadBalancer`
     - uses an external load balancer provided by a pulblic cloud e.g. GCP, AWS, Azure
     - setup `NodePort` and let a load balancer to have that connection information
@@ -568,6 +617,9 @@ e.g. https://github.com/237summit/k8s_core_labs/blob/main/8/ingress3.yaml
 - also supports virtual hosts
 - One of the open project controllers can be used.
   - e.g. NGINX Ingress
+- seems to get the external IP address by querying by the ingress hostname
+  - so ingress is not suitable for development environment
+
 
 https://stackoverflow.com/questions/45079988/ingress-vs-load-balancer
 
@@ -1328,26 +1380,6 @@ kubectl cp pod:/path/to/src ./
 # install elinks
 sudo apt update
 sudo apt install elinks
-
-# run a docker registry (hub)
-# https://docs.docker.com/registry/deploying/
-docker run -d -p 5000:5000 --restart=always --name my-registry registry:2
-# Start the registry with basic authentication.
-docker run -d \
-  -p 5000:5000 \
-  --restart=always \
-  --name registry \
-  -v "$(pwd)"/auth:/auth \
-  -e "REGISTRY_AUTH=htpasswd" \
-  -e "REGISTRY_AUTH_HTPASSWD_REALM=Registry Realm" \
-  -e REGISTRY_AUTH_HTPASSWD_PATH=/auth/htpasswd \
-  -v "$(pwd)"/certs:/certs \
-  -e REGISTRY_HTTP_TLS_CERTIFICATE=/certs/domain.crt \
-  -e REGISTRY_HTTP_TLS_KEY=/certs/domain.key \
-  registry:2
-
-# log in to the registry
-docker login myregistrydomain.com:5000
 ```
 
 ### ~/.vimrc

@@ -4,15 +4,19 @@
 
 - make kappa and k clear in the notes
 
+  - kappa
+
+  - k
+
 - 숙명여대 서검교 교수님
-  
+
   - 1학기 - 미분기하학
     - https://youtube.com/playlist?list=PL85AYQZ4ks4JIO8pUgNAOXDDb7upeA0Et
-  
-  
+
+
   - 2학기 - 현대기하학
     - https://youtube.com/playlist?list=PL85AYQZ4ks4JFInW_Zcs5M8PFkI72BAkY
-  
+
 - Elementary Differential Geometry
   - https://play.google.com/books/reader?id=9nT1fOwATf0C&pg=GBS.PA12
   - ex 1.2.4
@@ -1026,7 +1030,7 @@ https://youtu.be/otAbq3K50V4?si=29lylN6IN43X_1W-
 
 https://youtu.be/HoGf3eE2gPo?si=Szj85X90rEzeBTN9
 
-
+TODO
 
 ---
 
