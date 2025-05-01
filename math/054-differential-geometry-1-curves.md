@@ -1,27 +1,19 @@
+[TOC]
+
 # Differential geometry - elementary
 
 ## TODO
 
 - make kappa and k clear in the notes
-
   - kappa
-
   - k
-
-- 숙명여대 서검교 교수님
-
-  - 1학기 - 미분기하학
-    - https://youtube.com/playlist?list=PL85AYQZ4ks4JIO8pUgNAOXDDb7upeA0Et
-
-
-  - 2학기 - 현대기하학
-    - https://youtube.com/playlist?list=PL85AYQZ4ks4JFInW_Zcs5M8PFkI72BAkY
-
+- 숙명여대 서검교 교수님: 1학기 - 미분기하학
+  - https://youtube.com/playlist?list=PL85AYQZ4ks4JIO8pUgNAOXDDb7upeA0Et
 - Elementary Differential Geometry
   - https://play.google.com/books/reader?id=9nT1fOwATf0C&pg=GBS.PA12
   - ex 1.2.4
-
 - [수학아빠sk... 어디교수님?](https://youtube.com/playlist?list=PL0ApUgH_3J1X3HTC9CX3r1dgJCgFy2V4W)
+
 
 
 ## Parameterized differentiable curve
@@ -941,101 +933,6 @@ TODO https://youtu.be/ol5oYW--UTc?si=R9oosH9Vde9Vwxi_&t=2429
 
 
 
-## $C^k$ coordinate patch (simple surface)
-
-https://youtu.be/1_s15Tm_Y1s
-
-- open set
-- $C^k$ coordinate patch (simple surface) $\mathbf{X}$
-  - $C^k$
-    - k-differentiable
-  - 1-1
-  - regularity condition
-    - $\mathbf{X}_1 \times \mathbf{X}_2 \neq \mathbf{0}$
-- Monge patch
-  - f(u,v) = (u, v, f(u, v))
-
-
-
-## $C^k$ coordinate transformation
-
-https://youtu.be/TNvLQppA9Nw?si=7qNUfeJcF1Kd93GF
-
-- $C^k$ coordinate transformation $f$
-  - $C^k$
-    - k-differentiable
-  - 1-1
-  - onto
-
-
-
-## Tangent spaces
-
-https://youtu.be/megKbySasIQ?si=jPo6mcgDtCBS_d8Y
-
-- Inverse function theorem
-- notations
-  - $\mathbf{X}_1 = {\partial{X} \over \partial u_1}$ 
-  - $\mathbf{X}_2 = {\partial{X} \over \partial u_2}$ 
-- tangent plane
-  - the plane through $P \in \mathbb{R}^3$ perpendicular to $\mathbf{X}_1 \times \mathbf{X}_2$
-
-
-
-## Definition of surfaces
-
-https://youtu.be/otAbq3K50V4?si=29lylN6IN43X_1W-
-
-
-
-- $\epsilon$-neighborhood of $p \in M$
-  - $M \in \mathbb{R}^3$
-  - $\epsilon \gt 0$
-  - $:= \{q \in M \vert d(p, q) \lt \epsilon\} = M \cap B_p(\epsilon)$ 
-
-- $g: M \to \mathbb{R}^2$ is continuous at $P \in M$
-
-  - $M \in \mathbb{R}^3$
-  - $:=$
-    - for every open set $U \subset \mathbb{R}^2$ with $g(p) \in U$
-    - there exists $\epsilon$-neighborhood $V$ of $p$ with $g(V) \subset U$
-
--  simple surface $\mathbf{X}$ is proper
-
-  - $:=$
-    - $\mathbf{X}^{-1}: \mathbf{X}(U) \to U$  is continuous at each point of $\mathbf{X}(U)$
-      - where
-        - $\mathbf{X}(U) \subset \mathbb{R}^3$
-        - $U \subset \mathbb{R}^2$
-
-- $M \in \mathbb{R}^3$ is a $C^k$ surface in $\mathbb{R}^3$
-
-  - $:=$
-    - $\forall p \in M$
-    - $\exists$ proper $C^k$ coordinate patch
-      - whose image is in $M$
-      - and which contains an $\epsilon$-neighborhood of $p$ for some $\epsilon \gt 0$
-
-    - moreover,
-      - if $\mathbf{X}: U \to \mathbb{R}^3$ and $\mathbf{Y}: V \to \mathbb{R}^3$ are $C^k$ coordinate patches,
-      - then $\mathbf{Y}^{-1} \cdot \mathbf{X}: \mathbf{X}^{-1}(U^\prime \cap V^\prime) \to \mathbf{Y}^{-1}(U^\prime \cap V^\prime)$ is a $C^k$ coordinate transformation
-        - where
-          - $U^\prime = \mathbf{X}(U)$
-          - $V^\prime = \mathbf{Y}(V)$
-
-
-
-
-## Examples of surfaces
-
-https://youtu.be/HoGf3eE2gPo?si=Szj85X90rEzeBTN9
-
-TODO
-
----
-
-
-
 ## Misc.
 
 - cross ratio
@@ -1078,48 +975,6 @@ TODO
 - concave
   - the second derivative is negative
 
-## Gauss–Bonnet theorem
-
-$$
-\int_M K\;dA+\int_{\partial M}k_g\;ds=2\pi\chi(M)
-$$
-
-- $K$: Gaussian curvature
-- $M$: compact 2 dimensional Riemannian manifold with boundary $\partial M$
-- $k_g$: geodesic curvature of $\partial M$
-- $dA$: element of Area
-- $ds$: the line element along the boundary of $M$
-- $\chi(M)$: Euler characteristic of $M$
-  - $\chi = V - E + F$
-  - $V$
-    - number of vertices (corner)
-  - $E$
-    - number of edges
-  - $F$
-    - number of faces
-
-- (sum of inner angles of triangles made from geodesics) = 180° + Surface integral of Gaussian curvature for the triangle
-
-
-## Gauss's Theorema Egregium
-
-Gauss's remarkable theorem
-
-The theorem is that Gaussian curvature can be determined entirely by measuring angles, distances and their rates on a surface, without reference to the particular manner in which the surface is embedded in the ambient 3-dimensional Euclidean space)
-
-- Thanks to "multiplication" of two principal curvatures when calculating Gaussian curvature
-- So Gaussian curvature is "intrinsic".
-
-
-
-(notes)
-
-- many second dimensional surfaces can be classified by the number of genera
-  - https://en.wikipedia.org/wiki/Genus_(mathematics)
-- third dimensional surfaces can be classified/decomposed as 8 elementary types.
-  - Geometrization Conjecture
-  - related to Poincaré conjecture
-
 
 
 ## References
@@ -1132,7 +987,4 @@ The theorem is that Gaussian curvature can be determined entirely by measuring a
 (extra)
 
 - [세종대학교 오장헌 미분기하학 1](http://www.kocw.net/home/cview.do?mty=p&kemId=1197788&ar=relateCourse)
-
-
-- [Proof of the Gauss-Bonnet theorem](http://www.math.uchicago.edu/~may/VIGRE/VIGRE2008/REUPapers/Halper.pdf)
 

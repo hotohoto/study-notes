@@ -157,3 +157,22 @@ https://en.wikipedia.org/wiki/Fisheye_lens#Mapping_function
 
 - depth expression
   - 가까이 있는 물체 약간 나오게 하기
+
+
+
+## Parameter estimation and reconstru
+
+- dense 한 feature sparse 한 feature 나누는게 큰 의미는 없다.
+  - 어차피 texture가 없는 부분은 interpolation 이나 크게 다름이 없다.
+
+- COLMAP
+  - SfM
+  - MVS
+- SfM
+  - 시간 계념 없이 set of images에서 돌아간다.
+- SLAM
+  - 시계열로 데이터를 다룬다.
+  - 최근 몇개 프레임에서 정보를 가져온다.
+- MVS
+  - 두 개 이미지에 속하는 streo matching 도 MVS 에 속한다.
+  - 두 개 이미지가 거의 비슷해보여도 잘 동작한다.

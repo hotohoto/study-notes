@@ -1,4 +1,6 @@
-# SDXL: Improving Latent Diffusion Models for High-Resolution Image Synthesis
+# SCube: Instant Large-Scale Scene Reconstruction using VoxSplats
+
+- https://arxiv.org/abs/2410.20030
 
 
 

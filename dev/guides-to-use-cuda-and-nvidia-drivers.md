@@ -152,6 +152,11 @@ sudo update-alternatives --config g++
 
 
 
+- cuda 11.x supports up to gcc 11 only
+  - you may need to use cuda 12.x or higher
+
+
+
 ## CUDA hello world
 
 ```c

@@ -1,6 +1,22 @@
 # Git
 
+## Git sparse-checkout
 
+- decide what to show
+- cone mode
+  - show all the descendants from a folder recursively
+- commands
+  - git sparse-checkout init
+    - turn on cone mode
+  - git sparse-checkout disable
+    - show all files again
+  - git sparse-checkout set
+    - set the list of files to show
+    - hide all the others
+  - git sparse-checkout add
+    - add some files to the list of files to show
+  - git sparse-checkout list
+    - list the files to show
 
 ## Git LFS
 

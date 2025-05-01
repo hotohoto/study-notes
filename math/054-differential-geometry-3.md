@@ -19,6 +19,8 @@
 
 ## Tensor
 
+https://chatgpt.com/share/68138f35-020c-8008-80cc-9cc93cf78b6d
+
 - covariant derivative
 - contravariant
 - vector
