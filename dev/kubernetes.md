@@ -1,7 +1,3 @@
-[TOC]
-
-
-
 # Kubernetes
 
 [Official Kubernetes Documentation](https://kubernetes.io/docs/home/)
@@ -34,7 +30,6 @@ kubeadm join 192.168.0.8:6443 --token l12mpj.dbf0df8bewxukysx \
 
 - Refer to https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/
 
-
 ```bash
 curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
 sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
@@ -44,15 +39,12 @@ kubectl version --client
 echo 'source <(kubectl completion bash)' >>~/.bashrc
 ```
 
-
-
 ### Setup Kubernetes in Docker (kind)
 
 - Install docker desktop first.
 - Install kubectl
 - Install kind
   - https://kind.sigs.k8s.io/docs/user/quick-start/
-
 
 ```bash
 [ $(uname -m) = x86_64 ] && curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.27.0/kind-linux-amd64
@@ -72,8 +64,6 @@ kind get clusters
 kind delete cluster
 kind delete cluster --nmae=my-cluster
 ```
-
-
 
 ### Setup Kubernetes on premise
 
@@ -146,7 +136,6 @@ minikube ssh  # connect to the node
 
 - https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/ha-topology/
 - https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/high-availability/
-
 - nodes
   - control-plane
     - master1
@@ -238,14 +227,12 @@ we can see kubernetes as an OS.
 - how to run
   - `kubectl run myapp --image=myapp:latest`
   - `kubectl create -f pod-myapp.yaml`
-
 - The minimum unit to represeent one or more containers
-  - A pod can contain more than one containers 
+  - A pod can contain more than one containers
   - By default those containers have the same IP and can communicate seemlessly
     - e.g.
       - `kubectl exec -it -c centos-container -- /bin/bash`
       - `curl locahost`
-
 - how to check when there are multiple containers in a pod
   - `kubectl exec -it -c nginx-container -- /bin/bash`
   - `kubectl logs -c nginx-container`
@@ -305,7 +292,6 @@ multi container pods patterns
 - spec
   - `progressDeadlineSeconds`: requires a rolling update to take less than this value.
   - `maxSurge`: the max number of running pods allowed during a rolling update
-
 - blue/green update
   - blue: old version
   - green: new version
@@ -373,6 +359,7 @@ kubectl rollout undo deployment mainui --to-revision=3  # rollback to the revisi
 ```
 
 ##### replication controller
+
 - controls pods
 - ensures the number of pods running
 - also important for rolling update where we update containers one by one without shutting down the entire service
@@ -380,7 +367,6 @@ kubectl rollout undo deployment mainui --to-revision=3  # rollback to the revisi
   - replicas
   - selector
   - template
-
 
 ```bash
 # run multiple containers
@@ -471,7 +457,6 @@ kubectl expose pod valid-pod --port=444 --name=frontend
 ```
 
 - You may check if a port is actually open. `netstat -napt | grep 30200`
-
 - types
   - `ClusterIP`
     - the most basic option
@@ -498,7 +483,6 @@ kubectl expose pod valid-pod --port=444 --name=frontend
 - spec
   - `type: ClusterIP`
   - `clusterIP: None`
-
 
 ```bash
 kubectl exec -it ... -- /bin/bash
@@ -620,7 +604,6 @@ e.g. https://github.com/237summit/k8s_core_labs/blob/main/8/ingress3.yaml
 - seems to get the external IP address by querying by the ingress hostname
   - so ingress is not suitable for development environment
 
-
 https://stackoverflow.com/questions/45079988/ingress-vs-load-balancer
 
 ### Storage
@@ -658,14 +641,12 @@ kubectl get pvc,pv
 
 ### Configuration
 
-
 #### ConfigMaps
 
 - can be passed as
   - environment variables
   - arguments
   - files in a volume mounted
-
 
 ```bash
 # kubectl create configmap NAME [--from-file=source] [--from-literal=key1=value1]

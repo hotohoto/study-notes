@@ -1,8 +1,4 @@
-[TOC]
-
 # Carla-simulator
-
-
 
 - 0.9.15
   - requires vulkan
@@ -14,8 +10,6 @@
   - off-screen
     - https://carla.readthedocs.io/en/latest/adv_rendering_options/#off-screen-mode
   - no-rendering👎
-
-
 
 ## Run backend
 
@@ -38,8 +32,6 @@ docker run -d --name=carla --privileged --gpus device=0 --net=host -v /tmp/.X11-
 carlasim/carla:0.9.15 /bin/bash ./CarlaUE4.sh  -RenderOffScreen -carla-port=4000
 ```
 
-
-
 ## Setup for development
 
 - Refer to
@@ -52,8 +44,6 @@ carlasim/carla:0.9.15 /bin/bash ./CarlaUE4.sh  -RenderOffScreen -carla-port=400
 - Create a classic personal access token (PAT) at your GitHub developer settings
   - Requires `repo` and `read:org` scopes
 
-
-
 ### Custom build (based on 0.9.15)
 
 (context/assumption)
@@ -65,15 +55,11 @@ carlasim/carla:0.9.15 /bin/bash ./CarlaUE4.sh  -RenderOffScreen -carla-port=400
   - to mount carla repository in the secondary storage as the working directory
 - Later, I guess, I can make an image from the files built
 
-
-
 (Remarks)
 
 - it requires uid=1000 for fbx sdk to be installed
   - so we don't use the uid/gid of the current host machine user
 - Map folder has been moved to BitBucket
-
-
 
 Prepare Build.Dockerfile (Mostly from Prerequisite.Dockerfile)
 
@@ -130,8 +116,6 @@ WORKDIR /workspaces/carla
 ENV UE4_ROOT /workspaces/carla/UE4.26
 ```
 
-
-
 ```bash
 git clone -b 0.9.15 https://github.com/carla-simulator/carla
 cd carla
@@ -158,8 +142,6 @@ sleep infinity
 
 docker exec -it carla-build bash
 ```
-
-
 
 (In the container)
 
@@ -189,8 +171,6 @@ nohup make package >> package.log 2>&1 &
 # rm -r /workspaces/carla/carla/Dist
 ```
 
-
-
 (out of container)
 
 ```bash
@@ -203,8 +183,6 @@ docker run -d --name=carla-custom-2000 --restart=unless-stopped --privileged --g
 /bin/bash ./CarlaUE4.sh -RenderOffScreen -carla-port=2000 -ini:[/Script/Engine.RendererSettings]:r.GraphicsAdapter=0
 ```
 
-
-
 ## Ports
 
 (Backend)
@@ -215,19 +193,14 @@ docker run -d --name=carla-custom-2000 --restart=unless-stopped --privileged --g
     - world-port
     - carla-rpc-port
     - carla-world-port
-
 - carla-streaming-port
   - default: carla-port + 1
-
 - carla-secondary-port
   - default: carla-port + 2
-
 
 (Client)
 
 - traffic manager rpc port: 8000
-
-
 
 ## Directories
 
@@ -240,20 +213,13 @@ docker run -d --name=carla-custom-2000 --restart=unless-stopped --privileged --g
 - PythonAPI
   - contains server/client implementation
   - uses libcarla
-
 - LibCarla
   - contains server/client implementation
-
-
-
-
 - Build
   - carla makes files while building its own targets
 - carla/Dist
 - Util/DockerUtils/fbx/dependencies
   - ??
-
-
 
 ```
 CARLA_DOCKER_UTILS_FOLDER=/workspaces/carla/Util/DockerUtils
@@ -262,10 +228,6 @@ FBX2OBJ_DIST=/workspaces/carla/Util/DockerUtils/dist
 FBX2OBJ_DEP_FOLDER=/workspaces/carla/Util/DockerUtils/fbx/dependencies
 FBX2OBJ_BUILD_FOLDER=/workspaces/carla/Util/DockerUtils/fbx/build
 ```
-
-  
-
-
 
 ## Prepare new maps
 
@@ -276,8 +238,6 @@ docker exec -it -u root carla_hyheo xhost local:root
 docker exec -it carla_hyheo python3 -m pip install carla
 docker exec -it carla_hyheo python3 PythonAPI/util/config.py --map Town05
 ```
-
-
 
 Alternatively, you may use the `carla` account.
 
@@ -292,10 +252,6 @@ pip install carla
 ./PythonAPI/util/config.py --map Town05
 ```
 
-
-
-
-
 ## Quickstart
 
 - https://carla.readthedocs.io/en/latest/start_quickstart/
@@ -308,13 +264,9 @@ docker run --restart=unless-stopped -d --privileged --gpus all --net=host -e DIS
 docker run -d --restart=unless-stopped --privileged --gpus all --net=host -v /tmp/.X11-unix:/tmp/.X11-unix:rw carlasim/carla:0.9.15 /bin/bash ./CarlaUE4.sh -RenderOffScreen
 ```
 
-
-
 ```
 pip install carla
 ```
-
-
 
 ```py
 import carla
@@ -343,8 +295,6 @@ spectator.set_transform(carla.Transform())
 ...
 ```
 
-
-
 ## Working on the source code
 
 ```bash
@@ -353,15 +303,11 @@ cd carla
 ./Update.sh  # requires 20GB to download things inlcuding assets
 ```
 
-
-
 ## Example client code
 
 ```
 TBD
 ```
-
-
 
 ## Trouble shooting
 
@@ -374,24 +320,16 @@ RuntimeError: trying to create rpc server for traffic manager; but the system fa
   - `client.get_trafficmanager(backend_tm_port)`
   - `vehicle.set_autopilot(True, port)`
 
-
-
 ## Notes
 
 - walkers require `WalkerAIController` to be animated
   - calling `walker_ai_controller.go_to_location()` might end up with a segmentation fault
     - especially if the target walker is not at a valid position
       - e.g. while the walker is in the air
-
   - Also, it looks unstable to restart/respawn walker ai controller for a walker instance
-
 - vehicles require `set_autopilot(True, port)` to be animated
-
 - when you run multiple clients and servers, each traffic manager port should be different from the others ⭐
   - they are going to be open in the client side host
-
-
-
 
 ## Sensors
 
@@ -410,10 +348,6 @@ RuntimeError: trying to create rpc server for traffic manager; but the system fa
 
 https://github.com/carla-simulator/carla/blob/1ef3f55c9555de401681cb26ce87f81718943624/LibCarla/source/carla/image/ColorConverter.h#L21-L24
 
-
-
-
-
 ## Synchronous mode vs asynchronous mode
 
 real time vs simulation time
@@ -427,8 +361,6 @@ sub-stepping
 
 - only for physics simulation
 - turned on by default
-
-
 
 mode:
 
@@ -452,16 +384,11 @@ mode:
   - cons
     - bad at heavy sensor imaging
 
-
-
 ## Build on windows
 
 - install cmake x64
   - https://cmake.org/download/
 
-
-
 ## Carla implementation details
 
 - `FCarlaServer` -> `UCarlaEpisode` -> `UActorDispatcher` -> `ATagger`, `FActorRegistry`
-

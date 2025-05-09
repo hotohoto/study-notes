@@ -1,5 +1,3 @@
-[TOC]
-
 # Godot Engine
 
 ## TODO
@@ -11,7 +9,7 @@ https://youtu.be/_QHvKMRtJD0
 
 ## Getting started
 
-## Manual 
+## Manual
 
 ### Best practices
 
@@ -20,7 +18,6 @@ https://youtu.be/_QHvKMRtJD0
 - Object
   - no garbage collection
   - a script can be attached
-
 - RefCounted
   - e.g.
     - FileAccess
@@ -50,6 +47,7 @@ https://youtu.be/_QHvKMRtJD0
 https://docs.godotengine.org/en/stable/tutorials/best_practices/data_preferences.html
 
 - [1]
+
   - array
   
     - `Vector<Variant>`
@@ -61,6 +59,7 @@ https://docs.godotengine.org/en/stable/tutorials/best_practices/data_preferences
     - structured
   
 - [2]
+
   - enum with int
   - enum with string
     - https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_exports.html
@@ -95,8 +94,6 @@ https://docs.godotengine.org/en/stable/tutorials/best_practices/data_preferences
 - (variant types)
   - https://docs.godotengine.org/en/stable/contributing/development/core_and_modules/variant_class.html
 
-
-
 #### Logic preferences
 
 https://docs.godotengine.org/en/stable/tutorials/best_practices/logic_preferences.html
@@ -109,8 +106,6 @@ https://docs.godotengine.org/en/stable/tutorials/best_practices/logic_preference
   - use static level for smaller games
   - use dynamic logics for medium/large games
 
-
-
 #### Project organization
 
 - https://docs.godotengine.org/en/stable/tutorials/best_practices/project_organization.html
@@ -121,8 +116,6 @@ https://docs.godotengine.org/en/stable/tutorials/best_practices/logic_preference
 #### Version control systems
 
 - https://docs.godotengine.org/en/stable/tutorials/best_practices/version_control_systems.html
-
-
 
 ### 3D
 
@@ -142,8 +135,6 @@ https://docs.godotengine.org/en/latest/tutorials/3d/using_multi_mesh_instance.ht
 - target - the landscape
 - source - tree
 
-
-
 ##### Mesh level of detail (LOD)
 
 ##### Visibility ranges (HLOD)
@@ -154,8 +145,6 @@ https://docs.godotengine.org/en/latest/tutorials/3d/using_multi_mesh_instance.ht
 
 ##### Variable rate shading
 
-
-
 ### Asset pipeline
 
 #### Import process
@@ -163,8 +152,6 @@ https://docs.godotengine.org/en/latest/tutorials/3d/using_multi_mesh_instance.ht
 https://docs.godotengine.org/en/stable/tutorials/assets_pipeline/import_process.html
 
 - automatically imported resources are at `res://.godot/imported/`
-
-
 
 ### Scripting
 
@@ -185,12 +172,6 @@ https://docs.godotengine.org/en/stable/tutorials/scripting/scene_tree.html
 ###### Godot's architecture diagram
 
 ![architecture_diagram](https://docs.godotengine.org/en/stable/_images/architecture_diagram.jpg)
-
-
-
-
-
-
 
 ## Class Reference
 
@@ -240,8 +221,6 @@ print("tree_entered" in node) # Prints true
 print("unknown" in node)      # Prints false
 ```
 
-
-
 #### MainLoop
 
 - defines a single step to process for the game engine's while loop
@@ -254,15 +233,11 @@ https://docs.godotengine.org/en/stable/classes/class_os.html
 
 https://docs.godotengine.org/en/stable/classes/class_scenetree.html
 
-
-
 ### Variant types
 
 #### AABB
 
 - A 3D axis-aligned bounding box.
-
-
 
 ## Godot Engine source codes
 
@@ -295,8 +270,6 @@ https://docs.godotengine.org/en/stable/classes/class_scenetree.html
               - (notify events to the nodes)
   - Main:cleanup()
 
-
-
 ## Notes
 
 ### headless mode
@@ -307,8 +280,6 @@ TBD
 
 https://github.com/godotengine/godot-proposals/issues/5790
 
-
-
 ### gdscripts
 
 - `_process(delta)`
@@ -316,8 +287,6 @@ https://github.com/godotengine/godot-proposals/issues/5790
     - time it took for Godot to complete the previous frame in seconds
 - scene can be instantiated as a node
 - Scripts attach to a node and extend its behavior
-
-
 
 ### 2d game reference
 
@@ -395,7 +364,6 @@ https://youtu.be/YiE9tcoCfhE
 - .glb for models
 - .tres for what??
 
-
 ### settings
 
 - default project path
@@ -417,19 +385,13 @@ https://youtu.be/YiE9tcoCfhE
   - data folder 지정
   - opengl es 3.x 사용
 
-
-
 ### Reference folder structure
 
 - https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_styleguide.html
   - folder/file: snake_case
   - class: PascalCase
-
 - https://youtu.be/4az0VX9ApcA?si=Qu-jZrRLweoS_anN&t=436
 - https://youtu.be/kH5HkKNImXo?si=dBIdpveACGUBzcJW
-
-
-
 - assets
   - audio
     - beach_shop_theme.wav
@@ -476,7 +438,7 @@ https://youtu.be/YiE9tcoCfhE
   - atacks
   - bosses
   - camera
-  - climbing 
+  - climbing
     - climbing_bar
     - climbing_hold
     - climbing_node

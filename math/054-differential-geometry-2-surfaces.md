@@ -1,5 +1,3 @@
-[TOC]
-
 # Differential geometry - elementary
 
 ## TODO
@@ -10,8 +8,6 @@
   - https://play.google.com/books/reader?id=9nT1fOwATf0C&pg=GBS.PA12
   - ex 1.2.4
 - [수학아빠sk... 어디교수님?](https://youtube.com/playlist?list=PL0ApUgH_3J1X3HTC9CX3r1dgJCgFy2V4W)
-
-
 
 ## $C^k$ coordinate patch (simple surface)
 
@@ -27,8 +23,6 @@ https://youtu.be/1_s15Tm_Y1s
 - Monge patch
   - f(u,v) = (u, v, f(u, v))
 
-
-
 ## $C^k$ coordinate transformation
 
 https://youtu.be/TNvLQppA9Nw?si=7qNUfeJcF1Kd93GF
@@ -39,64 +33,48 @@ https://youtu.be/TNvLQppA9Nw?si=7qNUfeJcF1Kd93GF
   - 1-1
   - onto
 
-
-
 ## Tangent spaces
 
 https://youtu.be/megKbySasIQ?si=jPo6mcgDtCBS_d8Y
 
 - Inverse function theorem
 - notations
-  - $\mathbf{X}_1 = {\partial{X} \over \partial u_1}$ 
-  - $\mathbf{X}_2 = {\partial{X} \over \partial u_2}$ 
+  - $\mathbf{X}_1 = {\partial{X} \over \partial u_1}$
+  - $\mathbf{X}_2 = {\partial{X} \over \partial u_2}$
 - tangent plane
   - the plane through $P \in \mathbb{R}^3$ perpendicular to $\mathbf{X}_1 \times \mathbf{X}_2$
-
-
 
 ## Definition of surfaces ⭐
 
 https://youtu.be/otAbq3K50V4?si=29lylN6IN43X_1W-
 
-
-
 - $\epsilon$-neighborhood of $p \in M$
   - $M \in \mathbb{R}^3$
   - $\epsilon \gt 0$
-  - $:= \{q \in M \vert d(p, q) \lt \epsilon\} = M \cap B_p(\epsilon)$ 
-
+  - $:= \{q \in M \vert d(p, q) \lt \epsilon\} = M \cap B_p(\epsilon)$
 - $g: M \to \mathbb{R}^2$ is continuous at $P \in M$
-
   - $M \in \mathbb{R}^3$
   - $:=$
     - for every open set $U \subset \mathbb{R}^2$ with $g(p) \in U$
     - there exists $\epsilon$-neighborhood $V$ of $p$ with $g(V) \subset U$
-
--  simple surface $\mathbf{X}$ is proper
-
+- simple surface $\mathbf{X}$ is proper
   - $:=$
-    - $\mathbf{X}^{-1}: \mathbf{X}(U) \to U$  is continuous at each point of $\mathbf{X}(U)$
+    - $\mathbf{X}^{-1}: \mathbf{X}(U) \to U$ is continuous at each point of $\mathbf{X}(U)$
       - where
         - $\mathbf{X}(U) \subset \mathbb{R}^3$
         - $U \subset \mathbb{R}^2$
-
 - $M \in \mathbb{R}^3$ is a $C^k$ surface in $\mathbb{R}^3$
-
   - $:=$
     - $\forall p \in M$
     - $\exists$ proper $C^k$ coordinate patch
       - whose image is in $M$
       - and which contains an $\epsilon$-neighborhood of $p$ for some $\epsilon \gt 0$
-
     - moreover,
       - if $\mathbf{X}: U \to \mathbb{R}^3$ and $\mathbf{Y}: V \to \mathbb{R}^3$ are $C^k$ coordinate patches,
       - then $\mathbf{Y}^{-1} \cdot \mathbf{X}: \mathbf{X}^{-1}(U^\prime \cap V^\prime) \to \mathbf{Y}^{-1}(U^\prime \cap V^\prime)$ is a $C^k$ coordinate transformation
         - where
           - $U^\prime = \mathbf{X}(U)$
           - $V^\prime = \mathbf{Y}(V)$
-
-
-
 
 ## Examples of surfaces
 
@@ -113,11 +91,7 @@ How to tell it's a surface
     - onto
     - inverse is $C^k$
 
-
-
 ![image-20250501225909959](./assets/image-20250501225909959.png)
-
-
 
 ### Implicit function theorem
 
@@ -131,13 +105,9 @@ Let's say $f(x,y,z) = x^2 + y^2 + z^2 - 1$.
 
 Then $\{f = 0\} = \{(x,y,z) \vert f(x,y,z) = 0\}$ is a surface.
 
-
-
 (references)
 
 - https://en.wikipedia.org/wiki/Implicit_function_theorem
-
-
 
 ## First fundamental form and arc length
 
@@ -149,8 +119,6 @@ https://youtu.be/DI0pxDouH5A?si=L_exWvMlTEAzHUHh
   - "form" is from "quadratic form"
 
 ![image-20250505093750428](./assets/image-20250505093750428.png)
-
-
 
 e.g. Consider the Monge patch
 $$
@@ -165,22 +133,17 @@ f_1 f_2 & 1 + f_2^2
 \det(g_{ij}) = 1 + f_1^2 + f_2^2 \gt 0
 $$
 
-
 **Arc length:**
 
 <img src="./assets/image-20250505230418180.png" alt="image-20250505230418180" style="zoom: 50%;" />
 
 - Note that the arc length doesn't depend on the patch chosen.
 
-
-
 ## Review
 
 TODO
 
 https://youtu.be/eRaz0ZLMKs8?si=bYABtgUq1hZ9VeWd
-
-
 
 ## Misc.
 
@@ -224,8 +187,6 @@ https://youtu.be/eRaz0ZLMKs8?si=bYABtgUq1hZ9VeWd
 - concave
   - the second derivative is negative
 
-
-
 ## Gauss–Bonnet theorem
 
 $$
@@ -245,9 +206,7 @@ $$
     - number of edges
   - $F$
     - number of faces
-
 - (sum of inner angles of triangles made from geodesics) = 180° + Surface integral of Gaussian curvature for the triangle
-
 
 ## Gauss's Theorema Egregium
 
@@ -258,8 +217,6 @@ The theorem is that Gaussian curvature can be determined entirely by measuring a
 - Thanks to "multiplication" of two principal curvatures when calculating Gaussian curvature
 - So Gaussian curvature is "intrinsic".
 
-
-
 (notes)
 
 - many second dimensional surfaces can be classified by the number of genera
@@ -268,19 +225,13 @@ The theorem is that Gaussian curvature can be determined entirely by measuring a
   - Geometrization Conjecture
   - related to Poincaré conjecture
 
-
-
 ## References
 
 (main)
 
 - [Elementary Differential Geometry](https://play.google.com/books/reader?id=9nT1fOwATf0C)
 
-
 (extra)
 
 - [세종대학교 오장헌 미분기하학 1](http://www.kocw.net/home/cview.do?mty=p&kemId=1197788&ar=relateCourse)
-
-
 - [Proof of the Gauss-Bonnet theorem](http://www.math.uchicago.edu/~may/VIGRE/VIGRE2008/REUPapers/Halper.pdf)
-

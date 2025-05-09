@@ -1,10 +1,6 @@
-[toc]
-
 # Container registry
 
 A container registry consists of container repositories and a searchable catalogue where you manage and deploy images.
-
-
 
 ## Glossary
 
@@ -18,8 +14,6 @@ A container registry consists of container repositories and a searchable catalog
 - OCI image
   - = Docker image
   - the format is opened and called the OCI format
-
-
 
 ## Docker image registry
 
@@ -45,25 +39,18 @@ docker run -d \
 docker login myregistrydomain.com:5000
 ```
 
-
-
 - https://github.com/Joxit/docker-registry-ui
 - https://github.com/andrey-pohilko/registry-cli
-
-
 
 ## Harbor
 
 - a docker registry implementation
-
-
 
 ### Install Harbor in kind
 
 - Install docker desktop first.
 - Install kubectl
   - https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/
-
 
 ```bash
 curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
@@ -89,8 +76,6 @@ chmod 700 get_helm.sh
 ./get_helm.sh
 ```
 
-
-
 - make a cluster
 
 ```bash
@@ -113,7 +98,6 @@ helm repo update
 
 - install harbor
   - https://goharbor.io/docs/1.10/working-with-projects/working-with-images/managing-helm-charts/
-
 
 ```bash
  helm install harbor harbor/harbor --namespace harbor
@@ -155,8 +139,6 @@ harbor-trivy        ClusterIP   10.96.123.166   <none>        8080/TCP          
 nohup kubectl port-forward -n harbor svc/harbor-portal 8080:80 > harbor.log 2>&1 &
 ```
 
-
-
 - uninstall harbor
 
 ```
@@ -165,8 +147,6 @@ helm uninstall harbor -n harbor
 # check remaining resources
 kubectl get all -n harbor
 ```
-
-
 
 ## Azure container registry (ACR)
 
@@ -185,8 +165,6 @@ kubectl get all -n harbor
     - can be bound with multiple ACR repositories
     - are one time readable
 - migration can be done by Azure CLI
-
-
 
 ## References
 

@@ -1,10 +1,6 @@
-[TOC]
-
 # fVDB: A Deep-Learning Framework for Sparse, Large-Scale, and High-Performance Spatial Intelligence
 
 - https://arxiv.org/abs/2407.01781
-
-
 
 ## 1 Introduction
 
@@ -86,8 +82,6 @@ sample_points = fvdb.JaggedTensor([torch.rand(10_000, 3), torch.rand(11_000, 3)]
 # one color sampled from the grid at each point
 sampled_colors = grid.sample_trilinear(sample_points, vox_colors)
 ```
-
-
 
 #### Building Sparse Grids
 

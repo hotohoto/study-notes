@@ -1,5 +1,3 @@
-[TOC]
-
 # Development process
 
 ## Intuitions
@@ -68,7 +66,7 @@
 
 #### Branch types
 
--  `main`
+- `main`
   - supposed to be release-ready
   - it's the trunk branch
 - development branches
@@ -89,8 +87,6 @@
   - but avoid technical depts by removing useless ones later
 - change with an abstraction layer
   - to make it procedural
-
-
 
 ### GitFlow
 

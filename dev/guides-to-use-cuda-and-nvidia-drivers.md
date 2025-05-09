@@ -1,14 +1,10 @@
 # Guides to use CUDA and Nvidia drivers
 
-[TOC]
-
 ## How Docker works with CUDA
 
 <img src="https://docscontent.nvidia.com/dims4/default/5236c0f/2147483647/strip/true/crop/1020x969+0+0/resize/1020x969!/quality/90/?url=https%3A%2F%2Fk3-prod-nvidia-docs.s3.us-west-2.amazonaws.com%2Fbrightspot%2Fdita%2F0000018b-a729-dab5-abab-e77976e10000%2Fdeeplearning%2Fframeworks%2Fuser-guide%2Fgraphics%2Fsoftware_stack_zoom.png" alt="software_stack_zoom.png" style="zoom:67%;" />
 
 - https://docs.nvidia.com/deeplearning/frameworks/user-guide/index.html
-
-
 
 Files mounted on docker containers when `--gpus` is used:
 
@@ -17,11 +13,7 @@ Files mounted on docker containers when `--gpus` is used:
 - `nvidia-smi`
 - (maybe there are more... 🤔)
 
-
-
 ## CUDA Components
-
-
 
 - PyTorch
   - it has its own cuda runtime as its python dependencies
@@ -30,16 +22,10 @@ Files mounted on docker containers when `--gpus` is used:
       - `pip freeze |grep nvidia`
       - `find venv |grep libcudart`
     - so it doesn't require `cuda-toolkit` to be installed manually for usual cases ⭐⭐⭐
-
-
-
 - NVIDIA CUDA
   - API to use GPU for general purpose processing
   - it's contrast to OpenGL or Direct3D
   - installing CUDA seems to include installing cuda-toolkit, nvidia-driver, and so on
-
-
-
 - cuda-toolkit
   - sub components
     - runtime
@@ -65,24 +51,16 @@ Files mounted on docker containers when `--gpus` is used:
       - mounted when a docker container has been run with the `--gpus` option
       - https://stackoverflow.com/a/45431322/1874690
     - ...
-
 - Hardware GPUs
-
   - `/dev/nvidia0`
     - mounted when a docker container has been run with the `--gpus` option
-
   - ...
-
-
-
 - NVML
   - A C-based API for monitoring and managing various states of the NVIDIA GPU devices.
   - A python wrapper is also available
     - https://pypi.org/project/nvidia-ml-py/
   - https://developer.nvidia.com/nvidia-management-library-nvml
   - used by `nvidia-smi`
-
-
 
 ## Check GPU status
 
@@ -97,17 +75,11 @@ cat /usr/local/cuda/include/cudnn.h | grep CUDNN_MAJOR -A 2
 sudo fuser -v /dev/nvidia0
 ```
 
-
-
 ### Driver Persistence for running `nvidia-smi` faster
 
 ```bash
 sudo nvidia-persistenced
 ```
-
-
-
-
 
 ## Install a proper CUDA toolkit version
 
@@ -118,10 +90,8 @@ sudo apt install cuda-toolkit-11-1
 - https://developer.nvidia.com/cuda-toolkit-archive
 - currently, according to https://github.com/open-mmlab/mmcv#installation,
   - CUDA 11.3 looks promising for newer torch versions (torch 1.10 ~ 1.11)
-  - CUDA 11.1 looks good for old torch versions  (torch 1.8 ~ 1.10)
+  - CUDA 11.1 looks good for old torch versions (torch 1.8 ~ 1.10)
   - CUDA 10.2 looks most popular but it's supported up to ubuntu 18.04 only
-
-
 
 ## Change CUDA version
 
@@ -133,8 +103,6 @@ sudo ln -sfT /etc/alternatives/cuda /usr/local/cuda
 sudo update-alternatives --config cuda
 vi ~/.bashrc  # export PATH=$PATH:/usr/local/cuda/bin
 ```
-
-
 
 ## Change gcc/g++ version
 
@@ -150,12 +118,8 @@ sudo update-alternatives --config gcc
 sudo update-alternatives --config g++
 ```
 
-
-
 - cuda 11.x supports up to gcc 11 only
   - you may need to use cuda 12.x or higher
-
-
 
 ## CUDA hello world
 
@@ -179,8 +143,6 @@ nvcc hello.cu -o hello
 
 take a look at [this](https://cuda-tutorial.readthedocs.io/en/latest/tutorials/tutorial01/) for more examples
 
-
-
 ## Install cuDNN
 
 ```bash
@@ -189,8 +151,6 @@ sudo apt-get -y install nvidia-cudnn
 ```
 
 - All versions: https://developer.nvidia.com/rdp/cudnn-archive
-
-
 
 ## Use only specific GPUs
 
@@ -204,8 +164,6 @@ export CUDA_VISIBLE_DEVICES=6,7
 ```bash
 nvidia-docker run -it --rm -v ~/workspace:/workspace -v ~/data/:/data --ipc=host --network=host --name=container_name -gpus '"device=6,7"' pytorch-1.11-11.3-8
 ```
-
-
 
 ## Upgrade nvidia-driver
 
@@ -225,6 +183,3 @@ python3 -m venv venv
 pip install torch --index-url https://download.pytorch.org/whl/cu118
 python -c "import torch; print(torch.cuda.is_available())"
 ```
-
-
-

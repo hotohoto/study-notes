@@ -1,5 +1,3 @@
-[TOC]
-
 # Train diffusion models
 
 ## TODO
@@ -22,8 +20,6 @@
 - notes
   - Gaussian noise makes the score function to be trained on the entire space
   - But in high dimensional spaces, the most samples are clustered around certain areas
-
-
 
 ## Data issues
 
@@ -51,19 +47,13 @@ types
 - provide conditions as inputs for predicting layer normalization parameters
 - provide conditions as inputs for KV values of cross attention module
 
-
-
 ### Noise conditioning augmentation
 
 - Gaussian noise is applied to the conditional image and the SNR ratio is provided to the model
 - It reduces the sensitivity to domain gap between the cascade stages. ⭐
 - looks useful for super resolution tasks
 
-
-
 ![image-20230214113051279](./assets/image-20230214113051279.png)
-
-
 
 - how?
   - at training time
@@ -72,21 +62,15 @@ types
     - use a fixed SNR ratio such as 3 or 5
     - and the SNR ratio is provided to the model
   - Note that the neural net outputs are also conditioned on `aug_level`
-
-
-
 - refer to the papers below for more details
   - [Photorealistic Text-to-Image Diffusion Models with Deep Language Understanding](https://arxiv.org/abs/2205.11487)
   - [Imagen Video: High Definition Video Generation with Diffusion Models](https://arxiv.org/abs/2210.02303)
-  - [Cascaded Diffusion Models for High Fidelity Image Generation](https://arxiv.org/abs/2106.15282) 
-
-
+  - [Cascaded Diffusion Models for High Fidelity Image Generation](https://arxiv.org/abs/2106.15282)
 
 ### Classifier-free guidance
 
-- Classifier-free guidance (CFG) looks useful and widely used 
+- Classifier-free guidance (CFG) looks useful and widely used
   - Refer to [Guiding a Diffusion Model with a Bad Version of Itself](https://arxiv.org/abs/2406.02507) to see how it helps.
-
 - $p_\text{uncond}=0.1$ looks widely used. (?)
 - $w$
   - guidance strength or guidance weight
@@ -95,30 +79,20 @@ types
 - to have more diversity, we can increase the guidance weight during the sampling steps
   - Refer to [Muse: Text-To-Image Generation via Masked Generative Transformers](https://arxiv.org/abs/2301.00704) for more details
 
-
 #### Dynamic thresholding
 
 - `np.clip(x, -s, s)/s` is applied at every sampling step
 - where `s` is a dynamically chosen threshold.
 
-
-
 ![image-20230214113051279](./assets/image-20230214113051279.png)
 
-
-
 - See [Photorealistic Text-to-Image Diffusion Models with Deep Language Understanding](https://arxiv.org/abs/2205.11487).
-
-
 
 #### Oscillating guidance
 
 - apply large $w$ for a certain number of steps at the beginning
 - oscillate $w$ between a large value (e.g. 15) and a small value (e.g. 1) later.
-
 - See [Imagen Video: High Definition Video Generation with Diffusion Models](https://arxiv.org/abs/2210.02303).
-
-
 
 ## Architectures
 
@@ -126,26 +100,19 @@ types
   - mostly used
 - Transformers
   - recently achieved SOTA
-
 - multi staged models are known to be useful
   - taking account of capacity-efficiency trade-offs
 - 
 
-
-
 ## Network blocks
 
 - self-attention with relative positional encodings
-
-
 
 ## Code bases
 
 - k-diffusion looks clean but still incomplete
 - LDM uses DDPM + pytorch lightning
   - note that current pytorch lightning does not fit to calculating FID scores for which we don't need to iterate on validation set chunks
-
-
 
 ## Inference
 
@@ -160,8 +127,6 @@ types
   - we can reject generated samples if the provided conditions can be estimated from the generated samples
 - notes
   - practically using a good scheduler is important since calculating FID is quite expensive
-
-
 
 ## Training
 
@@ -179,13 +144,9 @@ types
     - perform low-discrepancy sampling for $t$
     - or learn the noise schedule
     - refer to VDM for more details
-
   - for discrete time
     - perform importance sampling technique
       - refer to iDDPM for more details
-
-
-
 
 ## Evaluation
 
@@ -207,7 +168,7 @@ types
     - random sampling from a well-known distribution
     - resampling
 
-###  (Videos)
+### (Videos)
 
 - metrics
   - FID
@@ -216,8 +177,6 @@ types
 - pretrained networks to be used
   - I3D
   - C3D
-
-
 
 ## Controllable generation
 
@@ -243,17 +202,12 @@ types
       - (original replacement method introduced in Score SDE) + (a correcting term)
       - [Video Diffusion Models](https://arxiv.org/abs/2204.03458)
 
-
-
 ## References
 
 (non diffusion prerequisites)
 
 - VQ-VAE
-
 - VQGAN
-
-
 
 (diffusion cores methods)
 
@@ -269,8 +223,6 @@ types
 - CFG
 - DiT
 - Video diffusion models
-
-
 
 (applications)
 

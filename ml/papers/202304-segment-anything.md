@@ -1,23 +1,12 @@
-[TOC]
-
 # Segment Anything
 
 - https://arxiv.org/abs/2304.02643
-
 - Meta AI Research, FAIR
-
 - Tried to train a foundation model for any segmentation tasks
-
 - SAM
-
   - model
-  
 - SA-1B
-
   - dataset
-
-  
-
 
 ## 1 Introduction
 
@@ -41,8 +30,6 @@
 ## 3 Segment anything model
 
 <img src="./assets/image-20230408223036480.png" alt="image-20230408223036480" style="zoom:67%;" />
-
-
 
 - Image encoder
   - with a pretrained ViT adapted to high resolution inputs

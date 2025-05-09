@@ -1,14 +1,8 @@
-[TOC]
-
 # GitLab
-
-
 
 ## Setup with docker-compose
 
 - https://docs.gitlab.com/install/docker/installation/
-
-
 
 ```yaml
 # run with docker registry
@@ -34,8 +28,6 @@ gitlab:
     shm_size: '256m'
 ```
 
-
-
 ```bash
 docker compose up -d
 
@@ -45,14 +37,10 @@ cd /etc/gitlab
 gitlab-rake "gitlab:password:reset[root]"
 ```
 
-
-
 ## Setup with Kubernetes
 
 - install kind, kubectl
 - run `reset.sh`
-
-
 
 `reset.sh`:
 
@@ -75,8 +63,6 @@ run kubectl apply -f gitlab-service.yaml
 echo "Done"
 ```
 
-
-
 `kind-config.yaml`:
 
 ```yaml
@@ -92,8 +78,6 @@ nodes:
     containerPort: 32000
     listenAddress: "0.0.0.0"
 ```
-
-
 
 `gitlab-pv.yaml`:
 
@@ -252,17 +236,11 @@ spec:
   type: NodePort
 ```
 
-
-
 Set the password for the GitLab `root` user.
 
 ```bash
 kubectl exec -it `kubectl get pods | grep gitlab | awk '{print $1}'` -- gitlab-rake gitlab:password:reset
 ```
-
-
-
-
 
 ## Setup with Kubernetes and Helm (WIP)
 
@@ -270,11 +248,8 @@ kubectl exec -it `kubectl get pods | grep gitlab | awk '{print $1}'` -- gitlab-r
   - TODO:
     - Refer to https://docs.gitlab.com/charts/installation/storage/ for installation.
     - Refer to https://docs.gitlab.com/charts/advanced/persistent-volumes/ for management after installation
-
 - Couldn't figure out yet how to put another service and GitLab together 🤔
 - Install kind, kubectl, helm
-
-
 
 `kind-config.yaml`:
 
@@ -291,8 +266,6 @@ nodes:
     containerPort: 443
     listenAddress: "0.0.0.0"
 ```
-
-
 
 `gitlab-pv.yaml` 🤔:
 
@@ -374,8 +347,6 @@ spec:
 
 
 ```
-
-
 
 `gitlab-values.yaml` 🤔:
 
@@ -464,8 +435,6 @@ spec:
 
 ```
 
-
-
 ```bash
 helm repo add gitlab https://charts.gitlab.io/
 helm repo add metallb https://metallb.github.io/metallb
@@ -480,7 +449,5 @@ helm install metallb metallb/metallb --namespace metallb-system --create-namespa
 helm install ingress-nginx ingress-nginx/ingress-nginx -f ingress-nginx-values.yaml --namespace ingress-nginx --create-namespace
 kubectl apply -f metallb-config.yaml
 ```
-
-
 
 `

@@ -1,12 +1,8 @@
-[TOC]
-
 # Infinite Photorealistic Worlds using Procedural Generation
 
 - https://arxiv.org/abs/2306.09310
 - CVPR2023
 - https://github.com/princeton-vl/infinigen
-
-
 
 ## Tasks
 
@@ -28,21 +24,18 @@
   - resolution
     - 0.2m~20m
     - 1000m x 1000m
-
 - render
 - ground_truth
-
 - (etc)
   - mesh_save
   - export
-
 
 ## Configuration
 
 https://github.com/princeton-vl/infinigen/blob/main/docs/ConfiguringInfinigen.md
 
 - `infinigen_examples/generate_nature.py`
-  - Configurable via `--pipeline_configs` 
+  - Configurable via `--pipeline_configs`
   - Overwrites `infinigen_examples/configs_nature/base.gin`
   - use `simple.gin` reduces details for the low spec machiens
   - can use a specific scene type e.g. `desert.gin`
@@ -50,10 +43,6 @@ https://github.com/princeton-vl/infinigen/blob/main/docs/ConfiguringInfinigen.md
 - `manage_jobs.py`
   - Configurable via `--configs`
   - uses `infinigen_examples/generate_nature.py` as a driver script
-
-
-
-
 
 ## Rendering
 
@@ -64,14 +53,10 @@ Call graph
 - execute_tasks.render()
 - render.render_image()
 
-
-
 etc.
 
 - the ground truth types are set by `passes_to_save`
 - it's configured by `base.gin`
-
-
 
 ## OcMesher
 
@@ -86,7 +71,7 @@ etc.
 - voxelization
   - point cloud ➡️ binary voxels
 - `scipy.ndimage.distance_transform_edt()`
-  - binary voxels ➡️ an array of distances 
+  - binary voxels ➡️ an array of distances
   - from non-zero to the closest zeros
 - marching cubes
   - an array of distances ➡️ mesh
@@ -109,7 +94,6 @@ etc.
   - make_asset_collection()
 - core/rendering/render.py
   - render_image()
-
 - core/util/blender.py
   - `GarbageCollect`
     - (clean up `bpy.data`)
@@ -119,7 +103,6 @@ etc.
 - core/execute_tasks.py
   - main()
   - execute_tasks()
-
 - core/init.py
 - core/generator.py
 - core/surface.py
@@ -157,19 +140,15 @@ etc.
   - compose_nature()
   - populate_scene()
 
-
 ### scripts/
 
 - install/
 - launch/
-
 - (just for the license issue)
   - https://github.com/princeton-vl/infinigen_gpl.git
 - (configuration)
   - https://github.com/google/gin-config
 - (c++)
-
-
 
 ## Performance table
 
@@ -178,7 +157,7 @@ etc.
   - gen06, cpu
     - 6m05s
 - `coarse`
-  - creates caves, mountains, 
+  - creates caves, mountains,
   - 1280x720
   - gen06 , cpu
     - 28m52s
