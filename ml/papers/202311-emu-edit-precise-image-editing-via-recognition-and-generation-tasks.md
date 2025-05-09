@@ -96,9 +96,9 @@ https://emu-edit.metademolab.com/
 $$
 \min\limits_{\theta, v_1, ..., v_k} \mathbb{E}_{\hat{y},\epsilon,t}
 \left[
-	\Vert
-	\epsilon - \epsilon_\theta(z_t, t, E(c_I), c_T, v_i)
-	\Vert_2^2
+    \Vert
+    \epsilon - \epsilon_\theta(z_t, t, E(c_I), c_T, v_i)
+    \Vert_2^2
 \right]
 \tag{2}
 $$
@@ -114,9 +114,9 @@ $$
 $$
 \min\limits_{v_\text{new}} \mathbb{E}_{y,\epsilon,t}
 \left[
-	\Vert
-	\epsilon - \epsilon_\theta(z_t, t, E(c_I), c_T, v_\text{new})
-	\Vert_2^2
+    \Vert
+    \epsilon - \epsilon_\theta(z_t, t, E(c_I), c_T, v_\text{new})
+    \Vert_2^2
 \right]
 \tag{3}
 $$

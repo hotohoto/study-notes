@@ -40,8 +40,8 @@ $$
 \left[
   \lambda(t)
   \Vert
-  	\nabla_\mathbf{x} \log p_t(\mathbf{x})
-  	- \boldsymbol{s}_\boldsymbol{\theta}(\mathbf{x}, t)
+      \nabla_\mathbf{x} \log p_t(\mathbf{x})
+      - \boldsymbol{s}_\boldsymbol{\theta}(\mathbf{x}, t)
   \Vert
   _2^2
 \right]
@@ -54,8 +54,8 @@ $$
 \left[
   \lambda(t)
   \Vert
-  	\nabla_{\mathbf{x}^\prime} \log p_{0t}(\mathbf{x}^\prime|\mathbf{x})
-  	- \boldsymbol{s}_\boldsymbol{\theta}(\mathbf{x}^\prime, t)
+      \nabla_{\mathbf{x}^\prime} \log p_{0t}(\mathbf{x}^\prime|\mathbf{x})
+      - \boldsymbol{s}_\boldsymbol{\theta}(\mathbf{x}^\prime, t)
   \Vert
   _2^2
 \right]
