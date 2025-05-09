@@ -118,7 +118,7 @@ https://youtu.be/v2NpwCOZbqA
 - osculating plane
   - definition:
     - the plane determined by $\alpha'(s)$ and $\alpha''(s)$.
-- $\alpha(s)$ singular point of order 1
+- $\alpha(s)$ singular point of order  1 
   - $\iff \alpha''(s) = 0 \iff k(s) = 0$
 - $\alpha(s)$ singular point of order 0
   - $\iff \alpha'(s) = 0$
