@@ -22,7 +22,7 @@ https://youtu.be/1_s15Tm_Y1s
   - $C^k$
     - k-differentiable
   - 1-1
-  - regularity condition
+  - regularity condition ⭐
     - $\mathbf{X}_1 \times \mathbf{X}_2 \neq \mathbf{0}$
 - Monge patch
   - f(u,v) = (u, v, f(u, v))
@@ -136,6 +136,49 @@ Then $\{f = 0\} = \{(x,y,z) \vert f(x,y,z) = 0\}$ is a surface.
 (references)
 
 - https://en.wikipedia.org/wiki/Implicit_function_theorem
+
+
+
+## First fundamental form and arc length
+
+https://youtu.be/DI0pxDouH5A?si=L_exWvMlTEAzHUHh
+
+- In differential geometry, the first fundamental form is the inner product on the tangent space of a surface in three-dimensional Euclidean space which is induced canonically from the dot product of $\mathbb{R}^3$.
+- It is described by using a coordinate patch
+- notes
+  - "form" is from "quadratic form"
+
+![image-20250505093750428](./assets/image-20250505093750428.png)
+
+
+
+e.g. Consider the Monge patch
+$$
+\mathbf{x}(u^1, u^2) = (u^1, u^2, f(u^1, u^2)) \\
+\mathbf{x}_1 = (1, 0, f_1) \\
+\mathbf{x}_2 = (0, 1, f_2) \\
+(g_{ij}) = \
+\begin{pmatrix}
+1 + f_1^2 & f_1 f_2 \\
+f_1 f_2 & 1 + f_2^2
+\end{pmatrix} \\
+\det(g_{ij}) = 1 + f_1^2 + f_2^2 \gt 0
+$$
+
+
+**Arc length:**
+
+<img src="./assets/image-20250505230418180.png" alt="image-20250505230418180" style="zoom: 50%;" />
+
+- Note that the arc length doesn't depend on the patch chosen.
+
+
+
+## Review
+
+TODO
+
+https://youtu.be/eRaz0ZLMKs8?si=bYABtgUq1hZ9VeWd
 
 
 

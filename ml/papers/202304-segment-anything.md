@@ -1,3 +1,5 @@
+[TOC]
+
 # Segment Anything
 
 - https://arxiv.org/abs/2304.02643
@@ -106,7 +108,7 @@
 
 ## 8 Discussion
 
-##### Foundation models
+**Foundation models**
 
 - Foundation models are trained on broad data at scale and are adaptable to a wide range of downstream tasks.
 - Limitations

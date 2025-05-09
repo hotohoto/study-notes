@@ -1,6 +1,7 @@
 # InfiniCube: Unbounded and Controllable Dynamic 3D Driving Scene Generation with World-Guided Video Models
 
 - NVIDIA
+- https://arxiv.org/abs/2412.03934
 - https://research.nvidia.com/labs/toronto-ai/infinicube/
 - XCube
   - voxel world generation
