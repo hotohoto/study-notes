@@ -1,4 +1,4 @@
-# # OpenCV in Python
+# OpenCV in Python
 
 
 
