@@ -1,7 +1,5 @@
 # Elucidating the Design Space of Diffusion-Based Generative Models
 
-
-
 - https://arxiv.org/abs/2206.00364
 - NeurIPS 2022
 - NVIDIA
@@ -35,7 +33,7 @@
     - output scaling $c_\text{out}(\sigma)$
     - noise condition scaling $c_\text{noise}(\sigma)$
   - training
-    - noise distribution to sample $\sigma$ from 
+    - noise distribution to sample $\sigma$ from
     - loss weighting $\lambda(\sigma)$
 
 ## 1 Introduction
@@ -82,18 +80,13 @@
   - a probability flow ODE
   - appendix B.2
 - denoising score matching
-
   - $\mathbb{E}_{\boldsymbol{y} \sim p_{\text {data }}} \mathbb{E}_{\boldsymbol{n} \sim \mathcal{N}\left(\mathbf{0}, \sigma^2 \mathbf{I}\right)}\|D(\boldsymbol{y}+\boldsymbol{n} ; \sigma)-\boldsymbol{y}\|_2^2 $
-
   - $\nabla_{\boldsymbol{x}} \log p(\boldsymbol{x} ; \sigma)=(D(\boldsymbol{x} ; \sigma)-\boldsymbol{x}) / \sigma^2$
-
     - Note that in DDPM and the other literatures
     - $q(\mathbf{x}_t \vert \mathbf{x}_0) = \mathcal{N}(\mathbf{x}_t; \sqrt{\bar{\alpha}_t} \mathbf{x}_0, (1 - \bar{\alpha}_t)\mathbf{I})$
       - $\nabla_{\mathbf{x}} \log p(\mathbf{x}) = - {\mathbf{\epsilon} \over \sqrt{1 - \bar{\alpha}_t}}$
-
   - appendix B.3
 - time-dependent signal scaling
-
   - $s(t)$
     - scale schedule
     - $\boldsymbol{x} = s(t) \hat{\boldsymbol{x}}$
@@ -121,8 +114,6 @@
 - Loss weighting and sampling
 - Augmentation regularization
 
-
-
 ## A. Additional results
 
 ## B. Derivation of formulas
@@ -130,7 +121,7 @@
 - B.1 Original ODE/SDE formulation from previous work
 - B.2 Our ODE formulation (Eq. 1 and Eq. 4)
 - B.3 Denoising score matching (Eq. 2 and Eq. 3)
-- B.4  Evaluating our ODE in practice (Algorithm 1)
+- B.4 Evaluating our ODE in practice (Algorithm 1)
 - B.5 Our SDE formulation (Eq. 6)
   - B.5.1 Generating the marginals by heat diffusion
     - To solve heat equations, it requires various methods depending on the boundary conditions
@@ -176,14 +167,9 @@
 - F.3 Training configurations
 - F.4 Network architectures
 - F.5 Licenses
-
 - analysis on sampling and an alternative stochastic sampler
 
-
-
 ## Extra notes
-
-
 
 ### Source code
 

@@ -1,10 +1,7 @@
 # The Lipschitz Constant of Self-Attention
 
 - https://arxiv.org/abs/2006.04710
-
 - ICML 2021
-
-  
 
 ## 1 Introduction
 

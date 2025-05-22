@@ -1,8 +1,6 @@
-# SemCity: Semantic Scene Generation with Triplane Diffusion
+# Scaling Rectified Flow Transformers for High-Resolution Image Synthesis
 
-- https://arxiv.org/abs/2403.07773
-- https://github.com/zoomin-lee/SemCity
-- CVPR 2024
+- Stable Diffusion 3.0
 
 ## 1 Introduction
 
@@ -19,3 +17,5 @@
 ## A Proof of formula 1
 
 ## B Proof of formula 2
+
+## Notes

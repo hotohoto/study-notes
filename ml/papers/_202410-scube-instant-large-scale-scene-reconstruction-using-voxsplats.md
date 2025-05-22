@@ -2,8 +2,6 @@
 
 - https://arxiv.org/abs/2410.20030
 
-
-
 ## 1 Introduction
 
 ## 2 Related work

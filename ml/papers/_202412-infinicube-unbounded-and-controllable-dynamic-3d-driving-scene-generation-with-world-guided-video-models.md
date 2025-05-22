@@ -5,24 +5,16 @@
 - https://research.nvidia.com/labs/toronto-ai/infinicube/
 - XCube
   - voxel world generation
-
 - FLUX
   - initial image generation
-
 - SVD
   - long video generation from the initial image
-
 - SCube
   - large-scale 3d gaussian scene generation
 
-
 ![image-20250404015814946](./assets/image-20250404015814946.png)
 
-
-
 ![image-20250404015714005](./assets/image-20250404015714005.png)
-
-
 
 ## 1 Introduction
 

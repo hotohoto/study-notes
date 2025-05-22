@@ -42,8 +42,6 @@
 
 - use Stable Diffusion 2.1
 
-
-
 TODO
 
 ---

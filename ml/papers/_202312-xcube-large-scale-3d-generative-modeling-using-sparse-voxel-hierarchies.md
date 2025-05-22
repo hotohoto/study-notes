@@ -8,9 +8,6 @@
 - sparse conv
   - TorchSparse++
 
-
-
-
 ![image-20250405235302681](./assets/image-20250405235302681.png)
 
 - $\mathbf{G}_1$
@@ -24,11 +21,7 @@
 - $p_{\varphi_1}$
   - 3D VAE decoder at level 1
 
-
-
 <img src="./assets/image-20250406000124860.png" alt="image-20250406000124860" style="zoom:50%;" />
-
-
 
 ## 1 Introduction
 

@@ -65,4 +65,3 @@
 ## I Model card
 
 ## J List of trained models
-

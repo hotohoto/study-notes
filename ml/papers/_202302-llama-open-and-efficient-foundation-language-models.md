@@ -4,8 +4,6 @@
 
 ## 1 Introduction
 
-
-
 ## 2 Related work
 
 ## 3 Method
@@ -25,8 +23,3 @@
 ### Training Compute-Optimal Large Language Models
 
 - https://arxiv.org/abs/2203.15556
-
-
-
-
-

@@ -1,7 +1,5 @@
 # OminiControl: Minimal and Universal Control for Diffusion Transformer
 
-
-
 ## 1 Introduction
 
 ## 2 Related work

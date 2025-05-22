@@ -1,8 +1,8 @@
-# SemCity: Semantic Scene Generation with Triplane Diffusion
+# Analyzing and Improving the Training Dynamics of Diffusion Models
 
-- https://arxiv.org/abs/2403.07773
-- https://github.com/zoomin-lee/SemCity
-- CVPR 2024
+- https://arxiv.org/abs/2312.02696
+- EDM2
+- still based on UNet not DiT
 
 ## 1 Introduction
 
@@ -19,3 +19,5 @@
 ## A Proof of formula 1
 
 ## B Proof of formula 2
+
+## Notes

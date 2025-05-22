@@ -14,7 +14,6 @@ $$
 \mathbf{x}_{t+1} = \sqrt{1 - \beta_t} \mathbf{x}_t + \beta_t \mathbf{\epsilon}_t
 $$
 
-
 $$
 \mathrm{d}\mathbf{x}_t = \mathbf{f}(\mathbf{x}_t, t) \mathrm{d}t + g(t)\mathrm{d}\mathbf{w}_t
 \tag{1}
@@ -36,24 +35,21 @@ $$
 - $\mathrm{d}\bar{t}$
   - infinitesimal reverse time $\mathrm{d}t$
 - $\mathrm{d}\bar{\mathbf{w}}_t$
-  - infinitesimal reverse-time Brownian motion 
+  - infinitesimal reverse-time Brownian motion
 
 $$
 \mathcal{L}_\mathbf{\theta} = 1/2 \int_0^T \xi(t) \mathbb{E} \left[ \Vert \mathbf{s}_\mathbf{\theta}(\mathbf{x}_t, t) - \nabla \log p_r^t(\mathbf{x}_t) \Vert_2^2 \right] \mathrm{d}t
 \tag{3}
 $$
 
-- $\xi$ 
+- $\xi$
   - the temporal weight
-
-
 
 perturbation strategies
 
 - variance exploding SDE
   - $\mathrm{d}\mathbf{x}_t = g(t) \mathrm{d}\mathbf{w}_t$
   - $\mathbf{x} \sim \mathcal{N}(\mathbf{x}_0, \sigma^2(t)\mathbf{I})$
-
 - variance preserving SDE
   - Ornstein-Uhlenbeck process
     - https://en.wikipedia.org/wiki/Ornstein%E2%80%93Uhlenbeck_process
@@ -74,11 +70,9 @@ $$
   - $\mathbf{\theta} _*$
     - global optimum
 
-##### Theorem 1
+#### Theorem 1
 
 If $\mathbf{s} _{\mathbf{\theta} _\infty} = \nabla \log \pi(\mathbf{x})$, where $\pi$ is the prior distribution, and log-likelihood $\log p _{\mathbf{\theta} _\infty}$ equals its evidence lower bound $\mathcal{L} _{\mathbf{\theta} _\infty}$, then the reverse time SDE $\mathrm{d}\mathbf{x} _t = \left[\mathbf{f}(\mathbf{x} _t, t) - g^2(t)\nabla \log p _r^t (\mathbf{x} _t)\right] \mathrm{d}\bar{t} + g(t)\mathrm{d}\bar{\mathbf{w}} _t$, coincides with a diffusion process with adjusted score, $\mathrm{d}\mathbf{x} _t = \left[\mathbf{f}(\mathbf{x} _t, t) - g^2(t)(\mathbf{s} _{\mathbf{\theta} _\infty} + \mathbf{c} _{\mathbf{\theta} _\infty}) (\mathbf{x} _t, t)\right] \mathrm{d}\bar{t} + g(t)\mathrm{d}\bar{\mathbf{w}} _t$, for $\mathbf{c} _{\mathbf{\theta} _\infty}(\mathbf{x} _t, t) := \nabla \log {p _r^t(\mathbf{x} _t) \over p _{\mathbf{\theta} _\infty}^t (\mathbf{x} _t)}$.
-
-
 
 ### 3.2 Discriminator guidance
 
@@ -100,19 +94,17 @@ TODO
 
 ### 5.2 Image generation
 
-##### Discriminator network
+#### Discriminator network
 
-##### Quantitative analysis
+#### Quantitative analysis
 
-##### Qualitative analysis
+#### Qualitative analysis
 
 ### 5.3 Image-2-image translation
 
 ## 6 Discussion
 
 ## 7 Conclusion
-
-
 
 ## References
 
@@ -141,8 +133,3 @@ TODO
 #### D.2.2 After discriminator training
 
 ### D.3 Uncurated samples
-
-
-
-
-
