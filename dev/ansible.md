@@ -1,0 +1,3 @@
+# Ansible
+
+- Use `--ask-path`

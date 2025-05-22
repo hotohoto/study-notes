@@ -6,17 +6,17 @@
 - cone mode
   - show all the descendants from a folder recursively
 - commands
-  - git sparse-checkout init
-    - turn on cone mode
-  - git sparse-checkout disable
-    - show all files again
-  - git sparse-checkout set
-    - set the list of files to show
-    - hide all the others
-  - git sparse-checkout add
-    - add some files to the list of files to show
-  - git sparse-checkout list
-    - list the files to show
+    - git sparse-checkout init
+        - turn on cone mode
+    - git sparse-checkout disable
+        - show all files again
+    - git sparse-checkout set
+        - set the list of files to show
+        - hide all the others
+    - git sparse-checkout add
+        - add some files to the list of files to show
+    - git sparse-checkout list
+        - list the files to show
 
 ## Git LFS
 
@@ -25,7 +25,7 @@
 Install the client
 
 - https://git-lfs.com/
-  - made by GitHub
+    - made by GitHub
 
 Basic usage
 
@@ -60,27 +60,56 @@ git lfs env
 git config lfs.url "http://localhost:9999"
 ```
 
-
-
 ### Servers
 
 - GitHub
-  - 2GB file size limit 👎
-  - total file size limit
-  - download bandwidth limit
-  - no upload bandwidth limit
+    - 2GB file size limit 👎
+    - total file size limit
+    - download bandwidth limit
+    - no upload bandwidth limit
 - (the other servers)
-  - https://github.com/git-lfs/lfs-test-server
-  - https://github.com/git-lfs/git-lfs/wiki/Implementations
-
-
+    - https://github.com/git-lfs/lfs-test-server
+    - https://github.com/git-lfs/git-lfs/wiki/Implementations
 
 ## GitHub
-
-
 
 ## How to generate a key
 
 ```shell
 ssh-keygen -t ed25519 -C "your_email@example.com"
 ```
+
+## Authentication via git credential helper
+
+- configs
+    - `credential.helper`
+        - the git config that points to a script poops out username and passwords.
+        - (the script is called a "git credential helper")
+- commands
+    - (interfaces - https://git-scm.com/docs/git-credential/2.32.0)
+        - `git credential fill`
+            - invoke the current git credential helper to receive credentials
+        - `git credential approve`
+            - invoke the current git credential helper to keep the credentials
+        - `git credential reject`
+            - invoke the current git credential helper to remove the credentials
+    - (built-in git credential helpers)
+        - `git credential-cache`
+            - keeps the password in memory.
+        - `git credential-store`
+            - keeps the password in a plain text file.
+            - DO NOT use this.
+
+Example usage:
+
+```bash
+git config credential.helper 'cache --timeout=86400'
+git fetch
+```
+
+### References
+
+    - https://git-scm.com/docs/gitcredentials
+    - https://git-scm.com/docs/git-credential
+    - https://git-scm.com/doc/credential-helpers
+    - https://tylercipriani.com/blog/2024/07/31/git-as-a-password-prompt/

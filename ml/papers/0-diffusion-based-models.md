@@ -34,9 +34,6 @@
     - DDIM 다시 보기. 특히 증명 부분도.
     - EDM 페이퍼의 DDIM식 유도부분을 다시 보기.
 
-
-
-
 ## Answered ✅
 
 - score sde에서 f랑 g를 마음데로 세팅하고 diffusion 모델을 만든다고 생각하면 뭐가 필요한가??
@@ -49,9 +46,9 @@
 - 학습할때 쓰는 noise scheduler 와 scaling scheduler 함수가 sampling할때는 다른걸 써도 되나?
   - 네트워크에 결국 t 와 perturbation 된 이미지가 들어갈텐데 그럼 학습할때 사용한 schedule 함수를 그대로 써야지 네트워크가 알아먹을 듯.
   - 그럼 어떻게 다른 스케줄러를 막 쓰는거지?
-    -  diffusers구현 보면 막쓰는거 같지는 않아. compatible한 scheduler들 끼리는 서로를 알고 있다구.
+    - diffusers구현 보면 막쓰는거 같지는 않아. compatible한 scheduler들 끼리는 서로를 알고 있다구.
     - 뭐가 되었든 score function 만 찾을 수 있으면 된다구?? epsilon/image/velocity 뭔든 예측하면 된다구?
-    - 뭐 비슷하긴해.. 
+    - 뭐 비슷하긴해..
       - 일단 학습때 정의한 score 함수를 어떻게 만드는지는 알기는 알야하지.
         - diffusers에서는 기본적으로 DDPM 기준의 스케줄러를 쓰는거 같아..🤔
         - 그리고 pretrained된 네트워크의 재 사용을 위해 scale schedule 정도는 바꿀수 있게 해주는거 같아.
@@ -60,14 +57,13 @@
         - diffusers에서는 기본적으로 DDPM 기준의 스케줄러를 쓰는거 같아.. 스케줄러들끼리는 compatible한 스케줄러를 알고 있따구.
         - num_trainsteps 도 scheduler들이 따로 관리하는거 보면,, 역시 중요한거 같아.
 - Fokker Plank equation 을 그대로 쓸수는 없는지. 왜 구지 ODE나 SDE형태로 바꾸는지
-
   - distribution 을 안다고 해서 샘플을 안는것은 아님.
   - 대부분의 경우 p가 normal을 따르지 않음
   - 샘플링 가능한 곳에서 샘플링한 후에 그걸 sde/ode로 보내서 데이터를 생성해냄
 - 임의의 노이즈/시그널 함수를 쓰면 왜 안되는거지?
-  - 안되는거 같지 않음. 
+  - 안되는거 같지 않음.
 - SDE에 임의의 f/g 를 쓰면 왜 안되는거지?
-  - 안되는 것 같지는 않음. 
+  - 안되는 것 같지는 않음.
   - 단 original data에 noise를 씌운 후에 denoising할 것이므로 forward SDE가 노이즈를 더해가는 방향이어야 함.
   - 그리고 perturbation kernel 을 만들어야하므로 식을 너무 복잡하지 않는 범위에서 바꾸는게 맞아 보임.
   - 그리고 노이즈 시그널 함수는 정의할 수 있있어야 함.
@@ -75,8 +71,6 @@
   - 노이즈 스케줄이 결과적으로 비슷해지면서 식이 깔끔한 방향으로 잡은 것으로 보임.
 - SMLD 으로 만든 SDE는 왜 VE-SDE랑 다른거지
   - 노이즈 스케줄이 결과적으로 비슷해지면서 식이 깔끔한 방향으로 잡은 것으로 보임.
-
-
 
 ## Comparison
 
@@ -95,8 +89,6 @@
   - DDIM
   - EDM
 
-
-
 |        | Discrete Markov chain (forward)                              | Perturbation kernel | marginal distribution | SDE  | PF-ODE |
 | ------ | ------------------------------------------------------------ | ------------------- | --------------------- | ---- | ------ |
 | SMLD   |                                                              |                     |                       |      |        |
@@ -105,8 +97,6 @@
 | VP-SDE |                                                              |                     |                       |      |        |
 | DDIM   |                                                              |                     |                       |      |        |
 | EDM    |                                                              |                     |                       |      |        |
-
-
 
 ## Papers
 
@@ -119,21 +109,15 @@
   - retrieve visually similar samples to the training instance and encode them using CLIP
   - use those embedding when generating a sample
 
-
-
 ### Hierarchical Text-Conditional Image Generation with CLIP Latents
 
 - https://openai.com/dall-e-2/
-- [DALLE2](./dall-e-2.md)
-
-
+- [DALLE2](dall-e-2.md)
 
 ### Diffusion-Based Representation Learning
 
 - https://arxiv.org/abs/2105.14257
 - TODO
-
-
 
 ### Gotta Go Fast When Generating Data with Score-Based Models
 
@@ -142,19 +126,15 @@
 - high-order methods were significantly slower (6-8 times)
 - TODO readme
 
-
-
 ### Subspace Diffusion Generative Models
 
 - MIT
 - https://arxiv.org/abs/2205.01490
 
-
-
 ### Diffusion Models Beat GANs on Image Synthesis
 
 - https://arxiv.org/abs/2105.05233
-- aka  guided-diffusion
+- aka guided-diffusion
 - Prafulla Dhariwal, Alex Nichol
 - found a better architecture by ablations
 - architecture
@@ -179,8 +159,6 @@
 - ADM-G
 - ADM-U
 
-
-
 ### SRDiff: Single Image Super-Resolution with Diffusion Probabilistic Models
 
 https://arxiv.org/abs/2104.14951
@@ -194,8 +172,6 @@ https://arxiv.org/abs/2104.14951
 - limitations
   - no codes
   - no ablation study
-
-
 
 ### Image Super-Resolution via Iterative Refinement
 
@@ -228,8 +204,6 @@ https://arxiv.org/abs/2104.14951
 - References
   - https://m.blog.naver.com/mincheol9166/221771426327
 
-
-
 ### ILVR: Conditioning Method for Denoising Diffusion Probabilistic Models
 
 - ICCV 2021
@@ -244,8 +218,6 @@ https://arxiv.org/abs/2104.14951
   - real images to paintings
   - cats to dogs
   - scribbles to modify an image
-
-
 
 ### Improved Denoising Diffusion Probabilistic Models
 
@@ -266,8 +238,6 @@ https://arxiv.org/abs/2104.14951
   - use importance sampling
     - sample some t values more where the loss component of which is bigger
     - $L_\text{VLB}$ decreases in a smoothed curve
-
-
 
 ### Generative Modeling by Estimating Gradients of the Data Distribution
 
@@ -304,8 +274,6 @@ https://arxiv.org/abs/2104.14951
 - architecture
   - RefineNet (a variant of U-Net)
 
-
-
 ### Sliced Score Matching: A Scalable Approach to Density and Score Estimation
 
 - Song et al.
@@ -322,8 +290,6 @@ Minimal Random Code Learning: Getting Bits Back from Compressed Model Parameters
 - https://arxiv.org/abs/1810.00440
 - TODO readme
 
-
-
 ### A Connection Between Score Matching and Denoising Autoencoders
 
 - Neural Computation 2011
@@ -332,14 +298,10 @@ Minimal Random Code Learning: Getting Bits Back from Compressed Model Parameters
 - Introduced a scalable loss function called denoising score matching
   - $L_\text{DSM} = \mathbb{E}_{q_\sigma(\tilde{\mathbf{x}}\mid \mathbf{x})p_\text{data}(\mathbf{x})}[\Vert \mathbf{s}_\mathbf{\theta}(\tilde{\mathbf{x}}) - \nabla_{\tilde{\mathbf{x}}}\log q_\sigma(\tilde{\mathbf{x}}\mid \mathbf{x}) \Vert_2^2]$
 
-
-
 ### The Communication Complexity of Correlation
 
 - IEEE 2007
 - TODO
-
-
 
 ### Estimation of Non-Normalized Statistical Models by Score Matching
 
@@ -351,10 +313,8 @@ Minimal Random Code Learning: Getting Bits Back from Compressed Model Parameters
 - Note that "score" here is the gradient of the log density with respect to the data vector
   - not with resepect to the parameters like in statistics usually
 
-
-
 ## References
 
-- [Sample quality metrics](./sample-quality-metrics.md)
+- [Sample quality metrics](sample-quality-metrics.md)
 - [What are diffusion models](https://lilianweng.github.io/posts/2021-07-11-diffusion-models/)
   - DDPM, Improved DDPM, DDIM, ...

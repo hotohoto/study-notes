@@ -1,7 +1,240 @@
 # Interesting ML papers
 
+## 2025
+
+202501 Compositional Generative Model of Unbounded 4D Cities
+- 202503 A Recipe for Generating 3D Worlds From a Single Image
+- 202504 VoxCity - A Seamless Framework for Open Geospatial Data Integration, Grid-Based Semantic 3D City Model Generation, and Urban Environment Simulation
+  - https://github.com/kunifujiwara/VoxCity
+
+## 2024
+
+- 202400 GPLD3D - Latent Diffusion of 3D Shape Generative Models by Enforcing Geometric and Physical Priors 7️⃣
+  - no official codes found
+  - TODO
+- 202401 AGG - Amortized Generative 3D Gaussians for Single Image to 3D
+- 202401 Car-Studio - Learning Car Radiance Fields From Single-View and Unlimited In-the-Wild Images
+  - https://github.com/lty2226262/Car_studio
+  - TODO
+- 202401 InstantID - Zero-shot Identity-Preserving Generation in Seconds ⭐50
+  - 별도 face identification network 를 사용해서 adaptor를 학습..
+- 202401 Motion-I2V - Consistent and Controllable Image-to-Video Generation with Explicit Motion Modeling
+  - lack of codes, checkpoints
+- 202401 S$^{2}$-DMs:Skip-Step Diffusion Models
+- 202401 SteinDreamer - Variance Reduction for Text-to-3D Score Distillation via Stein Identity ⭐4
+- 202401 UGPNet - Universal Generative Prior for Image Restoration
+- 202402 ConsistI2V - Enhancing Visual Consistency for Image-to-Video Generation
+- 202402 InstanceDiffusion - Instance-level Control for Image Generation
+- 202402 LGM - Large Multi-View Gaussian Model for High-Resolution 3D Content Creation 🔗65
+  - generate multi-view images with MVDream or ImageDream
+  - https://huggingface.co/spaces/ashawkey/LGM
+  - https://me.kiui.moe/lgm/
+  - worth trying, but might be still not robust
+- 202402 Magic-Me - Identity-Specific Video Customized Diffusion ⭐24
+- 202402 MVDiffusion++ - A Dense High-resolution Multi-view Diffusion Model for Single or Sparse-view 3D Object Reconstruction 🔗7 ⭐14
+  - no official codes found
+- 202402 Training-Free Consistent Text-to-Image Generation
+- 202403 GaLore - Memory-Efficient LLM Training by Gradient Low-Rank Projection
+- 202403 GRM - Large Gaussian Reconstruction Model for Efficient 3D Reconstruction and Generation
+- 202403 Infinite-ID - Identity-preserved Personalization via ID-semantics Decoupling Paradigm ⭐17
+  - 별도 face identification network 사용하지 않고 SD만 사용해서 파이프라인 구성 및 학습..
+- 202403 Sculpt3D - Multi-View Consistent Text-to-3D Generation with Sparse 3D Prior ⭐
+  - https://github.com/StellarCheng/Scuplt_3d/tree/main
+  - TODO
+- 202403 SV3D - Novel Multi-view Synthesis and 3D Generation from a Single Image using Latent Video Diffusion 🔗22
+  - camera pose conditioning
+  - optimizing a NeRF and DMTet
+  - TODO: disentangled illumination model
+  - geometry prior for better surfaces
+- 202403 TripoSR - Fast 3D Object Reconstruction from a Single Image
+- 202403 ViewDiff - 3D-Consistent Image Generation with Text-to-Image Models ⭐
+  - https://github.com/facebookresearch/ViewDiff
+  - CVPR2024
+  - TODO
+- 202404 InstantMesh - Efficient 3D Mesh Generation from a Single Image with Sparse-view Large Reconstruction Models ⭐1
+  - https://github.com/TencentARC/InstantMesh
+  - TODO
+- 202404 ConsistentID - Portrait Generation with Multimodal Fine-Grained Identity Preserving ⭐16
+- 202404 ID-Aligner - Enhancing Identity-Preserving Text-to-Image Generation with Reward Feedback Learning ⭐11
+- 202405 AniTalker - Animate Vivid and Diverse Talking Faces through Identity-Decoupled Facial Motion Encoding ⭐1
+- 202405 Unique3D - High-Quality and Efficient 3D Mesh Generation from a Single Image ⭐1
+  - https://github.com/AiuniAI/Unique3D
+  - key ideas
+    - multi-view diffusion models
+    - normal map diffusion models
+    - super resolution - Real-ESRGAN
+    - differentiable renderer - PyTorch3D
+- 202406 CLAY - A Controllable Large-scale Generative Model for Creating High-quality 3D Assets ⭐
+  - VAE called 3DShape2VecSet, DiT
+  - modify and finetune MVDream for texture prediction
+  - (IMHO)
+    - Training might have been easier if DINOv2 was used like in `One-2-3-45++`? 🤔
+- 202406 Consistency^2 - Consistent and Fast 3D Painting with Latent Consistency Models
+  - texturing
+- 202406 https://github.com/tudelft3d/City4CFD?tab=readme-ov-file
+- 202406 MeshAnything - Artist-Created Mesh Generation with Autoregressive Transformers ⭐
+  - https://github.com/buaacyw/MeshAnything
+  - VQ-VAE, MeshGPT
+  - limitations
+    - trained only with simple 3d objects (# of faces < 800)
+- 202411 Diorama - Unleashing Zero-shot Single-view 3D Indoor Scene Modeling
+- 202411 Video Depth without Video Models
+- 202412 Open-Sora Plan - Open-Source Large Video Generation Model
+
 ## 2023
 
+- 202301 3DShape2VecSet - A 3D Shape Representation for Neural Fields and Generative Diffusion Models 🔗76 ⭐
+  - encoder/decoder
+  - can be conditioned on category/image/pcd/text
+- 202301 BLIP-2 - Bootstrapping Language-Image Pre-training with Frozen Image Encoders and Large Language Models
+- 202301 Simple diffusion - End-to-end diffusion for high resolution images
+- 202301 ConvNeXt V2 - Co-designing and Scaling ConvNets with Masked Autoencoders
+- 202302 Denoising Diffusion Probabilistic Models for Robust Image Super-Resolution in the Wild
+- 202302 LLaMA - Open and Efficient Foundation Language Models ⭐⭐⭐
+- 202302 Unsupervised Discovery of Semantic Latent Directions in Diffusion Models
+- 202302 TEXTure - Text-Guided Texturing of 3D Shapes 🔗150
+  - https://github.com/TEXTurePaper/TEXTurePaper
+  - SD
+  - iterative texturing using
+    - depth-to-image model
+    - inpainting model
+    - trimap - keep, refine, generate
+  - TODO summarize❗📝
+- 202303 HIVE - Harnessing Human Feedback for Instructional Visual Editing
+- 202303 Grounding DINO - Marrying DINO with Grounded Pre-Training for Open-Set Object Detection ⭐
+- 202303 NeRFMeshing - Distilling Neural Radiance Fields into Geometrically-Accurate 3D Meshes ⭐0 🔗29
+- 202303 Text2Tex - Text-driven Texture Synthesis via Diffusion Models 🔗92
+  - https://github.com/daveredrum/Text2Tex
+  - SD2
+  - iterative textur using
+    - depth-to-image model
+    - denoising strength based
+  - TODO
+- 202303 Zero-1-to-3 - Zero-shot One Image to 3D Object 🔗442⭐5
+  - stable diffusion based
+  - use
+    - exact camera parameters
+  - generates single image (it's not a multi-view generation model)
+  - TODO summarize ❗📝
+- 202303 One Transformer Fits All Distributions in Multi-Modal Diffusion at Scale
+    - https://github.com/thu-ml/unidiffuser
+- 202303 A Simple Framework for Open-Vocabulary Segmentation and Detection
+- 202303 Universal Instance Perception as Object Discovery and Retrieval
+- 202303 Training-free Content Injection using h-space in Diffusion Models
+- 202303 End-to-End Diffusion Latent Optimization Improves Classifier Guidance
+- 202303 Implicit Diffusion Models for Continuous Super-Resolution
+- 202303 GlueGen - Plug and Play Multi-modal Encoders for X-to-image Generation
+- 202304 Visual Instruction Tuning ⭐⭐
+- 202304 Diffusion Models as Masked Autoencoders
+- 202305 Exploiting Diffusion Prior for Real-World Image Super-Resolution
+- 202305 Key-Locked Rank One Editing for Text-to-Image Personalization
+- 202305 ProlificDreamer - High-Fidelity and Diverse Text-to-3D Generation with Variational Score Distillation ⭐8
+  - stages
+    - SD2.1, NeRF, VSD
+    - SD2.1, DMTet
+- 202305 VisorGPT - Learning Visual Prior via Generative Pre-Training
+- 202305 MADiff - Offline Multi-agent Learning with Diffusion Models
+- 202305 UniControl - A Unified Diffusion Model for Controllable Visual Generation In the Wild
+- 202305 Training Diffusion Models with Reinforcement Learning
+- 202305 ONE-PEACE - Exploring One General Representation Model Toward Unlimited Modalities
+- 202306 DragDiffusion - Harnessing Diffusion Models for Interactive Point-based Image Editing
+- 202306 Fast Training of Diffusion Models with Masked Transformers
+- 202306 One-2-3-45 - Any Single Image to 3D Mesh in 45 Seconds without Per-Shape Optimization 🔗128⭐35
+  - use modified `SparseNeus`
+- 202307 DreamIdentity - Improved Editability for Efficient Face-identity Preserved Image Generation ⭐0 🔗12
+- 202307 FlashAttention-2 - Faster Attention with Better Parallelism and Work Partitioning
+- 202307 MVDiffusion - Enabling Holistic Multi-view Image Generation with Correspondence-Aware Diffusion 2️⃣🔗128 ⭐7
+  - TODO summarize
+- 202307 SDXL - Improving Latent Diffusion Models for High-Resolution Image Synthesis
+- 202307 Semantic-SAM - Segment and Recognize Anything at Any Granularity
+- 202307 ReLoRA - High-Rank Training Through Low-Rank Updates
+- 202308 3D Gaussian Splatting for Real-Time Radiance Field Rendering ⭐162
+  - an explicit representation for both surface and volume
+- 202308 MVDream - Multi-view Diffusion for 3D Generation 🔗232
+  - https://github.com/bytedance/MVDream
+  - https://github.com/bytedance/MVDream-threestudio
+  - use
+    - 2D image data as well
+    - camera embedding
+    - cross-view self attention from 2d to 3d
+    - SDS
+    - DreamBooth
+- 202309 DreamGaussian - Generative Gaussian Splatting for Efficient 3D Content Creation 🔗269
+  - ICLR 2024 oral
+- 202309 SyncDreamer - Generating Multiview-consistent Images from a Single-view Image 🔗199
+  - multi-view generation model
+  - finetune zero-1-to-3
+- 202310 DreamCraft3D - Hierarchical 3D Generation with Bootstrapped Diffusion Prior
+  - original stages
+    - zero123, DeepFloyd-IF, Neus, SDS
+    - zero123, DeepFloyd-IF, DMTet, SDS
+    - SD2.1, LoRA, DreamBooth, DMTet, BSD
+  - github project stages (20240627)
+    - stable-zero123, DeepFloyd-IF, NeRF, SDS, [128, 384]x[128, 384]
+    - stable-zero123, DeepFloyd-IF, Neus, SDS, 256x256
+    - stable-zero123, DeepFloyd-IF, DMTet, SDS, 1024x1024
+    - SD2.1, LoRA, DreamBooth, DMTet, BSD, 1024x1024
+- 202310 GaussianDreamer - Fast Generation from Text to 3D Gaussians by Bridging 2D and 3D Diffusion Models
+- 202310 Language Model Beats Diffusion -- Tokenizer is Key to Visual Generation
+- 202310 ScaleLong - Towards More Stable Training of Diffusion Model via Scaling Network Long Skip Connection
+- 202310 Wonder3D - Single Image to 3D using Cross-Domain Diffusion
+- 202310 Zero123++ - a Single Image to Consistent Multi-view Diffusion Base Model 🔗93
+  - https://huggingface.co/sudo-ai/zero123plus-v1.1
+  - generates multi-view images
+- 202311 Direct2.5 - Diverse Text-to-3D Generation via Multi-view 2.5D Diffusion
+- 202311 Diffusion Model Alignment Using Direct Preference Optimization
+- 202311 Direct2.5 - Diverse Text-to-3D Generation via Multi-view 2.5D Diffusion
+- 202311 Emu Edit - Precise Image Editing via Recognition and Generation Tasks
+- 202311 I2VGen-XL - High-Quality Image-to-Video Synthesis via Cascaded Diffusion Models 🔗44 ⭐31
+  - https://huggingface.co/docs/diffusers/en/api/pipelines/i2vgenxl
+  - seems not allowed to control temporal motions
+    - but it might be possible with https://paperswithcode.com/task/vehicle-pose-estimation
+- 202311 LRM - Large Reconstruction Model for Single Image to 3D https://tengfei-wang.github.io/
+  - low detail
+- 202311 MeshGPT - Generating Triangle Meshes with Decoder-Only Transformers
+- 202311 One-2-3-45++ - Fast Single Image to 3D Objects with Consistent Multi-View Generation and 3D Diffusion 🔗57⭐37
+  - finetune SD2
+  - custom
+  - two-staged, leverage DINOv2
+  - 10 days with 8 A100 GPUs
+- 202311 RichDreamer - A Generalizable Normal-Depth Diffusion Model for Detail Richness in Text-to-3D
+- 202311 Stable Video Diffusion - Scaling Latent Video Diffusion Models to Large Datasets 🔗154 ⭐8
+  - https://huggingface.co/stabilityai/sv3d
+- 202311 ZipLoRA - Any Subject in Any Style by Effectively Merging LoRAs
+- 202312 COLMAP-Free 3D Gaussian Splatting
+- 202312 ControlDreamer - Stylized 3D Generation with Multi-View ControlNet
+- 202312 DreamControl - Control-Based Text-to-3D Generation with 3D Self-Prior
+- 202312 Free3D - Consistent Novel View Synthesis without 3D Representation
+- 202312 ImageDream - Image-Prompt Multi-view Diffusion for 3D Generation
+  - modified modules from MVDream
+    - pixel controller
+      - insert reference image without noise
+      - use it in the 3d self attention
+    - global controller
+      - leverage CLIP image features
+    - local controller
+      - leverage sampled raw CLIP image features
+  - loss
+    - MV-SDS
+- 202312 https://stability.ai/news/stable-zero123-3d-generation
+  - SD1.5 based, non commercial license
+  - known as better than zero123
+  - keep only high quality dataset from Objaverse
+  - provide estimated camera angle
+  - precomputed latent images for 40x faster training
+  - NeRF, SDS
+- 202312 Neural Point Cloud Diffusion for Disentangled 3D Shape and Appearance Generation
+  - no official code found
+- 202312 Splatter Image - Ultra-Fast Single-View 3D Reconstruction
+  - https://github.com/szymanowiczs/splatter-image
+  - TODO
+- 202312 Triplane Meets Gaussian Splatting - Fast and Generalizable Single-View 3D Reconstruction with Transformers
+  - https://github.com/VAST-AI-Research/TriplaneGaussian
+  - TODO
+- 202312 VideoLCM - Video Latent Consistency Model
+- 202312 ViVid-1-to-3 - Novel View Synthesis with Video Diffusion Models
+  - https://github.com/ubc-vision/vivid123
+  - TODO
 
 ## 2022
 
@@ -13,7 +246,7 @@
   
     - between original images and the images the foreground of which are transformed
   
-  - can find the foreground objects that is best matching  in terms of geometry and lightning
+  - can find the foreground objects that is best matching in terms of geometry and lightning
   
   - alternate training
   
@@ -41,7 +274,6 @@
     - 2019 Gumbel Graph Network (GGN)
     - 2020 NeuralSparse
       - Zheng et al.
-
 - Triformer: Triangular, Variable-Specific Attentions for Long Sequence Multivariate Time Series Forecasting
   - IJCAI
   - goals
@@ -71,13 +303,40 @@
     - takeaways
       - suggest a decent way to the model complexity of Transformers
     - https://youtu.be/Z4CWwVxKoU0
-
 - Swin UNETR: Swin Transformers for Semantic Segmentation of Brain Tumors in MRI Images
   - Nvidia
   - https://arxiv.org/abs/2201.01266
   - Swin U-Net Transformer for segmentation tasks
   - BraTS 2021 segmentation challenge
   - 3D
+- 202200 3D car shape reconstruction from a contour sketch using GAN and lazy learning
+- 202201 Automated 3D reconstruction of LoD2 and LoD1 models for all 10 million buildings of the Netherlands
+- 202201 A ConvNet for the 2020s
+- 202203 Generating High Fidelity Data from Low-density Regions using Diffusion Models
+- 202205 FlashAttention - Fast and Memory-Efficient Exact Attention with IO-Awareness
+- 202206 SparseNeuS - Fast Generalizable Neural Surface Reconstruction from Sparse Views 🔗121
+- 202207 Semantic Image Synthesis via Diffusion Models
+- 202209 Diffusion Posterior Sampling for General Noisy Inverse Problems
+- 202209 DreamFusion - Text-to-3D using 2D Diffusion 🔗1254
+- 202210 Improving Sample Quality of Diffusion Models Using Self-Attention Guidance
+- 202210 UniTune - Text-Driven Image Editing by Fine Tuning a Diffusion Model on a Single Image
+- 202210 Diffusion Models already have a Semantic Latent Space
+- 202211 InternImage - Exploring Large-Scale Vision Foundation Models with Deformable Convolutions ⭐
+- 202211 OneFormer - One Transformer to Rule Universal Image Segmentation ⭐
+- 202211 Fine-Tuning Pre-Trained Language Models Effectively by Optimizing Subnetworks Adaptively
+    - NeurIPS 2022
+- 202211 SinFusion - Training Diffusion Models on a Single Image or Video
+    - ICML 2023
+- 202211 https://github.com/ashawkey/stable-dreamfusion
+- 202211 Magic3D - High-Resolution Text-to-3D Content Creation ⭐0 🔗636
+- 202211 Plug-and-Play Diffusion Features for Text-Driven Image-to-Image Translation
+- [202212 ECON: Explicit Clothed humans Optimized via Normal integration](https://arxiv.org/abs/2212.07422)
+- [202212 Rodin - A Generative Model for Sculpting 3D Digital Avatars Using Diffusion](https://arxiv.org/abs/2212.06135) 🔗179
+- 202212 Score Jacobian Chaining - Lifting Pretrained 2D Diffusion Models for 3D Generation 🔗340
+  - similar to DreamFusion
+  - but the formulation is more complete
+  - results seems similar
+- 202212 SmartBrush - Text and Shape Guided Object Inpainting with Diffusion Model ⭐
 
 ## 2021
 
@@ -97,8 +356,6 @@
 | Swin-Unet: Unet-like Pure Transformer for Medical Image Segmentation | https://arxiv.org/abs/2105.05537 | 2D               | ECCV 2022 workshops   |      |
 | Swin UNETR: Swin Transformers for Semantic Segmentation of Brain Tumors in MRI Images | https://arxiv.org/abs/2201.01266 | 3D               | MICCAI 2021 workshop  |      |
 
-
-
 - An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale
   - ICLR 2021
   - Google Research
@@ -106,7 +363,6 @@
   - https://arxiv.org/abs/2010.11929
   - Applied transformers to sequence of image patches
   - Pretraining was helpful to beat SOTA convolutional networks
-
 - Emerging Properties in Self-Supervised Vision Transformers
   - DINO, Facebook AI Research
   - https://arxiv.org/abs/2104.14294
@@ -121,7 +377,6 @@
       - by setting a different temperature in the softmax
   - https://youtu.be/h3ij3F3cPIk
   - README
-
 - Temporal Fusion Transformers for Interpretable Multi-horizon Time Series Forecasting
   - [Internal Journal of Forecasting 2021](https://www.sciencedirect.com/science/article/pii/S0169207021000637)
   - https://arxiv.org/abs/1912.09363
@@ -146,7 +401,6 @@
     - https://github.com/jdb78/pytorch-forecasting
       - https://github.com/jdb78/pytorch-forecasting/tree/master/pytorch_forecasting/models/temporal_fusion_transformer
   - TFT, time series forecasting
-
 - TS2Vec: Towards Universal Representation of Time Series
   - https://arxiv.org/abs/2106.10466
   - contrastive representation learning
@@ -179,13 +433,11 @@
   - additional resources
     - https://github.com/yuezhihan/ts2vec
     - https://youtu.be/x5ApSiqr3EM
-
 - Long-Range Transformers for Dynamic Spatiotemporal Forecasting
   - Spacetimeformer
   - https://arxiv.org/abs/2109.12218
   - sees multivariate time series in the perspective of spatiotemporal sequence
   - README, TSF(time series forecasting)
-
 - Informer: Beyond Efficient Transformer for Long Sequence Time-Series Forecasting
   - https://arxiv.org/abs/2012.07436
   - AAAI 2021
@@ -193,33 +445,26 @@
     - sparse self attention
       - O(L log L) time/memory complexity
   - README, time series
-
 - Learning to See by Looking at Noise
   - https://arxiv.org/abs/2106.05963
-
 - Pay Attention to MLPs
   - https://arxiv.org/abs/2105.08050
   - gMLP
     - MLP + spatial gate
   - aMLP
     - gMLP + tiny attention
-
 - Learning in High Dimension Always Amounts to Extrapolation
   - https://arxiv.org/abs/2110.09485
-
 - Geometric Deep Learning: Grids, Groups, Graphs, Geodesics, and Gauges
   - https://arxiv.org/abs/2104.13478
   - https://youtu.be/w6Pw4MOzMuo
   - differential geometry
-
 - Reward is enough
   - https://www.sciencedirect.com/science/article/pii/S0004370221000862
   - RL, reinforcement learning
   - README
-
 - Flow Network based Generative Models for Non-Iterative Diverse Candidate Generation
   - https://arxiv.org/abs/2106.04399
-
 - Intriguing Properties of Contrastive Losses
   - https://arxiv.org/abs/2011.02803
   - Ting Chen et al. (Google Research)
@@ -235,7 +480,6 @@
       - Easy-to-learn features (MNIST digits) suppress the learning of other features (Image Net object class)
       - The presence of dominant object suppresses the learning of features of smaller objects
       - Extra channels with a few bits of easy-to-learn mutual information suppress the learning of all features in RGB channels
-
 - Why AI is Harder Than We Think
   - https://arxiv.org/abs/2104.12871
   - Summary
@@ -266,6 +510,13 @@
       - aids
         - pretrained CNN
         - mfcc
+- 202101 Maximum Likelihood Training of Score-Based Diffusion Models ⭐
+- 202108 Bird's-Eye-View Panoptic Segmentation Using Monocular Frontal View Images
+- 202111 Deep Marching Tetrahedra - a Hybrid Representation for High-Resolution 3D Shape Synthesis 🔗303
+  - TODO summarize❗📝
+- 202111 Extracting Triangular 3D Models, Materials, and Lighting From Images 🔗262
+- 202112 Efficient Geometry-aware 3D Generative Adversarial Networks 🔗1036 CVPR2022
+  - tri-plane
 
 ## 2020
 
@@ -274,43 +525,33 @@
   - NIPS2020
   - https://arxiv.org/abs/2006.06676
   - Overfitting in GAN
-    - discriminator outputs for the real training images and fake images diverge 
+    - discriminator outputs for the real training images and fake images diverge
     - discriminator accuracy on the validation images decreases
-
   - The correct way to calculate FID
     - calculate it between the full training set and 50k generated images
-
   - Augmentation that do not leak
     - any augmentation is non-leaking as long as the corruption process is represented by an invertible transformation of probability distributions over the data space.
-
   - we can make almost any augmentation non-leaking by only applying it at a probability $p < 1$.
   - Adaptive discriminator augmentation (ADA)
     - overfitting heuristics for GAN
       - $r_v = {\mathbb{E}[D_\text{train}] - \mathbb{E}[D_\text{validation}] \over \mathbb{E}[D_\text{train}] - \mathbb{E}[D_\text{generated}]}$
       - $r_t = \mathbb{E}[\operatorname{sign}(D_\text{train})]$
         - they found this was better than $r_v$
-
     - starts from $p = 0$
     - increase $p$ a little if it looks overfitting and vice versa
-
   - augmentation methods
-    - useful 
+    - useful
       - pixel blitting
       - geometric transformation
-
     - moderate
     - not useful
-
   - number of images
     - 2k
       - augmentations was useful
-
     - 10k
       - less helpful
-
     - 140k
       - harmful
-
 - HiFi-GAN: Generative Adversarial Networks for Efficient and High Fidelity Speech Synthesis
   - https://arxiv.org/abs/2010.05646
   - 카카오엔터프라이즈 AI Lab
@@ -321,13 +562,11 @@
         - deconvolution + stride + padding
         - https://towardsdatascience.com/what-is-transposed-convolutional-layer-40e5e6e31c11
     - two discriminators
-
 - Training BatchNorm and Only BatchNorm: On the Expressive Power of Random Features in CNNs
   - https://arxiv.org/abs/2003.00152
   - (tutorial) https://e2eml.school/batch_normalization.html
   - Batch normalization
   - README
-
 - Implicit Neural Representations with Periodic Activation Functions
   - https://arxiv.org/abs/2006.09661
   - https://vsitzmann.github.io/siren/
@@ -341,7 +580,6 @@
   - (addtionally)
     - We can train a NN to represent an image by training it to take inputs of coordinates and returns a color
     - We can use NN to solve mathematical or physical problems such as PDE or Obtimizaiton problems just by setting the loss function properly.
-
 - A Simple Framework for Contrastive Learning of Visual Representations
   - https://arxiv.org/abs/2002.05709
   - Ting Chen, Simon Kornblith, Mohammad Norouzi, Geoffrey Hinton
@@ -371,17 +609,14 @@
         - the normalized temperature-scaled cross entropy loss
       - make them contrastive
     - larger batch size and longer training are good to get the better performance
-
 - Fourier Features Let Networks Learn High Frequency Functions in Low Dimensional Domains
   - https://arxiv.org/abs/2006.10739
   - http://people.eecs.berkeley.edu/~bmild/fourfeat/
   - README
-
 - Implicit Geometric Regularization for Learning Shapes
   - https://arxiv.org/pdf/2002.10099.pdf
   - https://www.youtube.com/watch?v=rUd6qiSNwHs&feature=youtu.be
   - README
-
 - Reformer: The Efficient Transformer
   - https://arxiv.org/abs/2001.04451
   - https://towardsdatascience.com/illustrating-the-reformer-393575ac6ba0
@@ -392,7 +627,6 @@
     - $L$ length of sequence
   - Locality sensitive hashing
   - Value
-
 - A Simple Framework for Contrastive Learning of Visual Representations
   - https://arxiv.org/abs/2002.05709
   - https://www.youtube.com/watch?v=FWhM3juUM6s
@@ -400,7 +634,6 @@
   - make the CNN results from those 2 data to be similar
   - can be used for semi-supervised learning, unsupervised learning
   - self-supervised learning
-
 - AutoML-Zero: Evolving Machine Learning Algorithms From Scratch
   - https://arxiv.org/abs/2003.03384
   - https://hoya012.github.io/blog/automl-zero-review/
@@ -408,7 +641,6 @@
   - prerequisite
     - The Evolved Transformer
     - Neural Architecture Search with Reinforcement Learning
-
 - Towards a Human-like Open-Domain Chatbot
   - https://arxiv.org/abs/2001.09977
   - NLP, chatbot, seq2seq
@@ -432,7 +664,6 @@
     - not that smart
   - possible improvements
     - How can it build complex knowledge-base and use it
-
 - Lecture notes on ridge regression (v5)
   - https://arxiv.org/abs/1509.09169
   - high dimensional data would be collinear
@@ -446,7 +677,6 @@
   - as post-hoc, minimizing squared error with ridge penalty can be considered as equivalent
   - Bayesian linear regression can be considered as equivalent as well
   - ridge regressor is a biased estimator
-
 - The Optimal Ridge Penalty for Real-world High-dimensional Data Can Be Zero or Negative due to the Implicit Ridge Regularization
   - https://arxiv.org/abs/1805.10939
   - when n << p, the λ → 0 limit, corresponding to the minimum-norm OLS solution, can have good generalization performance
@@ -455,14 +685,12 @@
   - moreover, the optimal value of λ in this regime can be negative;
   - this happens when the response variable is predicted by the high-variance directions while the low-variance directions together with the minimum-norm requirement effectively perform shrinkage and provide implicit ridge regularization
   - OLS, minimum-norm OLS
-
 - Training Recurrent Neural Networks Online by Learning Explicit State Variables
   - https://openreview.net/pdf?id=SJgmR0NKPr
   - ICLR2020
   - Fixed point propagation
   - explicitly learn state vectors breaking the dependencies across time
   - README, RNN, online learning, time series
-
 - N-BEATS: Neural basis expansion analysis for interpretable time series forecasting
   - https://arxiv.org/abs/1905.10437
   - ElementAI founded by Yoshua Bengio
@@ -488,15 +716,10 @@
   - propose a way to edit a latent vector to modify the resulting image
   - process
     - given a training set of image-and-label pairs
-
     - train a StyleGAN or any other GAN using the images in the training set
-
     - find a latent vector $w$ for each training set pair
-
     - train a SVM predicting the label given $w$
-
-    - modify $w$ with respect to the normal vector direction of the separating hyperplane found by SVM 
-
+    - modify $w$ with respect to the normal vector direction of the separating hyperplane found by SVM
     - with the modified $w^\prime$, you can generate a modified image
 
 ## 2019
@@ -708,7 +931,7 @@
   - they tried to solve these questions
     - how to forecast the quantity of sale of a new product?
       - learn entity embedding for each product
-      -   for a new product, take the timeseries of similar products into account.
+      - for a new product, take the timeseries of similar products into account.
             - try to find similar products and get a good initial value from them.
             - generate pseudo time series using it.
     - how to deal with unstable data corresponding to fashion trends and customers diversity.
@@ -846,6 +1069,7 @@
   - compression phase
     - forgets information which is not related to the output labels
   - https://youtu.be/bLqJHjXihK8
+- 201802 UMAP - Uniform Manifold Approximation and Projection for Dimension Reduction ⭐⭐⭐
 
 ## 2017
 
@@ -881,7 +1105,6 @@
   - https://arxiv.org/abs/1707.04585
   - saving memory by calculating input rather than keep it in memory during backpropagation
   - RevNet
-
 - Cat2Vec Learning Distributed Representation of Multi-field Categorical Data.
   - (Cat2Vec, ICLR 2017) https://openreview.net/pdf?id=HyNxRZ9xg
   - (PMLN, DLP 2019) https://dl.acm.org/doi/abs/10.1145/3326937.3341251
@@ -890,7 +1113,6 @@
     - addition
     - element-wise multiplication
   - Trained while discerning the true data from the modified fake data.
-
 - DeepAR: Probabilistic Forecasting with Autoregressive Recurrent Networks
   - https://arxiv.org/abs/1704.04110
   - Amazon
@@ -910,17 +1132,14 @@
       - can incorporate a wide range of likelihood functions
       - allowing the user to choose one that is appropriate for the statistical properties of the data
   - README, time series
-
 - Unbiased Online Recurrent Optimization
   - https://arxiv.org/abs/1702.05043
   - (ICLR 2018) https://openreview.net/pdf?id=rJQDjk-0b
   - README, time series, online learning, RNN
-
 - Improved Training of Wasserstein GANs
   - https://arxiv.org/abs/1704.00028
   - WGAN-GP
   - README
-
 - Wasserstein GAN
   - https://arxiv.org/abs/1701.07875
   - Wasserstein distance
@@ -933,7 +1152,6 @@
     - weight clipping to ensure Lipschitz continuity was too harsh
   - But practically, the improvement is not that great
   - WGAN
-
 - Least Squares Generative Adversarial Networks
   - https://arxiv.org/abs/1611.04076
   - Additional resources
@@ -962,18 +1180,15 @@
       - measures monotonic correlation
       - different from the Pearson correlation that measures linear correlation
       - https://en.wikipedia.org/wiki/Spearman%27s_rank_correlation_coefficient
-
 - Robust Online Time Series Prediction with Recurrent Neural Networks
   - https://ieeexplore.ieee.org/document/7796970
   - robust against anamalies by giving weight/penalty
   - time series, LSTM, RNN, online learning
-
 - Online ARIMA Algorithms for Time Series Prediction
   - https://ojs.aaai.org/index.php/AAAI/article/view/10257
     - or http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.713.3100&rep=rep1&type=pdf
   - Uses ARIMA(k + m, d, 0) instead of ARIMA(k, d, q)
   - ARIMA, time series
-
 - f-GAN: Training Generative Neural Samplers using Variational Divergence Minimization
   - https://arxiv.org/abs/1606.00709
   - additional references
@@ -981,10 +1196,11 @@
     - [conjugate function](https://convex-optimization-for-all.github.io/contents/chapter03/2021/02/12/03_03_the_conjugate_function/)
     - https://en.wikipedia.org/wiki/F-divergence
   - f-GAN
-
 - Unsupervised Representation Learning with Deep Convolutional Generative Adversarial Networks
   - https://arxiv.org/abs/1511.06434
   - DCGAN
+- 201600 Structure-from-Motion Revisited 🔗5140 🏃
+- 202106 NeuS - Learning Neural Implicit Surfaces by Volume Rendering for Multi-view Reconstruction
 
 ## 2015
 
@@ -992,30 +1208,24 @@
   - https://arxiv.org/abs/1502.01852
   - weight initialization
   - Kaiming He initialization
-
-
+- 201500 Learning 3D Object Templates by Quantizing Geometry and Appearance Spaces
 
 ## 2014
 
 - (Blog) Neural Networks, Manifolds, and Topology
   - https://colah.github.io/posts/2014-03-NN-Manifolds-Topology/
-
 - The No-U-Turn Sampler: Adaptively Setting Path Lengths in Hamiltonian Monte Carlo
   - https://arxiv.org/abs/1111.4246
   - sampling, README
-
 - Neural Machine Translation by Jointly Learning to Align and Translate
   - https://arxiv.org/abs/1409.0473
   - README, attention
-
 - Neural Turing Machine
   - https://arxiv.org/abs/1410.5401
   - README, attention
-
 - Conditional Generative Adversarial Nets
   - https://arxiv.org/abs/1411.1784
   - Conditional GAN
-
 - Generative Adversarial Networks
   - https://arxiv.org/abs/1406.2661
   - Ian J. Goodfellow et al.
@@ -1023,7 +1233,6 @@
   - limitation
     - mode collapse
     - vanishing gradients due to JS-divergence
-
 - Empirical Evaluation of Gated Recurrent Neural Networks on Sequence Modeling
   - LSTM and GRU have advantages over vanilla RNN
     - can remember input features
@@ -1111,7 +1320,3 @@
       - least absolute error (LAE) estimator
       - an alternative to the least sqaures estimator
     - M-estimators
-
-## references
-
-- https://analyticsindiamag.com/best-machine-learning-papers-2019-nips-icml-ai/
