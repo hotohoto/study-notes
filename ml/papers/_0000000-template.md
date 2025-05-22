@@ -1,7 +1,5 @@
 # Title
 
-
-
 ## 1 Introduction
 
 ## 2 Related work
