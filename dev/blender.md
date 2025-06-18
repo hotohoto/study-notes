@@ -241,6 +241,61 @@ e.g. how to make an animating soldier hold a gun
             - fcurve
                 - key_frame_points
 
+## Physics
+
+### Force Field
+
+### Collision
+
+- related to
+    - particles
+    - soft bodies
+    - cloth
+
+### Cloth
+
+### Dynamic paint
+
+### Soft Body
+
+### Fluid
+
+### Rigid Body
+
+- active
+    - can be moved
+- passive
+    - can not be moved
+    - can interact with other rigid bodies
+- collisions
+    - shape
+        - Box
+        - ...
+        - Convex Hull
+        - Mesh
+        - Compound Parent ⭐
+
+### Rigid Body Constraint
+
+## Rendering
+
+### Depth Map
+
+- https://youtu.be/saptddljRks?si=1X8cDq3RjTbutJFf
+- use cycle
+- save it as OpenEXR
+    - in RGBA
+    - use OpenCV for python to read it
+        - it's better than OpenEXR
+            - simpler
+            - more stable
+
+```python
+def load_exr(path):
+    os.environ["OPENCV_IO_ENABLE_OPENEXR"] = "1"
+    return cv2.imread(str(path), cv2.IMREAD_ANYCOLOR | cv2.IMREAD_ANYDEPTH)
+```
+
 ## Scripting
 
 ```sh
@@ -259,6 +314,18 @@ blender scene.blend --background --python script.py --python-use-system-env -- 1
     - e.g. you may want to install `numpy` in your system python and use it in the blender
 - you may pass python arguments after `--`
     - https://blender.stackexchange.com/questions/6817/how-to-pass-command-line-arguments-to-a-blender-python-script
+
+## Hide objects
+
+- `.hide_set(True)`
+    - hides in viewport
+    - relate to 👁️
+- `.hide_viewport = True`
+    - "disables" in viewport
+    - related to 🖥️
+- `.hide_render = True`
+    - make it not rendered
+    - related to 📷
 
 ### Transforms
 
@@ -321,6 +388,46 @@ obj_eval.to_mesh_clear()
 result, location, normal, face_index = ground_mesh.ray_cast(
     camera_xyz_local, cam2point_local
 )
+```
+
+### Avoid collision
+
+Use Bounding Volume Hierarchy Tree (BVHTree).
+
+```python
+from mathutils.bvhtree import BVHTree
+import bpy
+
+...
+
+depsgraph = bpy.context.evaluated_depsgraph_get()
+eval_obj = obj.evaluated_get(depsgraph)
+mesh = eval_obj.to_mesh()
+bvh = BVHTree.FromMesh(mesh)
+
+...
+
+bvh1 = BVHTree.FromObject(obj1, depsgraph)
+bvh2 = BVHTree.FromObject(obj2, depsgraph)
+intersections = bvh1.overlap(bvh2)
+```
+
+```python
+def compute_push_vector(obj_a, obj_b, depsgraph):
+    bvh_b = BVHTree.FromObject(obj_b, depsgraph)
+    
+    loc_a = obj_a.location
+    hit = bvh_b.find_nearest(loc_a)
+    
+    if hit is None:
+        return None
+    
+    (location, normal, index, distance) = hit
+    
+    # 밀어낼 벡터 = 겹친 지점 → 가장 가까운 지점으로 향하는 벡터
+    push_vector = (loc_a - location).normalized() * (0.1 + distance)
+    
+    return push_vector
 ```
 
 ### Addon development
@@ -480,8 +587,8 @@ static void rna_Camera_angle_y_set(PointerRNA *ptr, float value)
         - otherwise it will render only the combined result
     - render the scene
     - you can select `freestyle` as the pass
-- get depth map
-    - https://youtu.be/saptddljRks?si=1X8cDq3RjTbutJFf
+- 
+- 
 - remeshing
     - https://docs.blender.org/manual/en/latest/modeling/modifiers/generate/remesh.html
         - may not be useful?

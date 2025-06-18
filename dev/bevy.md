@@ -3,6 +3,7 @@
 - https://bevyengine.org/
 - https://github.com/bevyengine/bevy
 - y-up, right handed
+- written in [Rust](rust.md).
 
 ## Getting started
 
@@ -85,3 +86,7 @@ fn main() {
 ### 3D Scene
 
 https://bevyengine.org/examples/3d-rendering/3d-scene/
+
+## Physics engine
+
+https://github.com/Jondolf/avian

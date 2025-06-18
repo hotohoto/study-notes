@@ -1,6 +1,6 @@
 # RustDesk
 
-
+- written in [Rust](rust.md).
 
 ## In the remote Ubuntu machine
 
@@ -32,8 +32,6 @@ sudo ss -tulnp | grep rustdesk
 # uninstall rustdsk
 sudo apt remove rustdesk
 ```
-
-
 
 ## In the local machine
 

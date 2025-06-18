@@ -1,7 +1,5 @@
 # uv
 
-
-
 - `dependency-groups`
   - https://packaging.python.org/en/latest/specifications/dependency-groups/
   - e.g.
@@ -20,7 +18,6 @@
 - don't specify source index in a shared library
   - e.g.
     - torch index server
-
 - add a sub project as a member
   - may require all the optional dependencies of the member 🤔
 - add a sub project as an editable package

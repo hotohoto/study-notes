@@ -1,6 +1,10 @@
 # OpenUSD
 
-## Terminologies
+## TODO
+
+- https://www.nvidia.com/en-us/learn/learning-path/openusd/
+
+## Glossary
 
 - Prim
     - a node of any 3d thing.
@@ -8,9 +12,13 @@
 - SdfPath
     - a locator to a Prim/Property/... like URL to a web page
 - Layer
-    - layer that can be 하나 이상의 Prim으로 구성된 usd 저장 단위
+    - Contains one or more Prims
+    - to be saved as a part of USD
 - Stage
-    - 하나 이상의 layer 들로 구성된 최종 적인 scene graph
+    - Contains one or more layers
+    - Constructs the final scenegraph
+- Hydra
+    - a modularized rendering framework
 - Composition Arc
     - A mechanism to relate a layer or a prim to another
     - (types)
@@ -23,6 +31,35 @@
 - Property
     - Attribute
     - Relationship
+
+## Modules
+
+### Stage
+
+```python
+Usd.Stage.CreateNew()
+Usd.Stage.Open()
+Usd.Stage.Save()
+```
+
+### Hydra
+
+- Hydra scene delegate
+    - e.g.
+        - a USD scenegraph
+- Render index
+    - keeps track of changes
+- Hydra renderer delegate
+    - an actual Hydra rendering implementation
+    - e.g.
+        - HdTiny
+        - HdStrom
+            - used by `usdview`
+        - HdEmbree
+            - uses Embree
+                - made by Intel
+                - CPU based
+            - 
 
 ## Examples
 
@@ -279,5 +316,12 @@ def Mesh "Ground"
     point3f[] points = [(-10, -10, 0), (-10, 10, 0), (10, 10, 0), (10, -10, 0)]
 }
 ```
+
+## usdview
+
+- https://developer.nvidia.com/usd
+    - download Pre-Built OpenUSD Libraries and Tools
+- https://docs.omniverse.nvidia.com/usd/latest/usdview/quickstart.html
+    - run `scripts/useview-gui.bat` by clicking it in file explorer
 
 ## References

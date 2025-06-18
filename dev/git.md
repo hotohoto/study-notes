@@ -107,6 +107,23 @@ git config credential.helper 'cache --timeout=86400'
 git fetch
 ```
 
+## Shared local git repository
+
+```
+git config --global --add safe.directory /path/to/shared/repo
+
+cd /path/to/shared/repo
+
+sudo groupadd git
+sudo usermod -aG git username1
+sudo usermod -aG git username2
+
+sudo chgrp -R git .git
+sudo chmod -R 770 .git
+```
+
+- You may need to restart your terminal
+
 ### References
 
     - https://git-scm.com/docs/gitcredentials

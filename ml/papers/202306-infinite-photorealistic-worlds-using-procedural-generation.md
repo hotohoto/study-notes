@@ -154,6 +154,9 @@ etc.
         - https://github.com/glfw/glfw
     - (image utils)
         - https://github.com/nothings/stb
+- datagen/monitor_tasks.py
+    - iterate_scene_tasks() ⭐
+        - defines which tasks to run
 - infinigen_gpl/
 - OcMesher/
 - terrain/core.py
@@ -182,11 +185,23 @@ etc.
 
 ## Blender file
 
+## Analysis
+
+- spawn_placeholder
+    - hide_render=True
+    - contains the placeholder cubes
+        - contains location
+        - contains a shaped seed object
+- unique_assets
+    - hide_viewport=True
+        - (disabled in viewports)
+    - the parent of each is a placeholder cube object
+
 ### Structure of data-blocks
 
 - 📦 terrain
-    - attomsphere
-    - attomsphere_fine
+    - atmosphere
+    - atmosphere_fine
     - OpagueTerrain
     - OpagueTerrain.inview_inview
         - not generated if the camera is too far away
