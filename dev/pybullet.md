@@ -1,0 +1,7 @@
+# PyBullet
+
+## Glossary
+
+- `bodyIndex`
+- `jointIndex`
+- 
