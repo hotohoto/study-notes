@@ -2,23 +2,46 @@
 
 - https://bevyengine.org/
 - https://github.com/bevyengine/bevy
-- y-up, right handed
+- coordinate system
+    - y-up, right handed
 - written in [Rust](rust.md).
 
 ## Getting started
 
-- entity
+## Glossary
+
+- `Entity`
+    - just an ID
 - `Component`
-- system
+    - data fields
+- `Bundle`
+    - a set of components
+- `system`
+- `Query`
+- `Resource`
+    - global data
 - `Plugin`
     - a module that modifies App
+    - contains
+        - systems
+        - resources
+        - settings
     - e.g.
         - `UiPlugin`
         - `RenderPlugin`
-- `Resource`
-    - global data
 - `Commands`
     - represents mutation to be applied to `World`
+- `Event`
+- `World`
+    - stores entities, components, resources, and their associated metadata
+- `Archetype`
+    - collection of entities that have the same set of components
+- `Table`
+- `StorageType`
+    - Table
+    - SparseSet
+- `Schedule`
+    - 
 
 ### ECS
 
