@@ -3,7 +3,7 @@
 - https://arxiv.org/abs/2112.05146
 - [2022 CVPR](https://openaccess.thecvf.com/content/CVPR2022/html/Chung_Come-Closer-Diffuse-Faster_Accelerating_Conditional_Diffusion_Models_for_Inverse_Problems_Through_Stochastic_CVPR_2022_paper.html)
 
-![image-20230117095728761](./assets/image-20230117095728761.png)
+![image-20230117095728761](image-20230117095728761.png)
 
 
 

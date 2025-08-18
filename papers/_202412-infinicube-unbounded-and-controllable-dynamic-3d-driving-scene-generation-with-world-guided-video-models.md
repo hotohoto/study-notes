@@ -12,9 +12,9 @@
 - SCube
   - large-scale 3d gaussian scene generation
 
-![image-20250404015814946](./assets/image-20250404015814946.png)
+![image-20250404015814946](image-20250404015814946.png)
 
-![image-20250404015714005](./assets/image-20250404015714005.png)
+![image-20250404015714005](image-20250404015714005.png)
 
 ## 1 Introduction
 

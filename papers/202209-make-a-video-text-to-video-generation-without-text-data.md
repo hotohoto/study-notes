@@ -19,7 +19,7 @@ skipped
 
 ## 3 Method
 
-![image-20230220143019188](./assets/image-20230220143019188.png)
+![image-20230220143019188](image-20230220143019188.png)
 $$
 \hat{y_t} = \operatorname{SR}_h \circ \operatorname{SR}_l^t \circ \uparrow_F \circ D^t \circ P \circ (\hat{x}, C_x(x))
 \tag{1}
@@ -77,7 +77,7 @@ $$
 
 #### 3.2.1 Pseudo-3D convolutional layers
 
-![image-20230220122810831](./assets/image-20230220122810831.png)
+![image-20230220122810831](image-20230220122810831.png)
 
 Append a new 1D convolution layer following each pretrained 2d convolutional conv layer.
 $$
@@ -98,7 +98,7 @@ $$
 
 #### 3.2.2 Pseudo-3D attention layers
 
-![image-20230220122826515](./assets/image-20230220122826515.png)
+![image-20230220122826515](image-20230220122826515.png)
 $$
 \operatorname{ATTN}_\text{P3D}(h) := \operatorname{unflatten}(\operatorname{ATTN_\text{1D}}(\operatorname{ATTN_\text{2D}(\operatorname{flatten}(h)) \circ T}) \circ T)
 \tag{3}

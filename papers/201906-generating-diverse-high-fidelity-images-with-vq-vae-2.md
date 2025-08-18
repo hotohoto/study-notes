@@ -33,9 +33,9 @@
 - prior model
   - latent variables are sampled hierarchically
 
-![image-20221214215412547](./assets/image-20221214215412547.png)
+![image-20221214215412547](image-20221214215412547.png)
 
-![image-20221214214840308](./assets/image-20221214214840308.png)
+![image-20221214214840308](image-20221214214840308.png)
 
 ### 3.1 Stage 1: Learning hierarchical latent codes
 

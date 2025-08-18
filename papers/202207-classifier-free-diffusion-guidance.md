@@ -97,7 +97,7 @@
 
 - We want to achieve the same result as the classifier guidance above but without the classifier model.
 
-![image-20221220153919605](./assets/image-20221220153919605.png)
+![image-20221220153919605](image-20221220153919605.png)
 
 - Train $\mathbf{\epsilon}_\theta(\mathbf{z}_\lambda) = \mathbf{\epsilon}_\theta(\mathbf{z}_\lambda, \varnothing)$ and $\mathbf{\epsilon}_\theta(\mathbf{z}_\lambda, \mathbf{c})$ at the same time as a single network.
   - Note that we're training $\mathbf{\epsilon}_\theta$, not $\tilde{\mathbf{\epsilon}}_\theta$
@@ -110,7 +110,7 @@
 
 
 
-![image-20221220160620521](./assets/image-20221220160620521.png)
+![image-20221220160620521](image-20221220160620521.png)
 
 - Note that in the section 3.1, with Bayes rule, we can represent $\tilde{\mathbf{p}}_\theta(\mathbf{z}_\lambda| \mathbf{c})$ using just any two terms among $p_\theta(\mathbf{z}_\lambda, \mathbf{c})$, $p_\theta(\mathbf{z}_\lambda)$, and $p_\theta(\mathbf{c}|\mathbf{z}_\lambda)$.
 - So we can design the classifier free guidance with the expression below.

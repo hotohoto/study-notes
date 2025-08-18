@@ -60,7 +60,7 @@ where
 
 ### 3.1 Adjusting noise schedules
 
-![image-20230511174153972](./assets/image-20230511174153972.png)
+![image-20230511174153972](image-20230511174153972.png)
 
 - Without adjusting the noise schedule not enough noise is added for high resolution
   - refer to the note of "On the Importance of Noise Scheduling for Diffusion Models" below.
@@ -251,4 +251,4 @@ $$
 
 - https://arxiv.org/abs/2301.10972
 
-![image-20230511173806930](./assets/image-20230511173806930.png)
+![image-20230511173806930](image-20230511173806930.png)

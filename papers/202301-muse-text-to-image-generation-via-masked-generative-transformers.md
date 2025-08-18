@@ -62,11 +62,11 @@
 
 [Improved Transformer for High-Resolution GANs (Zhao et al. NeurIPS 2021)](https://arxiv.org/abs/2106.07631)
 
-![image-20230111155651695](./assets/image-20230111155651695.png)
+![image-20230111155651695](image-20230111155651695.png)
 
 ### 2.5 decoder finetuning ⭐
 
-![image-20230111143038921](./assets/image-20230111143038921.png)
+![image-20230111143038921](image-20230111143038921.png)
 
 - freeze
   - encoder
@@ -151,7 +151,7 @@ dataset
 
 ### Comparison between DiT and Muse 
 
-|                             | [DiT](./202212-scalable-diffusion-models-with-transformers.md) | Muse                                                         |
+|                             | [DiT](202212-scalable-diffusion-models-with-transformers.md) | Muse                                                         |
 | --------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | uploaded to arxiv           | 202212                                                       | 201301                                                       |
 | related company             | (Facebook Research)                                          | Google Research                                              |

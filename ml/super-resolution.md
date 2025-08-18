@@ -73,7 +73,7 @@
 - SRGAN
   - SRResNet + GAN
 
-- [EDSR / MDSR](./papers/201707-enhanced-deep-residual-networks-for-single-image-super-resolution.md)
+- [EDSR / MDSR](201707-enhanced-deep-residual-networks-for-single-image-super-resolution.md)
 
-- [Residual Dense Network (RDN)](./papers/201802-residual-dense-network-for-image-super-resolution.md)
+- [Residual Dense Network (RDN)](201802-residual-dense-network-for-image-super-resolution.md)
 

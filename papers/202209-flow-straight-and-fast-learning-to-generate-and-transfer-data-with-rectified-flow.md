@@ -43,7 +43,7 @@ $$
 
 #### Reflow, straightening, fast simulation
 
-![image-20250503080835731](./assets/image-20250503080835731.png)
+![image-20250503080835731](image-20250503080835731.png)
 
 ### 2.3 A nonlinear extension
 

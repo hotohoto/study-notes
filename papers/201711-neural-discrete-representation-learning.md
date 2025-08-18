@@ -35,7 +35,7 @@
   - a distribution over the input data
   - parameterized by a decoder network
 
-![image-20221209161836035](./assets/image-20221209161836035.png)
+![image-20221209161836035](image-20221209161836035.png)
 
 ### 3.1 Discrete latent variables
 

@@ -7,7 +7,7 @@
 - StyleGAN2 generator + StyleGAN editing methods + composition + segmentation map generation
   - for semantic editing of both texture and shape
 
-![image-20230104214322085](./assets/image-20230104214322085.png)
+![image-20230104214322085](image-20230104214322085.png)
 
 ## 1 Introduction
 

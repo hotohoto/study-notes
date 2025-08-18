@@ -76,7 +76,7 @@
 
 ### 5.2 Study of D,C, and G.
 
-![Figure 4. Convergence analysis of RDN with different values of D, C, and G.](./assets/image-20230316001214709.png)
+![Figure 4. Convergence analysis of RDN with different values of D, C, and G.](image-20230316001214709.png)
 
 - D
   - the number of RDBs

@@ -64,10 +64,18 @@ https://docs.blender.org/manual/en/2.93/files/data_blocks.html#data-block-types
     - render the scene
 - Ctrl + F12
     - render the video
+- Ctrl + \`
+    - toggle the gizmo
 - N
-    - toggle the side panels
+    - toggle the right side panels
+- T
+    - toggle the left toolbox
 - Alt + D
     - make a duplicate link which shares the object data
+- Shift + right click
+    - move cursor
+- Shift + C
+    - move cursor back to the origin
 
 ## Edit mode
 
@@ -253,6 +261,9 @@ e.g. how to make an animating soldier hold a gun
     - cloth
 
 ### Cloth
+
+- Make a pillow
+    - https://youtube.com/shorts/mLnhyokj_kA?si=CJRj5OwQ6mHO8Xxo
 
 ### Dynamic paint
 
@@ -587,8 +598,6 @@ static void rna_Camera_angle_y_set(PointerRNA *ptr, float value)
         - otherwise it will render only the combined result
     - render the scene
     - you can select `freestyle` as the pass
-- 
-- 
 - remeshing
     - https://docs.blender.org/manual/en/latest/modeling/modifiers/generate/remesh.html
         - may not be useful?

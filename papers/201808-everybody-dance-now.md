@@ -90,7 +90,7 @@ $$
 
 ##### Face GAN
 
-![image-20230225231502740](./assets/image-20230225231502740.png)
+![image-20230225231502740](image-20230225231502740.png)
 
 $$
 \mathcal{L}_\text{face}(G_f, D_f) = \mathbb{E}_{(x_F, y_F)}\left [ \log D_f(x_F, y_F)\right] + \mathbb{E}_{x_F} \left[ \log (1 - D_f(x_F, G(x)_F + r)\right]

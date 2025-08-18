@@ -2,7 +2,7 @@
 
 
 
-![image-20230207100453851](./assets/image-20230207100453851.png)
+![image-20230207100453851](image-20230207100453851.png)
 
 - https://arxiv.org/abs/2207.09367
 - cycle encoding

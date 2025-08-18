@@ -37,7 +37,7 @@
 
 ## 3 Approach
 
-![image-20221216213800604](./assets/image-20221216213800604.png)
+![image-20221216213800604](image-20221216213800604.png)
 
 ### 3.1 Learning an effective codebook of image constituents for use in transformers
 

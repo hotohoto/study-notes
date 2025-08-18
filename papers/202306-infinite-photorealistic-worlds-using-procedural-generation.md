@@ -87,7 +87,7 @@ etc.
 - https://github.com/princeton-vl/OcMesher
 - 👉 [2023 View-Dependent Octree-based Mesh Extraction in Unbounded Scenes for Procedural Synthetic Data](https://arxiv.org/abs/2312.08364)
 
-![img](./assets/OcMesher.png)
+![img](OcMesher.png)
 
 ## Marching cubes
 

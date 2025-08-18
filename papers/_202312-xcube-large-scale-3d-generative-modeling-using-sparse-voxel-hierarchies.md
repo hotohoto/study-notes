@@ -8,7 +8,7 @@
 - sparse conv
   - TorchSparse++
 
-![image-20250405235302681](./assets/image-20250405235302681.png)
+![image-20250405235302681](image-20250405235302681.png)
 
 - $\mathbf{G}_1$
   - voxel grid at level 1

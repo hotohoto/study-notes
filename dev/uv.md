@@ -15,6 +15,10 @@
     - carla
       - 
     - ...
+- install torch
+```
+uv add torch torchvision --index torch-cu121=https://download.pytorch.org/whl/cu121
+```
 - don't specify source index in a shared library
   - e.g.
     - torch index server

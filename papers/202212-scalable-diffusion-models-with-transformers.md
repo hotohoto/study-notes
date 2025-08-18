@@ -9,7 +9,7 @@
 
 
 
-![image-20230104022935598](./assets/image-20230104022935598.png)
+![image-20230104022935598](image-20230104022935598.png)
 
 - DiT models need to be compared to `LDM-8-G` in that they all use encoding factor=8
 - `-G` seems to mean guidance
@@ -20,7 +20,7 @@
 
 
 
-![image-20230104022908132](./assets/image-20230104022908132.png)
+![image-20230104022908132](image-20230104022908132.png)
 
 
 

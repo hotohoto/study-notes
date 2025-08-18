@@ -6,7 +6,7 @@
   - VGG, University of Oxford
   - Google DeepMind
 
-![image-20250329002904976](./assets/image-20250329002904976.png)
+![image-20250329002904976](image-20250329002904976.png)
 
 ## 1 Introduction
 

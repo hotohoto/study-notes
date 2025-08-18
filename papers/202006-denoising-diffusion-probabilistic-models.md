@@ -74,18 +74,18 @@
       - $L_0$ is considered as distortion since it has a negative sign
     - note that $L_0 = 1.97 \text{(bits/dim)}$ amounts to RMSE 0.95
 
-- [rate-distortion theory](../information-theory.md#rate-distortion-theory)
+- [rate-distortion theory](information-theory.md#rate-distortion-theory)
 
 #### Progressive lossy compression
 
-![image-20221210235714877](./assets/image-20221210235714877.png)
+![image-20221210235714877](image-20221210235714877.png)
 
 - The sender knows $\mathbf{x}_0$ and the real distribution $q$
 - The sender and receiver share $p$ so they can encode / decode data
 
 
 
-![image-20221211003153985](./assets/image-20221211003153985.png)
+![image-20221211003153985](image-20221211003153985.png)
 
 - Again, it says, the majority of the bits are indeed allocated to imperceptible distortions.
 
@@ -107,12 +107,12 @@ $$
 
 #### Progressive generation
 
-![image-20221211004637122](./assets/image-20221211004637122.png)
+![image-20221211004637122](image-20221211004637122.png)
 
 - large scale image features appear first
 - details appear last
 
-![image-20221211004653452](./assets/image-20221211004653452.png)
+![image-20221211004653452](image-20221211004653452.png)
 
 #### Connection to autoregressive decoding
 

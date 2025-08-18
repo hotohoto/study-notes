@@ -128,7 +128,13 @@ sudo chmod -R 770 .git
 
 - You may need to restart your terminal
 
-### References
+## Change editor
+
+```bash
+git config --global core.editor "nano"
+```
+
+## References
 
     - https://git-scm.com/docs/gitcredentials
     - https://git-scm.com/docs/git-credential
