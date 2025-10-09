@@ -10,6 +10,9 @@
     - mesh object, camera object, light object, ...
 - object data
     - mesh, camera, light, ...
+- driver
+    - sets a property from something else
+    - many things including constraints are implemented via drivers
 
 ### Data-blocks
 
@@ -91,6 +94,12 @@ https://docs.blender.org/manual/en/2.93/files/data_blocks.html#data-block-types
 Remarks:
 
 - attributes seems to be duplicated when subdividing the edges
+
+## Pose mode
+
+- can set
+    - bone level transformation
+    - bone level constraints
 
 ## Coordinates and transforms
 
@@ -187,9 +196,10 @@ Let's do rigging for the default cube 🙃
     - subdivide
 - add an armature
     - go to the object mode
-    - Add > Armature > Single Bone
+    - Add > Armature
     - Show the bone
-        - Data > Viewport Display > In Front ✅
+        - Armature > Object panel > Viewport Display > In Front ✅
+            - (equivalently) Armature > (Armature) data > Viewport Display > In Front ✅
 - Add connected bones
     - go to the edit mode
     - e to add bones
@@ -232,22 +242,33 @@ e.g. how to make an animating soldier hold a gun
 
 ## Animation
 
-- basics
-    - add animation properties
-    - add key frame
-    - choose another time point
-    - change the animation properties
-    - add key frame
+(data structure)
 - object / armature
     - animation_data
-    - nla_tracks
-        - track
-            - strips
-                - strip
-    - action
-        - fcurves
-            - fcurve
-                - key_frame_points
+        - nla_tracks
+            - track (can have multiple strips)
+                - strips
+                    - strip
+        - action (current action to be edited and played on top of NLA tracks)
+            - fcurves
+                - fcurve
+                    - key_frame_points
+(basic concepts)
+- action
+    - the actual key frames are saved here
+- `animation_data.action`
+    - the active action
+    - optional
+    - for editing and also the main track which is played on top of the other NLA tracks
+- strip
+    - an instance of an action
+(basic usage)
+- add animation properties
+- add key frame
+    - It is added into object.animation_data.action
+- choose another time point
+- change the animation properties
+- add key frame
 
 ## Physics
 
@@ -450,6 +471,14 @@ def compute_push_vector(obj_a, obj_b, depsgraph):
   - https://docs.blender.org/api/current/bpy.types.UILayout.html
 
 ## Development
+
+https://developer.blender.org/
+https://developer.blender.org/docs/
+https://developer.blender.org/docs/features/code_layout/
+
+Debugging
+
+- https://extensions.blender.org/add-ons/core-debug-tools/
 
 ### Camera internals
 

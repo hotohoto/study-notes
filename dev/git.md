@@ -103,12 +103,16 @@ ssh-keygen -t ed25519 -C "your_email@example.com"
 Example usage:
 
 ```bash
-git config credential.helper 'cache --timeout=86400'  # 1 day
-git config credential.helper 'cache --timeout=2592000'  # 1 month
-git config credential.helper 'cache --timeout=31536000'  # 1 year
-git config credential.helper 'cache --timeout=315360000'  # 10 year
+git config --global credential.helper 'cache --timeout=86400'  # 1 day
+git config --global credential.helper 'cache --timeout=2592000'  # 1 month
+git config --global credential.helper 'cache --timeout=31536000'  # 1 year
+git config --global credential.helper 'cache --timeout=315360000'  # 10 years
 
 git fetch
+```
+
+```bash
+git config --global credential.helper store  # save credentials globally as plain text
 ```
 
 ## Shared local git repository

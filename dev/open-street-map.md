@@ -2,14 +2,18 @@
 
 - iD
     - the name of the editor
-- feature
-    - points
-        - a.k.a nodes
-    - lines
-        - ways
-    - areas
-        - ways
-- 
+- elements
+    - can have tags
+    - (types)
+        - node
+            - point
+        - way
+            - line
+            - area
+        - relation
+- map feature
+    - https://wiki.openstreetmap.org/wiki/Map_features
+    - semantic structure of elements
 
 ## Road
 
@@ -29,8 +33,11 @@
 
 ## Remarks
 
-- Take a look at
-    - New York
-    - Estonia
-    - Mainz
-    - Amsterdam
+## Best places
+
+https://www.bestofosm.org/
+
+- New York
+- Estonia
+- Mainz
+- Amsterdam

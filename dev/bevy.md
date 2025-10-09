@@ -10,16 +10,19 @@
 
 ## Glossary
 
-- `Entity`
-    - just an ID
-- `Component`
-    - data fields
+- `Archetype`
+    - collection of entities that have the same set of components
+- `Asset`
+    - supposed to be loaded asynchronously
 - `Bundle`
     - a set of components
-- `system`
-- `Query`
-- `Resource`
-    - global data
+- `Commands`
+    - represents mutation to be applied to `World`
+- `Component`
+    - data fields
+- `Entity`
+    - just an ID
+- `Event`
 - `Plugin`
     - a module that modifies App
     - contains
@@ -29,19 +32,18 @@
     - e.g.
         - `UiPlugin`
         - `RenderPlugin`
-- `Commands`
-    - represents mutation to be applied to `World`
-- `Event`
-- `World`
-    - stores entities, components, resources, and their associated metadata
-- `Archetype`
-    - collection of entities that have the same set of components
-- `Table`
+- `Query`
+- `Resource`
+    - global data
+- `Schedule`
 - `StorageType`
     - Table
-    - SparseSet
-- `Schedule`
-    - 
+    - `SparseSet`
+- `system`
+- `Table`
+- `World`
+    - stores entities, components, resources, and their associated metadata
+- 
 
 ### ECS
 
@@ -113,3 +115,18 @@ https://bevyengine.org/examples/3d-rendering/3d-scene/
 ## Physics engine
 
 https://github.com/Jondolf/avian
+
+## Internals
+
+https://bevy.org/learn/contribute/introduction/
+
+- `App`
+    - the entry point
+    - `SubApp`
+        - `World`
+            - the database
+            - entities
+            - components
+            - component_ids
+            - archetypes
+- 
