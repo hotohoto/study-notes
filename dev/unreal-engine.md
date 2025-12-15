@@ -3,34 +3,32 @@
 ## TODO
 
 - camera distortion
-
   - https://dev.epicgames.com/documentation/en-us/unreal-engine/camera-lens-calibration-quick-start-for-unreal-engine
-
 - shadow catcher
-
   - https://dev.epicgames.com/community/learning/tutorials/ByW6/unreal-engine-shadow-catcher-render-pass
   - https://youtu.be/JqoUg5hFFF4?si=wD9gg5w7joO1zyQ6
-
 - putting an image at the back
-
 - save as mask
-
   - https://youtu.be/PiQ_JLJKi0M?si=ePFP-xpLre1YgZD5
-
 - adding a dynamic asset
-
   - https://github.com/TriAxis-Games/RealtimeMeshComponent
   - https://github.com/timdecode/UE4RuntimeMeshComponent
   - https://docs.unrealengine.com/4.26/en-US/API/Runtime/Engine/Engine/UAssetManager/AddDynamicAsset/
     - ??
+
+## Content migration
+
+- copy files under Content
+    - the folder structure should be the same to keep the references connected
+- you may restart the project to ensure the content is loaded
 
 ## Class naming
 
 Prefixes
 
 - `A`: Objects that inherit `AActor` e.g. `ACharacter`, `APlayerController`
-- `U`: Objects that don't inherit `AActor` but `UObject`. e.g.  `UActorComponent`, `UUserWidget`
-- `F`: general class or struct  that doesn't inherit `UObject`. e.g.: `FVector`, `FRotator`
+- `U`: Objects that don't inherit `AActor` but `UObject`. e.g. `UActorComponent`, `UUserWidget`
+- `F`: general class or struct that doesn't inherit `UObject`. e.g.: `FVector`, `FRotator`
 - `I`: Interface classes. e.g. `IInterface`
 - `T`: Template classes. e.g. `TArray`, `TMap`
 

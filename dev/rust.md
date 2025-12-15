@@ -5,6 +5,7 @@
 - https://doc.rust-lang.org/book/
 - https://doc.rust-lang.org/rust-by-example/
 - https://tourofrust.com/
+- https://patterns.contextgeneric.dev/
 
 ## Glossary
 
@@ -23,6 +24,9 @@
 - destructor
     - (not related to destructuring)
     - a function to be called when a value is freed
+- slice
+    - two-words
+        - pointer
 
 ## Commands and tips
 
@@ -71,192 +75,67 @@ code C:\Users\<user_name>\.cargo\config.toml
 rustc-wrapper = "C:\\Users\\hotohoto\\scoop\\apps\\sccache\\current\\sccache.exe"
 ```
 
-## Rust by example
+## Debugging in VS Code
 
-### 1 Hello World
+### cppvsdbg
 
-https://doc.rust-lang.org/rust-by-example/hello.html
-```rust
-#[derive(Debug)]
-struct Point { x: i32, y: i32, }
-
-fn main() {
-    let p = Point { x: 10, y: 20 };
-    println!("{:#?}", p);
+```json
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug executable 'try-bevy'",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/target/debug/try-bevy.exe",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "environment": [
+                {
+                    "name": "CARGO_MANIFEST_DIR",
+                    "value": "${workspaceFolder}"
+                }
+            ]
+        }
+    ]
 }
 ```
 
-- `#[derive(Debug)]`
-    - Debug
-        - the name of `trait` to implement methods for.
-            - (`fmt()` in this case)
-    - `#[...]`
-        - represents for an attribute
-    - `derive`
-        - a built-in macro only used within `#[...]`
-- `println!`
-    - `!`
-        - indicates `println` is a macro
-    - `{}`
-        - requires `Display` trait
-    - `{:?}`
-        - requires `Debug` trait
-    - `{:#?}`
-        - requires `Debug` trait (?)
-        - for pretty print
+### lldb
 
-### 2 Primitives
-
-https://doc.rust-lang.org/rust-by-example/primitives/literals.html
-https://doc.rust-lang.org/rust-by-example/primitives/tuples.html (TODO)
-
-### 5 Types
-
-- `u8`
-- `i8`
-- `i16`
-- `f32`
-- `char`
-- `usize`
-    - 8 bytes
-            - used for heap variables
-        - ptr
-        - len
-        - capacity
-
-#### 5.1 Casting
-
-- 
-
-### 15 Scoping rules
-
-- local scope
-- global scope 😮
-
-#### 15.1 RAII
-
-(Resource Acquisition Is Initialization)
-
-```rust
-// raii.rs
-fn create_box() {
-    // Allocate an integer on the heap
-    let _box1 = Box::new(3i32);
-
-    // `_box1` is destroyed here, and memory gets freed
-}
-
-fn main() {
-    // Allocate an integer on the heap
-    let _box2 = Box::new(5i32);
-
-    // A nested scope:
-    {
-        // Allocate an integer on the heap
-        let _box3 = Box::new(4i32);
-
-        // `_box3` is destroyed here, and memory gets freed
-    }
-
-    // Creating lots of boxes just for fun
-    // There's no need to manually free memory!
-    for _ in 0u32..1_000 {
-        create_box();
-    }
-
-    // `_box2` is destroyed here, and memory gets freed
+```json
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug try-bevy",
+            "type": "lldb",
+            "request": "launch",
+            "program": "${workspaceFolder}/target/debug/try-bevy.exe",
+            "args": [],
+            "env": {
+                "CARGO_MANIFEST_DIR": "${workspaceFolder}"
+            }
+        }
+    ]
 }
 ```
-
-Destructor:
-
-```rust
-struct ToDrop;
-
-impl Drop for ToDrop {
-    fn drop(&mut self) {
-        println!("ToDrop is being dropped");
-    }
-}
-
-fn main() {
-    let x = ToDrop;
-    println!("Made a ToDrop!");
-}
-```
-
-#### 15.2 Ownership and moves
-
-##### 15.2.1 Mutability
-
-```rust
-fn main() {
-    let immutable_box = Box::new(5u32);
-
-    println!("immutable_box contains {}", immutable_box);
-
-    // Mutability error
-    //*immutable_box = 4;
-
-    // *Move* the box, changing the ownership (and mutability)
-    let mut mutable_box = immutable_box;
-
-    println!("mutable_box contains {}", mutable_box);
-
-    // Modify the contents of the box
-    *mutable_box = 4;
-
-    println!("mutable_box now contains {}", mutable_box);
-}
-```
-
-##### 15.2.2 Partial moves
-
-```rust
-fn main() {
-    #[derive(Debug)]
-    struct Person {
-        name: String,
-        age: Box<u8>,
-    }
-
-    // Error! cannot move out of a type which implements the `Drop` trait
-    //impl Drop for Person {
-    //    fn drop(&mut self) {
-    //        println!("Dropping the person struct {:?}", self)
-    //    }
-    //}
-    // TODO ^ Try uncommenting these lines
-
-    let person = Person {
-        name: String::from("Alice"),
-        age: Box::new(20),
-    };
-
-    // `name` is moved out of person, but `age` is referenced
-    let Person { name, ref age } = person;
-
-    println!("The person's age is {}", age);
-
-    println!("The person's name is {}", name);
-
-    // Error! borrow of partially moved value: `person` partial move occurs
-    //println!("The person struct is {:?}", person);
-
-    // `person` cannot be used but `person.age` can be used as it is not moved
-    println!("The person's age from person struct is {}", person.age);
-}
-```
-
-#### 15.3 Borrowing
-
-#### 15.4 Lifetimes
 
 ### Unsorted
 
 - `trait`
     - it's like interfaces or mixins
     - can provide a default implementation
+- `&` operator
+    - takes the address of a stack or heap value
+- `*` operator
+    - dereference to access the actual value
 - reference types for function arguments
     - &T
         - read only
@@ -277,12 +156,12 @@ fn main() {
             - 👉 efficient since it's used for small data
                 - e.g. i32, f32, bool, char, ...
             - 👉 safe
-        - move the ownership of the types without `Copy` trait
+        - move the ownership of the types that doesn't implement `Copy` trait
             - e.g. String, Vec, Box, ...
             - 👉 efficient
             - 👉 safe
-    - mut T
-        - not allowed
+    - (mut T)
+        - not allowed!!
 - macros
     - (declarative - what)
         - `macro_rules! foo`
@@ -292,60 +171,3 @@ fn main() {
         - `#[proc_macro_derive]`
             - `derive`
         - `#[proc_macro_attribute]`
-            - 
-
-## Tour of Rust
-
-TODO:
-
-https://tourofrust.com/29_en.html
-https://tourofrust.com/30_en.html
-
-```rust
-#![allow(dead_code)] // this line prevents compiler warnings
-
-enum Species { Crab, Octopus, Fish, Clam }
-enum PoisonType { Acidic, Painful, Lethal }
-enum Size { Big, Small }
-enum Weapon {
-    Claw(i32, Size),
-    Poison(PoisonType),
-    None
-}
-
-struct SeaCreature {
-    species: Species,
-    name: String,
-    arms: i32,
-    legs: i32,
-    weapon: Weapon,
-}
-
-fn main() {
-    let ferris = SeaCreature {
-        // String struct is also on stack,
-        // but holds a reference to data on heap
-        species: Species::Crab,
-        name: String::from("Ferris"),
-        arms: 2,
-        legs: 4,
-        weapon: Weapon::Claw(2, Size::Small),
-    };
-
-    match ferris.species {
-        Species::Crab => {
-            match ferris.weapon {
-                Weapon::Claw(num_claws,size) => {
-                    let size_description = match size {
-                        Size::Big => "big",
-                        Size::Small => "small"
-                    };
-                    println!("ferris is a crab with {} {} claws", num_claws, size_description)
-                },
-                _ => println!("ferris is a crab with some other weapon")
-            }
-        },
-        _ => println!("ferris is some other animal"),
-    }
-}
-```

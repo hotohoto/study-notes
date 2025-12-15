@@ -107,6 +107,7 @@ git config --global credential.helper 'cache --timeout=86400'  # 1 day
 git config --global credential.helper 'cache --timeout=2592000'  # 1 month
 git config --global credential.helper 'cache --timeout=31536000'  # 1 year
 git config --global credential.helper 'cache --timeout=315360000'  # 10 years
+git config --global credential.helper 'cache --timeout=2147483647'  # max
 
 git fetch
 ```
