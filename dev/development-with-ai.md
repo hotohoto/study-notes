@@ -1,4 +1,28 @@
-# IDE
+# Development with AI
+
+## Spec-driven development
+
+(Good questions)
+
+```
+/openspec-proposal We’re planning to develop foo bar features. Before writing the spec, ask clarifying questions about any unclear parts.
+```
+
+```
+/openspec-proposal Now write the spec. Leave any unclear points in `discussion.md`.
+```
+
+```
+/openspec-proposal Now write the spec. Leave any unclear points in `discussion.md`.
+```
+
+```
+Review the answered questions in discussion.md and reflect the updates in related documents (specs, proposals, tasks, designs, etc.). Remove the resolved questions.
+```
+
+```
+If there are still important unanswered questions for implementation, leave them in `discussion.md`.
+```
 
 ## Cursor
 

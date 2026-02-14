@@ -133,9 +133,33 @@ rustc-wrapper = "C:\\Users\\hotohoto\\scoop\\apps\\sccache\\current\\sccache.exe
     - it's like interfaces or mixins
     - can provide a default implementation
 - `&` operator
-    - takes the address of a stack or heap value
+    - (expression - shared borrow)
+        - `let r = &x;`
+        - creates a shared reference (borrows `x`)
+    - (mutable borrow expression)
+        - `let r = &mut x;`
+        - creates a mutable reference (borrows mutably)
+    - (type position)
+        - `fn foo(x: &i32)`
+        - declares a reference type
+    - (pattern matching)
+        - `match r { &v => println!("{}", v), }`
+        - matches and dereferences a reference value
+    - (with lifetime)
+        - `&'a T`
+        - reference with explicit lifetime
+- `ref`
+    - (pattern only)
+            - `let Some(ref s) = value;`
+            - binds by reference instead of moving
+            - this _is borrowing_ (just done via pattern binding)
 - `*` operator
-    - dereference to access the actual value
+    - (expression)
+        - `*r`
+        - dereferences a reference to access the value
+    - (pattern)
+        - implicit via &pattern (e.g., &v)
+        - removes one layer of reference during matching
 - reference types for function arguments
     - &T
         - read only

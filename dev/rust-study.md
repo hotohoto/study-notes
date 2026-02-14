@@ -103,15 +103,108 @@ fn set_email(u: User) -> User {
 - https://tourofrust.com/29_en.html
 - https://tourofrust.com/30_en.html
 - https://practice.course.rs/compound-types/enum.html
-    - TODO
 
 #### 3.2.1 use
+
+```rust
+#![allow(dead_code)]
+
+enum Stage {
+    Beginner,
+    Advanced,
+}
+
+enum Role {
+    Student,
+    Teacher,
+}
+
+fn main() {
+    use Stage::{Beginner, Advanced};
+    use Role::*;
+
+    let stage = Beginner;
+    let role = Student;
+
+    match stage {
+        Beginner => println!("Beginners are starting their learning journey!"),
+        Advanced => println!("Advanced learners are mastering their subjects..."),
+    }
+
+    match role {
+        Student => println!("Students are acquiring knowledge!"),
+        Teacher => println!("Teachers are spreading knowledge!"),
+    }
+}
+```
 
 #### 3.2.2 C-like
 
 #### 3.2.3 Testcase: linked-list
 
+```rust
+use crate::List::*;
+
+enum List {
+    Cons(u32, Box<List>),
+    Nil,
+}
+
+impl List {
+    fn new() -> List {
+        Nil
+    }
+
+    fn prepend(self, elem: u32) -> List {
+        Cons(elem, Box::new(self))
+    }
+
+    fn len(&self) -> u32 {
+        match *self {
+            Cons(_, ref tail) => 1 + tail.len(),
+            Nil => 0
+        }
+    }
+
+    fn stringify(&self) -> String {
+        match *self {
+            Cons(head, ref tail) => {
+                format!("{}, {}", head, tail.stringify())
+            },
+            Nil => {
+                format!("Nil")
+            },
+        }
+    }
+}
+
+fn main() {
+    let mut list = List::new();
+
+    list = list.prepend(1);
+    list = list.prepend(2);
+    list = list.prepend(3);
+
+    println!("linked list has length: {}", list.len());
+    println!("{}", list.stringify());
+}
+```
+
+- `crate`
+    - means current crate
+
 ### 3.3 Constants
+
+```rust
+static LANGUAGE: &str = "Rust";  
+const THRESHOLD: i32 = 10;
+```
+
+- `static`
+    - defines a global memory object with `'static` lifetime.
+- `const`
+    - defines a named compile-time constant value
+    - does not occupy a fixed memory location at runtime.
 
 ## 4 Variable bindings
 
