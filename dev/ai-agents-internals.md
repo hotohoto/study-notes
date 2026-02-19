@@ -1,6 +1,4 @@
-# AI-agents
-
-
+# AI agents internals
 
 (external links)
 
@@ -11,15 +9,6 @@
   - https://github.com/huggingface/agents-course
 - https://huggingface.co/blog/smolagents
 
-
-
-(TODO)
-
-- deadline: 2025 May 1st
-- 
-
-
-
 ## 1 Introduction to agents
 
 https://huggingface.co/learn/agents-course/unit1/introduction
@@ -29,35 +18,23 @@ https://huggingface.co/learn/agents-course/unit1/introduction
   - can use multiple tools
 - tools
 
-
-
 ### Messages and special tokens
 
 https://huggingface.co/learn/agents-course/unit1/messages-and-special-tokens
 
 - chat-templates
-
   - (includes)
-
     - system messages
-
       - list of tools
-
       - how to format actions
       - guides for the thought process
-
     - conversations
-
       - user messages
       - assistant Messages
-
   - e.g.
-
     - chatml
       - https://github.com/openai/openai-python/blob/release-v0.28.0/chatml.md
-
   - references
-
     - https://huggingface.co/docs/transformers/main/en/chat_templating
 
 ### What are tools?
@@ -79,8 +56,6 @@ Then, the tool description like below is provided to LLM as a part of the system
 Tool Name: calculator, Description: Multiply two integers., Arguments: a: int, b: int, Outputs: int
 ```
 
-
-
 - https://modelcontextprotocol.io/
 - https://github.com/modelcontextprotocol/python-sdk
 
@@ -101,13 +76,9 @@ Guided to do so by the system messages
 
 The method called ReAct. See below.
 
-
-
 ### Thought: Internal Reasoning and the ReAct Approach
 
 https://huggingface.co/learn/agents-course/unit1/thoughts
-
-
 
 Chain-of-Though (CoT)
 
@@ -125,8 +96,6 @@ ReAct
   - Let's think step by step
 - https://arxiv.org/pdf/2210.03629
 - ICLR 2023
-
-
 
 ### Actions: Enabling the Agent to Engage with Its Environment
 
@@ -152,31 +121,16 @@ https://huggingface.co/learn/agents-course/unit1/actions
 - parse
   - 
 
-
-
 ## 1.5 Fine-tuning an LLM for function-calling
-
-
 
 ## 2 Frameworks for AI agents
 
-
-
 ## 2.1 The smolagents framework
-
-
 
 ## 2.2 The LlamaIndex framework
 
-
-
 ## 2.3 LangGraph
-
-
 
 ## 3 Use cases
 
-
-
 ## 4 Final assessment with benchmark
-
