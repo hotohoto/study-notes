@@ -6,16 +6,27 @@ Study guide:
     - https://doc.rust-lang.org/rust-by-example/
 - Try "Rust By Practice 💪" with the help of any AI chatbot.
     - https://practice.course.rs/
-    - https://youtu.be/BpPEoZW5IiY?si=pArhPWoSP5vxLP-Z
+    - https://youtu.be/BpPEoZW5IiY
 - Also refer to "Tour of Rust 🎒" if needed
     - https://tourofrust.com
 
-TODO/WIP:
+TODO:
 
-- Watch video
-    - https://practice.course.rs/generics-traits/traits.html
-    - https://youtu.be/BpPEoZW5IiY?si=pArhPWoSP5vxLP-Z
-    -
+- [07:09:51](https://www.youtube.com/watch?v=BpPEoZW5IiY&t=25791s) Associated Types
+- [07:39:31](https://www.youtube.com/watch?v=BpPEoZW5IiY&t=27571s) String
+    - https://practice.course.rs/collections/string.html
+- [07:59:52](https://www.youtube.com/watch?v=BpPEoZW5IiY&t=28792s) Vectors
+- [08:29:00](https://www.youtube.com/watch?v=BpPEoZW5IiY&t=30540s) HashMaps
+- [08:52:45](https://www.youtube.com/watch?v=BpPEoZW5IiY&t=31965s) Type Coercion
+- [09:04:54](https://www.youtube.com/watch?v=BpPEoZW5IiY&t=32694s) From & Into
+- [09:36:03](https://www.youtube.com/watch?v=BpPEoZW5IiY&t=34563s) panic!
+- [09:44:56](https://www.youtube.com/watch?v=BpPEoZW5IiY&t=35096s) Result
+- [10:28:23](https://www.youtube.com/watch?v=BpPEoZW5IiY&t=37703s) Cargo, Crates & Modules
+- [11:08:28](https://www.youtube.com/watch?v=BpPEoZW5IiY&t=40108s) Debug & Display
+- [11:30:13](https://www.youtube.com/watch?v=BpPEoZW5IiY&t=41413s) Lifetimes
+- [12:14:46](https://www.youtube.com/watch?v=BpPEoZW5IiY&t=44086s) Lifetime Elision
+- [12:38:53](https://www.youtube.com/watch?v=BpPEoZW5IiY&t=45533s) Closures
+- [13:30:08](https://www.youtube.com/watch?v=BpPEoZW5IiY&t=48608s) Iterators
 
 ## 1 Hello World
 
@@ -547,24 +558,36 @@ fn main() {
     - `Debug`, `Clone`, `Copy`, `PartialEq`, ...
     - automatically implemented for a `struct` or an `enum` by the Rust compiler
 
+(type converting between tuple structs)
+
+```rust
+struct Color(i32, i32, i32);
+struct Point(i32, i32, i32);
+
+impl From<Point> for Color {
+    fn from(p: Point) -> Self {
+        Color(p.0, p.1, p.2)
+    }
+}
+
+fn main() {
+    let v = Point(0, 127, 255);
+    check_color(v.into());
+
+    println!("Success!");
+}
+
+fn check_color(p: Color) {
+    let Color(x, y, z) = p;
+    assert_eq!(x, 0);
+    assert_eq!(p.1, 127);
+    assert_eq!(z, 255);
+}
+```
+
+- Implementing `From<Point>` for `Color` automatically provides `Into<Color>` for `Point` via the blanket implementation of `Into`.
+
 ### 14.4 Bounds
-
-- Let's say we have a `Summary` trait.
-
-```rust
-pub fn notify(item: &impl Summary) {
-    println!("Breaking news! {}", item.summarize());
-}
-```
-
-```rust
-pub fn notify<T: Summary>(item: &T) {
-    println!("Breaking news! {}", item.summarize());
-}
-```
-
-- The two functions above are equivalent.
-- The `impl Trait` syntax is just a syntactic sugar for the more verbose generic type parameter syntax.
 
 ```rust
 fn sum<T: std::ops::Add<Output = T>>(a: T, b: T) -> T {
@@ -773,6 +796,159 @@ fn main() {
 
 ## 16 Traits
 
+(dispatch)
+
+```rust
+pub fn make_sound(a: &impl Animal) {
+    println!("{}", a.speak());
+}
+```
+
+```rust
+pub fn make_sound<T: Animal>(a: &T) {
+    println!("{}", a.speak());
+}
+```
+
+- The two functions above are equivalent.
+- The `impl Trait` syntax is just a syntactic sugar for the more verbose generic type parameter syntax.
+- They are for static dispatch
+
+```rust
+trait Foo {
+    fn method(&self) -> String;
+}
+
+impl Foo for u8 {
+    fn method(&self) -> String {
+        format!("u8: {}", *self)
+    }
+}
+
+impl Foo for String {
+    fn method(&self) -> String {
+        format!("string: {}", *self)
+    }
+}
+
+fn static_dispatch<T: Foo>(v: &T) {
+    println!("{}", v.method());
+}
+
+fn dynamic_dispatch(v: &dyn Foo) {
+    println!("{}", v.method());
+}
+
+fn main() {
+    let x = 5u8;
+    let y = "Hello".to_string();
+
+    static_dispatch(&x);
+    static_dispatch(&y);
+    dynamic_dispatch(&x);
+    dynamic_dispatch(&y);
+
+    println!("Success!");
+}
+```
+
+- dispatch
+    - determines which implementation of a method is called
+    - static dispatch
+        - method is resolved at compile time
+        - usually faster (no vtable lookup, allows inlining)
+        - `impl Trait` is
+    - dynamic dispatch
+        - allows runtime polymorphism (more flexible)
+        - uses a fat pointer and a vtable to resolve methods at runtime
+
+(trait object)
+
+```rust
+trait Animal {
+    fn speak(&self);
+}
+
+fn make_sound(a: &dyn Animal) {
+    a.speak();
+}
+
+fn main() {
+    struct Dog;
+    impl Animal for Dog {
+        fn speak(&self) {
+            println!("Woof!");
+        }
+    }
+
+    let my_dog = Dog;
+    make_sound(&my_dog);
+}
+```
+
+```rust
+trait Animal {
+    fn speak(&self);
+}
+
+struct Dog;
+
+impl Animal for Dog {
+    fn speak(&self) {
+        println!("Woof!");
+    }
+}
+
+fn make_sound(a: &dyn Animal) {
+    a.speak();
+}
+
+fn main() {
+    let a: Box<dyn Animal> = Box::new(Dog);
+    make_sound(a.as_ref());
+}
+```
+
+- `dyn Animal` is the trait object type
+    - `&dyn Animal` is a reference to a trait object.
+        - But, people casually call `&dyn Trait` a trait object
+    - `dyn Animal` is a **DST (Dynamically Sized Type)**
+    - `dyn Animal` cannot be used as a standalone value because it is unsized.
+    - It must be used behind a pointer such as `&`, `Box`, `Rc`, etc.
+    - Therefore, it cannot be used directly as `dyn Animal` and must appear behind a pointer like `&dyn Animal` or `Box<dyn Animal>`.
+    - Method calls through a trait object use dynamic dispatch.
+- `Box<T>`
+    - A smart pointer that owns data allocated on the heap
+    - Useful for heap allocation and for working with dynamically sized types (e.g., trait objects)
+    - Behaves like an owning pointer to heap-allocated data and automatically frees it when dropped
+
+```mermaid
+graph LR
+subgraph Box1 ["Box&lt;T&gt;"]
+    ptr1["ptr"]
+end
+
+subgraph Box2 ["Box&lt;dyn T&gt;"]
+    direction TB
+    ptr2["ptr"]
+    vptr["vptr"]
+end
+
+subgraph Heap ["Heap Memory"]
+    T1["T"]
+    T2["T"]
+
+    subgraph VTable ["vtable"]
+        direction TB
+        v["destructor<br>size<br>align<br>methods..."]
+    end
+end
+
+ptr1 --> T1
+ptr2 --> T2
+vptr --> v
+```
+
 ### 16.1 Derive
 
 ### 16.2 Returning traits with `dyn`
@@ -812,44 +988,6 @@ fn main() {
 }
 ```
 
-- `&dyn Animal` is also called a trait object.
-
-(static dispatch vs dynamic dispatch)
-
-```mermaid
-graph LR
-subgraph Box1 ["Box&lt;T&gt;"]
-    ptr1["ptr"]
-end
-
-subgraph Box2 ["Box&lt;dyn T&gt;"]
-    direction TB
-    ptr2["ptr"]
-    vptr["vptr"]
-end
-
-subgraph Heap ["Heap Memory"]
-    T1["T"]
-    T2["T"]
-
-    subgraph VTable ["vtable"]
-        direction TB
-        v["destructor<br>size<br>align<br>methods..."]
-    end
-end
-
-ptr1 --> T1
-ptr2 --> T2
-vptr --> v
-```
-- Box
-    - Smarter pointer that allows to store data on the heap rather than the stack
-    - Use Box when you have a type whose size can't be known at compile time
-    - Returns a pointer to the data stored on the heap
-- dynamic dispatch uses a fat pointer
-- dynamic dispatch is more flexible
-- static dispatch is faster
-
 ### 16.3 Operator overloading
 
 ### 16.4 Drop
@@ -862,38 +1000,105 @@ vptr --> v
 
 ### 16.8 Supertraits
 
+```rust
+trait Person {
+    fn name(&self) -> String;
+}
+
+trait Student: Person {
+    fn university(&self) -> String;
+}
+
+trait Programmer {
+    fn fav_language(&self) -> String;
+}
+
+
+trait CompSciStudent: Programmer + Student {
+    fn git_username(&self) -> String;
+}
+
+fn comp_sci_student_greeting(student: &dyn CompSciStudent) -> String {
+    format!(
+        "My name is {} and I attend {}. My favorite language is {}. My Git username is {}",
+        student.name(),
+        student.university(),
+        student.fav_language(),
+        student.git_username()
+    )
+}
+
+struct CSStudent {
+    name: String,
+    university: String,
+    fav_language: String,
+    git_username: String
+}
+
+impl Person for CSStudent {
+    fn name(&self) -> String {self.name.clone()}
+}
+impl Student for CSStudent {
+    fn university(&self) -> String {self.university.clone()}
+}
+impl Programmer for CSStudent {
+    fn fav_language(&self) -> String {self.fav_language.clone()}
+}
+impl CompSciStudent for CSStudent {
+    fn git_username(&self) -> String {self.git_username.clone()}
+}
+
+fn main() {
+    let student = CSStudent {
+        name: "Sunfei".to_string(),
+        university: "XXX".to_string(),
+        fav_language: "Rust".to_string(),
+        git_username: "sunface".to_string()
+    };
+
+    println!("{}", comp_sci_student_greeting(&student));
+}
+```
+
 ### 16.9 Disambiguating overlapping traits
 
-### Unsorted
-
-(type converting between tuple structs)
-
 ```rust
-struct Color(i32, i32, i32);
-struct Point(i32, i32, i32);
+trait Pilot {
+    fn fly(&self) -> String;
+}
 
-impl From<Point> for Color {
-    fn from(p: Point) -> Self {
-        Color(p.0, p.1, p.2)
+trait Wizard {
+    fn fly(&self) -> String;
+}
+
+struct Human;
+
+impl Pilot for Human {
+    fn fly(&self) -> String {
+        String::from("This is your captain speaking.")
+    }
+}
+
+impl Wizard for Human {
+    fn fly(&self) -> String {
+        String::from("Up!")
+    }
+}
+
+impl Human {
+    fn fly(&self) -> String {
+        String::from("*waving arms furiously*")
     }
 }
 
 fn main() {
-    let v = Point(0, 127, 255);
-    check_color(v.into());
+    let person = Human;
 
-    println!("Success!");
-}
-
-fn check_color(p: Color) {
-    let Color(x, y, z) = p;
-    assert_eq!(x, 0);
-    assert_eq!(p.1, 127);
-    assert_eq!(z, 255);
+    assert_eq!(Pilot::fly(&person), "This is your captain speaking.");
+    assert_eq!(Wizard::fly(&person), "Up!");
+    assert_eq!(Human::fly(&person), "*waving arms furiously*");
 }
 ```
-
-- Implementing `From<Point>` for `Color` automatically provides `Into<Color>` for `Point` via the blanket implementation of `Into`.
 
 ## 17 macro_rules!
 

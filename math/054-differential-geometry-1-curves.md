@@ -14,8 +14,6 @@
   - ex 1.2.4
 - [수학아빠sk... 어디교수님?](https://youtube.com/playlist?list=PL0ApUgH_3J1X3HTC9CX3r1dgJCgFy2V4W)
 
-
-
 ## Parameterized differentiable curve
 
 https://youtu.be/4V8I02AhWsQ
@@ -91,7 +89,6 @@ https://youtu.be/VAry7h0jFyo
     - $(u \times v) \times w = (u \cdot v) v - (v \cdot w) u$
     - ${d \over dt}(u(t) \times v(t)) = u'(t) \times v(t) + u(t) \times v'(t)$
 
-
 ## Curvature and torsion of a curve
 
 https://youtu.be/v2NpwCOZbqA
@@ -118,7 +115,7 @@ https://youtu.be/v2NpwCOZbqA
 - osculating plane
   - definition:
     - the plane determined by $\alpha'(s)$ and $\alpha''(s)$.
-- $\alpha(s)$ singular point of order  1 
+- $\alpha(s)$ singular point of order 1
   - $\iff \alpha''(s) = 0 \iff k(s) = 0$
 - $\alpha(s)$ singular point of order 0
   - $\iff \alpha'(s) = 0$
@@ -153,7 +150,6 @@ https://youtu.be/v2NpwCOZbqA
   - or TNB frame
   - or orthonomal frame
   - $\{T, N , B\}$
-
 
 ## A reparameterization of a curve
 
@@ -218,6 +214,7 @@ https://youtu.be/UzMRb4JxQRs
 - $\Rightarrow$ The curvature of a plane curve is the rate of the change of the angle which the tangent vector field makes with the x-axis or any fixed direction.
 
 ### Orthonormality of {T, N, B}
+
 (Lemma)
 
 - $\alpha(s)$: parameterized by arc length
@@ -308,7 +305,6 @@ $\alpha(s)$ is a plane curve $k \neq 0$
 ## A characterization of a helix
 
 https://youtu.be/A40S18IAF_Y
-
 
 (helix)
 
@@ -516,7 +512,7 @@ Answer:
           - $u_3(0) = F$
     - By ODE theory (Picard–Lindelöf theorem) this system has a unique solution.
   - step 2
-    - Claim: $\{u_j\}$  is a moving frame of $\alpha$ with $\bar{k}$ and $\bar{\tau}$
+    - Claim: $\{u_j\}$ is a moving frame of $\alpha$ with $\bar{k}$ and $\bar{\tau}$
       - (proof of claim)
         - I. $\{u_i\}$ is an orthonormal set?
           - $P_{ij}(s) := <u_i(s), u_j(s)>$
@@ -532,7 +528,6 @@ Answer:
                   - $\delta_{ij}$ is the Kronecker-delta function
                     - 0: $i \neq j$
                     - 1: $i = j$
-
           - By ODE theory (Picard–Lindelöf theorem) this system has a unique solution.
             - and $\delta_{ij}$ is the only solution
             - note:
@@ -578,14 +573,14 @@ Answer:
       - i.e.
         - given a rigid motion $M: \mathbb{R}^3 \to \mathbb{R}^3$,
         - $\int_a^b|\alpha^\prime(t)|dt = \int_a^b|(M \circ \alpha)^\prime(t)|dt$
-  - Suppose $\exist$ two curves $\alpha(s)$ and $\beta(s)$ s.t.
+  - Suppose there exist two curves $\alpha(s)$ and $\beta(s)$ s.t.
     - $k_\alpha(s) = k_\beta(s)$
     - $\tau_\alpha(s) = \tau_\beta(s)$
     - orthonomral basis are given as
       - $\{T_\alpha, N_\alpha, B_\alpha\}$
       - $\{T_\beta, N_\beta, B_\beta\}$
     - $\forall s \in I$
-  - At a given $s = s_0 \in I$, $\exist$ a rigid motion M s.t.
+  - At a given $s = s_0 \in I$, there exist a rigid motion M s.t.
     - $\alpha(s_0) = M \circ \beta(s_0)$
     - $T_\alpha(s_0) = M \circ T_\beta(s_0)$
     - $N_\alpha(s_0) = M \circ N_\beta(s_0)$
@@ -596,7 +591,7 @@ Answer:
     - $N_\alpha(s_0) = N_\beta(s_0)$
     - $B_\alpha(s_0) = B_\beta(s_0)$
   - Frenet-Serret Formula
-    - $
+    - $$
       \left(\begin{array}{c}
       {T_\alpha}^{\prime} \\
       {N_\alpha}^{\prime} \\
@@ -610,8 +605,8 @@ Answer:
       N_\alpha \\
       B_\alpha
       \end{array}\right)
-      $
-    - $
+      $$
+    - $$
       \left(\begin{array}{c}
       {T_\beta}^{\prime} \\
       {N_\beta}^{\prime} \\
@@ -625,7 +620,7 @@ Answer:
       N_\beta \\
       B_\beta
       \end{array}\right)
-      $
+      $$
   - Observe
     - ${1\over2}(|T_\alpha - T_\beta|^2 + |N_\alpha - N_\beta|^2 + |B_\alpha - B_\beta|^2)^\prime$
     - $=<T_\alpha - T_\beta, {T_\alpha}^\prime - {T_\beta}^\prime> + <N_\alpha - N_\beta, {N_\alpha}^\prime - {N_\beta}^\prime> + <B_\alpha - B_\beta, {B_\alpha}^\prime - {B_\beta}^\prime>$
@@ -647,7 +642,6 @@ Answer:
 - For the plane curves, we can fix $N$ with respect to $T$ among two possible choices, then $k$ becomes an oriented/signed curvature.
 - But, in $\mathbb{R}^3$ there are infitely many choices of $N$.
 
-
 ## An explicit representation of a helix
 
 https://youtu.be/y3C8sxGFTuc?si=JZuXeM6ya2hs8R3t
@@ -656,8 +650,6 @@ https://youtu.be/y3C8sxGFTuc?si=JZuXeM6ya2hs8R3t
 
 - Let $\alpha(s)$ be a helix with $k \gt 0$ $(\tau = ck)$ for some constant $c$
 - Find $\alpha(s)$ explicitly
-
-
 
 (sol.)
 
@@ -728,7 +720,7 @@ $$
 \Longrightarrow {\mathrm{d}B \over \mathrm{d}t} = cN
 $$
 
-Thus, 
+Thus,
 $$
 {\mathrm{d}^2N \over \mathrm{d} t^2} = {\mathrm{d} \over \mathrm{d}t}(-T - cB) = -N -c^2N = - (1 + c^2)N 
 $$
@@ -880,7 +872,7 @@ $$
 $$
 .
 
-Therefore, with respect to an orthonormal basis $\left\{ A, B, A\times B \right\}$, 
+Therefore, with respect to an orthonormal basis $\left\{ A, B, A\times B \right\}$,
 $$
 \alpha(s) = {1 \over \omega}
 \left(
@@ -902,8 +894,6 @@ $$
 
 Q.E.D.
 
-
-
 ## Local canonical form of a curve
 
 - https://youtu.be/ol5oYW--UTc?si=NAyu23iznwz9zSxY
@@ -922,16 +912,10 @@ where $\lim \limits_{s \to 0} {R\over s^3} = 0$.
 Note that,
 
 - $\alpha^\prime = T$
-
 - $\alpha^{\prime\prime} = kN$
-
 - $\alpha^{\prime\prime\prime} = k^\prime N + kN^\prime = k^\prime N -k^2T - k\tau B$
 
-
-
 TODO https://youtu.be/ol5oYW--UTc?si=R9oosH9Vde9Vwxi_&t=2429
-
-
 
 ## Misc.
 
@@ -975,16 +959,12 @@ TODO https://youtu.be/ol5oYW--UTc?si=R9oosH9Vde9Vwxi_&t=2429
 - concave
   - the second derivative is negative
 
-
-
 ## References
 
 (main)
 
 - [Elementary Differential Geometry](https://play.google.com/books/reader?id=9nT1fOwATf0C)
 
-
 (extra)
 
 - [세종대학교 오장헌 미분기하학 1](http://www.kocw.net/home/cview.do?mty=p&kemId=1197788&ar=relateCourse)
-

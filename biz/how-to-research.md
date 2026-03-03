@@ -10,11 +10,9 @@
   - Pick a SOTA model if codes are available
   - Reproduce the model
   - Try the minimal configuration of the model ⭐
-
 - If the code is not clean and a lot changes are required
   - prepare a refactored/new code base
     - otherwise I'll be facing time-spending debugging issues...
-
 - if not,
   - don't spend much time on it
 - Repeat
@@ -27,14 +25,10 @@
   - Analyze it
   - discuss it
 
-
-
 ## Team works
 
 - Grab the bird-eye-view of the task
   - things are more dynamic and unstructured than regular engineering/development process
-
-
 
 ## Patent writing
 

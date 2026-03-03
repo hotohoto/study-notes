@@ -50,7 +50,19 @@
     - nodes and edges to graph
     - (not compatible with the out of `features_from_polygon()`)
 
-## Remarks
+## Self-host Overpass-API
+
+```sh
+wget `http://dev.overpass-api.de/releases/osm-3s_latest.tar.gz`
+tar xvzf osm-3s_latest.tar.gz 
+cd osm-3s_osm-3s_v0.7.62.10
+
+mv bin bin.bak && mkdir bin
+git clone --depth=1 https://github.com/ZeLonewolf/better-overpass-scripts.git bin
+rm -rf bin/.git
+
+
+```
 
 ## Best places
 
@@ -60,3 +72,5 @@ https://www.bestofosm.org/
 - Estonia
 - Mainz
 - Amsterdam
+
+##
