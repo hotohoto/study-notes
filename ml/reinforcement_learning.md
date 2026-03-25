@@ -9,6 +9,7 @@
 - in the Pocliy Gradient theorem, what is the difference between $d_{\pi_\theta}(s)$ and $d(s)$
 
 ## What is RL
+
 ### Key Concepts
 
 - Environment
@@ -16,6 +17,8 @@
 - State (S)
 - Action (A)
 - episode
+- reward (r)
+- $\gamma$
 
 (RL algorithms categories)
 - model-based
@@ -35,7 +38,6 @@
   - Use the deterministic outcomes or samples from the target policy to train the algorithm.
 - off-policy
   - Training on a distribution of transitions or episodes produced by a different behavior policy rather than that produced by the target policy.
-
 - Model
   - defines
     - Transition probability (P)
@@ -58,6 +60,7 @@
     - A-value or advantage function
       - Q-value - V-value
 - Optimal value function
+
 ### Markov Decision Processes
 
 - MP
@@ -71,9 +74,10 @@
 
 ## Common Approaches
 
-
 ### Dynamic programming
+
 ### Monte-Carlo methods
+
 ### Temporal-Difference Learning
 
 - steps
@@ -118,6 +122,7 @@
 ### Combinining TD and MC learning
 
 - n-step TD learning (?)
+
 ### Policy Gradient
 
 - policy iteration
@@ -162,14 +167,17 @@
 ### AlphaGo Zero
 
 ### Alpha Zero
+
   - https://www.goratings.org/en/
   - https://en.wikipedia.org/wiki/Go_ranks_and_ratings#Elo_ratings_as_used_in_Go
 
 ### MuZero
+
 - cnn
   - image input => hidden states
 - rnn
   - previous hidden states + hypothetical next action => policy, value, immediate reward
+
 ## References
 
 - https://medium.com/@parsa_h_m/deep-reinforcement-learning-dqn-double-dqn-dueling-dqn-noisy-dqn-and-dqn-with-prioritized-551f621a9823

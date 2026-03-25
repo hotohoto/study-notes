@@ -6,44 +6,152 @@
     - y-up, right handed
 - written in [Rust](rust.md).
 
+## TODO
+
+- take a look at the rendering crate
+
 ## Getting started
 
 ## Glossary
 
+- `App`
+    - the main container
+    - (fields)
+        - sub_apps
+        - runner: RunnerFn
+    - (methods)
+        - register_required_components()
+- `AppExit`
+    - enum
+    - variants
+        - `Success`
+        - `Error`
+- `Arc`
+    - stands for "Automatically Reference Counted"
 - `Archetype`
-    - collection of entities that have the same set of components
+    - a kind of type associated with a bundle (a set of components)
+    - (fields)
+        - `id: ArchetypeId<u32>`
+        - `table_id: TableId<u32>`
+        - `edges: Edges`
+        - `entities: Vec<ArchetypeEntity>`
+        - `components: ImmutableSparseSet<ComponentId, ArchetypeComponentInfo>`
+        - `flags: ArchetypeFlags`
+- `ArchetypeGeneration`
+- `Archetypes`
+    - https://taintedcoders.com/bevy/archetypes
+    - (fields)
+        - `archetypes: Vec<Archetype>`
+        - `by_components: HashMap<ArchetypeComponents, ArchetypeId>`
+        - `by_component: ComponentIndex`
+    - (methods)
+        - ...
+        - `generation(&self) -> ArchetypeGeneration`
 - `Asset`
     - supposed to be loaded asynchronously
+- `Assets`
+- `AssetServer`
+    - (methods)
+        - `load() -> Handle<Asset>`
+        - `is_loaded_with_dependencies()`
 - `Bundle`
-    - a set of components
+    - a trait representing a set of components
+    - a wrapper just for the convenience
 - `Commands`
     - represents mutation to be applied to `World`
 - `Component`
     - data fields
+- `Edges`
+    - used as a cache when inserting/removing/taking an entity from an archetype to another.
+    - (fields)
+        - `insert_bundle: SparseArray<BundleId, ArchetypeAfterBundleInsert>`
+        - `remove_bundle: SparseArray<BundleId, Option<ArchetypeId>>`
+        - `take_bundle: SparseArray<BundleId, Option<ArchetypeId>>`
 - `Entity`
     - just an ID
+    - (fields)
+        - `index: EntityIndex(NonMaxU32)`
+        - `generation: EntityGeneration(u32)`,
+- `EntityGeneration(u32)`
+    - tracks different versions of an `EntityIndex`
+- `EntityLocation`
+    - (fields)
+        - `archetype_id: ArchetypeId`
+        - `archetype_row: ArchetypeRow`
+        - `table_id: TableId`
+        - `table_row: TableRow`
+- `EntityMeta`
+    - (fields)
+        - `generation: EntityGeneration`
+        - `location`
+        - `spawned_or_despawned`
+- `Entities`
+    - (fields)
+        - `meta: Vec<EntityMeta>`
 - `Event`
+- `Handle`
+    - not asset itself
+    - (variants)
+        - `Strong(Arc<StrongHandle>)`
+        - Uuid
 - `Plugin`
-    - a module that modifies App
-    - contains
-        - systems
-        - resources
-        - settings
+    - trait to specify a module that modifies App
+    - (fields)
+        - build()
+        - ready()
+        - finish()
+        - cleanup()
+        - name()
+        - is_unique()
     - e.g.
         - `UiPlugin`
         - `RenderPlugin`
+- `PluginState`
+    - (variants)
+        - `Adding`
+        - `Ready`
+        - `Finished`
+        - `Cleaned`
 - `Query`
+    - run based on archetypes
 - `Resource`
-    - global data
+    - a trait for globally unique data
 - `Schedule`
+- `SparseSet`
 - `StorageType`
-    - Table
-    - `SparseSet`
+    - (variants)
+        - `Table`
+        - `SparseSet`
+- `SubApp`
+    - (fields)
+        - `world: World`
+            - hidden from users for parallel execution
+        - `plugin_registry: Vec<Box<dyn Plugin>>`
+        - `plugin_names: HashSet<String>`
+        - `plugin_build_depth`: usize
+        - `plugins_state: PluginState`
+        - `update_schedule`
+        - `extract: Option<ExtractFn>`
+- `SubApps`
+    - (fields)
+        - `main: SubApp`
+        - `sub_apps: HasMap<InternedAppLabel, SubApp>`
 - `system`
 - `Table`
 - `World`
+    - https://taintedcoders.com/bevy/worlds
     - stores entities, components, resources, and their associated metadata
-- 
+    - (fields)
+        - `id: WorldId(usize)`
+        - `entities: Entities`
+        - `allocator: EntityAllocator`
+        - `components: Components`
+        - `component_ids: ComponentIds`
+        - `archetypes: Archetypes`
+        - `storages: Storages`
+        - `bundles: Bundles`
+        - `observers: Observers`
+        - `command_queue: RawCommandQueue`
 
 ### ECS
 
@@ -106,6 +214,8 @@ fn main() {
 
 ```
 
+- https://taintedcoders.com/bevy/archetypes#starting-without-archetypes
+
 ## 3D Rendering
 
 ### 3D Scene
@@ -116,17 +226,7 @@ https://bevyengine.org/examples/3d-rendering/3d-scene/
 
 https://github.com/Jondolf/avian
 
-## Internals
+## References
 
-https://bevy.org/learn/contribute/introduction/
-
-- `App`
-    - the entry point
-    - `SubApp`
-        - `World`
-            - the database
-            - entities
-            - components
-            - component_ids
-            - archetypes
-- 
+- https://bevy.org/learn/contribute/introduction/
+- https://taintedcoders.com/

@@ -1,5 +1,9 @@
 # Development process
 
+## Related links
+
+- [[team-building]]
+
 ## Intuitions
 
 - Having a product owner or business analyst is quite important for long term success

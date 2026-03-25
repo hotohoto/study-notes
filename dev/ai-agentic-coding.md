@@ -2,6 +2,23 @@
 
 ## Skills
 
-- workspace skills location
-    - `.agents/skills/**` looks like the most general path that can be used for any agentic coding tools(?)
-- 
+### How to install skills
+
+- make sure `nvx` is available
+    - install NodeJS following [[nodejs]].
+- go to https://skills.sh/
+- find a skill you want to install
+- run the install script
+
+### Useful skills
+
+(global)
+
+- https://skills.sh/vercel-labs/skills/find-skills
+- https://skills.sh/anthropics/skills/skill-creator
+
+(project)
+
+### Folder structure (my suggestion)
+
+

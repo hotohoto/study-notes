@@ -1,7 +1,6 @@
-# MAGVIT: Masked Generative Video Transformer
+# A tutorial on visual servo control
 
-- https://arxiv.org/abs/2212.05199
-- CVPR 2023 highlight
+- https://faculty.cc.gatech.edu/~seth/ResPages/pdfs/HutHagCor96.pdf
 
 ## 1 Introduction
 
@@ -18,3 +17,5 @@
 ## A Proof of formula 1
 
 ## B Proof of formula 2
+
+## Notes
