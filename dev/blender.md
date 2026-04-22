@@ -359,7 +359,7 @@ blender scene.blend --background --python script.py --python-use-system-env -- 1
     - make it not rendered
     - related to 📷
 
-### Transforms
+## Transforms
 
 (The related properties of Object)
 
@@ -377,7 +377,7 @@ https://docs.blender.org/api/current/bpy.types.Object.html
 - dimensions
   - contains axis aligned height / width / length
 
-### Data model
+## Data model
 
 A scene snapshot:
 
@@ -403,7 +403,7 @@ A scene snapshot:
 
 - When calling `current_scene.frame_current = 50` the actual animated value is calculated from `FCurves`
 
-### Manage modifiers
+## Manage modifiers
 
 apply modifiers temporarily and get vertices with respect to the world coordinates:
 
@@ -414,7 +414,7 @@ vertices = [obj_eval.matrix_world @ v.co for v in obj_eval.data.vertices]
 obj_eval.to_mesh_clear()
 ```
 
-### Ray casting
+## Ray casting
 
 ```python
 result, location, normal, face_index = ground_mesh.ray_cast(
@@ -422,7 +422,7 @@ result, location, normal, face_index = ground_mesh.ray_cast(
 )
 ```
 
-### Avoid collision
+## Avoid collision
 
 Use Bounding Volume Hierarchy Tree (BVHTree).
 
@@ -462,13 +462,22 @@ def compute_push_vector(obj_a, obj_b, depsgraph):
     return push_vector
 ```
 
-### Addon development
+## Addon development
 
 - (references)
   - https://docs.blender.org/api/current/
   - https://docs.blender.org/api/current/info_quickstart.html
   - https://docs.blender.org/api/current/bpy.props.html
   - https://docs.blender.org/api/current/bpy.types.UILayout.html
+
+## Python tips
+
+```
+for child in object.children:
+    pass
+```
+
+- This can be slow for Blender constructs `.children` whenever it's called.
 
 ## Development
 

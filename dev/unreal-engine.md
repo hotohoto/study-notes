@@ -16,6 +16,13 @@
   - https://docs.unrealengine.com/4.26/en-US/API/Runtime/Engine/Engine/UAssetManager/AddDynamicAsset/
     - ??
 
+## Components(?)
+
+- nanite
+    - automatic LOD
+- lumen
+- behavior tree
+
 ## Content migration
 
 - copy files under Content

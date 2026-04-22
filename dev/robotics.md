@@ -47,18 +47,6 @@
         - IBVS
         - PBVS
 - actuation
----
-- manipulation
-- navigation
-    - obstacle avoidance
-    - A*
-- localization
-- VLA
-- planning
-- state estimation
-- control
-- learning/reasoning
-- system
 
 ## Glossary
 
@@ -73,7 +61,6 @@
 - pose
     - x, y, z
     - orientation
-- 
 
 ## Conferences
 

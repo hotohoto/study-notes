@@ -1,3 +1,5 @@
+# Computer graphics
+
 ## Interpolation methods
 
 - Nearest neighbor

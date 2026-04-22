@@ -226,6 +226,11 @@ https://bevyengine.org/examples/3d-rendering/3d-scene/
 
 https://github.com/Jondolf/avian
 
+## Virtual geometry / automatic LOD / / meshlet
+
+- https://jms55.github.io/posts/2025-03-27-virtual-geometry-bevy-0-16/
+- https://jms55.github.io/posts/2024-11-14-virtual-geometry-bevy-0-15/
+
 ## References
 
 - https://bevy.org/learn/contribute/introduction/

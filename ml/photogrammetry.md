@@ -6,7 +6,14 @@
     - infer intrinsic parameters without checkerboard calibration
 - bundle adjustment
 - registration
-- 
+
+## 3D reconstruction
+
+- fundamental matrix
+- essential matrix
+- projective reconstruction
+- affine reconstruction
+- metric reconstruction
 
 ## Self-calibration
 
@@ -36,10 +43,20 @@
 
 ## References
 
+(blogs)
+- https://scimad.github.io/2020/09/06/transformation-and-3d-reconstruction
+
+(textbooks)
+- 3D Reconstruction
+    - https://diposit.ub.edu/server/api/core/bitstreams/47e1cd42-f9e0-4cb6-836d-0439844aca04/content
+- Multiple View Geometry in Computer Vision
+    - https://www.cambridge.org/core/books/multiple-view-geometry-in-computer-vision/0B6F289C78B2B23F596CAA76D3D43F7A
+
 (models)
 - https://github.com/Parskatt/DeDoDe ⭐
 - https://github.com/Parskatt/RoMa/
 - https://github.com/fraunhoferhhi/RIPE
+
 (Good open projects)
 - https://github.com/Vincentqyw/image-matching-webui ⭐
 - https://github.com/cvlab-epfl/multiview_calib/ ⭐
