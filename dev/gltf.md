@@ -1,6 +1,9 @@
 # glTF
 
 - https://github.com/KhronosGroup/glTF
+- a JSON file
+- supports 3DGS
+    - https://github.com/KhronosGroup/glTF/blob/main/extensions/2.0/Khronos/KHR_gaussian_splatting/README.md
 
 ## Spec
 

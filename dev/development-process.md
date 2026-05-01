@@ -3,13 +3,11 @@
 ## Related links
 
 - [[team-building]]
+- [[ai-agentic-coding]]
 
 ## Intuitions
 
 - Having a product owner or business analyst is quite important for long term success
-- Keeping heros as heros may indicate:
-  - it's difficult for the others to contribute
-  - we need to improve processes
 
 ## Good practices
 
@@ -58,6 +56,12 @@
 - Provide hospitality.
 - Listen carefully and more
   - they would not accept any advices if they don't agree
+
+(remarks)
+
+- On-boarding is also important for seniors
+    - not to do something which is not priority
+    - although it can be they've done before in the other places
 
 ## branching workflows
 
