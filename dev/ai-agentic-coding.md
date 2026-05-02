@@ -17,13 +17,12 @@
 - https://skills.sh/vercel-labs/skills/find-skills
 - https://skills.sh/anthropics/skills/skill-creator
 - https://skills.sh/mattpocock/skills/grill-me
-- https://skills.sh/mattpocock/skills/write-a-prd
-- https://skills.sh/mattpocock/skills/prd-to-plan
-- https://skills.sh/mattpocock/skills/prd-to-issues
 - https://skills.sh/mattpocock/skills/improve-codebase-architecture
 - https://github.com/snarktank/ralph
     - run-once.sh
-    - prd
+    - /prd
+    - /prd-to-issues
+    - /prd-to-plan
 
 (project)
 
@@ -33,7 +32,10 @@
 
 https://github.com/snarktank/ralph
 
-
+- prd
+    - plan (-> issue)
+        - story
+- stories are in `prd.json`
 
 alternatives:
 - TBD

@@ -12,9 +12,11 @@ Study guide:
 
 TODO:
 
-- [07:09:51](https://www.youtube.com/watch?v=BpPEoZW5IiY&t=25791s) Associated Types
+- [07:09:51](https://youtu.be/BpPEoZW5IiY?si=ep5saluLTlKgdZPg&t=26391) Associated Types
+    - https://practice-rust.beatai.org/generics-traits/trait-object.html#array-with-trait-objects
 - [07:39:31](https://www.youtube.com/watch?v=BpPEoZW5IiY&t=27571s) String
     - https://practice.course.rs/collections/string.html
+    - 
 - [07:59:52](https://www.youtube.com/watch?v=BpPEoZW5IiY&t=28792s) Vectors
 - [08:29:00](https://www.youtube.com/watch?v=BpPEoZW5IiY&t=30540s) HashMaps
 - [08:52:45](https://www.youtube.com/watch?v=BpPEoZW5IiY&t=31965s) Type Coercion
@@ -648,6 +650,23 @@ trait Contains {
     type B;
 
     fn contains(&self, _: &Self::A, _: &Self::B) -> bool;
+}
+```
+
+```rust
+trait MyTrait {
+    type MyType;
+    fn get_my_type(&self) -> Self::MyType;
+}
+
+struct MyStruct {}
+
+impl MyTrait for MyStruct {
+    type MyType = i32;
+    
+    fn get_my_type(&self) -> Self::MyType {
+        return 42;
+    }
 }
 ```
 
