@@ -14,15 +14,11 @@
 
 (global)
 
-- https://skills.sh/vercel-labs/skills/find-skills
-- https://skills.sh/anthropics/skills/skill-creator
 - https://skills.sh/mattpocock/skills/grill-me
 - https://skills.sh/mattpocock/skills/improve-codebase-architecture
 - https://github.com/snarktank/ralph
-    - run-once.sh
-    - /prd
-    - /prd-to-issues
-    - /prd-to-plan
+- https://skills.sh/anthropics/skills/skill-creator
+- https://skills.sh/vercel-labs/skills/find-skills
 
 (project)
 
@@ -32,6 +28,11 @@
 
 https://github.com/snarktank/ralph
 
+- skills
+    - /prd
+    - /prd-to-plan
+    - /prd-to-issues
+    - /ralph
 - prd
     - plan (-> issue)
         - story

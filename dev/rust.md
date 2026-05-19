@@ -1,5 +1,7 @@
 # Rust
 
+[[rust-by-example]]
+
 ## Resources
 
 - https://doc.rust-lang.org/book/
@@ -75,9 +77,16 @@ code C:\Users\<user_name>\.cargo\config.toml
 rustc-wrapper = "C:\\Users\\hotohoto\\scoop\\apps\\sccache\\current\\sccache.exe"
 ```
 
-## Debugging in VS Code
+## Debugging
 
-### cppvsdbg
+```rust
+// print the variable type
+println!("{}", std::any::type_name_of_val(&v));
+```
+
+### VS Code debuggers
+
+#### cppvsdbg
 
 ```json
 {
@@ -138,7 +147,7 @@ rustc-wrapper = "C:\\Users\\hotohoto\\scoop\\apps\\sccache\\current\\sccache.exe
     - `cargo run -vv --features bevy/dynamic_linking`
 - and see what kind of settings are required
 
-### lldb
+#### lldb
 
 ```json
 {
@@ -161,7 +170,7 @@ rustc-wrapper = "C:\\Users\\hotohoto\\scoop\\apps\\sccache\\current\\sccache.exe
 }
 ```
 
-### Unsorted
+## Unsorted
 
 - `trait`
     - it's like interfaces or mixins

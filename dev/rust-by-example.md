@@ -1,4 +1,6 @@
-# Rust by exmple
+# Rust by example
+
+[[rust]]
 
 Study guide:
 
@@ -12,15 +14,8 @@ Study guide:
 
 TODO:
 
-- [07:09:51](https://youtu.be/BpPEoZW5IiY?si=ep5saluLTlKgdZPg&t=26391) Associated Types
-    - https://practice-rust.beatai.org/generics-traits/trait-object.html#array-with-trait-objects
-- [07:39:31](https://www.youtube.com/watch?v=BpPEoZW5IiY&t=27571s) String
-    - https://practice.course.rs/collections/string.html
-    - 
-- [07:59:52](https://www.youtube.com/watch?v=BpPEoZW5IiY&t=28792s) Vectors
-- [08:29:00](https://www.youtube.com/watch?v=BpPEoZW5IiY&t=30540s) HashMaps
-- [08:52:45](https://www.youtube.com/watch?v=BpPEoZW5IiY&t=31965s) Type Coercion
 - [09:04:54](https://www.youtube.com/watch?v=BpPEoZW5IiY&t=32694s) From & Into
+    - https://practice-rust.beatai.org/type-conversions/from-into.html (4,5)
 - [09:36:03](https://www.youtube.com/watch?v=BpPEoZW5IiY&t=34563s) panic!
 - [09:44:56](https://www.youtube.com/watch?v=BpPEoZW5IiY&t=35096s) Result
 - [10:28:23](https://www.youtube.com/watch?v=BpPEoZW5IiY&t=37703s) Cargo, Crates & Modules
@@ -325,6 +320,33 @@ const THRESHOLD: i32 = 10;
 
 ### 5.1 Casting
 
+- https://practice-rust.beatai.org/type-conversions/as.html
+- [08:52:45](https://www.youtube.com/watch?v=BpPEoZW5IiY&t=31965s)
+
+```rust
+#[allow(overflowing_literals)]
+fn main() {
+    assert_eq!(u8::MAX, 255);
+    let v = 1000 as u8;
+
+    assert_eq!(v, 232);
+}
+```
+
+```rust
+fn main() {
+    let arr :[u64; 13] = [0; 13];
+    assert_eq!(std::mem::size_of_val(&arr), 8 * 13);
+    let a: *const [u64] = &arr;
+    let b = a as *const [u8];
+    unsafe {
+        assert_eq!(std::mem::size_of_val(&*b), 13);
+    }
+
+    println!("Success!");
+}
+```
+
 ### 5.2 Literals
 
 ### 5.3 Inference
@@ -332,6 +354,81 @@ const THRESHOLD: i32 = 10;
 ### 5.4 Aliasing
 
 ## 6 Conversion
+
+### 6.1 From and Into
+
+- https://practice-rust.beatai.org/type-conversions/from-into.html (1,2,3)
+- [09:04:54](https://www.youtube.com/watch?v=BpPEoZW5IiY&t=32694s)
+
+```rust
+struct Number {
+    value: i32,
+}
+
+impl From<i32> for Number {
+    fn from(value: i32) -> Self {
+        Number{ value }
+    }
+}
+
+fn main() {
+    let num = Number::from(30);
+    assert_eq!(num.value, 30);
+
+    let num: Number = 30.into();
+    assert_eq!(num.value, 30);
+}
+```
+
+```rust
+use std::fs;
+use std::io;
+use std::num;
+
+enum CliError {
+    IoError(io::Error),
+    ParseError(num::ParseIntError),
+}
+
+impl From<io::Error> for CliError {
+    fn from(err: io::Error) -> Self {
+        CliError::IoError(err)
+    }
+}
+
+impl From<num::ParseIntError> for CliError {
+    fn from(err: num::ParseIntError) -> Self {
+        CliError::ParseError(err)
+    }
+}
+
+fn open_and_parse_file(file_name: &str) -> Result<i32, CliError> {
+    // ? automatically converts io::Error to CliError
+    let contents = fs::read_to_string(&file_name)?;
+    // num::ParseIntError -> CliError
+    let num: i32 = contents.trim().parse()?;
+    Ok(num)
+}
+
+fn main() -> Result<(), CliError> {
+    let file_name = "number.txt"; 
+    let value = open_and_parse_file(file_name)?;
+    println!("The parsed value is: {}", value);
+    Ok(())
+}
+```
+
+### 6.2 TryFrom and TryInto
+
+- https://practice-rust.beatai.org/type-conversions/from-into.html (4,5)
+- https://youtu.be/BpPEoZW5IiY?si=lYaaWjcz8X0Cpbov&t=33837
+- TODO
+
+```rust
+
+```
+
+### 6.3 To and from String
 
 ## 7 Expressions
 
@@ -1009,6 +1106,34 @@ fn main() {
 
 ### 16.3 Operator overloading
 
+#### Object-safety
+
+- The return type is not `Self`.
+- no generic type parameters
+
+```rust
+trait MyTrait {
+    fn f(&self) -> Box<dyn MyTrait>;
+}
+
+impl MyTrait for u32 {
+    fn f(&self) -> Box<dyn MyTrait> { Box::new(42) }
+}
+
+impl MyTrait for String {
+    fn f(&self) -> Box<dyn MyTrait> { Box::new(self.clone()) }
+}
+
+fn my_function(x: Box<dyn MyTrait>)  {
+    x.f();
+}
+
+fn main() {
+    my_function(Box::new(13_u32));
+    my_function(Box::new(String::from("abc")));
+}
+```
+
 ### 16.4 Drop
 
 ### 16.5 Iterators
@@ -1129,7 +1254,138 @@ fn main() {
 
 ### 19.2 Vectors
 
+- https://practice-rust.beatai.org/collections/vector.html
+- [07:59:52](https://www.youtube.com/watch?v=BpPEoZW5IiY&t=28792s)
+
+```rust
+fn main() {
+    let mut v1 = Vec::from([1, 2, 4]);
+    v1.pop();
+    v1.push(3);
+    
+    let mut v2 = Vec::new();
+    v2.extend(&v1);
+}
+```
+
+```rust
+fn main() {
+    let arr: [i32; 3] = [1, 2, 3];
+    let v1 = Vec::from(arr);
+    let v2: Vec<i32> = arr.to_vec();
+ 
+    assert_eq!(v1, v2);
+ 
+    let s = "hello".to_string();
+    let v1: Vec<u8> = s.as_bytes().to_vec();
+
+    let s = "hello".to_string();
+    let v2 = s.into_bytes();
+    assert_eq!(v1, v2);
+
+    let s = "hello";
+    let v3 = Vec::from(s);
+    assert_eq!(v2, v3);
+
+    let v4: Vec<i32> = [0; 10].into_iter().collect();
+    assert_eq!(v4, vec![0; 10]);
+ }
+```
+
+```rust
+
+fn main() {
+    let mut v:Vec<i32> = vec![1, 2, 3];
+    let slice1:&[i32] = &v[..];
+    let slice2:&[i32] = &v[0..v.len()];
+    
+    assert_eq!(slice1, slice2);
+    
+    let vec_ref: &mut Vec<i32> = &mut v;
+    (*vec_ref).push(4);
+    let slice3 = &mut v[0..4];
+    slice3[3] = 42;
+
+    assert_eq!(slice3, &[1, 2, 3, 42]);
+    assert_eq!(v, &[1, 2, 3, 42]);
+}
+```
+
 ### 19.3 Strings
+
+```rust
+fn main() {  
+    let mut s: &str = "hello, world!";
+    println!("{s}");
+    println!("{}", &s[..]);
+}
+```
+
+```rust
+fn main() {  
+    let mut s: String = "hello, ".to_string();
+    s.push_str("world");
+    s.push('!');
+    println!("{s}");
+    println!("{}", &s[..]);
+}
+```
+
+```rust
+fn main() {
+    let s = String::from("hello, 월드");
+    
+    let slice1 = &s[0..1];
+    assert_eq!(slice1, "h");
+
+    let slice2 = &s[7..10];
+    assert_eq!(slice2, "월");
+    
+    for (i, c) in s.chars().enumerate() {
+        if i == 7 {
+            assert_eq!(c, '월')
+        }
+    }
+}
+```
+
+```rust
+use utf8_slice;
+fn main() {
+   let s = "The 🚀 goes to the 🌑!";
+
+   let rocket = utf8_slice::slice(s, 4, 5);
+   // Will equal "🚀"
+}
+```
+
+```rust
+fn main() {
+    let mut s = String::new();
+    s.push_str("hello");
+
+    let v = vec![104, 101, 108, 108, 111];
+    let s1 = String::from_utf8(v).unwrap();
+    
+    assert_eq!(s, s1);
+}
+```
+
+```rust
+use std::mem;
+
+fn main() {
+    let mut s = String::from("Rust By Practice");
+    
+    let ptr = s.as_mut_ptr();
+    let len = s.len();
+    let cap = s.capacity();
+    
+    mem::forget(s);
+    
+    let s = unsafe { String::from_raw_parts(ptr, len, cap) };
+}
+```
 
 ### 19.4 Option
 
@@ -1215,6 +1471,110 @@ fn plus_one(x: Option<i32>) -> Option<i32> {
 ### 19.6 panic!
 
 ### 19.7 HashMap
+
+- https://practice-rust.beatai.org/collections/hashmap.html
+- [08:29:00](https://www.youtube.com/watch?v=BpPEoZW5IiY&t=30540s)
+
+```rust
+use std::collections::HashMap;
+fn main() {
+    let mut scores = HashMap::new();
+    scores.insert("Sunface", 98);
+    scores.insert("Daniel", 95);
+    scores.insert("Ashley", 69);
+    scores.insert("Katie", 58);
+
+    let score = scores.get("Sunface");
+    assert_eq!(*score.unwrap(), 98);
+
+    if scores.contains_key("Daniel") {
+        let score = scores["Daniel"];
+        assert_eq!(score, 95);
+        scores.remove("Daniel");
+    }
+
+    assert_eq!(scores.len(), 3);
+
+    for (name, score) in scores {
+        println!("The score of {} is {}", name, score);
+    }
+}
+```
+
+```rust
+use std::collections::HashMap;
+
+fn main() {
+    let teams = [
+        ("Chinese Team", 100),
+        ("American Team", 10),
+        ("France Team", 50),
+    ];
+
+    let mut teams_map1 = HashMap::new();
+    for team in &teams {
+        teams_map1.insert(team.0, team.1);
+    }
+
+    let teams_map2: HashMap<_, _> = teams_map1.clone().into_iter().collect();
+
+    assert_eq!(teams_map1, teams_map2);
+}
+```
+
+```rust
+use std::collections::HashMap;
+fn main() {
+    let mut player_stats = HashMap::new();
+
+    player_stats.entry("health").or_insert(100);
+
+    assert_eq!(player_stats["health"], 100);
+
+    player_stats.entry("health").or_insert_with(random_stat_buff);
+    assert_eq!(player_stats["health"], 100);
+
+    let health = player_stats.entry("health").or_insert(50);
+    assert_eq!(*health, 100);
+    *health -= 50;
+    assert_eq!(*health, 50);
+}
+
+fn random_stat_buff() -> u8 {
+    42
+}
+```
+
+```rust
+use std::collections::HashMap;
+
+#[derive(Hash, Debug, PartialEq, Eq)]
+struct Viking {
+    name: String,
+    country: String,
+}
+
+impl Viking {
+    fn new(name: &str, country: &str) -> Viking {
+        Viking {
+            name: name.to_string(),
+            country: country.to_string(),
+        }
+    }
+}
+
+fn main() {
+    let vikings = HashMap::from([
+        (Viking::new("Einar", "Norway"), 25),
+        (Viking::new("Olaf", "Denmark"), 24),
+        (Viking::new("Harald", "Iceland"), 12),
+    ]);
+
+    for (viking, health) in &vikings {
+        println!("{:?} has {} hp", viking, health);
+    }
+}
+```
 
 ### 19.8 Rc
 
